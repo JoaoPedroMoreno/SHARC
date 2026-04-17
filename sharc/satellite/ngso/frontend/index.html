@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satellite Map</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+
+  <aside class="hud">
+    <div class="panel brand">
+      <div class="eyebrow">NGSO Interface</div>
+      <h1>Satellite Map</h1>
+      <p>Simulação orbital conectada ao backend do SHARC.</p>
+    </div>
+
+    <div class="panel controls">
+      <label class="control">
+        <span>Perfil</span>
+        <select id="profileSelect">
+          <option value="fast">fast</option>
+          <option value="high_quality">high_quality</option>
+        </select>
+      </label>
+
+      <div class="actions">
+        <button id="reloadBtn" type="button">Recarregar</button>
+        <button id="playBtn" type="button">Pause</button>
+      </div>
+
+      <label class="control slider-control">
+        <span>Tempo</span>
+        <input id="frameSlider" type="range" min="0" max="0" value="0" step="1">
+      </label>
+    </div>
+
+    <div class="panel stats">
+      <div class="stat">
+        <span class="label">Frame</span>
+        <strong id="frameInfo">0 / 0</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Satélites ativos</span>
+        <strong id="activeCount">0</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Cobertura Brasil</span>
+        <strong id="coverageInfo">0%</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Tempo simulado</span>
+        <strong id="timeInfo">0 s</strong>
+      </div>
+    </div>
+
+    <div class="panel status">
+      <div class="eyebrow">Status</div>
+      <div id="statusText">Inicializando...</div>
+    </div>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>

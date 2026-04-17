@@ -1,5 +1,23 @@
-"""Implements a Space Station Orbit model as described in Rec. ITU-R S.1325-3
-"""
+"""Backend wrapper for the satellite map simulation."""
+
+from sharc.satellite.ngso.backend.orbit_backend_service import (
+    PROFILES,
+    OrbitSimulationBackend,
+    SimulationProfile,
+    build_simulation,
+    default_param_file,
+)
+
+__all__ = [
+    "PROFILES",
+    "OrbitSimulationBackend",
+    "SimulationProfile",
+    "build_simulation",
+    "default_param_file",
+]
+
+r'''
+Legacy implementation kept below only as historical reference.
 
 import imageio.v2 as imageio
 import numpy as np
@@ -401,7 +419,7 @@ def main():
     # ================================
     # CARREGAR HEIGHTMAP
     # ================================
-    heightmap = np.array(Image.open("earth_heightmap.jpeg").convert("L"))
+    heightmap = np.array(Image.open("earth_heightmap.jpg").convert("L"))
 
     if len(heightmap.shape) == 3:
         heightmap = heightmap[:,:,0]
@@ -434,7 +452,7 @@ def main():
     # ================================
     # TEXTURA BLUE MARBLE
     # ================================
-    texture = pv.read_texture("blue_marble.jpeg")
+    texture = pv.read_texture("blue_marble.jpg")
 
     earth.active_texture_coordinates = np.column_stack((lon, lat))
 
@@ -709,3 +727,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''

@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(0, 145, 255, 0.18), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(0, 255, 170, 0.12), transparent 25%),
+    #02060c;
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+}
+
+#cesiumContainer {
+  width: 100vw;
+  height: 100vh;
+}
+
+.hud {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: min(360px, calc(100vw - 36px));
+  display: grid;
+  gap: 12px;
+  z-index: 10;
+}
+
+.panel {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(4, 11, 20, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+}
+
+.brand h1 {
+  margin: 4px 0 6px;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.brand p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  color: #79d8ff;
+}
+
+.controls,
+.stats {
+  display: grid;
+  gap: 12px;
+}
+
+.control {
+  display: grid;
+  gap: 6px;
+}
+
+.control span,
+.label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.slider-control input,
+select,
+button {
+  width: 100%;
+}
+
+select,
+button,
+input[type="range"] {
+  border-radius: 10px;
+}
+
+select,
+button {
+  min-height: 40px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+}
+
+button {
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.stats {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.stat {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.stat strong {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.status {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+@media (max-width: 720px) {
+  .hud {
+    top: auto;
+    bottom: 14px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
