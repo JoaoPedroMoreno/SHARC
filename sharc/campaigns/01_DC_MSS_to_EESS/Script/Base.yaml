@@ -56,7 +56,7 @@ imt:
                                 # - Argentina
                             margin_from_border: 25 # variar depois
                     eligible_sats_margin_from_border: -200.0
-                    minimum_service_angle: 32 # Variar depois
+                    minimum_service_angle: 32 
             beam_radius: 24000
             power_control_zones:
                 zones:

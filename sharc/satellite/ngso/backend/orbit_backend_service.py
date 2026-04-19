@@ -104,7 +104,7 @@ def _load_brazil_geometry():
     except Exception:
         pass
 
-    # Fallback simplificado para ambientes sem cache/gravação do Natural Earth.
+    # Fallback simplificado para ambientes sem cache/gravaÃ§Ã£o do Natural Earth.
     return Polygon(
         [
             (-73.99, -7.6),
@@ -184,9 +184,11 @@ class OrbitSimulationBackend:
         )
 
         topology = self.parameters.imt.topology
-        theta_service = np.radians(
+        theta_min = np.radians(
             topology.mss_dc.beam_positioning.service_grid.minimum_service_angle
         )
+        # ConversÃ£o correta: Ã¢ngulo de cobertura na Terra considerando limite fisico de visibilidade (horizonte)
+        theta_service_raw = (np.pi / 2) - theta_min
 
         grid_points, grid_norm, brazil_mask = self._build_grid()
         brazil_indices = np.flatnonzero(brazil_mask)
@@ -212,7 +214,17 @@ class OrbitSimulationBackend:
                 sat_radius = np.linalg.norm(sat_xyz)
                 nadir = sat_xyz / sat_radius
                 theta = np.arccos(np.clip(grid_norm @ nadir, -1.0, 1.0))
+                sat_norm = np.linalg.norm(sat_xyz)
+                theta_horizon = np.arccos(EARTH_RADIUS_KM / sat_norm)
+
+                theta_service = min(theta_service_raw, theta_horizon)
+
                 coverage = theta <= theta_service
+                covered_points = [
+                grid_points[i]
+                    for i in range(len(grid_points))
+                    if coverage[i] and brazil_mask[i]
+                    ]
                 grid_active |= coverage
 
                 covers_brazil = bool(np.any(coverage & brazil_mask))
@@ -228,16 +240,78 @@ class OrbitSimulationBackend:
 
                 if covers_brazil:
                     active_satellite_ids.append(sat_id)
-                    footprints.append(
-                        {
-                            "satelliteId": sat_id,
-                            "ring": _footprint_ring(
-                                sat_xyz,
-                                central_angle_rad=theta_service,
-                                n_points=self.profile.footprint_points,
-                            ),
-                        }
+
+                    sat_norm = np.linalg.norm(sat_xyz)
+
+                    # Ã¢ngulo mÃ¡ximo visÃ­vel da Terra (horizonte)
+                    theta_horizon = np.arccos(EARTH_RADIUS_KM / sat_norm)
+
+                    # usa o menor entre serviÃ§o e horizonte
+                    theta_service = min(theta_service_raw, theta_horizon)
+
+                    ring = _footprint_ring(
+                        sat_xyz,
+                        central_angle_rad=theta_service,
+                        n_points=self.profile.footprint_points,
                     )
+                    try:
+                        coords = [(lon, lat) for lon, lat, _ in ring]
+                        poly = Polygon(coords)
+
+                        if not poly.is_valid:
+                            poly = poly.buffer(0)
+
+                        clipped = poly.intersection(self.brazil_geometry)
+
+                        rings = []
+
+                        # âœ… CASO NORMAL
+                        if not clipped.is_empty:
+                            if clipped.geom_type == "Polygon":
+                                rings.append([
+                                    [round(lon, 6), round(lat, 6), 0.0]
+                                    for lon, lat in clipped.exterior.coords
+                                ])
+
+                            elif clipped.geom_type == "MultiPolygon":
+                                for p in clipped.geoms:
+                                    rings.append([
+                                        [round(lon, 6), round(lat, 6), 0.0]
+                                        for lon, lat in p.exterior.coords
+                                    ])
+
+                        # FALLBACK INTELIGENTE
+                        else:
+                            inside_points = [
+                                (lon, lat)
+                                for lon, lat, _ in ring
+                                if self.brazil_geometry.contains(Point(lon, lat))
+                            ]
+
+                            if inside_points:
+                                rings.append([
+                                    [round(lon, 6), round(lat, 6), 0.0]
+                                    for lon, lat in inside_points
+                                ])
+
+                        if rings:
+                            footprints.append(
+                                {
+                                    "satelliteId": sat_id,
+                                    "rings": rings,
+                                    "grid": covered_points,
+                                }
+                            )
+
+                    except Exception:
+                        # fallback (se der qualquer erro, usa footprint original)
+                        footprints.append(
+                            {
+                                "satelliteId": sat_id,
+                                "rings": [ring]
+                            }
+                        )
+
 
             active_weights = 0.0
             total_weights = 0.0
@@ -273,6 +347,9 @@ class OrbitSimulationBackend:
                 "frameCount": len(frames),
                 "satelliteCount": len(satellite_ids),
                 "paramFile": str(self.param_file),
+                "beamRadiusMeters": float(
+                    topology.mss_dc.beam_positioning.service_grid.beam_radius
+                ),
             },
             "station": station,
             "satelliteIds": satellite_ids,
