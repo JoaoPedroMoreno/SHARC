@@ -184,6 +184,7 @@ class OrbitSimulationBackend:
         )
 
         topology = self.parameters.imt.topology
+        system = self.parameters.single_earth_station
         theta_min = np.radians(
             topology.mss_dc.beam_positioning.service_grid.minimum_service_angle
         )
@@ -340,6 +341,15 @@ class OrbitSimulationBackend:
             "altKm": float(topology.central_altitude) / 1000.0,
         }
 
+        hex_radius_km = topology.mss_dc.beam_positioning.service_grid.beam_radius / 1000.0
+        # Calcula a margem de segurança em km (ex: 150 km)
+        margin_km = topology.mss_dc.power_control_zones.zones[0].geometry.from_countries.margin_from_border
+        # Calcula quantos hexágonos cabem nessa margem (ex: 150 / (24 * 2) = ~3.1 -> 3)
+        guardband_hex_count = round(margin_km / (hex_radius_km * 2))
+        # Ganho sem power backoff (ex: 30 dBi) e ganho com power backoff (ex: 20 dBi)
+        gain_high = system.antenna.gain
+        power_backoff_db = topology.mss_dc.power_control_zones.zones[0].power_backoff_db
+        gain_low = gain_high - power_backoff_db
         return {
             "meta": {
                 "profile": self.profile.name,
@@ -347,9 +357,10 @@ class OrbitSimulationBackend:
                 "frameCount": len(frames),
                 "satelliteCount": len(satellite_ids),
                 "paramFile": str(self.param_file),
-                "beamRadiusMeters": float(
-                    topology.mss_dc.beam_positioning.service_grid.beam_radius
-                ),
+                "beamRadiuskm": hex_radius_km,
+                "guardbandHexCount": guardband_hex_count,
+                "antennaGainHigh": gain_high,
+                "antennaGainLow": gain_low,
             },
             "station": station,
             "satelliteIds": satellite_ids,
