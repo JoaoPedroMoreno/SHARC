@@ -185,11 +185,28 @@ class OrbitSimulationBackend:
 
         topology = self.parameters.imt.topology
         system = self.parameters.single_earth_station
-        theta_min = np.radians(
+        minimum_service_angle_deg = (
             topology.mss_dc.beam_positioning.service_grid.minimum_service_angle
         )
-        # ConversÃ£o correta: Ã¢ngulo de cobertura na Terra considerando limite fisico de visibilidade (horizonte)
-        theta_service_raw = (np.pi / 2) - theta_min
+
+        # beam útil do satélite (off-nadir)
+        beam_angle_deg = 90.0 - minimum_service_angle_deg
+        beam_angle_rad = np.radians(beam_angle_deg)
+
+        orbit_params = self.parameters.mss_d2d.orbits[0]
+
+        h = (
+            orbit_params.perigee_alt_km +
+            orbit_params.apogee_alt_km
+        ) / 2
+
+        R = EARTH_RADIUS_KM
+
+        # conversão OFF-NADIR -> ângulo central terrestre
+        theta_service = (
+            np.arcsin(((R + h) / R) * np.sin(beam_angle_rad))
+            - beam_angle_rad
+        )
 
         grid_points, grid_norm, brazil_mask = self._build_grid()
         brazil_indices = np.flatnonzero(brazil_mask)
