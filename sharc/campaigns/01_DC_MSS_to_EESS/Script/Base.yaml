@@ -18,7 +18,7 @@ imt:
     adjacent_ch_reception: "OFF"
     adjacent_ch_emissions: ACLR
     spectral_mask: MSS
-    spurious_emissions: -13 #Precisa desse parâmetro?
+    spurious_emissions: -13 
     guard_band_ratio: 0.1
     topology:
         central_latitude: -25.5549751
