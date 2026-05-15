@@ -377,7 +377,7 @@ def main():
     topology_params = parameters.imt.topology
     bs_lat_deg = topology_params.central_latitude
     bs_lon_deg = topology_params.central_longitude
-    bs_alt_m  = topology_params.central_altitude  # provavelmente em metros
+    bs_alt_m  = topology_params.central_altitude
     bs_alt_km = bs_alt_m / 1000.0
     
     # ================================
