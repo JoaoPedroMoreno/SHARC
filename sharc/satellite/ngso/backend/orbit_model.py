@@ -1,6 +1,7 @@
 """Backend wrapper for the satellite map simulation."""
 
 from sharc.satellite.ngso.backend.orbit_backend_service import (
+    FOOTPRINT_MODES,
     PROFILES,
     OrbitSimulationBackend,
     SimulationProfile,
@@ -10,6 +11,7 @@ from sharc.satellite.ngso.backend.orbit_backend_service import (
 
 __all__ = [
     "PROFILES",
+    "FOOTPRINT_MODES",
     "OrbitSimulationBackend",
     "SimulationProfile",
     "build_simulation",

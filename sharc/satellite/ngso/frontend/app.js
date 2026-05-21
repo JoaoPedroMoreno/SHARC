@@ -73,6 +73,7 @@ viewer.camera.setView({
 });
 
 const profileSelect = document.getElementById("profileSelect");
+const footprintModeSelect = document.getElementById("footprintModeSelect");
 const reloadBtn = document.getElementById("reloadBtn");
 const playBtn = document.getElementById("playBtn");
 const frameSlider = document.getElementById("frameSlider");
@@ -172,11 +173,45 @@ function satelliteColor(isActive) {
     return isActive ? Cesium.Color.fromBytes(0, 255, 0, 255) : Cesium.Color.CYAN.withAlpha(0.9);
 }
 
-async function loadSimulation(profile) {
+function clearDynamicFootprints() {
+    footprintEntities.forEach((entity) => viewer.entities.remove(entity));
+    footprintEntities = [];
+}
+
+function drawAntennaFootprintRings(frame) {
+    const satBeamCounts = new Map();
+
+    frame.footprints.forEach((footprint) => {
+        if (!footprint || !footprint.rings) return;
+
+        const currentSatCount = satBeamCounts.get(footprint.satelliteId) || 0;
+        satBeamCounts.set(footprint.satelliteId, currentSatCount + 1);
+
+        footprint.rings.forEach((ring) => {
+            if (!ring || ring.length < 3) return;
+            const entity = viewer.entities.add({
+                polygon: {
+                    hierarchy: Cesium.Cartesian3.fromDegreesArray(
+                        ring.flatMap(([lon, lat]) => [lon, lat])
+                    ),
+                    material: Cesium.Color.ORANGE.withAlpha(0.28),
+                    outline: true,
+                    outlineColor: Cesium.Color.WHITE.withAlpha(0.65),
+                    perPositionHeight: false,
+                }
+            });
+            footprintEntities.push(entity);
+        });
+    });
+
+    return satBeamCounts;
+}
+
+async function loadSimulation(profile, footprintMode) {
     stopPlayback();
     setStatus(`Carregando perfil ${profile}...`);
 
-    const response = await fetch(`/api/simulation?profile=${encodeURIComponent(profile)}`);
+    const response = await fetch(`/api/simulation?profile=${encodeURIComponent(profile)}&footprintMode=${encodeURIComponent(footprintMode)}`);
     if (!response.ok) {
         const error = await response.json().catch(() => ({}));
         throw new Error(error.error || `Falha ao carregar a simulação (${response.status})`);
@@ -185,6 +220,7 @@ async function loadSimulation(profile) {
     simulation = await response.json();
     initBrazilPolygon();
     profileSelect.value = simulation.meta.profile;
+    footprintModeSelect.value = simulation.meta.footprintMode;
     currentFrameIndex = 0;
     frameSlider.min = "0";
     frameSlider.max = String(Math.max(0, simulation.frames.length - 1));
@@ -195,13 +231,17 @@ async function loadSimulation(profile) {
     GUARDBAND_HEX_COUNT = simulation.meta.guardbandHexCount;
     ANTENNA_GAIN_HIGH = simulation.meta.antennaGainHigh;
     ANTENNA_GAIN_LOW = simulation.meta.antennaGainLow;
-    footprintInfo.textContent = `${simulation.meta.footprintDiameterKm.toFixed(1)} km`;
+    footprintInfo.textContent = simulation.meta.footprintMode === "antenna_7db"
+        ? `7 dB (${simulation.meta.antenna7dbHighAngleDeg.toFixed(2)}°/${simulation.meta.antenna7dbLowAngleDeg.toFixed(2)}°)`
+        : `${simulation.meta.footprintDiameterKm.toFixed(1)} km`;
 
     console.log(`Configurações carregadas: Raio = ${GLOBAL_HEX_RADIUS_KM}km, Guardband = ${GUARDBAND_HEX_COUNT} hexs`);
 
     buildStaticScene();
     buildSatelliteEntities();
-    preBuildGrid();
+    if (simulation.meta.footprintMode === "beam_radius_fixed") {
+        preBuildGrid();
+    }
     renderFrame(0);
     setStatus(`Perfil ${simulation.meta.profile} carregado com ${simulation.meta.frameCount} frames.`);
 }
@@ -313,13 +353,18 @@ function renderFrame(frameIndex) {
 
     activeCellsThisFrame.forEach(entity => { if (entity) entity.show = false; });
     activeCellsThisFrame.length = 0;
+    clearDynamicFootprints();
 
     const dxKm = GLOBAL_HEX_RADIUS_KM * 1.5;
     const dyKm = GLOBAL_HEX_RADIUS_KM * Math.sqrt(3);
 
     const activeHexagonsMap = new Map();
     const processedRings = []; 
-    const satBeamCounts = new Map(); 
+    let satBeamCounts = new Map(); 
+
+    if (simulation.meta.footprintMode === "antenna_7db") {
+        satBeamCounts = drawAntennaFootprintRings(frame);
+    } else {
 
     frame.footprints.forEach((footprint) => {
         if (!footprint || !footprint.rings) return;
@@ -426,6 +471,7 @@ function renderFrame(frameIndex) {
 
         satBeamCounts.set(footprint.satelliteId, currentSatCount);
     });
+    }
 
     // ==========================================
     // 4. HEATMAP ESTATÍSTICO (AUTO-AJUSTÁVEL)
@@ -497,13 +543,15 @@ function renderFrame(frameIndex) {
 
     viewer.entities.suspendEvents(); 
 
-    activeHexagonsMap.forEach((_, key) => {
-        const entity = globalGridEntities.get(key);
-        if (entity) {
-            entity.show = true;
-            activeCellsThisFrame.push(entity); 
-        }
-    });
+    if (simulation.meta.footprintMode === "beam_radius_fixed") {
+        activeHexagonsMap.forEach((_, key) => {
+            const entity = globalGridEntities.get(key);
+            if (entity) {
+                entity.show = true;
+                activeCellsThisFrame.push(entity); 
+            }
+        });
+    }
 
     viewer.entities.resumeEvents(); 
 
@@ -541,7 +589,7 @@ playBtn.addEventListener("click", () => {
 
 reloadBtn.addEventListener("click", async () => {
     try {
-        await loadSimulation(profileSelect.value);
+        await loadSimulation(profileSelect.value, footprintModeSelect.value);
     } catch (error) {
         setStatus(error.message);
         console.error(error);
@@ -559,7 +607,7 @@ async function init() {
         viewer.imageryLayers.removeAll();
         const imagery = await Cesium.IonImageryProvider.fromAssetId(2);
         viewer.imageryLayers.addImageryProvider(imagery);
-        await loadSimulation(profileSelect.value);
+        await loadSimulation(profileSelect.value, footprintModeSelect.value);
     } catch (error) {
         console.error("ERRO NO INIT:", error);
     }
