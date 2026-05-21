@@ -13,6 +13,7 @@ from shapely.ops import unary_union
 
 from sharc.parameters.parameters import Parameters
 from sharc.satellite.ngso.constants import EARTH_RADIUS_KM
+from sharc.satellite.ngso.footprint import calculate_hex_beam_footprint
 from sharc.satellite.ngso.orbit_model import OrbitModel
 
 
@@ -185,27 +186,9 @@ class OrbitSimulationBackend:
 
         topology = self.parameters.imt.topology
         system = self.parameters.single_earth_station
-        minimum_service_angle_deg = (
-            topology.mss_dc.beam_positioning.service_grid.minimum_service_angle
-        )
-
-        # beam útil do satélite (off-nadir)
-        beam_angle_deg = 90.0 - minimum_service_angle_deg
-        beam_angle_rad = np.radians(beam_angle_deg)
-
-        orbit_params = self.parameters.mss_d2d.orbits[0]
-
-        h = (
-            orbit_params.perigee_alt_km +
-            orbit_params.apogee_alt_km
-        ) / 2
-
-        R = EARTH_RADIUS_KM
-
-        # conversão OFF-NADIR -> ângulo central terrestre
-        theta_service = (
-            np.arcsin(((R + h) / R) * np.sin(beam_angle_rad))
-            - beam_angle_rad
+        beam_footprint = calculate_hex_beam_footprint(
+            beam_radius_km=topology.mss_dc.beam_radius / 1000.0,
+            num_beams=topology.mss_dc.num_beams,
         )
 
         grid_points, grid_norm, brazil_mask = self._build_grid()
@@ -235,7 +218,7 @@ class OrbitSimulationBackend:
                 sat_norm = np.linalg.norm(sat_xyz)
                 theta_horizon = np.arccos(EARTH_RADIUS_KM / sat_norm)
 
-                theta_service = min(theta_service_raw, theta_horizon)
+                theta_service = min(beam_footprint.central_angle_rad, theta_horizon)
 
                 coverage = theta <= theta_service
                 covered_points = [
@@ -265,7 +248,7 @@ class OrbitSimulationBackend:
                     theta_horizon = np.arccos(EARTH_RADIUS_KM / sat_norm)
 
                     # usa o menor entre serviÃ§o e horizonte
-                    theta_service = min(theta_service_raw, theta_horizon)
+                    theta_service = min(beam_footprint.central_angle_rad, theta_horizon)
 
                     ring = _footprint_ring(
                         sat_xyz,
@@ -358,7 +341,7 @@ class OrbitSimulationBackend:
             "altKm": float(topology.central_altitude) / 1000.0,
         }
 
-        hex_radius_km = topology.mss_dc.beam_positioning.service_grid.beam_radius / 1000.0
+        hex_radius_km = beam_footprint.beam_radius_km
         # Calcula a margem de segurança em km (ex: 150 km)
         margin_km = topology.mss_dc.power_control_zones.zones[0].geometry.from_countries.margin_from_border
         # Calcula quantos hexágonos cabem nessa margem (ex: 150 / (24 * 2) = ~3.1 -> 3)
@@ -375,6 +358,13 @@ class OrbitSimulationBackend:
                 "satelliteCount": len(satellite_ids),
                 "paramFile": str(self.param_file),
                 "beamRadiuskm": hex_radius_km,
+                "numBeams": beam_footprint.num_beams,
+                "footprintRingCount": beam_footprint.ring_count,
+                "footprintIntersiteDistanceKm": round(beam_footprint.intersite_distance_km, 6),
+                "footprintRadiusKm": round(beam_footprint.enclosing_radius_km, 6),
+                "footprintDiameterKm": round(beam_footprint.enclosing_diameter_km, 6),
+                "footprintEquivalentAreaRadiusKm": round(beam_footprint.equivalent_area_radius_km, 6),
+                "footprintEquivalentAreaDiameterKm": round(beam_footprint.equivalent_area_diameter_km, 6),
                 "guardbandHexCount": guardband_hex_count,
                 "antennaGainHigh": gain_high,
                 "antennaGainLow": gain_low,

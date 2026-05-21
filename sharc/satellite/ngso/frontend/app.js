@@ -79,6 +79,7 @@ const frameSlider = document.getElementById("frameSlider");
 const frameInfo = document.getElementById("frameInfo");
 const activeCount = document.getElementById("activeCount");
 const coverageInfo = document.getElementById("coverageInfo");
+const footprintInfo = document.getElementById("footprintInfo");
 const timeInfo = document.getElementById("timeInfo");
 const statusText = document.getElementById("statusText");
 
@@ -194,6 +195,7 @@ async function loadSimulation(profile) {
     GUARDBAND_HEX_COUNT = simulation.meta.guardbandHexCount;
     ANTENNA_GAIN_HIGH = simulation.meta.antennaGainHigh;
     ANTENNA_GAIN_LOW = simulation.meta.antennaGainLow;
+    footprintInfo.textContent = `${simulation.meta.footprintDiameterKm.toFixed(1)} km`;
 
     console.log(`Configurações carregadas: Raio = ${GLOBAL_HEX_RADIUS_KM}km, Guardband = ${GUARDBAND_HEX_COUNT} hexs`);
 
