@@ -12,17 +12,8 @@ from shapely.geometry import Point, Polygon, mapping
 from shapely.ops import unary_union
 
 from sharc.parameters.parameters import Parameters
+from sharc.satellite.utils.sat_utils import calc_elevation
 from sharc.satellite.ngso.constants import EARTH_RADIUS_KM
-from sharc.satellite.ngso.footprint import (
-    calculate_hex_beam_footprint,
-    complete_hex_lattice_offsets,
-    cone_sphere_polygon,
-    direction_from_angular_offset,
-    ground_elevation_deg,
-    orthonormal_basis,
-    ray_sphere_intersection,
-    s1528_relative_gain_angle_deg,
-)
 from sharc.satellite.ngso.orbit_model import OrbitModel
 
 
@@ -40,15 +31,13 @@ PROFILES = {
     "high_quality": SimulationProfile("high_quality", interval_secs=10, grid_size=52, footprint_points=96),
 }
 
-FOOTPRINT_MODES = {"beam_radius_fixed", "antenna_7db"}
-
 
 def _package_root() -> Path:
     return Path(__file__).resolve().parents[3]
 
 
 def default_param_file() -> Path:
-    return _package_root() / "campaigns" / "01_DC_MSS_to_EESS" / "Script" / "Base.yaml"
+    return _package_root() / "campaigns" / "02_DC_MSS_to_FS" / "Script" / "Base.yaml"
 
 
 def _latlon_to_ecef(lat_deg: float, lon_deg: float, radius_km: float = EARTH_RADIUS_KM) -> np.ndarray:
@@ -102,12 +91,52 @@ def _footprint_ring(sat_xyz: np.ndarray, central_angle_rad: float, n_points: int
     return ring_lonlat
 
 
-def _xyz_ring_to_lonlat(points_xyz: np.ndarray) -> list[list[float]]:
-    ring_lonlat = []
-    for point_xyz in points_xyz:
-        lat_deg, lon_deg = _ecef_to_latlon(point_xyz)
-        ring_lonlat.append([round(lon_deg, 6), round(lat_deg, 6), 0.0])
-    return ring_lonlat
+def _service_central_angle_rad(altitude_km: float, minimum_elevation_deg: float) -> float:
+    """Return the ground central angle visible above a minimum elevation."""
+    satellite_radius = EARTH_RADIUS_KM + altitude_km
+    horizon_angle = np.arccos(EARTH_RADIUS_KM / satellite_radius)
+    min_elevation_rad = np.radians(minimum_elevation_deg)
+    low = 0.0
+    high = float(horizon_angle)
+
+    for _ in range(48):
+        mid = 0.5 * (low + high)
+        slant = np.sqrt(
+            satellite_radius**2
+            + EARTH_RADIUS_KM**2
+            - 2.0 * satellite_radius * EARTH_RADIUS_KM * np.cos(mid)
+        )
+        elevation = np.arccos(
+            np.clip(
+                (slant**2 + EARTH_RADIUS_KM**2 - satellite_radius**2)
+                / (2.0 * slant * EARTH_RADIUS_KM),
+                -1.0,
+                1.0,
+            )
+        ) - (np.pi / 2.0)
+
+        if elevation >= min_elevation_rad:
+            low = mid
+        else:
+            high = mid
+
+    return low
+
+
+def _s1528_relative_gain_angle_deg(*, antenna_3db_bw_deg: float, loss_db: float) -> float:
+    """Return the off-axis angle where S.1528 section 1.2 reaches ``loss_db``."""
+    psi_b = antenna_3db_bw_deg / 2.0
+    return psi_b * (loss_db / 3.0) ** (1.0 / 1.5)
+
+
+def _hex_ring_count(num_beams: int) -> int:
+    ring_count = 0
+    beams_in_cluster = 1
+    while beams_in_cluster < num_beams:
+        ring_count += 1
+        beams_in_cluster = 1 + 3 * ring_count * (ring_count + 1)
+
+    return ring_count
 
 
 def _load_brazil_geometry():
@@ -149,22 +178,11 @@ def _load_brazil_geometry():
 class OrbitSimulationBackend:
     """Runs the orbit simulation and serializes it for the Cesium frontend."""
 
-    def __init__(
-        self,
-        profile: str = "fast",
-        param_file: str | Path | None = None,
-        footprint_mode: str = "beam_radius_fixed",
-    ):
+    def __init__(self, profile: str = "fast", param_file: str | Path | None = None):
         if profile not in PROFILES:
             raise ValueError(f"Perfil invalido: {profile}. Use um destes: {', '.join(PROFILES)}")
-        if footprint_mode not in FOOTPRINT_MODES:
-            raise ValueError(
-                f"Modo de footprint invalido: {footprint_mode}. "
-                f"Use um destes: {', '.join(sorted(FOOTPRINT_MODES))}"
-            )
 
         self.profile = PROFILES[profile]
-        self.footprint_mode = footprint_mode
         self.param_file = Path(param_file) if param_file else default_param_file()
         self.parameters = self._load_parameters()
         self.brazil_geometry = _load_brazil_geometry()
@@ -205,121 +223,7 @@ class OrbitSimulationBackend:
             [self.brazil_geometry.contains(Point(lon, lat)) for lon, lat in grid_points],
             dtype=bool,
         )
-        return grid_points, grid_xyz, grid_norm, brazil_mask
-
-    def _system4_7db_angles_rad(self) -> tuple[float, float]:
-        system4 = self.parameters.imt.bs.antenna.antenna_system_4
-        high_deg = s1528_relative_gain_angle_deg(
-            antenna_3db_bw_deg=system4.antenna_parameters_high.antenna_3_dB_bw,
-            loss_db=7.0,
-        )
-        low_deg = s1528_relative_gain_angle_deg(
-            antenna_3db_bw_deg=system4.antenna_parameters_low.antenna_3_dB_bw,
-            loss_db=7.0,
-        )
-        return np.radians(high_deg), np.radians(low_deg)
-
-    def _antenna_7db_beams(self, sat_xyz: np.ndarray) -> list[dict]:
-        high_angle_rad, low_angle_rad = self._system4_7db_angles_rad()
-        nadir_axis = -sat_xyz / np.linalg.norm(sat_xyz)
-        tangent_1, tangent_2 = orthonormal_basis(nadir_axis)
-        center_spacing_rad = np.sqrt(3.0) * high_angle_rad
-
-        beams = []
-        for beam_index, (offset_x, offset_y) in enumerate(
-            complete_hex_lattice_offsets(
-                self.parameters.imt.topology.mss_dc.num_beams,
-                center_spacing_rad,
-            )
-        ):
-            axis = direction_from_angular_offset(
-                nadir_axis,
-                tangent_1,
-                tangent_2,
-                offset_x,
-                offset_y,
-            )
-            center_xyz = ray_sphere_intersection(sat_xyz, axis)
-            if center_xyz is None:
-                continue
-
-            ground_elev_deg = ground_elevation_deg(sat_xyz, center_xyz)
-            half_angle_rad = high_angle_rad if ground_elev_deg >= 50.0 else low_angle_rad
-            polygon_xyz = cone_sphere_polygon(
-                sat_xyz,
-                axis,
-                half_angle_rad,
-                n_points=self.profile.footprint_points,
-            )
-            if len(polygon_xyz) < 3:
-                continue
-
-            beams.append(
-                {
-                    "beamIndex": beam_index,
-                    "axis": axis,
-                    "halfAngleRad": half_angle_rad,
-                    "groundElevationDeg": ground_elev_deg,
-                    "ring": _xyz_ring_to_lonlat(polygon_xyz),
-                }
-            )
-
-        return beams
-
-    def _clip_rings_to_brazil(self, rings: list[list[list[float]]]) -> list[list[list[float]]]:
-        clipped_rings = []
-        for ring in rings:
-            try:
-                coords = [(lon, lat) for lon, lat, _ in ring]
-                poly = Polygon(coords)
-                if not poly.is_valid:
-                    poly = poly.buffer(0)
-
-                clipped = poly.intersection(self.brazil_geometry)
-                if clipped.is_empty:
-                    continue
-
-                if clipped.geom_type == "Polygon":
-                    clipped_rings.append([
-                        [round(lon, 6), round(lat, 6), 0.0]
-                        for lon, lat in clipped.exterior.coords
-                    ])
-                elif clipped.geom_type == "MultiPolygon":
-                    for polygon in clipped.geoms:
-                        clipped_rings.append([
-                            [round(lon, 6), round(lat, 6), 0.0]
-                            for lon, lat in polygon.exterior.coords
-                        ])
-            except Exception:
-                continue
-
-        return clipped_rings
-
-    def _rings_cover_brazil_grid(
-        self,
-        rings: list[list[list[float]]],
-        grid_points: list[tuple[float, float]],
-        brazil_mask: np.ndarray,
-    ) -> np.ndarray:
-        coverage = np.zeros(len(grid_points), dtype=bool)
-        polygons = []
-        for ring in rings:
-            try:
-                poly = Polygon([(lon, lat) for lon, lat, _ in ring])
-                if not poly.is_valid:
-                    poly = poly.buffer(0)
-                if not poly.is_empty:
-                    polygons.append(poly)
-            except Exception:
-                continue
-
-        for i, (lon, lat) in enumerate(grid_points):
-            if not brazil_mask[i]:
-                continue
-            point = Point(lon, lat)
-            coverage[i] = any(poly.contains(point) for poly in polygons)
-
-        return coverage
+        return grid_points, grid_norm, brazil_mask
 
     def build_simulation(self) -> dict:
         orbit_model = self._build_orbit_model()
@@ -330,13 +234,14 @@ class OrbitSimulationBackend:
 
         topology = self.parameters.imt.topology
         system = self.parameters.single_earth_station
-        beam_footprint = calculate_hex_beam_footprint(
-            beam_radius_km=topology.mss_dc.beam_radius / 1000.0,
-            num_beams=topology.mss_dc.num_beams,
+        minimum_service_angle_deg = float(
+            topology.mss_dc.beam_positioning.service_grid.minimum_service_angle
         )
 
-        grid_points, grid_xyz, grid_norm, brazil_mask = self._build_grid()
+        grid_points, _, brazil_mask = self._build_grid()
         brazil_indices = np.flatnonzero(brazil_mask)
+        grid_lon = np.array([point[0] for point in grid_points], dtype=float)
+        grid_lat = np.array([point[1] for point in grid_points], dtype=float)
         times = np.arange(positions["sx"].shape[1], dtype=float) * self.profile.interval_secs
         satellite_ids = [f"SAT-{index + 1:03d}" for index in range(positions["sx"].shape[0])]
 
@@ -349,59 +254,35 @@ class OrbitSimulationBackend:
             longitudes = positions["lon"][:, frame_index]
             altitudes = positions["alt"][:, frame_index]
 
-            grid_active = np.zeros(len(grid_points), dtype=bool)
+            elevations = calc_elevation(
+                grid_lat[:, np.newaxis],
+                latitudes[np.newaxis, :],
+                grid_lon[:, np.newaxis],
+                longitudes[np.newaxis, :],
+                sat_height=altitudes[np.newaxis, :] * 1000.0,
+                es_height=0.0,
+            )
+            best_satellite_index = np.argmax(elevations, axis=1)
+            best_elevation = elevations[np.arange(len(grid_points)), best_satellite_index]
+            grid_active = brazil_mask & (best_elevation >= minimum_service_angle_deg)
+            satellite_cell_counts = np.bincount(
+                best_satellite_index[grid_active],
+                minlength=len(satellite_ids),
+            )
+
             active_satellite_ids = []
             footprints = []
             satellites = []
 
             for sat_index, sat_id in enumerate(satellite_ids):
-                sat_xyz = np.array([sx[sat_index], sy[sat_index], sz[sat_index]], dtype=float)
-                sat_radius = np.linalg.norm(sat_xyz)
-                nadir = sat_xyz / sat_radius
-                sat_norm = np.linalg.norm(sat_xyz)
-                theta_horizon = np.arccos(EARTH_RADIUS_KM / sat_norm)
-
-                if self.footprint_mode == "antenna_7db":
-                    beam_entries = self._antenna_7db_beams(sat_xyz)
-                    clipped_beams = []
-                    coverage = np.zeros(len(grid_points), dtype=bool)
-                    for beam in beam_entries:
-                        clipped_rings = self._clip_rings_to_brazil([beam["ring"]])
-                        if not clipped_rings:
-                            continue
-                        beam_coverage = self._rings_cover_brazil_grid(
-                            clipped_rings,
-                            grid_points,
-                            brazil_mask,
-                        )
-                        coverage |= beam_coverage
-                        clipped_beams.append(
-                            {
-                                "beamIndex": beam["beamIndex"],
-                                "rings": clipped_rings,
-                                "groundElevationDeg": round(float(beam["groundElevationDeg"]), 3),
-                                "halfAngleDeg": round(float(np.degrees(beam["halfAngleRad"])), 6),
-                                "grid": [
-                                    grid_points[i]
-                                    for i in range(len(grid_points))
-                                    if beam_coverage[i] and brazil_mask[i]
-                                ],
-                            }
-                        )
-                else:
-                    theta = np.arccos(np.clip(grid_norm @ nadir, -1.0, 1.0))
-                    theta_service = min(beam_footprint.central_angle_rad, theta_horizon)
-                    coverage = theta <= theta_service
-                    clipped_beams = []
-
+                assigned_mask = grid_active & (best_satellite_index == sat_index)
                 covered_points = [
                     grid_points[i]
                     for i in range(len(grid_points))
-                    if coverage[i] and brazil_mask[i]
+                    if assigned_mask[i]
                 ]
-                grid_active |= coverage
 
-                covers_brazil = bool(np.any(coverage & brazil_mask))
+                covers_brazil = bool(satellite_cell_counts[sat_index] > 0)
                 satellites.append(
                     {
                         "id": sat_id,
@@ -414,20 +295,19 @@ class OrbitSimulationBackend:
 
                 if covers_brazil:
                     active_satellite_ids.append(sat_id)
-
-                    if self.footprint_mode == "antenna_7db":
-                        for beam in clipped_beams:
-                            footprints.append(
-                                {
-                                    "satelliteId": sat_id,
-                                    "beamIndex": beam["beamIndex"],
-                                    "rings": beam["rings"],
-                                    "grid": beam["grid"],
-                                    "groundElevationDeg": beam["groundElevationDeg"],
-                                    "halfAngleDeg": beam["halfAngleDeg"],
-                                }
-                            )
-                        continue
+                    sat_xyz = np.array([sx[sat_index], sy[sat_index], sz[sat_index]], dtype=float)
+                    theta_service_raw = _service_central_angle_rad(
+                        float(altitudes[sat_index]),
+                        minimum_service_angle_deg,
+                    )
+                    footprints.append(
+                        {
+                            "satelliteId": sat_id,
+                            "cellCount": int(satellite_cell_counts[sat_index]),
+                            "grid": covered_points,
+                        }
+                    )
+                    continue
 
                     sat_norm = np.linalg.norm(sat_xyz)
 
@@ -435,7 +315,7 @@ class OrbitSimulationBackend:
                     theta_horizon = np.arccos(EARTH_RADIUS_KM / sat_norm)
 
                     # usa o menor entre serviÃ§o e horizonte
-                    theta_service = min(beam_footprint.central_angle_rad, theta_horizon)
+                    theta_service = min(theta_service_raw, theta_horizon)
 
                     ring = _footprint_ring(
                         sat_xyz,
@@ -519,7 +399,6 @@ class OrbitSimulationBackend:
                     "activeSatelliteCount": len(active_satellite_ids),
                     "satellites": satellites,
                     "footprints": footprints,
-                    "activeBeamCount": len(footprints) if self.footprint_mode == "antenna_7db" else None,
                 }
             )
 
@@ -529,37 +408,122 @@ class OrbitSimulationBackend:
             "altKm": float(topology.central_altitude) / 1000.0,
         }
 
-        hex_radius_km = beam_footprint.beam_radius_km
-        high_7db_angle_rad, low_7db_angle_rad = self._system4_7db_angles_rad()
+        reference_altitude_km = float(np.mean(positions["alt"]))
+        footprint_diameter_km = (
+            2.0
+            * EARTH_RADIUS_KM
+            * _service_central_angle_rad(reference_altitude_km, minimum_service_angle_deg)
+        )
+        interference_active_min_elevation_deg = float(
+            topology.mss_dc.sat_is_active_if.minimum_elevation_from_es
+        )
+        interference_active_footprint_diameter_km = (
+            2.0
+            * EARTH_RADIUS_KM
+            * _service_central_angle_rad(
+                reference_altitude_km,
+                interference_active_min_elevation_deg,
+            )
+        )
+        interference_path_footprint_diameter_km = (
+            2.0
+            * EARTH_RADIUS_KM
+            * _service_central_angle_rad(reference_altitude_km, 0.0)
+        )
+        hex_radius_km = topology.mss_dc.beam_positioning.service_grid.beam_radius / 1000.0
+        num_beams = int(topology.mss_dc.num_beams)
+        footprint_ring_count = _hex_ring_count(num_beams)
+        beam_center_spacing_km = np.sqrt(3.0) * hex_radius_km
+        system4 = self.parameters.imt.bs.antenna.antenna_system_4
+        antenna_high = system4.antenna_parameters_high
+        antenna_low = system4.antenna_parameters_low
+        antenna_7db_high_angle_deg = _s1528_relative_gain_angle_deg(
+            antenna_3db_bw_deg=antenna_high.antenna_3_dB_bw,
+            loss_db=7.0,
+        )
+        antenna_7db_low_angle_deg = _s1528_relative_gain_angle_deg(
+            antenna_3db_bw_deg=antenna_low.antenna_3_dB_bw,
+            loss_db=7.0,
+        )
+        antenna_7db_radius_km = hex_radius_km * (
+            antenna_7db_high_angle_deg
+            / (antenna_high.antenna_3_dB_bw / 2.0)
+        )
+        footprint_3db_radius_km = footprint_ring_count * beam_center_spacing_km + hex_radius_km
+        footprint_7db_radius_km = footprint_ring_count * beam_center_spacing_km + antenna_7db_radius_km
         # Calcula a margem de segurança em km (ex: 150 km)
         margin_km = topology.mss_dc.power_control_zones.zones[0].geometry.from_countries.margin_from_border
         # Calcula quantos hexágonos cabem nessa margem (ex: 150 / (24 * 2) = ~3.1 -> 3)
         guardband_hex_count = round(margin_km / (hex_radius_km * 2))
         # Ganho sem power backoff (ex: 30 dBi) e ganho com power backoff (ex: 20 dBi)
         gain_high = system.antenna.gain
-        power_backoff_db = topology.mss_dc.power_control_zones.zones[0].power_backoff_db
+        power_backoff_db = max(
+            zone.power_backoff_db
+            for zone in topology.mss_dc.power_control_zones.zones
+        )
         gain_low = gain_high - power_backoff_db
         return {
             "meta": {
                 "profile": self.profile.name,
-                "footprintMode": self.footprint_mode,
                 "intervalSeconds": self.profile.interval_secs,
                 "frameCount": len(frames),
                 "satelliteCount": len(satellite_ids),
                 "paramFile": str(self.param_file),
                 "beamRadiuskm": hex_radius_km,
-                "numBeams": beam_footprint.num_beams,
-                "footprintRingCount": beam_footprint.ring_count,
-                "footprintBeamCenterSpacingKm": round(beam_footprint.beam_center_spacing_km, 6),
-                "footprintRadiusKm": round(beam_footprint.enclosing_radius_km, 6),
-                "footprintDiameterKm": round(beam_footprint.enclosing_diameter_km, 6),
-                "footprintEquivalentAreaRadiusKm": round(beam_footprint.equivalent_area_radius_km, 6),
-                "footprintEquivalentAreaDiameterKm": round(beam_footprint.equivalent_area_diameter_km, 6),
-                "antenna7dbHighAngleDeg": round(float(np.degrees(high_7db_angle_rad)), 6),
-                "antenna7dbLowAngleDeg": round(float(np.degrees(low_7db_angle_rad)), 6),
+                "footprintDiameterKm": round(float(footprint_diameter_km), 6),
+                "serviceFootprintDiameterKm": round(float(footprint_diameter_km), 6),
+                "interferenceActiveFootprintDiameterKm": round(
+                    float(interference_active_footprint_diameter_km),
+                    6,
+                ),
+                "interferencePathFootprintDiameterKm": round(
+                    float(interference_path_footprint_diameter_km),
+                    6,
+                ),
+                "numBeams": num_beams,
+                "footprintRingCount": footprint_ring_count,
+                "footprint3dbRadiusKm": round(float(footprint_3db_radius_km), 6),
+                "footprint7dbRadiusKm": round(float(footprint_7db_radius_km), 6),
+                "antenna7dbRadiusKm": round(float(antenna_7db_radius_km), 6),
+                "antenna7dbHighAngleDeg": round(float(antenna_7db_high_angle_deg), 6),
+                "antenna7dbLowAngleDeg": round(float(antenna_7db_low_angle_deg), 6),
+                "minimumServiceAngleDeg": minimum_service_angle_deg,
                 "guardbandHexCount": guardband_hex_count,
                 "antennaGainHigh": gain_high,
                 "antennaGainLow": gain_low,
+                "powerBackoffDb": power_backoff_db,
+                "sharcInterferencePathMinElevationDeg": 0.0,
+                "sharcInterferenceActiveMinElevationDeg": interference_active_min_elevation_deg,
+                "enableCochannel": bool(self.parameters.general.enable_cochannel),
+                "enableAdjacentChannel": bool(self.parameters.general.enable_adjacent_channel),
+                "imtFrequencyMHz": float(self.parameters.imt.frequency),
+                "imtBandwidthMHz": float(self.parameters.imt.bandwidth),
+                "imtConductedPowerDbm": float(self.parameters.imt.bs.conducted_power),
+                "imtBsOhmicLossDb": float(self.parameters.imt.bs.ohmic_loss),
+                "imtAdjacentChEmissions": self.parameters.imt.adjacent_ch_emissions,
+                "imtAdjacentChLeakRatioDb": float(self.parameters.imt.bs.adjacent_ch_leak_ratio),
+                "singleEarthStationGainDb": float(system.antenna.gain),
+                "singleEarthStationFrequencyMHz": float(system.frequency),
+                "singleEarthStationBandwidthMHz": float(system.bandwidth),
+                "singleEarthStationAdjacentChReception": system.adjacent_ch_reception,
+                "singleEarthStationAdjacentChSelectivityDb": (
+                    float(system.adjacent_ch_selectivity)
+                    if system.adjacent_ch_selectivity is not None
+                    else None
+                ),
+                "polarizationLossDb": float(system.polarization_loss or 0.0),
+                "antennaSystem4High": {
+                    "gainDb": float(antenna_high.antenna_gain),
+                    "beamwidth3dbDeg": float(antenna_high.antenna_3_dB_bw),
+                    "nearSideLobeDb": float(antenna_high.antenna_l_s),
+                    "farSideLobeDb": float(antenna_high.far_out_side_lobe or 0.0),
+                },
+                "antennaSystem4Low": {
+                    "gainDb": float(antenna_low.antenna_gain),
+                    "beamwidth3dbDeg": float(antenna_low.antenna_3_dB_bw),
+                    "nearSideLobeDb": float(antenna_low.antenna_l_s),
+                    "farSideLobeDb": float(antenna_low.far_out_side_lobe or 0.0),
+                },
             },
             "station": station,
             "satelliteIds": satellite_ids,
@@ -568,13 +532,5 @@ class OrbitSimulationBackend:
         }
 
 
-def build_simulation(
-    profile: str = "fast",
-    param_file: str | Path | None = None,
-    footprint_mode: str = "beam_radius_fixed",
-) -> dict:
-    return OrbitSimulationBackend(
-        profile=profile,
-        param_file=param_file,
-        footprint_mode=footprint_mode,
-    ).build_simulation()
+def build_simulation(profile: str = "fast", param_file: str | Path | None = None) -> dict:
+    return OrbitSimulationBackend(profile=profile, param_file=param_file).build_simulation()

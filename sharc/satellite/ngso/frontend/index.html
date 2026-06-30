@@ -10,6 +10,8 @@
 </head>
 <body>
   <div id="cesiumContainer"></div>
+  <div id="cellTooltip" class="cell-tooltip" aria-hidden="true"></div>
+  <aside id="interferenceLegend" class="legend-panel" aria-hidden="true"></aside>
 
   <aside class="hud">
     <div class="panel brand">
@@ -28,11 +30,14 @@
       </label>
 
       <label class="control">
-        <span>Footprint</span>
+        <span>Modelo de footprint</span>
         <select id="footprintModeSelect">
-          <option value="beam_radius_fixed">beam radius fixo</option>
-          <option value="antenna_7db">antena 7 dB</option>
+          <option value="sharc_service_grid" title="Grade de servico MSS: celulas no Brasil atendidas quando a elevacao do satelite passa do minimum_service_angle.">SHARC service grid</option>
+          <option value="antenna_7db_first" title="Preview experimental do primeiro satelite: setores do feixe por perda de ganho em passos de 2 dB.">7 dB primeiro satélite</option>
+          <option value="sharc_interference_mask" title="Mascara de caminho ativo: usa sat_is_active_if.minimum_elevation_from_es para indicar caminhos elegiveis.">SHARC interferência: máscara</option>
+          <option value="sharc_interference_link_budget" title="Mapa de intensidade: calcula interferencia aproximada por celula com ganho S.1528, perdas e potencia do cenario.">SHARC interferência: link budget</option>
         </select>
+        <p id="footprintModeHelp" class="mode-help"></p>
       </label>
 
       <div class="actions">

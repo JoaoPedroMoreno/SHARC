@@ -10,15 +10,15 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from sharc.satellite.ngso.backend.orbit_model import FOOTPRINT_MODES, PROFILES, build_simulation
+from sharc.satellite.ngso.backend.orbit_model import PROFILES, build_simulation
 
 
 FRONTEND_DIR = Path(__file__).resolve().parents[1] / "frontend"
 
 
-@lru_cache(maxsize=len(PROFILES) * len(FOOTPRINT_MODES))
-def cached_simulation(profile: str, footprint_mode: str) -> dict:
-    return build_simulation(profile=profile, footprint_mode=footprint_mode)
+@lru_cache(maxsize=len(PROFILES))
+def cached_simulation(profile: str) -> dict:
+    return build_simulation(profile=profile)
 
 
 class SatelliteMapHandler(SimpleHTTPRequestHandler):
@@ -37,19 +37,12 @@ class SatelliteMapHandler(SimpleHTTPRequestHandler):
         parsed = urlparse(self.path)
 
         if parsed.path == "/api/health":
-            self._write_json(
-                {
-                    "status": "ok",
-                    "profiles": list(PROFILES),
-                    "footprintModes": sorted(FOOTPRINT_MODES),
-                }
-            )
+            self._write_json({"status": "ok", "profiles": list(PROFILES)})
             return
 
         if parsed.path == "/api/simulation":
             query = parse_qs(parsed.query)
             profile = query.get("profile", ["fast"])[0]
-            footprint_mode = query.get("footprintMode", ["beam_radius_fixed"])[0]
             if profile not in PROFILES:
                 self._write_json(
                     {
@@ -59,21 +52,12 @@ class SatelliteMapHandler(SimpleHTTPRequestHandler):
                     status=HTTPStatus.BAD_REQUEST,
                 )
                 return
-            if footprint_mode not in FOOTPRINT_MODES:
-                self._write_json(
-                    {
-                        "error": f"Modo de footprint invalido: {footprint_mode}",
-                        "availableFootprintModes": sorted(FOOTPRINT_MODES),
-                    },
-                    status=HTTPStatus.BAD_REQUEST,
-                )
-                return
 
             try:
-                self._write_json(cached_simulation(profile, footprint_mode))
+                self._write_json(cached_simulation(profile))
             except Exception as exc:  # pragma: no cover - runtime path
                 self._write_json(
-                    {"error": str(exc), "profile": profile, "footprintMode": footprint_mode},
+                    {"error": str(exc), "profile": profile},
                     status=HTTPStatus.INTERNAL_SERVER_ERROR,
                 )
             return

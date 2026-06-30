@@ -14,6 +14,96 @@ body {
   height: 100vh;
 }
 
+.cell-tooltip {
+  position: fixed;
+  display: none;
+  z-index: 20;
+  width: 280px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(5, 10, 18, 0.92);
+  border: 1px solid rgba(98, 232, 255, 0.24);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: white;
+  font-size: 12px;
+  line-height: 1.4;
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+}
+
+.tooltip-title {
+  margin-bottom: 8px;
+  color: #78f0ff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 4px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tooltip-row span {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.tooltip-row strong {
+  color: #ffd86b;
+  font-weight: 700;
+  text-align: right;
+}
+
+.legend-panel {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 2147483647;
+  display: none;
+  width: min(260px, calc(100vw - 36px));
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(4, 11, 20, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.30);
+  backdrop-filter: blur(14px);
+  pointer-events: none;
+}
+
+.legend-panel.is-visible {
+  display: block;
+}
+
+.legend-title {
+  margin-bottom: 10px;
+  color: #79d8ff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+}
+
+.legend-swatch {
+  width: 18px;
+  height: 12px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
 .hud {
   position: absolute;
   top: 18px;
@@ -67,6 +157,13 @@ body {
 .label {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.72);
+}
+
+.mode-help {
+  margin: -2px 0 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .actions {
@@ -131,6 +228,12 @@ button:hover {
   .hud {
     top: auto;
     bottom: 14px;
+  }
+
+  .legend-panel {
+    top: 14px;
+    right: 14px;
+    width: min(240px, calc(100vw - 28px));
   }
 
   .stats {

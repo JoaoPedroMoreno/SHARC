@@ -1,0 +1,17 @@
+area,system,altitude_km,fs_height_m,load_factor_pct,border_margin_km,azimuth_mode,inr_20_pct_db,protection_margin_db,source_count
+BR_AR_Paraguay,3,340,20,20,25,worst,-6.998849,0.998849,2
+BR_AR_Paraguay,3,340,20,20,75,worst,-8.139814,2.139814,2
+BR_AR_Paraguay,3,340,20,50,25,worst,-1.784921,-4.215079,2
+BR_AR_Paraguay,3,340,20,50,75,worst,-2.551309,-3.448691,2
+BR_AR_Paraguay,3,340,40,20,25,worst,-7.077348,1.077348,2
+BR_AR_Paraguay,3,340,40,20,75,worst,-8.190154,2.190154,2
+BR_AR_Paraguay,3,340,40,50,25,worst,-1.880273,-4.119727,2
+BR_AR_Paraguay,3,340,40,50,75,worst,-2.658699,-3.341301,2
+BR_AR_Paraguay,3,525,20,20,40,worst,-11.245787,5.245787,2
+BR_AR_Paraguay,3,525,20,20,120,worst,-13.028724,7.028724,2
+BR_AR_Paraguay,3,525,20,50,40,worst,-5.771911,-0.228089,2
+BR_AR_Paraguay,3,525,20,50,120,worst,-6.596336,0.596336,2
+BR_AR_Paraguay,3,525,40,20,40,worst,-11.337243,5.337243,2
+BR_AR_Paraguay,3,525,40,20,120,worst,-13.132194,7.132194,2
+BR_AR_Paraguay,3,525,40,50,40,worst,-5.882031,-0.117969,2
+BR_AR_Paraguay,3,525,40,50,120,worst,-6.675613,0.675613,2
