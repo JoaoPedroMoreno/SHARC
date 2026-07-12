@@ -34,7 +34,7 @@ OUTPUT_NAME_RE = re.compile(
     r"(?P<altitude>\d+)km_"
     r"FS(?P<fs_height>\d+)m_"
     r"LF(?P<load_factor>\d+)_"
-    r"(?:M|EZ)(?P<margin>\d+)km_"
+    r"(?P<distance_type>M|EZ)(?P<margin>\d+)km_"
     r"Azi(?P<azimuth>\d+)deg"
     r"(?:_(?P<date>\d{4}-\d{2}-\d{2})_(?P<run>\d+))?$",
     re.IGNORECASE,
@@ -65,6 +65,7 @@ class Scenario:
     altitude_km: int
     fs_height_m: int
     load_factor_pct: int
+    distance_type: str
     margin_km: int
     azimuth_deg: int
     date: str
@@ -75,12 +76,13 @@ class Scenario:
         return (self.area, self.altitude_km, self.fs_height_m)
 
     @property
-    def scenario_key(self) -> tuple[str, int, int, int, int, int]:
+    def scenario_key(self) -> tuple[str, int, int, int, str, int, int]:
         return (
             self.area,
             self.altitude_km,
             self.fs_height_m,
             self.load_factor_pct,
+            self.distance_type,
             self.margin_km,
             self.azimuth_deg,
         )
@@ -95,7 +97,7 @@ class Scenario:
             f"h={self.fs_height_m}m, "
             f"azi={self.azimuth_deg}deg,"
             f"lf={self.load_factor_pct}%,"
-            f"M={self.margin_km}km"
+            f"{self.distance_type}={self.margin_km}km"
         )
 
 
@@ -112,6 +114,7 @@ def parse_scenario(folder: Path) -> Scenario | None:
         altitude_km=int(data["altitude"]),
         fs_height_m=int(data["fs_height"]),
         load_factor_pct=int(data["load_factor"]),
+        distance_type=data["distance_type"].upper(),
         margin_km=int(data["margin"]),
         azimuth_deg=int(data["azimuth"]),
         date=data.get("date") or "0000-00-00",
@@ -176,7 +179,7 @@ def discover_scenarios(output_root: Path, all_runs: bool) -> list[Scenario]:
     if all_runs:
         return sorted(scenarios, key=scenario_sort_key)
 
-    latest_by_scenario: dict[tuple[str, int, int, int, int, int], Scenario] = {}
+    latest_by_scenario: dict[tuple[str, int, int, int, str, int, int], Scenario] = {}
     for scenario in scenarios:
         previous = latest_by_scenario.get(scenario.scenario_key)
         if previous is None or scenario.latest_key > previous.latest_key:
@@ -185,12 +188,13 @@ def discover_scenarios(output_root: Path, all_runs: bool) -> list[Scenario]:
     return sorted(latest_by_scenario.values(), key=scenario_sort_key)
 
 
-def scenario_sort_key(scenario: Scenario) -> tuple[int, int, int, int, int, int, str, int]:
+def scenario_sort_key(scenario: Scenario) -> tuple[int, int, int, int, str, int, int, str, int]:
     return (
         AREA_ORDER.get(scenario.area, 99),
         scenario.altitude_km,
         scenario.fs_height_m,
         scenario.load_factor_pct,
+        scenario.distance_type,
         scenario.margin_km,
         scenario.azimuth_deg,
         scenario.date,

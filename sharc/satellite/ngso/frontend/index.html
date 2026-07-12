@@ -26,13 +26,14 @@
         <select id="profileSelect">
           <option value="fast">fast</option>
           <option value="high_quality">high_quality</option>
+          <option value="presentation">presentation</option>
         </select>
       </label>
 
       <label class="control">
         <span>Modelo de footprint</span>
         <select id="footprintModeSelect">
-          <option value="sharc_service_grid" title="Grade de servico MSS: celulas no Brasil atendidas quando a elevacao do satelite passa do minimum_service_angle.">SHARC service grid</option>
+          <option value="sharc_service_grid" title="Grade de servico MSS: celulas na area de servico atendidas quando a elevacao do satelite passa do minimum_service_angle.">SHARC service grid</option>
           <option value="antenna_7db_first" title="Preview experimental do primeiro satelite: setores do feixe por perda de ganho em passos de 2 dB.">7 dB primeiro satélite</option>
           <option value="sharc_interference_mask" title="Mascara de caminho ativo: usa sat_is_active_if.minimum_elevation_from_es para indicar caminhos elegiveis.">SHARC interferência: máscara</option>
           <option value="sharc_interference_link_budget" title="Mapa de intensidade: calcula interferencia aproximada por celula com ganho S.1528, perdas e potencia do cenario.">SHARC interferência: link budget</option>
@@ -43,6 +44,7 @@
       <div class="actions">
         <button id="reloadBtn" type="button">Carregar Perfil</button>
         <button id="playBtn" type="button">Pause</button>
+        <button id="captureBtn" type="button">Print</button>
       </div>
 
       <label class="control slider-control">
@@ -61,7 +63,7 @@
         <strong id="activeCount">0</strong>
       </div>
       <div class="stat">
-        <span class="label">Cobertura Brasil</span>
+        <span class="label">Cobertura area</span>
         <strong id="coverageInfo">0%</strong>
       </div>
       <div class="stat">

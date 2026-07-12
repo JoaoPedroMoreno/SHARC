@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1860" viewBox="0 0 900 1860">
+  <defs>
+    <style>
+      .title { font-family: Arial, Helvetica, sans-serif; font-size: 42px; font-weight: 700; fill: #111827; }
+      .section { font-family: Arial, Helvetica, sans-serif; font-size: 30px; font-weight: 700; fill: #111827; }
+      .label { font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight: 700; fill: #111827; }
+      .sub { font-family: Arial, Helvetica, sans-serif; font-size: 27px; fill: #374151; }
+      .box { fill: #ffffff; stroke: #111827; stroke-width: 2.8; rx: 5; }
+      .module { fill: #f8fafc; stroke: #1f2937; stroke-width: 2.6; rx: 5; }
+      .loop { fill: none; stroke: #1f2937; stroke-width: 2.6; stroke-dasharray: 11 8; rx: 5; }
+      .num { font-family: Arial, Helvetica, sans-serif; font-size: 23px; font-weight: 700; fill: #ffffff; }
+      .badge { fill: #1f4e79; stroke: #1f4e79; stroke-width: 1; }
+      .arrow { stroke: #111827; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="14" markerHeight="10" refX="13" refY="5" orient="auto">
+      <path d="M 0 0 L 14 5 L 0 10 z" fill="#111827"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="1860" fill="#ffffff"/>
+  <text x="450" y="70" text-anchor="middle" class="title">SHARC Simulation Workflow</text>
+
+  <!-- Input and engine -->
+  <rect x="80" y="120" width="740" height="135" class="box"/>
+  <circle cx="125" cy="165" r="23" class="badge"/><text x="125" y="173" text-anchor="middle" class="num">1</text>
+  <text x="450" y="170" text-anchor="middle" class="label">Input YAML File</text>
+  <text x="450" y="214" text-anchor="middle" class="sub">scenario parameters, victim system,</text>
+  <text x="450" y="246" text-anchor="middle" class="sub">MSS_DC topology and physical models</text>
+
+  <path d="M 450 255 V 305" class="arrow"/>
+
+  <rect x="80" y="305" width="740" height="135" class="box"/>
+  <circle cx="125" cy="350" r="23" class="badge"/><text x="125" y="358" text-anchor="middle" class="num">2</text>
+  <text x="450" y="355" text-anchor="middle" class="label">SHARC Python Engine</text>
+  <text x="450" y="399" text-anchor="middle" class="sub">parameter parsing, initialization</text>
+  <text x="450" y="431" text-anchor="middle" class="sub">and pseudo-random seed control</text>
+
+  <path d="M 450 440 V 490" class="arrow"/>
+
+  <rect x="80" y="490" width="740" height="135" class="box"/>
+  <circle cx="125" cy="535" r="23" class="badge"/><text x="125" y="543" text-anchor="middle" class="num">3</text>
+  <text x="450" y="540" text-anchor="middle" class="label">Monte Carlo Loop</text>
+  <text x="450" y="590" text-anchor="middle" class="sub">10000 snapshots</text>
+
+  <path d="M 450 625 V 680" class="arrow"/>
+
+  <!-- Per snapshot processing -->
+  <rect x="45" y="680" width="810" height="985" class="loop"/>
+  <text x="70" y="730" class="section">Processing in Each Snapshot</text>
+
+  <rect x="100" y="770" width="700" height="110" class="module"/>
+  <circle cx="145" cy="812" r="21" class="badge"/><text x="145" y="820" text-anchor="middle" class="num">4</text>
+  <text x="450" y="815" text-anchor="middle" class="label">Geometry Generation</text>
+  <text x="450" y="858" text-anchor="middle" class="sub">NGSO satellites, active beams and FS receiver</text>
+
+  <path d="M 450 880 V 925" class="arrow"/>
+
+  <rect x="100" y="925" width="700" height="110" class="module"/>
+  <circle cx="145" cy="967" r="21" class="badge"/><text x="145" y="975" text-anchor="middle" class="num">5</text>
+  <text x="450" y="970" text-anchor="middle" class="label">Spatial Criteria</text>
+  <text x="450" y="1013" text-anchor="middle" class="sub">visibility, elevation, service area and exclusion</text>
+
+  <path d="M 450 1035 V 1080" class="arrow"/>
+
+  <rect x="100" y="1080" width="700" height="110" class="module"/>
+  <circle cx="145" cy="1122" r="21" class="badge"/><text x="145" y="1130" text-anchor="middle" class="num">6</text>
+  <text x="450" y="1125" text-anchor="middle" class="label">Mitigation</text>
+  <text x="450" y="1168" text-anchor="middle" class="sub">power back-off and exclusion zone</text>
+
+  <path d="M 450 1190 V 1235" class="arrow"/>
+
+  <rect x="100" y="1235" width="700" height="110" class="module"/>
+  <circle cx="145" cy="1277" r="21" class="badge"/><text x="145" y="1285" text-anchor="middle" class="num">7</text>
+  <text x="450" y="1280" text-anchor="middle" class="label">Link Budget Calculation</text>
+  <text x="450" y="1323" text-anchor="middle" class="sub">antenna gains and propagation losses</text>
+
+  <path d="M 450 1345 V 1390" class="arrow"/>
+
+  <rect x="100" y="1390" width="700" height="110" class="module"/>
+  <circle cx="145" cy="1432" r="21" class="badge"/><text x="145" y="1440" text-anchor="middle" class="num">8</text>
+  <text x="450" y="1435" text-anchor="middle" class="label">Aggregate Interference</text>
+  <text x="450" y="1478" text-anchor="middle" class="sub">summation of active beam contributions</text>
+
+  <path d="M 450 1500 V 1545" class="arrow"/>
+
+  <rect x="100" y="1545" width="700" height="110" class="module"/>
+  <circle cx="145" cy="1587" r="21" class="badge"/><text x="145" y="1595" text-anchor="middle" class="num">9</text>
+  <text x="450" y="1590" text-anchor="middle" class="label">I/N Calculation</text>
+  <text x="450" y="1633" text-anchor="middle" class="sub">received interference and thermal noise</text>
+
+  <path d="M 450 1655 V 1710" class="arrow"/>
+
+  <rect x="80" y="1710" width="740" height="135" class="box"/>
+  <circle cx="125" cy="1750" r="23" class="badge"/><text x="125" y="1758" text-anchor="middle" class="num">10</text>
+  <text x="450" y="1753" text-anchor="middle" class="label">Statistical Results</text>
+  <text x="450" y="1790" text-anchor="middle" class="sub">CSV files, CDF/CCDF, percentiles</text>
+  <text x="450" y="1822" text-anchor="middle" class="sub">and protection margins</text>
+</svg>

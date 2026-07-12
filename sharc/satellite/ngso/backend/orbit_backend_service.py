@@ -29,6 +29,7 @@ class SimulationProfile:
 PROFILES = {
     "fast": SimulationProfile("fast", interval_secs=30, grid_size=28, footprint_points=48),
     "high_quality": SimulationProfile("high_quality", interval_secs=10, grid_size=52, footprint_points=96),
+    "presentation": SimulationProfile("presentation", interval_secs=300, grid_size=72, footprint_points=180),
 }
 
 
@@ -37,7 +38,13 @@ def _package_root() -> Path:
 
 
 def default_param_file() -> Path:
-    return _package_root() / "campaigns" / "02_DC_MSS_to_FS" / "Script" / "Base.yaml"
+    return (
+        _package_root()
+        / "campaigns"
+        / "02_DC_MSS_to_FS 2"
+        / "input"
+        / "dc_mss_to_fs_SouthAmerica_Sys3_340km_FS20m_LF20_EZ0km_Azi90deg.yaml"
+    )
 
 
 def _latlon_to_ecef(lat_deg: float, lon_deg: float, radius_km: float = EARTH_RADIUS_KM) -> np.ndarray:
@@ -139,7 +146,13 @@ def _hex_ring_count(num_beams: int) -> int:
     return ring_count
 
 
-def _load_brazil_geometry():
+def _round_or_none(value: float | None, digits: int = 6) -> float | None:
+    if value is None:
+        return None
+    return round(float(value), digits)
+
+
+def _load_country_geometry(country_names: list[str]):
     try:
         shp_path = shapereader.natural_earth(
             resolution="110m",
@@ -147,9 +160,9 @@ def _load_brazil_geometry():
             name="admin_0_countries",
         )
         countries = gpd.read_file(shp_path)
-        brazil = countries[countries["ADMIN"] == "Brazil"].geometry
-        if not brazil.empty:
-            return unary_union(brazil.tolist())
+        selected = countries[countries["ADMIN"].isin(country_names)].geometry
+        if not selected.empty:
+            return unary_union(selected.tolist())
     except Exception:
         pass
 
@@ -185,7 +198,24 @@ class OrbitSimulationBackend:
         self.profile = PROFILES[profile]
         self.param_file = Path(param_file) if param_file else default_param_file()
         self.parameters = self._load_parameters()
-        self.brazil_geometry = _load_brazil_geometry()
+        self.topology = self.parameters.imt.topology
+        self.mss_dc = self.topology.mss_dc
+        self.country_names = self._load_service_country_names()
+        self.brazil_geometry = _load_country_geometry(self.country_names)
+
+    def _load_service_country_names(self) -> list[str]:
+        service_grid = self.mss_dc.beam_positioning.service_grid
+        country_names = []
+        try:
+            country_names = list(service_grid.grid_in_zone.from_countries.country_names)
+        except Exception:
+            pass
+        if not country_names:
+            try:
+                country_names = list(self.mss_dc.sat_is_active_if.lat_long_inside_country.country_names)
+            except Exception:
+                pass
+        return country_names or ["Brazil"]
 
     def _load_parameters(self) -> Parameters:
         parameters = Parameters()
@@ -194,7 +224,7 @@ class OrbitSimulationBackend:
         return parameters
 
     def _build_orbit_model(self) -> OrbitModel:
-        orbit_params = self.parameters.mss_d2d.orbits[0]
+        orbit_params = self.mss_dc.orbits[0]
         return OrbitModel(
             Nsp=orbit_params.sats_per_plane,
             Np=orbit_params.n_planes,
@@ -211,8 +241,11 @@ class OrbitSimulationBackend:
         )
 
     def _build_grid(self):
-        grid_lat = np.linspace(-35, 5, self.profile.grid_size)
-        grid_lon = np.linspace(-75, -30, self.profile.grid_size)
+        min_lon, min_lat, max_lon, max_lat = self.brazil_geometry.bounds
+        lon_pad = max(2.0, 0.05 * (max_lon - min_lon))
+        lat_pad = max(2.0, 0.05 * (max_lat - min_lat))
+        grid_lat = np.linspace(min_lat - lat_pad, max_lat + lat_pad, self.profile.grid_size)
+        grid_lon = np.linspace(min_lon - lon_pad, max_lon + lon_pad, self.profile.grid_size)
         grid_points = [(lon, lat) for lat in grid_lat for lon in grid_lon]
         grid_xyz = np.array(
             [_latlon_to_ecef(lat_deg=lat, lon_deg=lon) for lon, lat in grid_points],
@@ -437,20 +470,43 @@ class OrbitSimulationBackend:
         system4 = self.parameters.imt.bs.antenna.antenna_system_4
         antenna_high = system4.antenna_parameters_high
         antenna_low = system4.antenna_parameters_low
-        antenna_7db_high_angle_deg = _s1528_relative_gain_angle_deg(
-            antenna_3db_bw_deg=antenna_high.antenna_3_dB_bw,
-            loss_db=7.0,
-        )
-        antenna_7db_low_angle_deg = _s1528_relative_gain_angle_deg(
-            antenna_3db_bw_deg=antenna_low.antenna_3_dB_bw,
-            loss_db=7.0,
-        )
-        antenna_7db_radius_km = hex_radius_km * (
-            antenna_7db_high_angle_deg
-            / (antenna_high.antenna_3_dB_bw / 2.0)
-        )
+        antenna_7db_high_angle_deg = None
+        antenna_7db_low_angle_deg = None
+        antenna_7db_radius_km = None
+        antenna_system4_high = None
+        antenna_system4_low = None
+
+        if antenna_high.antenna_3_dB_bw is not None and antenna_low.antenna_3_dB_bw is not None:
+            antenna_7db_high_angle_deg = _s1528_relative_gain_angle_deg(
+                antenna_3db_bw_deg=antenna_high.antenna_3_dB_bw,
+                loss_db=7.0,
+            )
+            antenna_7db_low_angle_deg = _s1528_relative_gain_angle_deg(
+                antenna_3db_bw_deg=antenna_low.antenna_3_dB_bw,
+                loss_db=7.0,
+            )
+            antenna_7db_radius_km = hex_radius_km * (
+                antenna_7db_high_angle_deg
+                / (antenna_high.antenna_3_dB_bw / 2.0)
+            )
+            antenna_system4_high = {
+                "gainDb": float(antenna_high.antenna_gain),
+                "beamwidth3dbDeg": float(antenna_high.antenna_3_dB_bw),
+                "nearSideLobeDb": float(antenna_high.antenna_l_s),
+                "farSideLobeDb": float(antenna_high.far_out_side_lobe or 0.0),
+            }
+            antenna_system4_low = {
+                "gainDb": float(antenna_low.antenna_gain),
+                "beamwidth3dbDeg": float(antenna_low.antenna_3_dB_bw),
+                "nearSideLobeDb": float(antenna_low.antenna_l_s),
+                "farSideLobeDb": float(antenna_low.far_out_side_lobe or 0.0),
+            }
         footprint_3db_radius_km = footprint_ring_count * beam_center_spacing_km + hex_radius_km
-        footprint_7db_radius_km = footprint_ring_count * beam_center_spacing_km + antenna_7db_radius_km
+        footprint_7db_radius_km = (
+            footprint_ring_count * beam_center_spacing_km + antenna_7db_radius_km
+            if antenna_7db_radius_km is not None
+            else None
+        )
         # Calcula a margem de segurança em km (ex: 150 km)
         margin_km = topology.mss_dc.power_control_zones.zones[0].geometry.from_countries.margin_from_border
         # Calcula quantos hexágonos cabem nessa margem (ex: 150 / (24 * 2) = ~3.1 -> 3)
@@ -469,6 +525,8 @@ class OrbitSimulationBackend:
                 "frameCount": len(frames),
                 "satelliteCount": len(satellite_ids),
                 "paramFile": str(self.param_file),
+                "serviceAreaCountryNames": self.country_names,
+                "serviceAreaLabel": ", ".join(self.country_names),
                 "beamRadiuskm": hex_radius_km,
                 "footprintDiameterKm": round(float(footprint_diameter_km), 6),
                 "serviceFootprintDiameterKm": round(float(footprint_diameter_km), 6),
@@ -483,10 +541,10 @@ class OrbitSimulationBackend:
                 "numBeams": num_beams,
                 "footprintRingCount": footprint_ring_count,
                 "footprint3dbRadiusKm": round(float(footprint_3db_radius_km), 6),
-                "footprint7dbRadiusKm": round(float(footprint_7db_radius_km), 6),
-                "antenna7dbRadiusKm": round(float(antenna_7db_radius_km), 6),
-                "antenna7dbHighAngleDeg": round(float(antenna_7db_high_angle_deg), 6),
-                "antenna7dbLowAngleDeg": round(float(antenna_7db_low_angle_deg), 6),
+                "footprint7dbRadiusKm": _round_or_none(footprint_7db_radius_km),
+                "antenna7dbRadiusKm": _round_or_none(antenna_7db_radius_km),
+                "antenna7dbHighAngleDeg": _round_or_none(antenna_7db_high_angle_deg),
+                "antenna7dbLowAngleDeg": _round_or_none(antenna_7db_low_angle_deg),
                 "minimumServiceAngleDeg": minimum_service_angle_deg,
                 "guardbandHexCount": guardband_hex_count,
                 "antennaGainHigh": gain_high,
@@ -512,18 +570,8 @@ class OrbitSimulationBackend:
                     else None
                 ),
                 "polarizationLossDb": float(system.polarization_loss or 0.0),
-                "antennaSystem4High": {
-                    "gainDb": float(antenna_high.antenna_gain),
-                    "beamwidth3dbDeg": float(antenna_high.antenna_3_dB_bw),
-                    "nearSideLobeDb": float(antenna_high.antenna_l_s),
-                    "farSideLobeDb": float(antenna_high.far_out_side_lobe or 0.0),
-                },
-                "antennaSystem4Low": {
-                    "gainDb": float(antenna_low.antenna_gain),
-                    "beamwidth3dbDeg": float(antenna_low.antenna_3_dB_bw),
-                    "nearSideLobeDb": float(antenna_low.antenna_l_s),
-                    "farSideLobeDb": float(antenna_low.far_out_side_lobe or 0.0),
-                },
+                "antennaSystem4High": antenna_system4_high,
+                "antennaSystem4Low": antenna_system4_low,
             },
             "station": station,
             "satelliteIds": satellite_ids,

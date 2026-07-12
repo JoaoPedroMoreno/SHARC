@@ -96,6 +96,50 @@ class PropagationP619(Propagation):
         else:
             warn('Using analytical model for atmospheric attenuation. No lookup table available for this latitude.')
 
+    def get_lookup_table_status(self, frequency_MHz=None) -> str:
+        """
+        Return a human-readable status of the P.619 lookup table setup.
+
+        The lookup table is considered active when the Earth station latitude
+        matches an entry in Dataset/locations.csv. It is considered ready to
+        run when the corresponding CSV file for city/frequency/altitude exists.
+        """
+        if self.city_name == "Unknown":
+            return (
+                "INACTIVE - latitude "
+                f"{self.earth_station_lat_deg} not found in Dataset/locations.csv; "
+                "analytical atmospheric attenuation will be used."
+            )
+
+        if frequency_MHz is None:
+            return (
+                f"ACTIVE - city={self.city_name}, altitude={int(self.earth_station_alt_m)}m; "
+                "CSV file check pending because frequency is not known yet."
+            )
+
+        lookup_table_name = self._get_lookup_table_name(frequency_MHz)
+        lookup_table_file = self._get_lookup_table_file(frequency_MHz)
+
+        if os.path.exists(lookup_table_file):
+            return (
+                f"ACTIVE/OK - city={self.city_name}, "
+                f"file={lookup_table_name}"
+            )
+
+        return (
+            f"ACTIVE/MISSING CSV - city={self.city_name}, "
+            f"expected file={lookup_table_name}; simulation will fail when "
+            "P.619 tries to use the lookup table."
+        )
+
+    def _get_lookup_table_name(self, frequency_MHz) -> str:
+        frequency_MHz = np.asarray(frequency_MHz).flatten()[0]
+        return f'{self.city_name}_{int(frequency_MHz)}_{int(self.earth_station_alt_m)}m.csv'
+
+    def _get_lookup_table_file(self, frequency_MHz) -> str:
+        output_dir = os.path.join(os.path.dirname(__file__), 'Dataset')
+        return os.path.join(output_dir, self._get_lookup_table_name(frequency_MHz))
+
     def _get_city_name_by_latitude(self):
         localidades_file = os.path.join(
             os.path.dirname(__file__), 'Dataset/locations.csv',
@@ -131,10 +175,8 @@ class PropagationP619(Propagation):
 
         if lookupTable and self.city_name != 'Unknown':
             # Define the path to the CSV file
-            output_dir = os.path.join(os.path.dirname(__file__), 'Dataset')
-            lookup_table_name = f'{self.city_name}_{int(frequency_MHz)}_{int(self.earth_station_alt_m)}m.csv'
-            csv_file = os.path.join(
-                output_dir, lookup_table_name)
+            lookup_table_name = self._get_lookup_table_name(frequency_MHz)
+            csv_file = self._get_lookup_table_file(frequency_MHz)
             if os.path.exists(csv_file):
                 elevations = []
                 losses = []

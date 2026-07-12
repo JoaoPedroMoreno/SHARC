@@ -1,0 +1,23 @@
+method,distance_km,affected_mean,affected_p95
+Celulas do grid removidas - zona de exclusao (SA),0,0.000000,0.000000
+Celulas do grid removidas - zona de exclusao (SA),10,0.042750,0.000000
+Celulas do grid removidas - zona de exclusao (SA),20,0.169000,1.000000
+Celulas do grid removidas - zona de exclusao (SA),30,0.391500,1.000000
+Celulas do grid removidas - zona de exclusao (SA),40,0.693750,2.000000
+Celulas do grid removidas - zona de exclusao (SA),50,1.083250,3.000000
+Celulas do grid removidas - zona de exclusao (SA),60,1.536250,3.000000
+Celulas do grid removidas - zona de exclusao (SA),70,2.083250,4.000000
+Celulas do grid removidas - zona de exclusao (SA),80,2.718000,5.000000
+Celulas do grid removidas - zona de exclusao (SA),90,3.436500,6.000000
+Celulas do grid removidas - zona de exclusao (SA),100,4.253000,8.000000
+Celulas do grid com backoff - power backoff (BRARG),0,0.000000,0.000000
+Celulas do grid com backoff - power backoff (BRARG),10,8.317000,14.000000
+Celulas do grid com backoff - power backoff (BRARG),20,16.933500,25.000000
+Celulas do grid com backoff - power backoff (BRARG),30,25.840250,36.000000
+Celulas do grid com backoff - power backoff (BRARG),40,35.018250,46.000000
+Celulas do grid com backoff - power backoff (BRARG),50,44.224750,58.000000
+Celulas do grid com backoff - power backoff (BRARG),60,53.406000,68.000000
+Celulas do grid com backoff - power backoff (BRARG),70,62.776500,79.000000
+Celulas do grid com backoff - power backoff (BRARG),80,72.494500,90.000000
+Celulas do grid com backoff - power backoff (BRARG),90,82.352250,102.000000
+Celulas do grid com backoff - power backoff (BRARG),100,92.415500,113.000000

@@ -1,0 +1,167 @@
+Projeto da Disciplina — Roteiro
+Compartilhamento espectral entre serviços de radiocomunicação
+1. Introdução
+Desenvolver um estudo teórico, computacional e crítico sobre compartilhamento
+espectral entre dois serviços de radiocomunicação, envolvendo planejamento
+de rede, análise de desempenho, modelagem de interferência co-canal e
+proposição de medidas de mitigação.
+A atividade deve ser desenvolvida preferencialmente de forma individual. O
+trabalho em dupla pode, no entanto, ser aceito, mas a cobrança por sua
+excelência será proporcional.
+O aluno/equipe deverá escolher dois serviços distintos, por exemplo:
+• IMT / 5G / 6G;
+• TDT / radiodifusão digital;
+• FSS / MSS / NTN;
+• Wi-Fi / RLAN;
+• D2D;
+• HAPS;
+• NGSO;
+• enlaces fixos terrestres;
+• EESS / radioastronomia, quando tecnicamente justificável.
+2. Parte A — Planejamento e desempenho de uma rede isolada
+O aluno/equipe deverá escolher um dos serviços e propor o planejamento de uma
+rede ou cenário representativo.
+Deverão ser definidos:
+• faixa de frequência;
+• largura de banda;
+• topologia;
+• número de estações;
+
+• potência transmitida;
+• modelo de antena;
+• altura das antenas;
+• ganho e perdas;
+• modelo de propagação;
+• métrica de desempenho.
+Exemplos de métricas: Potência recebida, Razão Sinal-Ruído mais Interferência,
+Capacidade de canal/Throughput.
+O tamanho da rede pode se adequar aos recursos computacionais disponíveis,
+abrangendo uma pequena cidade ou um bairro.
+O aluno/equipe deve demonstrar o desempenho da rede isolada em termos de
+cobertura, potência recebida, SINR, capacidade, taxa, disponibilidade ou outra
+métrica adequada.
+3. Parte B — Planejamento de duas redes coexistentes
+Em seguida, o aluno/equipe deverá modelar duas redes, ou pelo menos
+regiões/células representativas dessas redes, operando em compartilhamento co-
+canal. Uma das redes deve ser aquela desenvolvida na parte A.
+A análise deve incluir:
+• interferência da rede A sobre a rede B e/ou a interferência da rede B sobre a
+rede A;
+• identificação de vítima e agressor;
+• cálculo de interferência individual e agregada;
+• comparação com critérios de proteção;
+• replanejamento de parâmetros para coexistência (ajustes de
+coordenação).
+Modelo básico:
+𝐼 = 𝑃 + 𝐺 + 𝐺 − 𝐿
+{𝐴 →𝐵} {𝑡,𝐴} {𝑡,𝐴} {𝑟,𝐵} {𝐴,𝐵}
+Para múltiplos interferentes:
+𝑁
+𝐼 = ∑𝐼
+{𝑎𝑔𝑔} 𝑖
+𝑖=1
+
+A Recomendação ITU-R M.2101 fornece metodologia para modelagem e
+simulação de redes IMT em estudos de compartilhamento e compatibilidade com
+outros sistemas. (ITU)
+4. Critérios de proteção
+Cada aluno/equipe deverá justificar os critérios de proteção adotados.
+5. Mitigação e replanejamento
+Após identificar violações dos limites de interferência, o aluno/equipe deverá
+propor e testar medidas de mitigação, tais como:
+• aumento de distância de separação;
+• redução de potência;
+• ajuste de tilt;
+• alteração de altura de antena;
+• mudança de ganho ou padrão de antena;
+• uso de máscara espectral;
+• limitação indoor;
+• exclusão geográfica;
+• coordenação temporal;
+• redução de fator de atividade;
+• alteração de densidade de estações;
+• beamforming ou null steering.
+O objetivo é mostrar como os parâmetros da rede podem ser ajustados até que:
+𝐼 ≤ 𝐼
+{𝑡ℎ}
+ou:
+𝑃(𝐼 > 𝐼 ) ≤ 𝑝
+{𝑡ℎ} {𝑚𝑎𝑥}
+
+6. Natureza do estudo
+O aluno/equipe deverá declarar se o estudo será:
+• determinístico;
+• estatístico;
+• empírico;
+• baseado em Monte Carlo;
+• híbrido.
+Em estudos estatísticos, deve-se apresentar CDF, CCDF, percentis ou
+probabilidade de excedência:
+𝑃(𝐼 > 𝐼 )
+{𝑡ℎ}
+7. Modelos técnicos
+O relatório poderá incluir:
+• modelo de antena;
+• modelo de propagação;
+• modelo de ruído;
+• modelo de tráfego ou fator de atividade;
+• modelo de interferência;
+• critério de proteção;
+• justificativa regulatória/técnica;
+• referências.
+Exemplos de referências técnicas úteis:
+• ITU-R M.2101 para modelagem de redes IMT em estudos de
+compartilhamento; (ITU)
+• ITU-R P.1546 para predição ponto-área em serviços terrestres de 30 MHz a
+4 GHz; (ITU)
+• ITU-R P.452 para interferência em enlaces terrestres ponto-a-ponto;
+• ITU-R P.2108 para perdas por clutter;
+
+• ITU-R P.619/P.618 para enlaces Terra-espaço, quando aplicável.
+8. Ferramentas
+O aluno/equipe poderá usar qualquer ferramenta:
+• Python;
+• MATLAB;
+• Octave;
+• R;
+• Julia;
+• QGIS;
+• SEAMCAT;
+• SHARC;
+• ns-3;
+• simulador próprio.
+O importante é que os cálculos sejam reproduzíveis.
+9. Entregáveis
+Cada aluno/equipe deverá entregar:
+1. relatório técnico;
+2. código ou planilha de simulação;
+3. apresentação oral;
+4. arquivos de entrada/parâmetros;
+5. referências utilizadas.
+O relatório deve conter:
+• definição do problema;
+• escolha dos serviços;
+• modelos adotados;
+• modelos de enlace;
+
+• simulações;
+• resultados;
+• replanejamento;
+• conclusões.
+10. Avaliação
+Critério Peso Entrega
+Formulação do problema e escolha do 25/05/2026
+15%
+simulador (texto 1 página)
+No relatório a ser
+Fundamentação técnica 20% entregue no dia da
+apresentação
+Modelagem matemática 20% “
+Simulações e validação 20% “
+Mitigação/replanejamento 15% “
+Apresentação 10% 7 e 9/05/2026
+11. Pergunta final de orientação
+O trabalho deverá responder:
+Sob quais condições técnicas, geográficas e operacionais os dois serviços
+escolhidos podem compartilhar a mesma faixa de frequência sem violar os
+critérios de proteção estabelecidos?

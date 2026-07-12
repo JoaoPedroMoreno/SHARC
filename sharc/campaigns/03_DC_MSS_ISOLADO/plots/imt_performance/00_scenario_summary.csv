@@ -1,0 +1,5 @@
+scenario,snapshots,avg_active_beams,max_active_beams,avg_active_satellites,avg_candidate_satellites
+"Sys3 340 km, LF 20%",4000,334.956,423,24.623,103.225
+"Sys3 340 km, LF 50%",2091,836.560,1009,24.597,103.153
+"Sys3 525 km, LF 20%",4000,211.458,279,23.192,65.830
+"Sys3 525 km, LF 50%",4000,529.309,646,23.192,65.830

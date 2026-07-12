@@ -10,6 +10,7 @@ from sharc.support.observable import Observable
 
 import numpy as np
 import math
+import os
 import sys
 import matplotlib.pyplot as plt
 import typing
@@ -663,6 +664,14 @@ class Simulation(ABC, Observable):
                 )
         else:  # for IMT <-> IMT
             off_axis_angle = station_1.geom.get_off_axis_angle(station_2.geom)
+            if (
+                os.environ.get("SHARC_FORCE_IMT_BS_TO_UE_MAIN_BEAM") == "1"
+                and station_1.station_type is StationType.IMT_BS
+                and station_2.station_type is StationType.IMT_UE
+            ):
+                off_axis_angle = off_axis_angle.copy()
+                for bs_idx, ue_idxs in self.link.items():
+                    off_axis_angle[bs_idx, ue_idxs] = 0.0
             for k in station_1_active:
                 gains[k, station_2_active] = station_1.antenna[k].calculate_gain(
                     off_axis_angle_vec=off_axis_angle[k, station_2_active],

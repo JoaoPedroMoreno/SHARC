@@ -83,6 +83,11 @@ class Model(Observable):
 
         self.simulation.initialize()
 
+        self.notify_observers(
+            source=__name__,
+            message=self.get_lookup_table_status(),
+        )
+
         random.seed(self.parameters.general.seed)
 
         self.secondary_seeds = [None] * self.parameters.general.num_snapshots
@@ -118,6 +123,47 @@ class Model(Observable):
             + "\tantenna pattern: {:s}\n".format(param_system.antenna_pattern)
 
         return description
+
+    def get_lookup_table_status(self) -> str:
+        """
+        Get the P.619 lookup table status before the first snapshot is run.
+        """
+        if self.simulation is None:
+            return "P.619 lookup table status: simulation not initialized."
+
+        propagation_status = []
+        propagation_imt = getattr(self.simulation, "propagation_imt", None)
+        propagation_system = getattr(self.simulation, "propagation_system", None)
+
+        if hasattr(propagation_imt, "get_lookup_table_status"):
+            propagation_status.append(
+                "\tIMT link: "
+                + propagation_imt.get_lookup_table_status(
+                    self.parameters.imt.frequency,
+                ),
+            )
+
+        if hasattr(propagation_system, "get_lookup_table_status"):
+            propagation_status.append(
+                "\tIMT-system link: "
+                + propagation_system.get_lookup_table_status(
+                    self.get_imt_system_frequency(),
+                ),
+            )
+
+        if not propagation_status:
+            propagation_status.append("\tNo active P.619 propagation model.")
+
+        return "P.619 lookup table status:\n" + "\n".join(propagation_status)
+
+    def get_imt_system_frequency(self) -> float:
+        """
+        Get the frequency used for the coupling loss between IMT and system.
+        """
+        if self.parameters.imt.interfered_with:
+            return float(self.simulation.param_system.frequency)
+
+        return float(self.parameters.imt.frequency)
 
     def snapshot(self):
         """

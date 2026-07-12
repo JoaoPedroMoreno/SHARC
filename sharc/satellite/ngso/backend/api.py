@@ -4,21 +4,36 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from functools import lru_cache
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
+
+def _add_local_venv_site_packages() -> None:
+    repo_root = Path(__file__).resolve().parents[4]
+    if str(repo_root) not in sys.path:
+        sys.path.insert(0, str(repo_root))
+
+    site_packages = repo_root / ".venv" / "Lib" / "site-packages"
+    if site_packages.exists():
+        sys.path.append(str(site_packages))
+
+
+_add_local_venv_site_packages()
+
 from sharc.satellite.ngso.backend.orbit_model import PROFILES, build_simulation
 
 
 FRONTEND_DIR = Path(__file__).resolve().parents[1] / "frontend"
+DEFAULT_PARAM_FILE: str | None = None
 
 
-@lru_cache(maxsize=len(PROFILES))
-def cached_simulation(profile: str) -> dict:
-    return build_simulation(profile=profile)
+@lru_cache(maxsize=32)
+def cached_simulation(profile: str, param_file: str | None) -> dict:
+    return build_simulation(profile=profile, param_file=param_file)
 
 
 class SatelliteMapHandler(SimpleHTTPRequestHandler):
@@ -54,7 +69,8 @@ class SatelliteMapHandler(SimpleHTTPRequestHandler):
                 return
 
             try:
-                self._write_json(cached_simulation(profile))
+                param_file = query.get("param_file", [DEFAULT_PARAM_FILE])[0]
+                self._write_json(cached_simulation(profile, param_file))
             except Exception as exc:  # pragma: no cover - runtime path
                 self._write_json(
                     {"error": str(exc), "profile": profile},
@@ -73,7 +89,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Serve the NGSO satellite map.")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", default=8000, type=int)
+    parser.add_argument("--param-file", default=None)
     args = parser.parse_args()
+
+    global DEFAULT_PARAM_FILE
+    DEFAULT_PARAM_FILE = args.param_file
 
     server = ThreadingHTTPServer((args.host, args.port), SatelliteMapHandler)
     print(f"Satellite map available at http://{args.host}:{args.port}")

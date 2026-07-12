@@ -78,6 +78,7 @@ const footprintModeSelect = document.getElementById("footprintModeSelect");
 const footprintModeHelp = document.getElementById("footprintModeHelp");
 const reloadBtn = document.getElementById("reloadBtn");
 const playBtn = document.getElementById("playBtn");
+const captureBtn = document.getElementById("captureBtn");
 const frameSlider = document.getElementById("frameSlider");
 const frameInfo = document.getElementById("frameInfo");
 const activeCount = document.getElementById("activeCount");
@@ -168,8 +169,75 @@ const SHARC_LINK_BUDGET_COLORS = [
     { css: "#d6a547", color: Cesium.Color.fromBytes(214, 165, 71, 190) },
     { css: "#b9473b", color: Cesium.Color.fromBytes(185, 71, 59, 200) },
 ];
+const PRESENTATION_CONE_FACES = 18;
+const PRESENTATION_CONE_MAX_SATELLITES = 220;
+const PRESENTATION_CONE_MATERIAL = Cesium.Color.fromBytes(255, 184, 74, 14);
+const PRESENTATION_CONE_OUTLINE = Cesium.Color.fromBytes(255, 232, 151, 42);
+const PRESENTATION_STATION_GRID_RADIUS_KM = 180;
+
+function serviceAreaCountryNames() {
+    return simulation?.meta?.serviceAreaCountryNames || [];
+}
+
+function isBrArgServiceArea() {
+    const names = serviceAreaCountryNames().map((name) => name.toLowerCase());
+    return names.includes("brazil") && names.includes("argentina") && names.length <= 3;
+}
+
+function isSouthAmericaServiceArea() {
+    return !isBrArgServiceArea() && serviceAreaCountryNames().length > 2;
+}
+
+function distanceKmBetween(lon1, lat1, lon2, lat2) {
+    const toRad = Math.PI / 180;
+    const dLat = (lat2 - lat1) * toRad;
+    const dLon = (lon2 - lon1) * toRad;
+    const a = Math.sin(dLat / 2) ** 2
+        + Math.cos(lat1 * toRad) * Math.cos(lat2 * toRad) * Math.sin(dLon / 2) ** 2;
+    return 2 * EARTH_RADIUS_KM * Math.asin(Math.min(1, Math.sqrt(a)));
+}
+
+function isNearPresentationStation(cell) {
+    if (!isPresentationProfile() || !isSouthAmericaServiceArea() || !simulation?.station) {
+        return false;
+    }
+
+    return distanceKmBetween(
+        cell.lon,
+        cell.lat,
+        simulation.station.lon,
+        simulation.station.lat
+    ) <= PRESENTATION_STATION_GRID_RADIUS_KM;
+}
+
+function gridCellStyle(isBorder, isNearStation, { showPowerBackoffBorder = true } = {}) {
+    if (isBrArgServiceArea() && isBorder && showPowerBackoffBorder) {
+        return {
+            material: Cesium.Color.WHITE.withAlpha(0.34),
+            outlineColor: Cesium.Color.WHITE.withAlpha(0.95),
+        };
+    }
+
+    if (isSouthAmericaServiceArea() && isNearStation) {
+        return {
+            material: Cesium.Color.RED.withAlpha(0.22),
+            outlineColor: Cesium.Color.RED.withAlpha(0.95),
+        };
+    }
+
+    return {
+        material: Cesium.Color.ORANGE.withAlpha(0.16),
+        outlineColor: Cesium.Color.ORANGE.withAlpha(0.58),
+    };
+}
 
 function preBuildGrid() {
+    globalGridEntities.forEach((entity) => viewer.entities.remove(entity));
+    globalGridEntities.clear();
+    globalGridCells.clear();
+    activeCellsThisFrame.length = 0;
+    activeCellEntitySet.clear();
+
     const dxKm = GLOBAL_HEX_RADIUS_KM * 1.5;
     const dyKm = GLOBAL_HEX_RADIUS_KM * Math.sqrt(3);
     const lonFactor = 111 * Math.cos(0); 
@@ -198,7 +266,7 @@ function preBuildGrid() {
 
     tempBrazilCells.forEach((cell, key) => {
         let isBorder = false;
-        const limit = GUARDBAND_HEX_COUNT;
+        const limit = Math.max(1, Math.ceil(Number(GUARDBAND_HEX_COUNT) || 0));
         
         for (let dCol = -limit; dCol <= limit; dCol++) {
             for (let dRow = -limit; dRow <= limit; dRow++) {
@@ -213,40 +281,44 @@ function preBuildGrid() {
             if (isBorder) break;
         }
 
+        const isNearStation = isNearPresentationStation(cell);
+        const style = gridCellStyle(isBorder, isNearStation);
+
         const entity = viewer.entities.add({
             show: false, 
             polygon: {
                 hierarchy: new Cesium.PolygonHierarchy(
                     createHexagon(cell.lon, cell.lat, GLOBAL_HEX_RADIUS_KM)
                 ),
-                material: isBorder ? Cesium.Color.WHITE.withAlpha(0.6) : Cesium.Color.ORANGE.withAlpha(0.2),
+                material: style.material,
                 outline: true,
-                outlineColor: isBorder ? Cesium.Color.WHITE : Cesium.Color.ORANGE,
+                outlineColor: style.outlineColor,
                 height: 0,
             }
         });
         entity.gridCellKey = key;
         entity.gridCellIsBorder = isBorder;
+        entity.gridCellNearStation = isNearStation;
         globalGridEntities.set(key, entity);
         globalGridCells.set(key, {
             lon: cell.lon,
             lat: cell.lat,
             isBorder,
+            isNearStation,
         });
     });
     console.log(`Grade de ${globalGridEntities.size} células pré-construída com sucesso.`);
 }
 
 function baseGridMaterial(isBorder, { showPowerBackoffBorder = true } = {}) {
-    return isBorder && showPowerBackoffBorder
-        ? Cesium.Color.WHITE.withAlpha(0.6)
-        : Cesium.Color.ORANGE.withAlpha(0.2);
+    return gridCellStyle(isBorder, false, { showPowerBackoffBorder }).material;
 }
 
 function resetGridCellEntity(entity) {
     entity.show = false;
-    entity.polygon.material = baseGridMaterial(entity.gridCellIsBorder);
-    entity.polygon.outlineColor = entity.gridCellIsBorder ? Cesium.Color.WHITE : Cesium.Color.ORANGE;
+    const style = gridCellStyle(entity.gridCellIsBorder, entity.gridCellNearStation);
+    entity.polygon.material = style.material;
+    entity.polygon.outlineColor = style.outlineColor;
     entity.gridCellSatelliteId = undefined;
     entity.gridCellElevationDeg = undefined;
     entity.gridCellElevationThresholdDeg = undefined;
@@ -266,13 +338,13 @@ function applyFixedGridAssignment(entity, assignment) {
         ? assignment
         : { satelliteId: assignment };
     const isServiceGridMode = footprintModeSelect.value === FOOTPRINT_MODE_SHARC;
-    entity.polygon.material = details.heatmapColor || baseGridMaterial(
+    const style = gridCellStyle(
         entity.gridCellIsBorder,
+        entity.gridCellNearStation,
         { showPowerBackoffBorder: isServiceGridMode }
     );
-    entity.polygon.outlineColor = isServiceGridMode && entity.gridCellIsBorder
-        ? Cesium.Color.WHITE
-        : Cesium.Color.ORANGE.withAlpha(0.75);
+    entity.polygon.material = details.heatmapColor || style.material;
+    entity.polygon.outlineColor = style.outlineColor;
     entity.gridCellSatelliteId = details.satelliteId;
     entity.gridCellElevationDeg = details.elevationDeg;
     entity.gridCellElevationThresholdDeg = details.elevationThresholdDeg;
@@ -313,6 +385,10 @@ function isDynamicFootprintMode() {
     return isAntenna7dbPreviewMode();
 }
 
+function isPresentationProfile() {
+    return simulation?.meta?.profile === "presentation";
+}
+
 function formatKm(value) {
     return Number.isFinite(value) ? `${value.toFixed(1)} km` : "km indisponivel";
 }
@@ -334,7 +410,7 @@ function getFootprintModeDescription(mode = footprintModeSelect.value) {
     if (mode === FOOTPRINT_MODE_SHARC_INTERFERENCE_LINK) {
         return "Link budget de interferencia: estima intensidade por celula com ganho S.1528, perda de espaco livre, perdas do cenario e potencia configurada.";
     }
-    return `Grade de servico SHARC: mostra celulas no Brasil que poderiam ser atendidas por satelite com elevacao >= ${serviceAngle}.`;
+    return `Grade de servico SHARC: mostra celulas na area de servico que poderiam ser atendidas por satelite com elevacao >= ${serviceAngle}.`;
 }
 
 function updateFootprintModeHelp() {
@@ -771,6 +847,19 @@ function focusFirstSatelliteFootprint() {
     });
 }
 
+function applyPresentationCamera() {
+    if (!isPresentationProfile()) return;
+
+    viewer.camera.setView({
+        destination: Cesium.Cartesian3.fromDegrees(-57.5, -23.0, 4_300_000),
+        orientation: {
+            heading: Cesium.Math.toRadians(8),
+            pitch: Cesium.Math.toRadians(-47),
+            roll: 0,
+        },
+    });
+}
+
 function canvasPositionFromPointerEvent(event) {
     const rect = viewer.scene.canvas.getBoundingClientRect();
     return new Cesium.Cartesian2(
@@ -803,7 +892,18 @@ async function loadSimulation(profile) {
     stopPlayback();
     setStatus(`Carregando perfil ${profile}...`);
 
-    const response = await fetch(`/api/simulation?profile=${encodeURIComponent(profile)}`);
+    if (window.location.protocol === "file:") {
+        throw new Error("Abra o simulador pelo servidor da API: http://127.0.0.1:8000?profile=presentation");
+    }
+
+    const pageParams = new URLSearchParams(window.location.search);
+    const apiParams = new URLSearchParams({ profile });
+    const paramFile = pageParams.get("param_file");
+    if (paramFile) {
+        apiParams.set("param_file", paramFile);
+    }
+
+    const response = await fetch(`/api/simulation?${apiParams.toString()}`);
     if (!response.ok) {
         const error = await response.json().catch(() => ({}));
         throw new Error(error.error || `Falha ao carregar a simulação (${response.status})`);
@@ -864,6 +964,7 @@ async function loadSimulation(profile) {
     buildSatelliteEntities();
     preBuildGrid();
     renderFrame(0);
+    applyPresentationCamera();
     setStatus(`Perfil ${simulation.meta.profile} carregado com ${simulation.meta.frameCount} frames.`);
 }
 
@@ -887,7 +988,7 @@ function buildStaticScene() {
             disableDepthTestDistance: Number.POSITIVE_INFINITY 
         },
         label: {
-            text: "Estação base",
+            text: "Estação FS",
             font: "13px Segoe UI",
             pixelOffset: new Cesium.Cartesian2(0, -18),
             fillColor: Cesium.Color.WHITE.withAlpha(1.0),
@@ -1564,6 +1665,148 @@ function getFootprintAssignment(frame, frameIndex) {
     return footprintAssignment;
 }
 
+function createHexagonLonLat(lon, lat, sizeKm) {
+    const coords = [];
+    const latFactor = 1 / 111;
+    const lonFactor = 1 / (111 * Math.cos(lat * Math.PI / 180));
+
+    for (let i = 0; i < 6; i++) {
+        const angle = (Math.PI / 3) * i;
+        coords.push([
+            lon + sizeKm * Math.cos(angle) * lonFactor,
+            lat + sizeKm * Math.sin(angle) * latFactor,
+            0,
+        ]);
+    }
+
+    return coords;
+}
+
+function cross2d(origin, a, b) {
+    return (a[0] - origin[0]) * (b[1] - origin[1])
+        - (a[1] - origin[1]) * (b[0] - origin[0]);
+}
+
+function convexHullLonLat(points) {
+    const unique = Array.from(
+        new Map(points.map((point) => [`${point[0].toFixed(6)},${point[1].toFixed(6)}`, point])).values()
+    ).sort((a, b) => (a[0] - b[0]) || (a[1] - b[1]));
+
+    if (unique.length <= 1) {
+        return unique;
+    }
+
+    const lower = [];
+    unique.forEach((point) => {
+        while (lower.length >= 2 && cross2d(lower[lower.length - 2], lower[lower.length - 1], point) <= 0) {
+            lower.pop();
+        }
+        lower.push(point);
+    });
+
+    const upper = [];
+    [...unique].reverse().forEach((point) => {
+        while (upper.length >= 2 && cross2d(upper[upper.length - 2], upper[upper.length - 1], point) <= 0) {
+            upper.pop();
+        }
+        upper.push(point);
+    });
+
+    lower.pop();
+    upper.pop();
+    return lower.concat(upper);
+}
+
+function createPresentationFootprintRing(footprint) {
+    const gridPoints = Array.isArray(footprint.grid) ? footprint.grid : [];
+    if (gridPoints.length === 0) {
+        return [];
+    }
+
+    if (gridPoints.length === 1) {
+        return createHexagonLonLat(gridPoints[0][0], gridPoints[0][1], GLOBAL_HEX_RADIUS_KM * 1.15);
+    }
+
+    const hull = convexHullLonLat(gridPoints);
+    if (hull.length >= 3) {
+        return hull.map(([lon, lat]) => [lon, lat, 0]);
+    }
+
+    const lon = gridPoints.reduce((sum, point) => sum + point[0], 0) / gridPoints.length;
+    const lat = gridPoints.reduce((sum, point) => sum + point[1], 0) / gridPoints.length;
+    return createHexagonLonLat(lon, lat, GLOBAL_HEX_RADIUS_KM * 1.15);
+}
+
+function drawPresentationFootprintCones(frame, satBeamCounts) {
+    if (!isPresentationProfile()) return;
+
+    let drawnSatellites = 0;
+    for (const footprint of frame.footprints || []) {
+        if (drawnSatellites >= PRESENTATION_CONE_MAX_SATELLITES) break;
+        if (!footprint) continue;
+
+        const satData = frame.satellites.find((satellite) => satellite.id === footprint.satelliteId);
+        if (!satData) continue;
+
+        const count = satBeamCounts.get(footprint.satelliteId) || footprint.cellCount || 0;
+        if (count <= 0) continue;
+
+        const satPos = Cesium.Cartesian3.fromDegrees(
+            satData.lon,
+            satData.lat,
+            satData.altKm * 1000
+        );
+
+        const rings = Array.isArray(footprint.rings) && footprint.rings.length > 0
+            ? footprint.rings
+            : [createPresentationFootprintRing(footprint)];
+
+        rings.forEach((ring) => {
+            if (!Array.isArray(ring) || ring.length < 3) return;
+
+            const uniqueRingLength = Math.max(3, ring.length - 1);
+            const step = Math.max(1, Math.floor(uniqueRingLength / PRESENTATION_CONE_FACES));
+
+            for (let i = 0; i < uniqueRingLength; i += step) {
+                const p1 = ring[i];
+                const p2 = ring[(i + step) % uniqueRingLength];
+                if (!p1 || !p2) continue;
+
+                const trianglePositions = [
+                    satPos,
+                    Cesium.Cartesian3.fromDegrees(p1[0], p1[1], 0),
+                    Cesium.Cartesian3.fromDegrees(p2[0], p2[1], 0),
+                ];
+
+                let coneEntity = conePool[activeConesCount];
+                if (!coneEntity) {
+                    coneEntity = viewer.entities.add({
+                        polygon: {
+                            hierarchy: new Cesium.PolygonHierarchy(trianglePositions),
+                            material: PRESENTATION_CONE_MATERIAL,
+                            outline: true,
+                            outlineColor: PRESENTATION_CONE_OUTLINE,
+                            perPositionHeight: true,
+                            closeTop: false,
+                            closeBottom: false,
+                        },
+                        show: false,
+                    });
+                    conePool.push(coneEntity);
+                }
+
+                coneEntity.polygon.hierarchy = new Cesium.PolygonHierarchy(trianglePositions);
+                coneEntity.polygon.material = PRESENTATION_CONE_MATERIAL;
+                coneEntity.polygon.outlineColor = PRESENTATION_CONE_OUTLINE;
+                coneEntity.show = true;
+                activeConesCount++;
+            }
+        });
+
+        drawnSatellites++;
+    }
+}
+
 function renderFrame(frameIndex) {
     if (!simulation) return;
 
@@ -1619,6 +1862,8 @@ function renderFrame(frameIndex) {
     const dxKm = GLOBAL_HEX_RADIUS_KM * 1.5;
     const dyKm = GLOBAL_HEX_RADIUS_KM * Math.sqrt(3);
     const processedRings = []; 
+
+    drawPresentationFootprintCones(frame, satBeamCounts);
 
     if (false) {
     frame.footprints.forEach((footprint) => {
@@ -1800,6 +2045,10 @@ function renderFrame(frameIndex) {
             entity.point.color = Cesium.Color.CYAN.withAlpha(0.9);
             entity.point.pixelSize = 6;
         }
+
+        if (isPresentationProfile()) {
+            entity.label.show = false;
+        }
     });
 
     if (isDynamicFootprintMode()) {
@@ -1850,6 +2099,14 @@ playBtn.addEventListener("click", () => {
     else startPlayback();
 });
 
+if (captureBtn) {
+    captureBtn.addEventListener("click", () => {
+        document.body.classList.toggle("capture-mode");
+        captureBtn.textContent = document.body.classList.contains("capture-mode") ? "HUD" : "Print";
+        viewer.scene.requestRender();
+    });
+}
+
 reloadBtn.addEventListener("click", async () => {
     try {
         await loadSimulation(profileSelect.value);
@@ -1884,12 +2141,18 @@ frameSlider.addEventListener("input", (event) => {
 
 async function init() {
     try {
+        const pageParams = new URLSearchParams(window.location.search);
+        const requestedProfile = pageParams.get("profile");
+        if (requestedProfile) {
+            profileSelect.value = requestedProfile;
+        }
         viewer.terrainProvider = await Cesium.createWorldTerrainAsync();
         viewer.imageryLayers.removeAll();
         const imagery = await Cesium.IonImageryProvider.fromAssetId(2);
         viewer.imageryLayers.addImageryProvider(imagery);
         await loadSimulation(profileSelect.value);
     } catch (error) {
+        setStatus(error.message);
         console.error("ERRO NO INIT:", error);
     }
 }

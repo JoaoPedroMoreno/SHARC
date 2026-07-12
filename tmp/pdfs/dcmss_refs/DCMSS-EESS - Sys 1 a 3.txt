@@ -1,0 +1,1529 @@
+
+
+===== PAGE 1 =====
+ANNEX 1
+Working document on technical and operational characteristics of MSS for
+direct communication with IMT user equipment
+[Editor’s note: This Annex contains technical and operational characteristics of MSS for direct
+communication with IMT user equipment.]
+[Editor’s note: The contents below have not been adequately discussed in detail and are not agreed
+and will need to be carefully examined and possibly updated depending on comments, agreed
+parameters and information on updates to the relevant modelling.]
+[Editor’ Note: Views were expressed that with respect to the cross-border interference
+management, there are two types of actions to be taken.
+1. Interference management of a cross-border with respect to those countries who have authorized
+the operation of this system.
+2. Interference management system between the country which has not authorized and neighboring
+country which has authorized.
+These two types are different and should be treated differently. The interference management
+system has a connection with many other things, e.g., calculation of the PFD and EPFD, the
+antenna modelling, responsibility, reporting, actions, time of response, etc. How this interference
+management system is organized, who controls that, how to access it, how quickly it reacts,
+whether this management system is associated with MCNC, currently many points are not clear.]
+1 Orbital characteristics
+
+===== PAGE 2 =====
+- 2 -
+4C/356 (Annex 7)-E
+TABLE 1
+Parameters of orbital configuration
+Separation
+Frequency range1 Inclination Sats per RAAN spacing between Total number
+System ID Altitude (km) # Planes
+(MHz) (deg) plane (deg) orbital planes of sats
+(deg)
+System 1 2 500-2 570/
+680 97 12 60 15 No info 720
+(non-GSO) 2 620-2 690
+694/698-960
+1 427-1 518
+1 710-1 785/
+1 805-1 880
+System 2 1 920-1 980/
+500 55 60 60 6 No info 3 600
+(non-GSO) 2 110-2 170
+2 010-2 025/
+1 880-1 920
+2 300-2 400
+2 500-2 690
+698-960
+1 427-1 518
+1 710-2 025, 525 53 28 120 12.9 No info 3 360
+System 3 2 110-2 200
+(non-GSO) 2 500-2 690
+698-960
+1 427-1 518 340 53 48 110 7.5 No info 5 280
+1 710-2 025, 2 110-
+1 The frequency range represents the operational capability of the system. The link direction of the frequency bands could refer to the Table “List
+of the IMT candidate frequency arrangements and associated frequency bands” in Section X of the working document on sharing and
+compatibility studies under WRC-27 agenda item 1.13.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 3 =====
+- 3 -
+4C/356 (Annex 7)-E
+Separation
+Frequency range Inclination Sats per RAAN spacing between Total number
+System ID Altitude (km) # Planes
+(MHz) (deg) plane (deg) orbital planes of sats
+(deg)
+2 200
+2 500-2 690
+698-960
+(Block 1, 520 km 520 53 1 5 0 No info 5
+Orbit)
+Planes start at 17
+698-960
+1 × 8 sats and subsequent
+(Block 2, 520 km, 520 53 6 No info 23
+5 × 3 sats planes are offset
+Orbit)
+by 60
+System 4
+Planes start at 0
+698-960
+(non-GSO) and subsequent
+(Block 2, 690 km, 690 53 96 1 No info 96
+planes are offset
+Orbit)
+by 3.75
+1 427-1 518 Planes start at
+1.875 and
+1 710-1 970
+690 53 96 1 subsequent planes No info 96
+2 110-2 170
+are offset by
+2 300-2 690 3.75
+698-960
+System 5 1 427-1 518
+750 97.6 10 35 No info No info 350
+(non-GSO) 1 710-2 200
+2 300-2 690
+698-960
+System 6 1 427-1 518
+700 97.6 10 20 No info No info 200
+(non-GSO) 1710-2 200
+2 300-2 690
+System 7
+2 500-2 570/ 40 000 63.4 2 2 - 120 4
+(non-GSO) 2 620-2 690
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 4 =====
+- 4 -
+4C/356 (Annex 7)-E
+Separation
+Frequency range Inclination Sats per RAAN spacing between Total number
+System ID Altitude (km) # Planes
+(MHz) (deg) plane (deg) orbital planes of sats
+(deg)
+1 710-1 785, 1 805-
+System 8
+1 980, 2 010-2 025/ 36 000 - - - - - -
+(GSO) 1 427-1 518, 2 110-
+2 170
+[Editor’s Note: There is a suggestion that additional work could be done to further reduce the number of set of parameters, since it is already
+too high, which make it difficult to accomplish the sharing and compatibility studies.]
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 5 =====
+- 5 -
+4C/356 (Annex 7)-E
+TABLE 1 (continued)
+Parameters of orbital configuration
+Document Frequency range Argument of perigee
+Eccentricity Phase angle (deg) Orbit types
+from (MHz) (deg)
+4
+698-960 90
+(Block 1, 520 km Circular 90 180 Inclined orbit
+Orbit) 270
+356
+Plane 1: Satellites start at 27 and subsequent satellites
+are offset by 45
+Plane 2: Satellites start at 64.5o and subsequent satellites
+are offset by 135o
+Plane 3: Satellites start at 102o and subsequent satellites
+698-960
+are offset by 135o
+(Block 2, 520 km, Circular 90 Inclined orbit
+Plane 4: Satellites start at 139.5o and subsequent
+Orbit)
+System 4 satellites are offset by 135o
+(non-GSO) Plane 5: Satellites start at 177o and subsequent satellites
+are offset by 135o
+Plane 6: Satellites start at 214.5o and subsequent
+satellites are offset by 135o
+698-960
+Satellite starts at 0 from Plane 1 and the satellites in
+(Block 2, 690 km, Circular 90 Inclined orbit
+subsequent planes are offset by 97.5
+Orbit)
+1 427-1 518 MHz
+1 710-1 970 MHz
+2 110-2 170 MHz Satellite starts at 48.75 from Plane 1 and the satellites in
+Circular 90 Inclined orbit
+2 300-2 690 MHz subsequent planes are offset by 97.5
+(Block 2,
+690 km orbit)
+System 7 2 500-2 570/ 0.72 270 Satellite is active only between the 36000 to 40000 km Molniya orbit
+(non-GSO) 2 620-2 690 altitude
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 6 =====
+- 6 -
+4C/356 (Annex 7)-E
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 7 =====
+- 7 -
+4C/356 (Annex 7)-E
+2 Technical and operational characteristics
+[Editor’s Note: Proponents are encouraged to provide information to those “no info” cells of the
+table in future WP 4C meetings.]
+[Editor’s Note: With regards to antenna polarization, different views were expressed to keep this
+parameter in the embedded table or not. It is further proposed that such information should be
+specified in individual sharing and compatibility studies.]
+[Editor’s Note: Views were expressed that the applicability of Rec. ITU-R M.2101 for MSS
+antennas needs further clarification and study. Other views were expressed that based on
+engineering design and evaluation, Rec. ITU-R M.2101 could be used for the simulation of phased
+array satellite antenna under agenda item 1.13.]
+3 Additional information
+3.1 Additional system information
+3.1.1 System 3
+[Note: Comments made during the 34th meeting of WP 4C,
+1) How are the EIRP equations in the adjacent channels calculated? In particular, it is not clear
+how the constants of setting the EIRP equations for first, second and third adjacent channels
+are calculated. Furthermore, how is the influence of the per-element pattern seen in the EIRP
+equations, in particular, for the assumed cosine per-element patterns, why is n=1 and not
+greater than 1, as phased arrays typically are operated with specific amplitude and phase
+tapering.
+USA: Starting from the 3GPP 38.922 formula, if ρ≅0 as we have found for AAS supporting large
+number of beams, then you will arrive the following equation:
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 8 =====
+- 8 -
+4C/356 (Annex 7)-E
+( (| M N | 2 ))
+A (θ,φ)=A (θ,φ)+10log 1+ρ ∑∑w v −1
+A ¿ 10 m,n m,n
+m=1n=1
+≅A (θ,φ) for ρ≅0
+¿
+A (θ,φ) is the gain of the element or sub-array in the array.
+¿
+For out-of-band, the correlation factor is close to 0 hence the element pattern, cosine(theta),
+appears directly i.e. A (θ,φ)≅A (θ,φ)=A +10log cos (θ).
+A ¿ elem 10
+The relation back to EIRP from the 3GPP 38.922 formula is provided in Appendix 1 and results in
+this equation:
+EIRP(p) (θ,φ,f )(dBW)≅P (p,f )+A (θ,φ,f )
+ADJ c uncorr c ¿ c
+where θ and φ are the beam pointing angles, f is the center frequency, P is the sum of total
+c uncorr
+leakage power from non-linear sources and wideband noise sources and A is the element or
+¿
+subarray gain pattern.
+As for n=1 comment, amplitude and phase tapering is not relevant to the cosine roll-off. It is
+related to the directivity of the element (but there is a physical lower bound to n=1 as explained
+below):
+A cosn (θ) model is common in industry for modeling the roll-off of a phased array element pattern,
+see industry articles [1][2][3]. Physically, if viewing a planar phased array from an angle θ from
+its normal, its apparent aperture area will decrease by cos (θ), which corresponds to n=1.
+Practical planar arrays typically have n≥1, and we have used the most conservative case (n=1) in
+the model provided. Large values of n correspond to more directive elements.
+To facilitate explanation of the apparent aperture concept, we have included the following diagram
+below:
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 9 =====
+- 9 -
+4C/356 (Annex 7)-E
+[1] https://www.analog.com/en/resources/analog-dialogue/articles/phased-array-antenna-patterns-
+part1.html
+[2] https://www.mathworks.com/help/phased/ref/phased.cosineantennaelement-system-object.html
+[3] https://www.mwrf.com/technologies/embedded/systems/article/21139283/analog-devices-
+phased-array-antenna-patterns-part-3linear-array-beam-characteristics-and-array-factor
+2) Where is the element pattern featured in the in-band antenna pattern, denoted by G(u), as per
+recommends 1.4 of Recommendation ITU-R S.1528. We fail to understand how the in-band
+pattern is used from Recommendation ITU-R S.1528 and the out-of-band pattern is derived
+from Recommendation ITU-R M.2101. There must be consistency in the two approaches.
+USA: For System 3, if you apply correlation factor (ρ) = 1 to the correlation equations (Eq 1-3 in
+Appendix 1 of our contribution), you will arrive at the per-beam in-band phased array antenna
+gain formula where it is element gain A (θ,φ) + 10log10(Array Factor),
+¿
+A (θ,φ)=A +10log cos (θ) and A is the peak element gain. If you apply ρ=0 then you get
+¿ elem 10 elem
+the out-of-band emissions pattern which is that of the element/subarray that we described in our
+contribution.
+As a substitute for the full Array Factor, we have found that ITU-R Recommendation S.1528 1.4
+can be used to conservatively model the per-beam in-band pattern of uniformly illuminated phased
+array. For example, the main beam width can be adjusted (through use of L and L) to the
+r t
+maximum beamwidth at full scan, while the main beam peak is kept at Gmax. Additionally, we have
+found the S.1528 1.4 Bessel function models well the sidelobes that would be achieved with such a
+uniformly illuminated array while limiting overestimation of it.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 10 =====
+- 10 -
+4C/356 (Annex 7)-E
+Since we have applied ITU-R Recommendation S.1528 1.4, the peak element gain is incorporated
+into the Gmax factor and the 10log cos (θ) factor in A (θ,φ) has been conservatively left out.
+10 ¿
+This is conservative since the cos (θ) factor would only decrease emissions (cos(θ)≤1).
+3) In assuming the correlation to be 0 and hence the array collapsing to a single element pattern it
+is assumed that there are multiple beams from a satellite at a point since G(u) only one beam at
+a point. Therefore, the correlation is going to be greater than 0 and the array will not collapse
+to a single element.
+USA: In Annex 1 of our input contribution, we show that the correlation factor is ≤-10 dB with
+greater than or equal to 20 beams. The actual number of beams per satellite varies throughout the
+simulation as this is dependent on service area, but typically will be above 20 beams per satellite
+using guidance given in the “Satellite selection and Beam Management” section for System 3. The
+ACLR EIRP level provided also assumes 100% loading of the PAs, and so this will be a
+conservative mask for all cases w/ greater than 20 beams. ITU-R Recommendation S.1528 1.4 is
+applied per beam and also follows the “Satellite selection and Beam Management” section for
+System 3.
+4) Typically satellite systems (either MSS or FSS) do not use QAM modulation rather they use
+APSK modulation for lower peak to average power ratio. For this reason satellite power
+amplifiers are not designed with class A or class AB configurations but rather with traveling
+wave tube amplifiers this implies that a polynomial model (as provided in the Mollen paper) to
+characterise the power amplifier non linearities is not applicable.
+USA: System 3 is a DC-MSS-IMT system and hence uses the same OFDM-like waveforms
+supported by the UEs and 3GPP so the peak-to-average ratio of those waveforms apply. The
+comment on QAM vs. APSK is not relevant here. System 3 does not use TWTAs and so this
+assertion is also irrelevant.
+]
+4C/170 (USA), 4C/173 (D), 4C/347 (D), 4C/XXX (USA)
+In-band Performance
+Channel bandwidth
+The user channel will have a typical bandwidth of 5 MHz, to be adjusted to the relevant parameter
+of the supported terrestrial NMO.
+Uplink aspects
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 11 =====
+- 11 -
+4C/356 (Annex 7)-E
+For the uplink case it should be emphasized that LTE capable smartphones will be used (and having
+been proved to work), which means that the 4G typical RF parameters of the supported terrestrial
+MNO, will remain unchanged.
+Antenna Pattern
+The in-band satellite antenna pattern to be used when modelling System A is the one described in
+recommends 1.4 of Recommendation ITU-R S.1528. In particular, the following circular Taylor
+illumination function should be used.
+| [
+u2
+]|
+1−
+π2σ2 [ A2 + ( i− 1) 2]
+2J (u) 3 2 (1)
+G(u)=G +20log 1 ∏ ,
+max 10 u i=1 [ ( u ) 2]
+1−
+πμ
+i
+where:
+G(u) is gain in the direction of the considered point (dB)
+G is the maximum gain of the antenna (dBi)
+max
+π
+u= √(L sinθcosφ) 2 +(L sinθsinφ) 2 ,
+λ r t
+μ
+σ= l
+√ A2 + ( l− 1) 2,
+2
+1 ( SLR)
+A= arccosh 10 20 ,
+π
+J (∙) is the first-order Bessel function of the first kind
+1
+SLR is the side-lobe ratio of the pattern (dB)
+l is the number of secondary lobes to consider in the pattern
+πμ is the i’th primary root of J (∙) (rad)
+i 1
+λ is the wavelength (m)
+(θ,φ) are the coordinates of the test point with respect to the center of the
+illuminated beam in the satellite reference (rad)
+L ,L are the radial and transverse sizes of the effective radiating area of the satellite
+r t
+transmit antenna respectively (m).
+Note that if the following conditions for σ holds for (1),
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 12 =====
+- 12 -
+4C/356 (Annex 7)-E
+μ2
+σ2 =σ2 = i ,i=1,2,3 (2)
+i A2 + ( i− 1) 2
+2
+L =L =D (3)
+r t
+then
+| ((πD) )|
+2J sin(θ)
+1 λ
+G(u)=G +20log , (4)
+max 10
+(πD)
+sin(θ)
+λ
+which is the typical gain pattern for a reflector antenna with circular aperture.
+The following parameters should be used when modelling the in-band pattern for System 3:
+G =34.1dBi,
+max
+L =L =1.6m,
+r t
+SLR=20dB,
+l=2,
+λ=0.15m.
+FIGURE 2
+Modelled pattern of System 3
+Satellite selection and Beam Management
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 13 =====
+- 13 -
+4C/356 (Annex 7)-E
+In terms of satellite selection and beam placement, the following rules should serve as guidance:
+– The minimum elevation to be used is 20 degrees.
+– Model of an average beam size contour at the 7 dB falloff, i.e. not overlap any beams
+more than their 7 dB main lobe contour of each beam (no further beam overlap to avoid
+self-interference);
+NOTE: This has to be used in conjunction with the pattern in recommends 1.4 in Recommendation
+ITU-R S.1528. The 7 dB falloff is taken from that pattern.
+– Prioritize placing beams with the lowest scan angle / path length;
+– Distribute the beam count evenly among eligible satellites over the service area - Equal
+loading;
+– The simulation/service area can be divided into cells and for each cell a beam is
+assigned to it from one of the eligible satellites.
+The following interference management approaches have been shown to potentially facilitate
+compliance with established regulatory limits to protect incumbent services operating in
+neighboring countries.
+In terms of interference management in the vicinity of borders:
+– When a beam is placed right before the border or in its vicinity, select, among available
+satellites, those flying above the country where the D2C service is being provided. This
+will maximize the impact of the atmospheric attenuation and spreading loss for the
+antenna side lobes in the direction of the country where the victim receiver is located.
+– Adjust the main beam pfd close to the border, i.e. use a lower main beam pfd when
+transmitting close to the border in order to manage cross-border aggregate interference
+FIGURE 1
+[Editor’s note: Further information on the methodology of PFD reduction near the borders is
+needed to model the specific mitigation scheme]
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 14 =====
+- 14 -
+4C/356 (Annex 7)-E
+Qualitative pfd level depiction inside wanted country area and towards the neighboring country
+• Possibility to implement power back-off if/when eirp reduction is needed
+It is to be noted that this type of interference mitigation is still kind of “basic”. More sophisticated
+techniques may be implemented by some systems
+In-beam PFD modelling options
+In terms of modelling the variation of PFD with slant path, several options can be considered, and
+correspond to several ways operations can occur:
+– Keep PFD constant on the ground, i.e. adjust eirp at the satellite to ensure a constant
+PFD on the ground regardless of the slant path / arrival angle
+– Keep eirp constant at the satellite: this implies that the PFD value contained in Table 1
+is only ensured at Nadir, while it will be lower at lower elevation, i.e. as the slant path
+increases
+– Hybrid mode: some systems adjust the eirp to ensure constant PFD on the ground only
+up to a certain elevation angle, after which the eirp is not increased more, thus the PFD
+decreases as the elevation angle decreases
+Out-of-band Antenna Pattern
+[Editor’s note: The antenna pattern for the unwanted emission from a non-correlated AAS
+(Advanced Antenna System) is the pattern of a single antenna element. While the in-band antenna
+pattern is modelled using Recommendation ITU-R S.1528, the immediate adjacent channels will not
+collapse to the pattern of a single element which corresponds to an non-correlated AAS antenna
+emission and the in-band pattern will be more appropriate to model the immediate adjacent
+channels. Further discussion is needed on this topic. Additionally, further information is required
+on the maximum unwanted emission density distribution to be assumed within the first adjacent
+channel, particularly at frequency offsets near the edge of the transmitted DC-MSS-IMT channel.].
+[There is a need to clarify two situations of out of band that are sometimes interchangeably used.
+(1) In band Adjacent channels, (2) out of band adjacent channels.
+The equations below should be specified for both the above cases.
+In so far as assuming that the antenna patterns for in-band adjacent channels will collapse to a
+single element- this is not correct as antennas are supposed to work over the whole band and not It
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 15 =====
+- 15 -
+4C/356 (Annex 7)-E
+is not appropriate to say have an in-band pattern described by 1528 and an out of band pattern
+described by a single element of M 2101.
+[Editor’s note: The exact definitions of in-band and out-of-band, as well as the modelling
+methodology of in-band and out-of-band antenna radiation patterns of DC-MSS space stations is
+discussed in detail in Document 4C/278.]
+For Advanced Antenna Systems (AAS) with high beam-count, the radiation pattern for the
+unwanted emission in the p’th adjacent channel dominated by transmitter non-linearity can be
+modelled with the antenna pattern of a single antenna element2. A detailed sensitivity analysis of
+spatial correlation factor, which determines the amount of coherent combining in the adjacent
+channels, is provided in Appendix 1 . The OOBE EIRP density of each satellite in System 3 varies
+with frequency and direction as follows:
+where:
+θ is the angle between the direction of the emission and the nadir direction (in
+radians)
+f is the center frequency of the desired channel for System 3 in MHz
+EIRP is the EIRP density (in dBW/Hz) for the OOBE in the first adjacent channel
+1
+EIRP is the EIRP density (in dBW/Hz) for the OOBE in the second adjacent channel
+2
+EIRP is the EIRP density (in dBW/Hz) for the OOBE in the third adjacent channel
+3
+10log cos (θ) is the normalized single element antenna pattern used in satellites in System 3
+10
+The applicable OOBE frequency range for the p’th adjacent channel where EIRP is applied at is at f+Δ ,
+p f
+where
+−(2p+1)B −(2p−1)B (2p−1)B (2p+1)B
+Δ ∈[ , ]∪[ , ]
+f 2 2 2 2
+and B is the channel bandwidth.
+Note: The as-built design is currently under simulations and measurements. Both simulations and
+measurements demonstrated that the most representative ITU reference for the in-band performance is
+recommends 1.4 of Recommendation ITU-R S.1528 whereas the out-of-band radiation pattern for the
+unwanted emission is modeled with the antenna pattern of a single antenna element. And this one follows the
+2 Recommendation ITU-R M.2101-0, Modelling and simulation of IMT networks and systems for
+use in sharing and compatibility studies, section 5.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 16 =====
+- 16 -
+4C/356 (Annex 7)-E
+mask given in section 5 of Recommendation ITU-R M.2101 (with appropriate antenna element
+transformation between the 3D geometry on Earth and that in the sky) and its applicability is validated with
+the simulations presented in Appendix 1.
+APPENDIX 1
+Adjacent Channel Spatial Correlation Factor
+In this section, using basic antenna and PA non-linear model theory, we present a study of the
+spatial non-linear correlation factors in the adjacent channel. Simulations using multiple array sizes
+confirm that these correlation factors drop rapidly with beam count. A beam-count >= 20 is
+required to maintain a correlation factor <= 0.1 Subsequently, the element pattern is appropriate for
+use with out-of-band emissions in the adjacent channel for digital beamforming arrays with large
+number beams. For such arrays, it is shown that the EIRP at the p’th adjacent channel can be
+approximated as:
+EIRP(p) (θ,φ,f )(dBW)≅P (p,f )+A (θ,φ,f )
+ADJ c uncorr c ¿ c
+where θ and φ are the beam pointing angles, f is the center frequency, P is the sum of total
+c uncorr
+leakage power from non-linear sources and wideband noise sources and A is the element or
+¿
+subarray gain pattern.
+Adjacent Channel Spatial Correlation Factor - Theory
+We consider a basic example using a memoryless polynomial non-linearity for the output envelope
+of each PA in a size N array with K beams. Note that this is just one example of the many Volterra
+series kernels that can be used to model PA non-linearity. It is also used as an example in [1]. The
+equation for the output of the i’th PA is:
+~y =α~x −γ |~x| 2p~x = ~y(i)+ ~y(i),
+i i p i i L NL
+where
+~y(i)=α~x ,
+L i
+~y(i)=−γ |~x| 2p~x ,
+NL p i i
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 17 =====
+- 17 -
+4C/356 (Annex 7)-E
+K
+~x =∑~u ejθ i,k,
+i k
+k=1
+and
+~u
+are the time-domain envelope samples for thek’th beam.
+k
+In beam direction k, the total received signal in the far-field,
+~r
+, is:
+k
+~r
+=
+~r(k)+ ~r(k),
+k L NL
+where
+N
+~r(k)=∑~y(i)e−jθ i,k,
+L L
+i=1
+is the linear component and
+N
+~r(k)=−∑~y(i)e−jθ
+i,k
+NL NL
+i=1
+is the nonlinear component.
+Define the normalized spatial correlation factor of the non-linear component as:
+E
+[|~r(k)| 2]
+K
+NL
+ρ =
+NL E [|~y(i)| 2] N2
+NL
+where E[∙] is the expectation operator. The N2 factor is due to coherent combining in voltage if the
+signals at the output of the PA were 100% correlated to the signal received at the far-field, and the
+K factor is to ensure the output power of the PA is kept constant as K is changed. In the K = 1 case
+(single-beam array), ρ =1, whereas for K>1 (multi-beam hybrid or digital beamforming arrays),
+NL
+ρ <1.
+NL
+If we focus on just the out-of-band portion of non-linear component which does not overlap with
+any lower order term, an adjacent channel-specific normalized correlation factor can be defined as:
+E [|g ∗ ~r(k)| 2] K
+ρ(p) = 2p+1 NL ,
+ADJ E [|g ∗ ~y(i)| 2] N2
+2p+1 NL
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 18 =====
+- 18 -
+4C/356 (Annex 7)-E
+where g is an ideal rectangular filter that passes only frequencies
+2p+1
+−(2p+1)B −(2p−1)B (2p−1)B (2p+1)B
+f∈[ , ]∪[ , ], a∗b is the discrete time convolution of
+2 2 2 2
+sampled-time signals a and b, and B is the required bandwidth of the signal.
+[1] C. Mollén, U. Gustavsson, T. Eriksson and E. G. Larsson, "Out-of-band radiation measure for
+MIMO arrays with beamformed transmission," 2016 IEEE International Conference on
+Communications (ICC), Kuala Lumpur, Malaysia, 2016, pp. 1-6, doi: 10.1109/ICC.2016.7511629.
+Adjacent Channel Spatial Correlation Factor - Simulation Results
+For this simulation example, we will use a uniform planar array with triangular lattice spaced at 0.5
+λ edges. Each ~u CN(0,1) has 1024 samples and generated independently. The samples are then
+k
+up-sampled by a factor of 2p+1 and low-pass filtered to at a normalized frequency of (1/(2p+1))
+to prevent aliasing when applying the non-linear function, resulting in K×(2p+1)(1024) samples.
+Both a 64x64 element array and 128x128 element array are used in these examples. K is swept
+logarithmically from 1 to 256 and p is swept from 0 to 3 (non-linearity order 1 to 7). A main-lobe
+π√3
+element gain of 10log ≅4.35dBi and cosine loss exponent of 1 is used. Beams are selected
+10 2
+based on pure-LOS channel and randomly across all positions less than a max scan of 60 degrees
+1 1
+with at least asin ( ) (rad) angular separation in x-direction and asin ( ) (rad) angular
+N N
+x y
+separation in y-direction. 5 different sets of randomized beam positions are selected for each K and
+p combination and the calculated value of ρ(p) is averaged linearly across the sets.
+ADJ
+Figure 1: Physical arrangement of the 64x64 and 128x128 arrays simulated
+The non-linear error signal spectrum at each PA element, ~y(i) across all i∈[1,2,…,N N ] PAs and
+NL x y
+the in-beam output at ~r(k) across all k∈[1,2,…,K] beams is plotted Figure below for example
+NL
+cases of the 128x128 array. Note that ρ(p) only considers a certain frequency region for ~y(i) and ~r(k)
+ADJ NL NL
+as noted in the green region of the plots in Figure .
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 19 =====
+- 19 -
+4C/356 (Annex 7)-E
+Figure 2: Output spectrum of the non-linear error term at the PA output (blue) and in-beam (red) for
+K={2,64} and NL order 2p+1 = {3,5}.
+Examples of the normalized antenna gain (in UV-domain) in the non-overlapping adjacent channel
+regions used in ρ(p) are plotted below for K=2 and K=64 for both the 64x64 array and 128x128
+ADJ
+array.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 20 =====
+- 20 -
+4C/356 (Annex 7)-E
+Figure 3: UV-plot of normalized antenna gain for the 64x64 antenna array with K=2 and K=64 for non-
+linearity order up to 5
+Figure 4: UV-plot of normalized antenna gain for the 128x128 antenna array with K=2 and K=64 for non-
+linearity order up to 5
+The calculated spatial adjacent channel correlation factors ρ(p) after sweeping K is plotted below.
+ADJ
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 21 =====
+- 21 -
+4C/356 (Annex 7)-E
+Figure 5: Adjacent-channel NL Correlation factor (dB) for the simulated 64x64 and 128x128 arrays for NL
+order = 1,3,5,7 and K=1,2,4,…,256
+Figure 6: Adjacent-channel NL Correlation factor (linear) for the simulated 64x64 and 128x128 arrays for NL
+order = 1,3,5,7 and K=1,2,4,…,256
+It is evident from the above simulations that ρ(p) decreases with increasing number of beams. The
+ADJ
+rate of decrease is higher with increasing non-linearity order, and ρ(p) will continue to decrease
+ADJ
+with beam-count until the spatial intermodulation products saturate the entire radiating hemisphere.
+This occurs sooner with smaller array sizes, as the beam-widths of the spatial intermodulation
+products are wider for the smaller arrays. A beam-count >= 20 is required to maintain a correlation
+factor <= 0.1 for sufficiently-large arrays outside this spatial intermodulation saturation region.
+Table 1: Empirical Out-of-Band Correlation Factor
+ρ(p)
+for Different Array Sizes
+ADJ
+NL Order Min Correlation Factor (dB) Min Correlation Factor (dB)
+64 x 64 Array 128 x 128 Array
+1 0.00 0.00
+3 -13.4 -16.3
+5 -18.4 -22.5
+7 -21.0 -26.0
+Adjacent Channel Spatial Correlation Factor – Comparison with Composite Array Model
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 22 =====
+- 22 -
+4C/356 (Annex 7)-E
+We now check the composite radiation gain pattern model for pure LOS channel from 3GPP 38.922
+(Eq. 7.4.1-1):
+( (| M N | 2 ))
+A (θ,φ)=A (θ,φ)+10log 1+ρ ∑∑w v −1 , (1)
+A ¿ 10 m,n m,n
+m=1n=1
+Note that contrary to Eq. 7.4.1-1, the above equation should use array factor normalized to total
+elements MN before adding the element/sub-array gain A (θ,φ), i.e.:
+¿
+A (θ,φ)=A (θ,φ)+10log (1+ρ(AF(θ,φ)−1)) (2)
+A ¿ 10
+| M N | 2
+∑∑w v
+m,n m,n (3)
+AF(θ,φ)=
+m=1n=1
+MN
+Using the above equation with the values of ρ(p) in Table , the simulated non-linear emissions for
+ADJ
+the 128x128 array are compared to those generated using the model (Eq. (2) and (3)) across
+different φ slices:
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 23 =====
+- 23 -
+4C/356 (Annex 7)-E
+Figure 7: Comparison of simulated non-linear emissions of the 128x128 array to modeled emissions using the
+correlation factors from Table 2
+At K=20 beams, the following correlation roll-off model ρ(p) would be used with Equation (2):
+ADJ
+Figure 8: Maximum adjacent-channel correlation factor for >= 20 beams, in linear (left) and dB (right)
+Table 2: Tabulated values for adjacent-channel correlation factor for 20 beams
+NL Order Correlation Factor for 20 beams Correlation Factor for 20 beams (dB)
+(linear)
+1 1 0.00
+3 0.1 -10
+5 0.02 -17
+7 0.008 -21
+To determine the adjacent channel EIRP mask from Equations (2) and (3), ratios of total radiated
+powers (TRP) can be substituted. For example, ACLR calculated from total radiated power can be
+used as a proxy for the ratio of power attributed to each non-linear order, e.g.:
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 24 =====
+- 24 -
+4C/356 (Annex 7)-E
+f +B(−p+0.5) f +B(p+0.5)
+c c
+max{ ∫ S (f)df , ∫ S (f)df }
+yy yy
+ACLR(p)= f c +B(−p−0.5) f c +B(p−0.5) ,
+TRP TRP
+where S (f ) is the power spectral density (PSD) of the total radiated power at frequency f.
+yy
+Similarly, a TRP ratio can be calculated from the uncorrelated wideband noise sources at the PA
+output:
+f +Δ+0.5B
+c f
+max ∫ S (f)df
+nn
+NCPR=
+Δf f
+c
++Δ
+f
+−0.5B
+,
+TRP
+where S (f ) is the PSD of the radiated noise power at frequency f and Δ is the frequency offset
+nn f
+from center frequency f .
+c
+The adjacent channel EIRP mask can then be written as:
+EIRP(p) (θ,φ)=EIRP(p)(θ,φ)+EIRP (θ,φ)
+ADJ NL Noise
+where,
+EIRP (θ,φ)(dBW)=A (θ,φ)+10log (NCPR)+TRP(dBW)
+Noise ¿ 10
+EIRP(p)(θ,φ)(dBW)=A (θ,φ)+10log (ACLR(p) (1+ρ(p)(AF(θ,φ)−1))TRP)=EIRP(p) (θ,φ)+10log (1+ρ(p)(AF(θ,φ)−1)).
+NL ¿ 10 TRP NL,uncorr 10
+For large beam counts where ρ(p)=ρ(p) ≅0:
+ADJ
+EIRP(p) (θ,φ)≅EIRP(p) (θ,φ)+EIRP (θ,φ)EIRP(p) (θ,φ)(dBW)≅P (p)+A (θ,φ)
+ADJ NL,uncorr Noise ADJ uncorr ¿
+where,
+( ACLR T (p R ) P NCPR)
+P (p)=10log 10 10 +10 10 +TRP.
+uncorr 10
+Written more generally for center frequency f :
+c
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 25 =====
+- 25 -
+4C/356 (Annex 7)-E
+EIRP(p) (θ,φ,f )(dBW)≅P (p,f )+A (θ,φ,f )
+ADJ c uncorr c ¿ c
+[3.1.2 System 4
+4C/262 (USA)
+[Editor’s note: several areas need further clarification.]
+[Editor’s note: There are several aspects of the antenna radiation pattern modelling presented
+below from Document 4C/262 which are unclear. The proponent is invited to provide clarifications
+to these elements at the next WP 4C meeting. These aspects are outlined below:
+1. It is unclear how the parameters presented in Tables 3, 4, 5 and 6 below are obtained from the
+measured antenna radiation patterns. Proponents should outline, in detail, the exact statistical
+estimation methodology. For instance, are the parameters G , ψ , L and L estimated with a
+M 3dB N F
+least-squares estimator or some other type of statistical estimator, e.g., a spline fit, on the measured
+patterns? Without such details, there is no way for the WP 4C membership to verify and replicate
+the estimated parameters provided.
+2. Recommendation ITU-R S.1528 recommends 1.2 states that the parameter L , representing the
+F
+far-out side-lobe level (in units of dBi) should be 0 dBi. However, the estimated range of L is
+F
+varying from -25 dB to 5 dB as per Table 3, 4, 5 and 6. Therefore, further clarifications need to be
+made on the estimated values with respect to the 0 dBi value provided in the recommendation. Note
+that the unit of this parameter should also be clarified, as this is a gain parameter in the
+recommendation, rather than a directivity parameter, as estimated from the measured patterns.
+3. The definition of ψ is defined in a mathematical piecewise manner in recommends 1.2 of
+3dB
+Recommendation ITU-R S.1528. In order to verify the estimated values from the presented
+measurements, one would have to know the antenna diameter, given as D in recommends 1.2, as
+well as both the major and minor axes, which would be based on the value z in the recommends
+1.2. From the measured patterns, it is very difficult to estimate the value of ψ and hence further
+3dB
+clarification needs to be provided.
+4. A comparison of the current results with recommends 1.4 of Recommendation ITU-R S.1528
+should be performed and reported for the measured patterns, as recommends 1.2 only models the
+envelope radiation pattern, whereas recommends 1.4 also models the sidelobes of the antenna
+pattern, in accordance with the Taylor illumination function and hence would be more accurate for
+characterizing the DC-MSS space station patterns. Parameters of recommends 1.4 should be
+estimated from the measured patterns and a full analysis is encouraged from the proponent to yield
+a fair comparison with recommends 1.2.]
+3.1.2.1 Antenna Pattern
+The representative in-band satellite antenna pattern to be used when modelling System B is based
+on predicted patterns as described in Recommends 1.1 of Recommendation ITU-R S.1528, where
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 26 =====
+- 26 -
+4C/356 (Annex 7)-E
+Figs. 1 to 4 show the nominal satellite antenna patterns produced by the phased-array antennas;
+where the E-plane is along the beam steering direction and the H-plane is the perpendicular
+direction. Through beam forming technology, the satellite gain patterns can be modified to meet
+service requirements, as needed, with the intent being to keep the beam footprint size constant
+across steering angles. For clarity, in Figs. 1 to 4 the chart X-axes should be interpreted as X-
+direction (azimuth – perpendicular to the beam scanning direction) and Y-direction (elevation – in
+the beam scanning direction) in the satellite coordinate system, while the chart title elevation angles
+refer to elevation angles as seen from the ground receiver.
+For the purpose of interference modelling, it may also be useful to consider a reference antenna
+pattern implementation such as the one described in recommends 1.2 of Recommendation ITU-R
+S.1528. To this end, for each frequency band and orbit, a parameter set corresponding to this
+definition is suggested to assist interested parties in developing a conservative interference model,
+using the simple equations from recommends 1.2. It should be noted that further refinement of these
+models could have been achieved using different parameter sets for the E-plane and H-plane, but for
+simplicity, a single set was used for each beam from nadir to 50-degree elevation and another set for
+50-degree elevation or lower.
+698-960 MHz – Block 1, 520 km orbit
+The following table and charts show the proposed modeling values to be used for the 698-960 MHz
+frequency band for Block 1 satellites, operating at 520 km.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 27 =====
+- 27 -
+4C/356 (Annex 7)-E
+TABLE 3
+Antenna pattern modelling parameters for 698-960 MHz for Block 1, 520 km orbit satellites
+Parameter Nadir to 50 Elevation 50 Elevation and below
+G 31.5 34.6
+M
+Psi3dB 2.19 1.57
+L (dB) –20 –21
+N
+L (dB) 0 5
+F
+FIGURE 1
+Beam Patterns for Block 1 at 520 km Orbit in 698-960 MHz (Nadir, 50 degrees El, 40 degrees El)
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 28 =====
+- 28 -
+4C/356 (Annex 7)-E
+698-960 MHz – Block 2, 520 km orbit
+The following table and charts show the proposed modeling values to be used for the 698-960 MHz
+frequency band for Block 2 satellites, operating at 520 km.
+TABLE 4
+Antenna pattern modelling parameters for 698-960 MHz for Block 2, 520 km orbit satellites
+Parameter Nadir to 50 Elevation 50 Elevation and below
+G 32.3 38.6
+M
+Psi3dB 2.0 0.95
+L (dB) –40 –18
+N
+L (dB) –25 –15
+F
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 29 =====
+- 29 -
+4C/356 (Annex 7)-E
+FIGURE 2
+Beam Patterns for Block 2 at 520 km Orbit in 698-960 MHz (Nadir, 45 degrees El, 20 degrees El)
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 30 =====
+- 30 -
+4C/356 (Annex 7)-E
+698-960 MHz – Block 2, 690 km orbit
+The following table and charts show the proposed modeling values to be used for the 698-960 MHz
+frequency band for Block 2 satellites, operating at 690 km.
+TABLE 5
+Antenna pattern modelling parameters for 698-960 MHz for Block 2, 690 km orbit satellites
+Parameter Nadir to 50 Elevation 50 Elevation and below
+G 34.6 40.0
+M
+Psi3dB 1.53 0.84
+L (dB) –35 –20
+N
+L (dB) –25 –15
+F
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 31 =====
+- 31 -
+4C/356 (Annex 7)-E
+FIGURE 3
+Beam Patterns for Block 2 at 690 km Orbit in 698-960 MHz (Nadir, 45 degrees El, 20 degrees El)
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 32 =====
+- 32 -
+4C/356 (Annex 7)-E
+1 427-1 518 MHz, 1 710-1 970 MHz, 2 110-2 170 MHz, 2 300-2 690 MHz – Block 2, 690 km
+orbit
+The following table and charts show the proposed modeling values to be used for the 1 427-
+1 518 MHz, 1 710-1 970 MHz, 2 110-2 170 MHz and 2 300-2 690 MHz frequency bands for Block
+2 satellites, operating at 690 km.
+TABLE 6
+Antenna pattern modelling parameters for 1 427-1 518 MHz, 1 710-1 970 MHz, 2 110-2 170 MHz and 2 300-
+2 690 MHz for Block 2, 690 km orbit satellites
+Parameter Nadir to 50 Elevation 50 Elevation and below
+G 41.0 46.0
+M
+Psi3dB 0.75 0.41
+L (dB) –35 –20
+N
+L (dB) –20 –10
+F
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 33 =====
+- 33 -
+4C/356 (Annex 7)-E
+FIGURE 4
+Beam Patterns for Block 2 at 690 km Orbit in 1 427-1 518 MHz, 1 710-1 970 MHz, 2 110-2 170 MHz
+and 2 300-2 690 MHz (Nadir, 45 degrees El, 20 degrees El)
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 34 =====
+- 34 -
+4C/356 (Annex 7)-E
+3.1.2.2 Other RF emission characteristics
+Parameters Frequency range (MHz) and Orbits
+698-960 MHz 698-960 MHz 698-960 MHz 1 427-1 518 MHz
+(Block 2, (Block 2,
+(Block 1, 1 710-1 970 MHz
+520 km orbit) 690 km Orbit)
+520 km orbit)
+2 110-2 170 MHz
+2 300-2 690 MHz
+(Block 2,
+690 km orbit)
+Edge of coverage of a –4 dB contour –4 dB contour
+beam – EOC (dB)
+3.1.2.3 Out-of-band emissions parameters to be used for out-of-band studies
+The parameters and antenna patterns used for out-of-band emission (OOBE) studies are described
+in this section and relate solely to the protection of emissions in frequency bands not considered
+under this agenda item.
+Emissions in the Earth-to-space direction
+The intended operations foresee communications from unmodified user equipment. For the uplink
+case it should be emphasized that LTE capable smartphones will be used (and having been proved
+to work), which means that the 4G typical RF parameters of the supported terrestrial MNO, will
+remain unchanged.
+Given that the characteristics of the IMT mobile stations (i.e. user equipment) are envisaged to
+remain unchanged, it is proposed that no studies are needed in this direction.
+Emissions in the space-to-Earth direction
+This section will contain relevant emission characteristics of the space station to conduct sharing
+studies related to unwanted emissions (out-of-band and spurious domains). Relevant parameters are
+presented in Table 7.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 35 =====
+- 35 -
+4C/356 (Annex 7)-E
+[Editor’s note: Further information is required on the maximum unwanted emission density
+distribution to be assumed within the first adjacent channel, particularly at frequency offsets near
+the edge of the transmitted DC-MSS-IMT channel]
+TABLE 7
+OOBE RF characteristics of 520 and 690 km orbits
+Parameters Frequency range (MHz) and Orbits
+698-960 MHz 698-960 MHz 698-960 MHz 1 427-1 518 MHz
+(Block 2, (Block 2,
+(Block 1, 1 710-1 970 MHz
+520 km orbit) 690 km Orbit)
+520 km orbit)
+2 110-2 170 MHz
+2 300-2 690 MHz
+(Block 2,
+690 km orbit)
+Unwanted emission >45 dBsd for adjacent channel >45 dBsd for adjacent
+(dBW/MHz) >50 dBsd for non-adjacent channel channel
+>50 dBsd for non-
+adjacent channel
+System OOBE PFD < –120 < –120
+Level (dBW/m2/MHz)
+3.1.2.4 Modelling of operations
+Cross-border interference management
+From a cross-border interference management point of view, this system controls beam
+transmission within a targeted geographical area for each individual beam including the beam
+on/off and the transmit power. The system has the capacity to adjust beam forming to compensate
+for the satellite’s movement as it orbits overhead within range of an intended service area such that
+each individual beam will track an assigned cell on ground. This real-time calculation, application,
+and control of the phased array is always running on-board the satellite, providing the engineering
+solution to optimally operate RF transmissions where geographically intended and thereby reducing
+transmission in targeted protection areas, e.g., international borders.
+As such, cross-border interference will be managed and mitigated by several key system
+components:
+(1) beam forming for sharp roll off near the border,
+(2) beam power management for the beams servicing the cells near the border, and
+(3) turning off the cells next to the border if necessary.]
+3.2 Additional considerations
+3.2.1 Antenna radiation pattern
+3.2.1.1 MSS NGSO satellite antenna radiation pattern
+4C/278 (NZL)
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 36 =====
+- 36 -
+4C/356 (Annex 7)-E
+[Modelling of in-band and out-of-band DC-MSS-IMT satellite antenna radiation patterns
+The following definition is employed to characterise the terms in-band and out-of-band:
+– “In-band” as the frequency range covered by the (desired) channel bandwidth; and
+– “Out-of-band” as the frequency range falling immediately outside the channel
+bandwidth, up to ±10 MHz from the operating band lower and upper edges.
+The MSS NGSO satellites under consideration are assumed to be part of a constellation of satellites,
+capable of transmitting multiple beams per-satellite that are electrically steerable from the satellite
+position in orbit. From this, operate with phased array antennas to illuminate a finite area on the
+Earth’s surface (in units of km2). Since the array factor of the phased array antenna relies on
+coherent combining of signals, it is not expected that the phased array will operate in the same
+manner outside the in-band frequency range. Therefore, the out-of-band radiation characteristics of
+phased arrays will differ relative to its in-band characteristics. However, from the physics of phased
+array antennas, the out-of-band pattern should have a degree of correlation, denoted by ρ, with the
+in-band pattern. The exact value of ρ, (capturing the degree of this correlation) primarily depends
+on three factors:
+1) The amount of frequency separation relative to the in-band frequency lower and upper
+edges;
+2) The RF design/architecture of the phased array antenna, including any power dividers,
+phase shifters and power combiner circuits; and
+3) The design/architecture of the satellite’s RF up(/down)-conversion chains serving as a
+feed network to phased array antenna with appropriate bandpass filtering to meet the
+desired ACLR levels.
+The phased array antenna at the NGSO satellites will actively control the individual signals being
+fed to each antenna element in the array to shape and direct the antenna beam(s) towards the wanted
+area on the Earth’s surface. The net radiated out-of-band emissions (with contributions from both
+the phased array and its RF up(/down)-conversion chains) are then primarily governed by the RF
+up-converter’s out-of-band response due to the RF mixing process, intermodulation products due to
+power amplifier non-linearities, as well as the net phased array antenna’s impedance and
+polarisation mismatches, respectively. Two important cases worth drawing out are:
+ If ρ=0, the correlation level is exactly zero, in which case the out-of-band antenna
+pattern bears no resemblance to the in-band antenna pattern; and even in this case, one
+cannot conclude that the composite in-band phased array pattern collapses to an antenna
+pattern of a single-element for out-of-band frequencies.
+ For all other cases, 0<ρ≤1, the level of correlation is non-zero (bounded by a
+maximum value of 1), in which case the out-of-band antenna pattern would be
+correlated to the in-band antenna pattern, as governed by ρ.
+Therefore, to accurately characterise the out-of-band antenna pattern for a phased array, a
+correlation function that determines the out-of-band pattern relative to the in-band pattern has to be
+derived. This correlation function is depicted in Figure 1, which represents a classical symmetric
+piecewise linear roll-off model where the in-band frequencies, centred around the frequency f , are
+c
+defined as −0.5B≤f ≤0.5B and the parameter B denotes the channel bandwidth (in units of MHz).
+c
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 37 =====
+- 37 -
+4C/356 (Annex 7)-E
+Here, the full array factor and RF transmitter performance is expected, justifying ρ=1. Moving
+further away in frequency at f ←0.5B or f >0.5B, ρ is seen to decay due to the composition of the
+c c
+emissions immediately outside the in-band frequencies. Here the satellite RF up-converter’s
+intermodulation products will lead to the summation of correlated noise in addition to any existing
+uncorrelated wideband noise which is produced by the satellite transmitter. The relation to the
+respective noise levels will determine the out-of-band correlation properties in the adjacent
+channels. In particular, at a frequency offset of ±1.5B from f , a correlation level of ρ is expected,
+c 1
+while a correlation level of ρ is expected at a frequency offset of ±f from f . Furthermore, at a
+2 1 c
+certain frequency offset of ±f from f , the emission will be dominated by uncorrelated wideband
+2 c
+noise, leading to ρ=0. The precise values of ρ , ρ , f and f need further discussion and are
+1 2 1 2
+indeed specific to the NGSO satellite’s phased array geometry and RF up-converter
+design/architecture.
+FIGURE 1
+An example correlation function to calculate the relationship between the in-band and out-of-band phased array
+antenna radiation pattern. This correlation function is consistent with that proposed in Section 7.3.2.1.2 of 3GPP
+TR 38.922.
+Recommends 1.4 of Recommendation ITU-R S.1528 suggests the use of circular Taylor
+illumination function to model the phased array pattern, where the composite in-band phased array
+gain can be calculated as
+(| {
+u2
+}|)
+1−
+π2σ2 [ A2 + ( i− 1) 2]
+2J (u) 3 2
+G(u)=G −20log 1 ∏ ,(1)
+max 10 u i=1 [ ( u ) 2]
+1−
+πμ
+i
+where G(u) denotes the gain (in units of dBi) in the direction of a reference point (described on the
+following page of the input), G denotes the maximum gain of the antenna (in units of dBi), and
+max
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 38 =====
+- 38 -
+4C/356 (Annex 7)-E
+J (⋅) denotes the first-order Bessel function of the first kind and μ denotes the i−¿th root of
+1 i
+J (⋅). Applying the correlation function in Figure 1 to quantify the out-of-band phased array
+1
+antenna gain at the example out-of-band frequencies of ±1.5B and ±f , relative to the centre in-
+1
+band frequency, equation (1)could be written as
+G'(u')=ρ [G(u)],(2)
+1
+and
+G''(u'')=ρ [G(u)].(3)
+2
+Note that since ρ and ρ are frequency dependent, the corresponding change to u would be needed
+1 2
+proportionally to the difference in frequency. The argument of G(⋅) in u is defined as
+u= π √[L sin(θ)cos(ϕ)] 2 +[L sin(θ)sin(ϕ)] 2 ,(4)
+λ r t
+and is dependent on the satellite antenna characteristics, as well as the angle between the sub-
+satellite point, S, and the illuminated elliptical beam from satellite position, at a given time instance.
+The angle pair (θ,ϕ) denote the coordinates of a given reference point, P, with respect to the centre
+of the illuminated beam, C, from the NGSO satellite reference. The precise NGSO satellite
+reference is depicted in Figure 2 below, where the pointing angle of the beam from the satellite to
+the Earth’s surface is denoted by the angle pair (ϕ ,θ ).
+0 0
+FIGURE 2
+Demonstration of the MSS NGSO satellite reference describing the coordinates of the reference point with
+respect to the centre of the illuminated beam from the satellite.
+In equation (4), the parameters L and L denote the radial and transverse sizes (in units of m) of the
+r t
+effective radiating area induced by the transmitted beam from the satellite, and therefore are design
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 39 =====
+- 39 -
+4C/356 (Annex 7)-E
+parameters to be provided by the MSS NGSO system characteristics as input parameters. Further
+discussion on L and L is presented in Section 2.2 of this input contribution. Moreover,
+r t
+J (l)
+σ= 0 ,(5)
+√ A2 + ( l− 1) 2
+2
+where J (⋅) denotes the zeroth-order Bessel function of the first kind and l is the number of
+0
+sidelobes to consider in the overall pattern, which seems to be a design choice. Note that
+1
+A= [cosh−1(β)],(6)
+π
+where β=10SLR/20 and the parameter SLR (in units of dB) denotes the sidelobe ratio of the
+composite pattern. Furthermore, cosh−1 (⋅) denotes the arc/inverse hyperbolic cosine function.
+]
+[Note: Comments made during the 34th meeting of WP 4C,
+Use of ITU-R M.2101 for DC-MSS-IMT needs further development in regard to how the beam
+placement angles, Phi_scan, and theta _etilt on the satellite correspond to the angles on Earth. As
+the satellite is moving , it must be referred to a global co ordinate system ( x, y, z). The coordinates
+of the satellite are ( x_s, y_s, z_s). The co ordinates of the antenna on the satellite are ( x_p, y_p,
+z_p). Therefore appropriate co ordinate conversion must take place. There are also three specific
+satellite angles that must be considered – pitch ( rotation about the y axis), roll ( rotation about the
+x axis), yaw( rotation about the z axis). These three angles produce the final satellite co rdinate
+system ( ( x_s, y_s, z_s).]
+CHN:
+Regard to the Coordinate Transformation, we have taken into account antenna appropriate
+coordinate transformation after the antenna is installed on the satellite. Which include the satellite
+and antenna coordinates, satellite attitude with three specific satellite angles. And this
+transformation process is elaborated in the contribution.
+Regard to the circular polarization mode, we performed simulations utilizing antenna design
+software and conducted a comparative analysis of radiation patterns between elements using
+circular and linear polarization mode. The results demonstrate that the gain performance of
+Recommendation ITU-R M.2101 is minimal higher relative to circular polarization. Based on that
+result, we believe that using M.2101 is appropriate to ensure adequate protection for IMT receiver.
+Further clarification are as follows:
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 40 =====
+- 40 -
+4C/356 (Annex 7)-E
+- Formulas (6) and (7) in our contribution describe the relationship between the electronic
+horizontal steering angle Phi_scan in the coordinate system defined by the two specific angles
+( Phi_scan, theta_etilt) in Recommendation ITU-R M.2101, and the angles (α, β) introduced in our
+documentation.
+- Formulas (12) and (13) provide the relationship between the down-tilt angle theta_etilt in the
+same coordinate system of ( Phi_scan, theta_etilt)as per ITU-R M.2101, and the angles (α, β)
+defined in our documentation.
+- The angles (α, β) in our documentation are calculated based on the satellite coordinates and
+beam pointing coordinates in the global coordinate system.
+- when defining two angles (α, β) in our document, we have already considered the coordinates of
+the satellite and the coordinates of the antenna on the satellite based on pre-defined alignment with
+satellite flight direction.
+]
+[4C/404(CHN)]
+3.2.1.2 Analysis on the Applicability of recommendation ITU-R M.2101
+3.2.1.2.1 Method
+3.2.1.2.1.1 Element Pattern
+It is known that the ITU-R M.2101 is applicable for modeling linear polarization mode antennas in
+terrestrial IMT systems, whereas circular polarization mode antennas are typically used in
+DC-MSS-IMT systems.
+Using a practical simulated microstrip patch antenna operating at 1.8 GHz with a dielectric
+substrate (
+ε
+r
+=2.5
+) and patch dimensions of 54×54 mm², this section analyzes radiation patterns
+under different polarization modes (Figure 1). Simulation results confirm that the antenna gain in
+linear polarization mode is marginally higher than in circular polarization mode. Given the minimal
+difference between the curves shown in Figure 1 and practical convenience, the antenna model
+defined in Recommendation ITU-R M.2101 can be applied to model the DC-MSS-IMT satellite
+antenna for evaluating its potential interference.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 41 =====
+- 41 -
+4C/356 (Annex 7)-E
+FIGURE 1
+Element Pattern Comparison
+3.2.1.2.1.2 Coordinate Transformation
+According to the definition in Table A.2.1.6.1 of 3GPP Technical Report 36.814 (TR 36.814), the
+polarization orientation is considered independent of the azimuth and elevation angles modeled in
+the local coordinate system of the antenna. Therefore, this section establishes a coordinate system
+centered on the DC-MSS-IMT space station to implement antenna modeling for DC-MSS-IMT
+system based on ITU-R M.2101 antenna model.
+3.2.1.2.1.2.1 Modeling of DC-MSS-IMT System Coordinate System
+A coordinate system is established as follows: the x-axis points towards the sub-satellite point of the
+DC-MSS-IMT space station or the earth’s center, the z-axis aligns with the flight direction of the
+space station, and the y-axis direction is determined using the right-hand screw rule.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 42 =====
+- 42 -
+4C/356 (Annex 7)-E
+FIGURE 2
+Schematic diagram of coordinate system modeling
+In Figure 2, the yellow line represents the satellite beam from the space station to the user
+equipment, and the angle between the satellite beam and the sub-satellite point is the off-axis angle
+α
+. With the downward-facing view of the space station as the reference, the angle is defined as the
+azimuth angleβ , calculated starting from the flight direction (z-axis) and measured clockwise
+within the y-z plane.
+d Represents the distance from the satellite to the user equipment
+α 0≤α≤90°
+Represents the off-axis angle, with a range of
+β 0≤β≤360°
+Represents the azimuth angle, with a range of .
+The elevation view of the coordinate system modeling is shown in Figure 3(a), where the
+definitions of θ(0≤θ≤180) and ϕ(−180≤φ≤180)are consistent with the definitions provided
+in the geometric illustration of the phased array antenna model shown in Figure 3(b) (ref. ITU-R
+M.2101 Recommendation).
+FIGURE 3
+(a) The elevation view of the coordinate system modeling (b) the geometric illustration of the phased array antenna model
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 43 =====
+- 43 -
+4C/356 (Annex 7)-E
+3.2.1.2.1.2.2 Angle Transformation
+This section provides the conversion relationship between the coordinate system angles (α，β) of
+the DC-MSS-IMT space station beam pointing and the coordinate system angles (θ，ϕ) of the
+phased array antenna model. Auxiliary projection lines are added based on Figure 3(a), as shown in
+Figures 4 and 5.
+3.2.1.2.1.2.2.1 The Electronic Horizontal Steering Angle Transformation
+As shown in Figure 4, it can be seen that in triangle △(UE)BS, the projection of the satellite beam
+onto the x-axis is:
+d =dcos(α)
+x
+(1)
+In triangle △(UE)BS, the projection of the satellite beam onto the y-z plane is:
+d'=dsin(α)
+(2)
+In triangle △SCD, the projection of the satellite beam onto the y-axis is:
+d =−d'sin(β)
+y
+(3)
+The horizontal angle between the satellite beam in the x-y plane and the x-axis satisfies:
+−dsin(α)sin(β)
+tan(ϕ )=d /d =
+e y x dcos(α) (4)
+There:
+(sin(α)sin(β))
+ϕ =−atan
+e cos(α)
+(5)
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 44 =====
+- 44 -
+4C/356 (Annex 7)-E
+FIGURE 4
+ϕ
+The elevation view of the coordinate system modeling about
+By traversing the azimuth anglesβ of the DC-MSS-IMT space station beam pointing, the following
+angle transformation relationships can be obtained:
+{-atan
+(sin(α)sin(β))
+(0≤β≤180)
+cos(α)
+(sin(α)sin(β−π))
+ϕ = atan (180≤β≤270)
+e cos(α)
+(sin(α)cos(β−3/2π))
+atan (270≤β≤360)
+cos(α)
+(6)
+ϕ ϕ
+e escan
+The relationship between this angle and the electronic horizontal steering angle of the
+phased array antenna model is:
+ϕ =ϕ
+escan e
+(7)
+3.2.1.2.1.2.2.2 The Electronic Down-tilt Angle Transformation
+As shown in Figure 5, in triangle △(UE)BS, the projection of the satellite beam onto the x-axis is:
+d =dcos(α)
+x (8)
+In triangle △ABS, the projection of the satellite beam onto the x-y plane is:
+d
+d''= x
+cos(ϕ) (9)
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 45 =====
+- 45 -
+4C/356 (Annex 7)-E
+In triangle △ (UE) CS, the projection of the satellite beam onto the x-y plane is:
+d'' =dsin(θ )
+e
+(10)
+The vertical angle between the satellite beam and the z-axis can be obtained as follows:
+θ =arcsin(cos(α)/cos(ϕ))
+e
+(11)
+FIGURE 5
+θ
+The elevation view of the coordinate system modeling about .
+By traversing the azimuth anglesβ of the DC-MSS-IMT space station beam pointing, the following
+angle transformation relationships can be obtained:
+{ arcsin(cos(α)/cos(ϕ)) (0≤β≤90,270≤β≤360)
+θ =
+e arccos(cos(α)/cos(ϕ))+90 (90≤β≤270)
+(12)
+θ θ
+e etitle
+The relationship between this angle and the down-title angle of the phased array antenna
+model is:
+θ =θ −90,
+etitle e
+(13)
+3.2.1.2.2 Results
+3.2.1.2.2.1 DC-MSS-IMT System Characteristic Parameters
+The characteristic parameters of DC-MSS-IMT system are shown in Tables 1 and 2
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 46 =====
+- 46 -
+4C/356 (Annex 7)-E
+TABLE 1
+Parameters of orbital configuration
+Altitude Inclination Sats per RAAN spacing Total number
+Planes
+(km) (deg) plane (deg) of sats
+500 55 60 60 6 3600
+TABLE 2
+Parameters of antenna pattern of DC-MSS-IMT
+Antenna
+Parameters Unit Value
+Model
+Single element antenna gain dBi 4.11
+Antenna array configuration(Row×Column) / 36×36
+Horizontal 3dB beamwidth of single element ° 118
+ITU-R Vertical 3dB beamwidth of single element ° 112
+M.2101 Horizontal radiating element spacing dH/λ 0.5
+Vertical radiating element spacing dV/λ 0.5
+Horizontal Front-to-back ratio dB 30
+Vertical Front-to-back ratio dB 30
+3.2.1.2.2.2 Angles Computation
+Assuming the user's position at the equatorial location of [0, 0] degrees, the coordinate system
+angles of the DC-MSS-IMT space station beam pointing satisfies:α=0,β=0. Under the condition
+of same Off-Axis angle and different azimuth angles, the antenna gain remains constant. The
+ϕ =0 θ =0
+escan etitle
+coordinate system angles of the phased array antenna model satisfies: , .
+Simulation of antenna radiation pattern using phased array parameters from Table 2, with maximum
+gain along the x-axis as shown in Figure 6.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 47 =====
+- 47 -
+4C/356 (Annex 7)-E
+FIGURE 6
+Antenna Radiation Pattern (3D)
+The orbital model of the constellation system is established based on the parameters in Table 2,
+with the Initial space station position at [0, 0] degrees. The off-axis and azimuth angles for user
+equipment located at the coordinates [0, 0], [0, -10], [-10, 0], [0, 10], [10, 0], and [10, 10] degrees
+are then calculated. Additionally, the electronic horizontal steering angle and electronic down-tilt
+angle are determined as outlined in Table 3. Figures 7 and 8 show the beamforming antenna pattern.
+TABLE 3
+Coordinate Conversion Comparison Table
+Satellites User (α，β)/degrees (θ ,θ ,ϕ ) /degrees
+e etitle escan
+[Lat, Lon] [Lat, Lon]
+[0,0] 0 360 (0) 90 0 0
+[0, -10] 58.0816 235 119.1339 29.1339 52.7503
+[0, 0]
+[-10, 0] 58.0816 145 134.0509 44.0509 -42.6398
+ascending
+[0, 10] 58.0816 55 60.8660 -29.1339 -52.7503
+orbit
+[10, 0] 58.0816 325 45.9490 -44.0509 42.6398
+[10, 10] 63.1972 9.5615 28.3377 -61.6622 -18.2005
+[0,0] 0 360 (0) 90 0 0
+[0, -10] 58.0816 125 119.1339 29.1339 -52.7503
+[0, 0]
+[-10, 0] 58.0816 35 45.9490 -44.0509 -42.6398
+descending
+[0, 10] 58.0816 305 60.8660 -29.1339 52.7503
+orbit
+[10, 0] 58.0816 215 134.0509 44.0509 42.6398
+[10, 10] 63.1972 259.5615 99.3064 9.3064 62.8105
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 48 =====
+- 48 -
+4C/356 (Annex 7)-E
+FIGURE 7
+the Antenna Beam Shaping Directional Patterns at User equipment located at [10,10] degrees
+when the space station is on an ascending orbit.
+FIGURE 8
+the Antenna Beam Shaping Directional Patterns at User equipment located at [10,10] degrees
+when the space station is on a descending orbit.
+[4C/480 (J)]
+3.2.1.3 The analysis of satellite antenna pattern
+In the Editor’s note in Annex-1/section 3.1.2 of Annex 7 to Document 4C/356, the need to compare
+the satellite antenna patterns based on recommends 1.2 and recommends 1.4 of Recommendation
+ITU-R S.1528 is addressed. In this section, the above-mentioned comparison is attempted.
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 49 =====
+- 49 -
+4C/356 (Annex 7)-E
+Figure 1 shows the off-axis patterns corresponding to recommends 1.2 and recommends 1.4 are
+depicted. The assumed parameters are shown in Table 1 below.
+TABLE 1
+Assumed parameters
+items recommends 1.2 recommends 1.4 *
+G : Maximum gain in the main 34.1 dBi 34.1 dBi
+max
+lobe
+λ: Wavelength 0.15 m 0.15 m
+Others ψ = 1.6 degrees L = L = 1.6 m
+b r t
+L = -20 dBi SLR = 20 dB
+N
+L = -10 dBi l = 2
+F
+z = 1(=major axis/minor
+axis)
+* The formula for calculating the antenna pattern is referred from 4C/356 Annex 7, Annex 1, 3.1.1. λ=0.15m is used as an example
+here. The same pattern would apply for other center frequencies if a constant Lt /λ= Lr /λ is maintained.
+FIGURE 1
+Comparison of antenna patten of Recommendation ITU-R S.1528
+40
+30
+20
+10
+0
+0 5 0 5 0 5 0 5 0 5 0 5 0 5 0 5 0 5 0
+1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9
+-10 S.1528 recommends1.2
+S.1528 recommends1.4
+-20
+-30
+-40
+-50
+angle from the main beam direction [degrees]
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+]iBd[
+niaG
+Figure 2a and 2b shows the ground-illuminated beam contours in the cases where recommends 1.2
+and 1.4 are applied, respectively. These figures show the pfd distribution around the illuminated cell
+assuming the satellite with high elevation angle (EL 58.5 deg.).
+
+===== PAGE 50 =====
+- 50 -
+4C/356 (Annex 7)-E
+FIGURE 2a
+ground-illuminated beam contour (rec.1.2)
+FIGURE 2b
+ground-illuminated beam contour (rec.1.4)
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25
+
+===== PAGE 51 =====
+- 51 -
+4C/356 (Annex 7)-E
+From Figure 2a and 2b, depending on the parameters of each recommendation, i.e., the design of
+the antenna on the actual satellite, if the parameters of S.1528 recommends 1.4 can be applied,
+interference form the satellite may be able to reduce in the sharing and compatibility study.
+3.2.2 Mitigation techniques
+4C/338 (TON)
+[Editor’s Note (20250425): For simplicity, the main body of the input contribution are omitted for
+now.]
+[Preliminary studies demonstrate the following key aspects:
+• D2C systems can use mitigation techniques to meet applicable aggregate cross-border
+PFD limits to protect UEs. In sharing studies, modelling these techniques is
+fundamental in order to accurately reflect real operations. Not modelling these
+techniques will inevitably, and unjustifiably, result in studies showing impossibility to
+meet applicable limits when envisaged D2C systems use the intended in-country PFD
+levels to offer service;
+• Protection of UEs can be ensured by considering aggregate PFD; while on the contrary,
+attempting to reverse engineer single-entry (i.e., per satellite) PFD values to be applied
+to each satellite in this system leads to inefficient spectrum use and unnecessary
+constraints on D2C systems. Each system, based on its technology and emission
+management capabilities, will be able to meet applicable limits in different ways, with
+the manner to achieve this depending on the individual systems and their technologies;
+• Aggregation of interference from multiple systems, when mitigation techniques are
+implemented for each of the systems, is not an issue at all, even when analysing
+localized worst-case situations, i.e., areas attached to borders of different countries
+where D2C services are operational. More studies are certainly needed in this respect,
+but these initial results are definitely encouraging.]
+3.2.3 Out-of-band emissions
+[Editor’s note: For systems that have not provided out-of-band EIRP, further information is
+required on the maximum unwanted emission density distribution to be assumed within the first
+adjacent channel, particularly at frequency offsets near the edge of the transmitted DC-MSS-IMT
+channel. In absence of such information, it is proposed the out-of-band spectrum mask assumption
+information to compliment this section may be provided using on REC ITU-R SM.1541.]
+C:\Users\joaop\OneDrive\Documentos\PIBIC 2025\Contribuitions BR\DCMSS-EESS - Sys 1 a 3.docx 30.10.25

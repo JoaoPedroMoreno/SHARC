@@ -1,10 +1,7 @@
 body {
   margin: 0;
   overflow: hidden;
-  background:
-    radial-gradient(circle at top left, rgba(0, 145, 255, 0.18), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(0, 255, 170, 0.12), transparent 25%),
-    #02060c;
+  background: #02060c;
   color: white;
   font-family: "Segoe UI", sans-serif;
 }
@@ -108,24 +105,24 @@ body {
   position: absolute;
   top: 18px;
   left: 18px;
-  width: min(360px, calc(100vw - 36px));
+  width: min(340px, calc(100vw - 36px));
   display: grid;
   gap: 12px;
   z-index: 10;
 }
 
 .panel {
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: rgba(4, 11, 20, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+  padding: 13px 15px;
+  border-radius: 10px;
+  background: rgba(3, 8, 14, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.34);
 }
 
 .brand h1 {
   margin: 4px 0 6px;
-  font-size: 28px;
+  font-size: 25px;
   line-height: 1;
 }
 
@@ -167,7 +164,8 @@ body {
 }
 
 .actions {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -209,9 +207,10 @@ button:hover {
 .stat {
   display: grid;
   gap: 4px;
-  padding: 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
+  padding: 11px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .stat strong {
@@ -222,6 +221,43 @@ button:hover {
 .status {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.84);
+}
+
+.capture-mode .controls,
+.capture-mode .status,
+.capture-mode .cell-tooltip,
+.capture-mode .cesium-viewer-toolbar,
+.capture-mode .cesium-viewer-animationContainer,
+.capture-mode .cesium-viewer-timelineContainer,
+.capture-mode .cesium-credit-lightbox-overlay,
+.capture-mode .cesium-credit-logoContainer,
+.capture-mode .cesium-widget-credits {
+  display: none !important;
+}
+
+.capture-mode .hud {
+  top: 22px;
+  left: 22px;
+  width: 310px;
+  gap: 10px;
+}
+
+.capture-mode .brand,
+.capture-mode .stats {
+  background: rgba(3, 8, 14, 0.64);
+}
+
+.capture-mode .brand p {
+  display: none;
+}
+
+.capture-mode .stats {
+  grid-template-columns: 1fr 1fr;
+}
+
+.capture-mode .legend-panel {
+  background: rgba(3, 8, 14, 0.64);
+  border-radius: 10px;
 }
 
 @media (max-width: 720px) {

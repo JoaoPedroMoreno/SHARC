@@ -1,0 +1,690 @@
+
+
+===== PAGE 1 =====
+Radiocommunication Study Groups
+Received: Date 20xx Document XX/-E
+Date 20xx
+Subject: Original: English
+Brazil (Federative Republic of)
+WRC-27 AGENDA ITEM 1.13 - CONSIDERATIONS ON COMPATIBILTY
+STUDY BETWEEN FS AND DC-MSS-IMT OPERATING IN THE FREQUENCY
+BAND 1 710-2 025 AND 2 110-2 200 MHZ (DOWNLINK)
+Introduction
+Following the structure adopted during the previous Working Party 4C (WP 4C) meeting for studies
+under WRC-27 agenda item 1.13, the Brazilian Administration is reviewing and providing the
+required sharing and compatibility studies.
+Proposal
+Brazil proposes in the attachment a compatibility study between the Fixed Service (FS) in the
+frequency band 2 200-2 290 MHz and Direct Connectivity-Mobile Satellite Service-International
+Mobile Telecommunications (DC-MSS-IMT) operating in the frequency band 1 710-2 200 MHz to
+be added to Annex 4 of Working Document on sharing and compatibility studies under WRC-27
+agenda item 1.13.
+
+===== PAGE 2 =====
+- 2 -
+XXX- E
+ANNEX 4
+Sharing and compatibility studies of DC-MSS-IMT in the frequency range 1
+710-2 200 MHz
+A4.3 Adjacent-band studies
+A4.3.1 Compatibility of FS in the frequency bands 2 200-2 290 and DC-MSS-IMT operating
+in the frequency band 2 110-2 200 MHz (downlink)
+The purpose of this study is to assess the potential interference from the usage of MSS for direct-to-
+device (DC-MSS-IMT) applications into Frequency Service (FS) operating in the frequency bands 2
+200-2 290 MHz. These frequency band is adjacent to the frequency band 1 710-2 200 MHz scenarios.
+A4.3.1.1 Study A
+This study assesses the interference from space-to-Earth transmissions of non-geostationary (NGSO)
+DC-MSS-IMT systems into Fixed Service (FS) receiver operating in the frequency bands 2 200-2
+290 MHz, considering different use cases and simulation scenarios.
+The initial compatibility scenario between DC-MSS-IMT and FS, referred to in this study as Case I,
+is shown in Figure A4.3.1.1-1, adapted from document 4C/356. It depicts a generic case where a DC-
+MSS-IMT system and an FS system operate near international borders, with neighboring countries
+utilizing adjacent frequency bands in adjacent regions for different services. In this context, FS
+stations in one country may experience potential interference from satellites of the DC-MSS-IMT
+system operating in nearby nations.
+FIGURE A4.3.1.1-1
+Compatibility study scenario between FS and DC-MSS-IMT on band 1 710-2 200 MHz (space-to-Earth)
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 3 =====
+- 3 -
+XXX-E
+The proposed scenario (Case I) is examined in the study within the context of three South American
+countries (Figure A4.3.1.1-2): the DC-MSS-IMT system has authorization to operate in Brazil and
+Argentina, while it does not have authorization in Paraguay, where a FS system operates in the
+adjacent frequency band to the DC-MSS-IMT system. While we have chosen the representative
+situation of three countries from South America, this study can also be applied to any neighboring
+countries around the world.
+FIGURE A4.3.1.1-2
+Compatibility study scenario (Case I) between FS and DC-MSS-IMT (downlink) on band 2 100-2 200 MHz –
+South America
+Another case of interest in this study, referred to as Case II (Figure A4.3.1.1.3), concerns the scenario
+in which the DC-MSS-IMT system operates across the entire South American region in a frequency
+band adjacent to that used by the FS system in one of the countries of the continent. To enable analyses
+and comparisons between Cases I and II, in this second scenario, an FS system receiver is placed at
+the same location as the interfered FS receiver in the Case I scenario, namely, at the border between
+Brazil and Paraguay.
+FIGURE A4.3.1.1-3
+Compatibility study scenario (Case II) between DC-MSS-IMT (downlink) and FS on band 2 100-2 200 MHz –
+South America
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 4 =====
+- 4 -
+XXX-E
+A4.3.1.1.1 Technical and operational characteristics of DC-MSS-IMT operating in the
+frequency band 1 710-2 200 MHz
+This study analyses a representative non-GSO DC-MSS-IMT system (System 3, Annex 1, Document
+4C/356). The relevant orbital and technical characteristics for this system are based on the parameters
+provided in Annex 1 to the working document on WRC-27 agenda item 1.13 (Annex 7 to Document
+4C/356). In this contribution, we have selected System 3 operating at 525 km and 340 km altitudes.
+The parameters of System 3 are presented in Table A4.3.2.2-1 and were extracted from document
+4C/356. Moreover, the EIRP is kept constant on the satellite, and the resulting PFD on the ground
+depends on the elevation angle.
+TABLE A4.3.1.1-1
+Parameters of orbital configuration – Part I
+Frequency RAAN Total
+System Altitude Inclination Sats per
+range # Planes spacing number
+ID (km) (deg) plane
+(MHz) (deg) of sats
+2 110-2 200 525 53 28 120 12.9 3 360
+System 3
+(NGSO)
+2 110-2 200 340 53 48 110 7.5 5 280
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 5 =====
+- 5 -
+XXX-E
+Parameters of orbital configuration – Part II
+System Altitude Antenna EIRP Antenna
+Peak antenna gain
+ID (km) polarisation (dBW/Hz) pattern
+G_max = 34.1 dBi,
+L_r = L_t = 1.6 m,
+-20.1 ITU-R S.1528
+525 RHCP SLR = 20 dB,
+@EL 90o model 1.4
+l = 2,
+System 3 λ = 0.15 m
+(NGSO) G_max = 34.1 dBi,
+L_r = L_t = 1.6 m,
+-20.1 ITU-R S.1528
+340 RHCP SLR = 20 dB,
+@EL 90o model 1.4
+l = 2,
+λ = 0.15 m
+As can be observed in Table A4.3.1.1-1, the satellites of System 3 adopt the antenna model 1.4 from
+Recommendation ITU-R S.1528, whose radiation pattern for f = 2 155 MHz is illustrated in Figure
+A4.3.1.1-4.
+FIGURE A4.3.1.1-4
+(a) Radiation pattern (ITU-R S.1528 – model 1.4) (2 187.5 MHz)
+(b) Radiation pattern (ITU-R S.1528 – model 1.4) (2 197.5 MHz)
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 6 =====
+- 6 -
+XXX-E
+For this study, each satellite of System 3 has beams assigned to it to ensure maximum coverage of
+the area under study. Those beams are determined at each iteration of the Monte Carlo process
+employed in this study. The coverage for each beam is specified as the area within the -7 dB contour
+relative to the antenna’s maximum gain when the beam is directed at Nadir, as illustrated in Fig.
+A4.3.1.1-5. The radius R and angle a in this figure are used to denote the -7 dB contour (Figures
+A4.3.1.1-4 and A4.3.1.1-5). For the frequencies of 2 187.5 MHz and 2 197.5 MHz, the angle a in
+Figure A4.3.1.1-5 is equal to a  3.95o and a  3.94, respectively.
+1 2
+FIGURE A4.3.1.1-5
+Geometry for determining the coverage area of a satellite beam
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 7 =====
+- 7 -
+XXX-E
+A4.3.1.1.2 Technical and operational characteristics of FS in the frequency band 2 200-2 290
+MHz
+The technical and operational characteristics of the FS system operating in the frequency band 2 200-
+2 290 MHz are in accordance with the parameters defined in Recommendation ITU-R F.758 (2025
+updated version) and are shown in Table A4.3.1.1-2.
+TABLE A4.3.1.1-2
+System parameters for FS systems in allocated bands below 3 GHz
+1 700-2 100
+Frequency range (MHz)
+1 900-2 300
+Reference ITU-R Recommendation F.382
+Channel spacing and receiver noise bandwidth (MHz) 29
+Maximum antenna gain range (dBi) 33
+Receiver noise figure (dB) 4
+Receiver noise power density typical (dBW/MHz) –140
+Other characteristics and parameters of the FS system to be used in this study are presented in Table
+A4.3.1.1-3.
+TABLE A4.3.1.1-3
+FS system parameters used in this study
+System operation Point-to-Point
+Antenna height (h) 20 m and 40 m
+Antenna pattern Recommendation ITU-R F.1245
+h = 20 m: (low-rise)
+Clutter scenario (ITU-R P.2108)
+h = 40 m: (mid-rise)
+h = 20 m: (60%)
+Below rooftop RF receiver deployment
+h = 40 m: (10%)
+Antenna diameter (m) 2
+Feeder loss (dB) 0
+Elevation angle (degree) 0
+Table A4.3.1.1-3 shows that two receiving antenna heights (20 m and 40 m) and an elevation angle
+of 0° were selected for the FS system. These parameters comply with Recommendation ITU-R F.2086
+and enable the assessment of DC-MSS-IMT interference on the FS system under scenarios modeled
+according to Recommendations ITU-R P.619 and P.2108.
+The radiation pattern of the FS system receiving antenna recommended in Recommendation ITU-R
+F.758 follows the model proposed in Recommendation ITU-R F.1245. For the frequency of 2 155
+MHz used within this compatibility study, an antenna diameter of 2 m was selected. The radiation
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 8 =====
+- 8 -
+XXX-E
+pattern of the antenna proposed in Recommendation ITU-R F.1245 at 2 187.5 MHz and 2 197.5 MHz
+(2 m diameter) is illustrated in Figure A4.3.1.1-6.
+FIGURE A4.3.1.1-6
+Radiation pattern (ITU-R F.1245)
+Protection Criterion
+Protection criteria for FS systems below 3 GHz are addressed in Recommendations ITU-R F.1094,
+F.1565 and F.1108, and summarized in F.758. For the 30 MHz-3 GHz range, a –6 dB criterion may
+apply where the risk of simultaneous interference from other co-primary allocations is negligible;
+otherwise, a more stringent value (–6 dB or –10 dB as the maximum aggregate I/N from all co-
+primary services) may be required. The cited Recommendations and Document 4C/356 do not specify
+which stricter value should be applied to emissions from the DC-MSS-IMT system under continental
+coverage. Therefore, this study applies –6 dB as the protection criterion. Should this value be revised,
+analyses and conclusions can be updated accordingly, while the presented results remain valid.
+In compatibility studies, long-term interference is defined as exceeding 20% of the time in the victim
+system (per ITU-R F.758). Thus, this study adopts I/N = –6 dB, not to be exceeded for more than
+20% of the time, with 'time' defined by events in the Monte Carlo procedure.
+Recommendation ITU-R F.758 states that both long-term and short-term protection criteria should be
+defined for FS systems, with short-term interference corresponding to high interference levels
+occurring less than 1% of the time. While Annex 1 of F.758 references procedures and examples for
+short-term protection (ITU-R F.1494, F.1495, F.1606), none address frequencies below 3 GHz.
+Therefore, this compatibility study does not adopt a short-term protection criterion; if such a criterion
+is defined in the future, relevant analyses and conclusions can be adjusted accordingly.
+A4.3.1.1.3 Propagation models for sharing and compatibility studies in the frequency bands 1
+710-2 200 MHz and 2 200-2 290 MHz
+The propagation models used in this study are summarized in Table A4.3.1.1-4. Propagation between
+the FS receiver and the DC-MSS-IMT satellite was modelled using Recommendation ITU-R P.619,
+which accounts for free space propagation and atmospheric conditions. In addition, statistical clutter
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 9 =====
+- 9 -
+XXX-E
+loss at the receiver end of the link according to Recommendation ITU-R P.2108, with the p-parameter
+generated from a uniform distribution over [0, 1].
+TABLE A4.3.1.1-4
+Propagation loss consideration
+Propagation model System Characteristics
+Rec. ITU-R P.619 Earth-to-space Recommendation ITU-R P.835 is used for the
+path reference atmosphere. Latitude < 25º and a single
+annual atmosphere profile were considered. In
+addition, a 3 dB polarization loss was taken into
+account following Item 2.2 of the Rec. ITU-P.619
+Rec. ITU-R P.2108 Earth-to-space Statistical clutter loss is added using ITU-R P.619
+path only on the terrestrial side. For every link, the p-
+parameter is calculated with a uniform distribution
+between [0, 1], following Recommendation ITU-R
+P.2108. Clutter loss is not added when the BS
+antenna is above the rooftop. The corresponding
+percentage of rooftop antenna deployment is
+available in Table A4.3.1.1-3
+According to Document 5D/629, Working Party 3M (WP3M) has finalized revisions to
+Recommendation ITU-R P.619 (Document 3/47), as well as to Recommendation ITU-R 2108
+(Document 3/45). These revisions have been considered in this compatibility study.
+A4.3.1.1.4 Methodology
+A4.3.1.1.4.1 Interference Scenario
+As mentioned, this study analyzes, as Case I, a specific cross-border interference scenario, which is
+a concrete and representative implementation of the generalized case described in the working
+document. For this analysis, a hypothetical deployment is assumed where a DC-MSS-IMT system is
+fully operational, providing service over Brazil’s and Argentina’s territories. The victim under
+analysis comprises an FS receiver, located in Paraguay and positioned at a representative point along
+its border with Brazil.
+As Case II, all South American countries are covered by the DC-MSS-IMT system, including
+Paraguay, and an FS system receiver is positioned at the same location as the victim receiver in Case
+I. In both cases, the DC-MSS-IMT system and the FS system operate in adjacent frequency band, in
+an adjacent-band interference scenario. The two study cases were designed to allow analyses of
+compatibility feasibility, with Case I representing a lower-interference context relative to Case II.
+Case I also includes an interference mitigation feature, which will be defined later as an operational
+margin, or service margin.
+To model a realistic operational approach for managing cross-border interference, this analysis
+incorporates a service margin from the political borders (Figures A4.3.1.1-7), in study Case I. This
+margin defines a distance from the border within the territories of Brazil and Argentina where the
+center of the DC-MSS satellite beams shall not be pointed. This operational constraint creates a beam-
+pointing exclusion zone, ensuring that the high-gain main lobe of any satellite beam is directed only
+toward the interior of the licensed country. As a result, the interference received by the victim IMT
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 10 =====
+- 10 -
+XXX-E
+station in Paraguay is primarily composed of side-lobe emissions, representing a practical mitigation
+technique that DC-MSS operators could implement.
+This scenario was specifically chosen to evaluate the aggregate interference from multiple DC-MSS-
+IMT systems operating in neighboring countries into the territory of a third country where the service
+is not deployed, representing a realistic challenge for cross-border coordination.
+The service margin does not exist in Case II of this study; therefore, the satellite beams can be directed
+toward any region within the South American continent (Figure A4.3.1.1-8). In this figure, it can be
+observed that some northern countries of the continent are not included in the interference scenario,
+since satellites covering that region do not contribute to the interference scenario due to visibility
+conditions relative to the FS victim receiver.
+All simulations presented in this study were conducted using the SHARC (SHARing and
+Compatibility study) software tool. This open-source simulator is publicly available for review and
+replication of results at the following web address: https://github.com/Radio-Spectrum/SHARC.
+FIGURE A4.3.1.1-7 FIGURE A4.3.1.1-8
+Case I – Service grid and margin delimiting the Case II – Service grid deployed over South America
+coverage close to the border (Grid limits)
+Adjacent-band channel interference model
+The channel bandwidth for the interfering DC-MSS-IMT system in the DL was assumed to be 5 MHz
+in the band 2 110–2 200 MHz of System 3 (Table A4.3.1.1-1). The victim system (FS receiver)
+operates with a wider 29 MHz channel bandwidth in the adjacent band. This study addresses the
+adjacent-band scenario as illustrated in Figure A4.3.1.1-9. For this study, it is assumed that the DC-
+MSS-IMT system transmits signals under two scenarios:
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 11 =====
+- 11 -
+XXX-E
+(1) at f = 2 197.5 MHz, with a channel bandwidth of 5 MHz, while the FS receiver operates in the
+1
+frequency range 2 200-2 229 MHz (f = 2 214.5 MHz), with a channel bandwidth of 29 MHz
+3
+(A4.3.1.1-9 (a)); and
+(2) at f = 2 187.5 MHz, with a channel bandwidth of 5 MHz, while the FS receiver operates in the
+2
+frequency range 2 200-2 229 MHz (f = 2 214.5 MHz), with a channel bandwidth of 29 MHz
+3
+(A4.3.1.1-9 (b)).
+Situation (1) considers the case in which the studied systems operate in contiguous frequency bands,
+with the DC-MSS-IMT system causing both adjacent channel and spurious emissions that affect the
+FS system. In situation (2), only spurious emissions have an impact on the FS system.
+FIGURE A4.3.1.1-9
+(a) Adjacent-band interference model – contiguous bands
+(b) adjacent-band interference model – non-contiguous bands
+The out-of-band emission characteristics of the DC-MSS-IMT system were modeled based on the
+general unwanted emission limits specified in Recommendation ITU-R SM.1541. It was assumed
+that the spurious emissions are -13 dBm/MHz. The Power Spectral Density (PSD) mask derived from
+this recommendation and applied in the study is depicted in Figure A4.3.1.1-10, where f is equal to
+int
+2 197.5 MHz for scenario (1) and to 2 187.5 MHz for scenario (2) described above.
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 12 =====
+- 12 -
+XXX-E
+FIGURE A4.3.1.1-10
+DC-MSS spectral mask
+Interference Calculation Methodology
+The total interference power at the victim FS receiver is calculated as the aggregate sum of the power
+received from all individual DC-MSS satellites that are visible from the receiver’s location (i.e., above
+its minimum elevation angle of 5 degrees).
+For each snapshot in the Monte Carlo simulation, the interference power received by FS antenna from
+a single satellite i, denoted as I (in dBW), is calculated using the following formula:
+i
+𝐼 = 𝐸𝐼𝑅𝑃(𝜃 )−𝐿𝑝 +𝐺 (𝜃 ),
+𝑖 𝑖 𝑡 𝑖 𝑟 𝑟
+where 𝐸𝐼𝑅𝑃 (𝜃 ) is the Equivalent Isotropically Radiated Power of the interfering satellite i in the
+𝑖 𝑡
+direction of the FS receiver. 𝐸𝐼𝑅𝑃 (𝜃 ) takes into account if the victim is at adjacent-channel
+𝑖 𝑡
+interference conditions (contiguous and non-contiguous bands) as illustrated in Figure A.4.3.1.1-9 (a)
+and (b). In this sense, the 𝐸𝐼𝑅𝑃 (𝜃 ) is calculated by integrating the emission spectrum mask, shown
+𝑖 𝑡
+in Figure A.4.3.1.1-10, over the specific frequency bands assigned to the FS system. This value of
+𝐸𝐼𝑅𝑃 (𝜃 ) is a function of the satellite’s transmit antenna gain at the specific off-axis angle (𝜃 )
+𝑖 𝑡 𝑡
+towards the victim receiver. 𝐿𝑝 is the total propagation path loss between satellite i and the FS
+𝑖
+receiver, calculated following the appropriate ITU-R P-series Recommendations. 𝐺 (𝜃 ) is the
+𝑟 𝑟
+receive antenna gain of the FS receiver in the direction of the interfering satellite i, determined by the
+signal’s angle of arrival (𝜃 ).
+𝑟
+According to Document 4C/356, the antenna radiation pattern may be modeled using ITU-R
+Recommendation S.1528, and for the immediately adjacent channels, the same pattern is considered
+more appropriate.
+For each snapshot in the Monte Carlo simulation, the aggregate interference power, 𝐼 , from all 𝑁
+𝑎𝑔𝑔 𝑠
+visible satellites is then determined by the linear summation of the power received from each
+individual satellite:
+𝑁𝑠
+𝐼
+𝐼 = 10𝑙𝑜𝑔 (∑10 ( 10 𝑖))
+𝑎𝑔𝑔 10
+𝑖=1
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 13 =====
+- 13 -
+XXX-E
+The noise power at the victim receiver (FS system) is determined, in dBW, by the expression
+𝑁 = 10𝑙𝑜𝑔 (𝐾×𝑇×𝐵×𝑁𝐹)
+10
+where K is Boltzmann’s constant (1.38 × 10⁻²³ J/K), T is the ambient temperature, assumed to be
+290 K in this study, and in accordance with Table A4.3.1.1-2, NF is the noise figure (equal to 4 dB),
+and B is the receiver system bandwidth equal to 29 MHz.
+A4.3.1.1.4.3 Non-GSO Constellation Modelling
+The NGSO constellations were modelled based on their defined Keplerian elements, including
+altitude, inclination, and the number of orbital planes and the number of satellites per plane.
+To perform the statistical analysis independent of a specific time epoch, a snapshot-based Monte
+Carlo methodology was employed. In this approach, instead of propagating the satellite positions over
+a time-based simulation, the initial orbital angles for each satellite in the constellation were
+randomized. Specifically, a reference satellite and orbital plane are defined. The mean anomaly (M)
+of this satellite within its orbital plane and the right ascension of the ascending node (RAAN, Ω) of
+that orbital plane (Figure A4.3.1.1-11) are modeled as independent random variables uniformly
+distributed over [0°, 360°]. In each snapshot of the Monte Carlo process, the values of ω and Ω are
+randomly drawn, and the orbital positions of the remaining satellites and orbital planes are then
+determined in accordance with the orbital parameters of the DC-MSS-IMT system, as listed in
+Table A4.3.1.1-1.
+FIGURE A4.3.1.1-11
+Orbit plane angles
+This method generates a statistically representative snapshot of the entire constellation’s geometry at
+each simulation run. By repeating this process over many iterations, it is possible to accurately capture
+the statistical distribution of interference without the computational overhead and time-dependency
+of a full dynamic simulation, making it an efficient and effective approach for this type of study. A
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 14 =====
+- 14 -
+XXX-E
+total of 10,000 snapshots were generated in this study, providing a sufficient sample size for statistical
+convergence.
+A4.3.1.1.4.3 Satellite Beam Generation and Pointing Methodology
+FIGURE A4.3.1.1-12
+Satellite beam assignment
+To model the service deployment for the DC-MSS-IMT systems, a Service Grid methodology was
+employed for the generation and pointing of satellite beams (Figures A.4.3.1.1-7, 8, and 12). This
+method ensures that continuous coverage is provided throughout the intended service area while
+adhering to operational constraints.
+The process is defined by the following steps:
+1. Service Grid Generation
+The defined service area is tessellated into a grid of contiguous and non-overlapping hexagonal-cells
+(Figure A.4.3.1.1-12), whose centers are illustrated in Figures A.4.3.1.1-7 and 8, for Study Case I and
+II. The radius of each hexagonal-cell is set to be equal to the coverage radius of a single satellite
+beam, R, shown in Figure A4.3.1.1-5, ensuring that one beam can effectively serve one hexagonal-
+cell. These hexagonal structures were used for illustrative purposes, with R, as described earlier in
+this document, being the most relevant element of the proposed methodology. In this study, R is set
+to [36.16, 36.25] km and [23.42, 23.48] km for the analysis of System 3, at altitudes of 525 km and
+340 km, respectively, following the –7 dB contour of the radiation pattern of each beam, for frequency
+[2 197.5, 2 187.5] MHz.
+2. Definition of the Service Area
+The service area, which comprises all the (hexagonal-)cells eligible to be served, is defined at each
+snapshot by a set of operational and geographical constraints. A satellite beam can only be placed
+within a cell if the following three conditions are met simultaneously:
+ The hexagon is located entirely within the political borders of the country licensed to operate
+the service (e.g., Brazil or Argentina, for Study Case I, or all South American countries, for
+Study Case II), respecting a pre-defined operational margin from the international border
+(Figure A.4.3.1.1-7), in the case of Study I. In this latter case, this creates a beam-pointing
+exclusion zone to mitigate cross-border interference. In Study Case II, as the DC-MSS-IMT
+system covers all South American countries and the victim FS system may be located in any
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 15 =====
+- 15 -
+XXX-E
+of them, no operational margin is defined. This case therefore represents a higher-interference
+scenario.
+ The hexagonal-cell is within the visibility footprint of at least one satellite in the constellation.
+ The satellite whose beam covers a cell is visible from the specific victim ground station under
+study, allowing for the calculation of the interference path. Visibility is defined by a minimum
+elevation angle, which in this study was set to 5 degrees, in accordance with Document
+4C/356.
+3. Beam Assignment and Pointing
+For each hexagonal-cell within the defined service area, a single beam is assigned based on the best
+server principle. The satellite with the highest elevation angle as seen from the center of that
+hexagonal cell is selected to provide service. This satellite then points the main lobe of one of its
+beams directly to the center of the assigned hexagon. This methodology ensures that the entire service
+area is systematically covered by the assigned beams, utilizing the satellite with the most favorable
+link geometry for each cell (Figure A.4.3.1.1-13 (a) and (b)).
+The satellite beam size is defined by its average service contour at the -7 dB power falloff point from
+the peak gain of the main lobe. This definition is used to implement an exclusive beam layout, where
+adjacent beams are placed no closer than their respective 7 dB contours. This 7 dB value must be
+derived using the specific antenna radiation pattern described in model 1.4 of Recommendation ITU-
+R S.1528.
+FIGURE A4.3.1.1-13
+(a) Image showing the resulting beam footprint for a single snapshot – Study Case I
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 16 =====
+- 16 -
+XXX-E
+(b) Image showing the resulting beam footprint for a single snapshot – Study Case II
+4. Satellite system load factor
+To model realistic network usage, a satellite system load factor was applied, defining the probability
+that any given beam is active and transmitting during a single simulation snapshot; for this analysis,
+load factors of 20% and 50% were considered.
+Figures A4.3.1.1-14 and A4.3.1.1-15 present the frequency histograms of the number of active beams
+per satellite, for system load factors of 20% and 50%, respectively. These distributions were generated
+from a simulation comprising 10,000 independent snapshots.
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 17 =====
+- 17 -
+XXX-E
+FIGURE A4.3.1.1-14
+Histogram of the number of active beams per satellite – 20% load factor
+FIGURE A4.3.1.1-15
+Histogram of the number of active beams per satellite – 50% load factor
+A4.3.1.1.5 Results of the study
+This study considers two scenarios:
+a) Case I: a cross-border scenario involving Brazil, Argentina, and Paraguay operating in adjacent
+frequency bands, with two countries served by the DC-MSS-IMT system and the third hosting a
+victim FS system;
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 18 =====
+- 18 -
+XXX-E
+b) Case II: a continent-wide scenario (South America) with DC-MSS-IMT coverage in adjacent
+frequency bands as the victim FS system, which is located in one of the countries.
+As previously mentioned, the DC-MSS-IMT system 3 is considered in the study. Two altitude levels
+for system 3 are employed for comparison purposes (340 km and 525 km). In Case I, the exclusion
+zone, defined in previous sections, is also varied to assess the impact of this interference mitigation
+strategy. The study also includes an analysis of the DC-MSS-IMT system load factor, assuming
+values of 20% and 50%. Two adjacent-band interference situations were considered (Figure A4.3.1.1-
+9): contiguous band and non-contiguous band. Finally, the study examined the behavior of the I/N
+ratio for cases where the victim FS system receiving antenna has heights of 20 m and 40 m above
+ground. To apply ITU-R Recommendation P.2108, the environment where the 20 m-high antenna is
+located was considered low-rise, with a 0.6 (60%) probability that the antenna is below rooftop level.
+For the 40 m-high antenna, the environment was considered mid-rise, with a 0.1 (10%) probability
+of the antenna being below rooftop level.
+a) Results – Study Case I – DC-MSS-IMT System 3 at an altitude of 340 km and 525 km
+Figures A4.3.1.1-16 ((a) and (b)) and A4.3.1.1-17 ((a) and (b)) present, using the Complementary
+Cumulative Distribution Function (CCDF) of the I/N ratio (INR), the INR results in adjacent-band
+interference scenarios with contiguous band (Figure A4.3.1.1-9 (a) scenario) from the DC-MSS-IMT
+system, operating in the downlink, on the FS system with receiving antennas at heights of 20 m and
+40 m above ground. These figures show the effect of the DC-MSS-IMT system’s load factor on the
+INR: the higher the load factor, the greater the interference caused. The impact of the operational
+margin can also be observed: the larger the margin, smaller the interference.
+Regarding the altitude of System 3, the expected logic that higher altitudes result in lower interference
+is fully observed: the interference caused by satellites at 340 km altitude was higher than that caused
+by satellites at 525 km.
+FIGURE A4.3.1.1-16
+CCDF of adjacent-band INR of DC-MSS-IMT DL (System 3 at 340 km) in band 2 110-2 200 MHz into FS in
+band 2 200-2 290 MHz – Contiguous band
+(a) FS antenna at 20 m (low-rise, below rooftop probability of 0.6)
+(b) FS antenna at 40 m (mid-rise, below rooftop probability of 0.1)
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 19 =====
+- 19 -
+XXX-E
+FIGURE A4.3.1.1-17
+CCDF of Adjacent-band INR Ratio of DC-MSS-IMT DL (System 3 at 525 km) in band 2 110-2 200 MHz into FS
+in band 2 200-2 290 MHz – Contiguous band
+(a) FS antenna at 20 m (low-rise, below rooftop probability of 0.6)
+(b) FS antenna at 40 m (mid-rise, below rooftop probability of 0.1)
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 20 =====
+- 20 -
+XXX-E
+Concerning the characteristics of the FS system, the antenna height, under the studied scenarios, does
+not constitute a predominant factor affecting INR in the low-rise (below rooftop probability of 0.6)
+and mid-rise (below rooftop probability of 0.1) conditions defined above. However, in this Study
+Case I, the orientation of the victim antenna (azimuth) relative to the regions covered by the DC-
+MSS-IMT system has a significant impact on INR. Hereon, we defined the azimuth of 0° concern as
+East, 90° as North, 180° as West and 270° as South (see Figures A4.3.1.1-2 and -3).
+It is noted that, with the long-term protection criterion were –6 dB, extrapolated no more than 20%
+of the time, this criterion would have been met in all studied scenarios, with margins exceeding 7 dB
+and 12 dB, respectively, for System 3 altitudes of 340 km and 525 km, in the most critical case,
+corresponding to the scenario with the minimum operational margin, a 50% load factor, and an
+azimuth of 90°.
+Figures A4.3.1.1-18 ((a) and (b)) and A4.3.1.1-19 ((a) and (b)) present, using the CCDF of the INR,
+the INR results in adjacent-band interference scenarios with non-contiguous band (Figure A4.3.1.1-
+9 (b) scenario) from the DC-MSS-IMT system, operating in the downlink, on the FS system with
+receiving antennas at heights of 20 m and 40 m above ground. In this scenario, where the operating
+bands of the studied systems are non-contiguous, the interference due to spurious emissions is
+assessed. All previously evaluated scenarios were re-simulated, and in all cases, the FS system
+protection margin in the long-term context (20% maximum exceedance of the INR criterion equal to
+-6 dB) was fully satisfied, with margins exceeding 30 dB and 35 dB for System 3 altitudes of 340 km
+and 525 km, respectively.
+FIGURE A4.3.1.1-18
+CCDF of Adjacent-band INR Ratio of DC-MSS-IMT DL (System 3 at 340 km) in band 2 110-2 200 MHz into FS
+in band 2 200-2 290 MHz – Non-contiguous band
+(a) FS antenna at 20 m (low-rise, below rooftop probability of 0.6)
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 21 =====
+- 21 -
+XXX-E
+(b) FS antenna at 40 m (mid-rise, below rooftop probability of 0.1)
+FIGURE A4.3.1.1-19
+CCDF of Adjacent-band INR Ratio of DC-MSS-IMT DL (System 3 at 525 km) in band 2 110-2 200 MHz into FS
+in band 2 200-2 290 MHz – Non-contiguous band
+(a) FS antenna at 20 m (low-rise, below rooftop probability of 0.6)
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 22 =====
+- 22 -
+XXX-E
+(b) FS antenna at 40 m (mid-rise, below rooftop probability of 0.1)
+b) Results – Study Case II – DC-MSS-IMT System 3 at an altitude of 340 km and 525 km
+Figures A4.3.1.1-20 and A4.3.1.1-21 present, using the Complementary Cumulative Distribution
+Function (CCDF) of the I/N ratio (INR), the INR results in adjacent-band interference scenarios with
+contiguous band (Figure A4.3.1.1-9 (a) scenario) from the DC-MSS-IMT system, operating in the
+downlink, on the FS system with receiving antennas at heights of 20 m and 40 m above ground. This
+figure shows the effect of the DC-MSS-IMT system’s load factor on the INR: the higher the load
+factor, the greater the interference caused.
+With respect to the altitude of System 3, it is observed that the interference caused by satellites at an
+altitude of 340 km is greater than that caused by satellites at 525 km, as expected, for FS antenna
+heights of both 20 m and 40 m, although the difference in the statistical behavior of the INR CCDF
+is not significant when comparing the results for these two heights.
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 23 =====
+- 23 -
+XXX-E
+FIGURE A4.3.1.1-20
+CCDF of Adjacent-band INR of DC-MSS-IMT DL (System 3 at 340 km) in band 2 110-2 200 MHz into FS in
+band 2 200-2 290 MHz – Contiguous band
+FS antenna at [20, 40]m ([low, mid]-rise, below rooftop probability of [0.6, 0.1])
+FIGURE A4.3.1.1-21
+CCDF of Adjacent-band INR of DC-MSS-IMT DL (System 3 at 525 km) in band 2 110-2 200 MHz into FS in
+band 2 200-2 290 MHz – Contiguous band
+FS antenna at [20, 40]m ([low, mid]-rise, below rooftop probability of [0.6, 0.1])
+In the Case II scenario, involving DC-MSS-IMT coverage of South American countries, the
+orientation of the victim antenna (azimuth) relative to the regions covered by the DC-MSS-IMT
+system has less impact on INR than in Case I, where only two countries of the continent are covered
+by the space system.
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 24 =====
+- 24 -
+XXX-E
+It is noted that the long-term protection criterion of –6 dB, extrapolated for no more than 20% of the
+time, is met in all studied scenarios at altitudes of 340 km and 525 km, and for the load factors
+considered of 20% and 50%. Furthermore, the results indicate that the Case II scenario has a greater
+impact on INR than the Case I scenario.
+Figures A4.3.1.1-22 and A4.3.1.1-23 present, using the CCDF of the INR, the INR results in adjacent-
+band interference scenarios with non-contiguous band (Figure A4.3.1.1-9 (b) scenario) from the DC-
+MSS-IMT system, operating in the downlink, on the FS system with receiving antennas at heights of
+20 m and 40 m above ground. For the Case II scenario, results are presented for both studied azimuths
+(90 degrees and 180 degrees), since in the current case the impact on INR for different azimuths is
+more similar, given the coverage of the entire South American region by the DC-MSS-IMT system.
+The figures also show the effect of the DC-MSS-IMT system’s load factor on the INR: the higher the
+load factor, the greater the interference caused. In figures, the higher interference caused by System
+3 satellites at 340 km altitude, compared to satellites at 525 km, can be clearly observed. A decrease
+in INR can be observed compared to the scenarios shown in the previous figures, caused by adjacent-
+band with contiguous band. Once again, in all cases, the FS system protection margin in the long-
+term context (20% maximum exceedance of the INR criterion equal to -6 dB) was fully satisfied, with
+margins exceeding 25 dB and 30 dB for System 3 altitudes of 340 km and 525 km, respectively.
+FIGURE A4.3.1.1-22
+CCDF of Adjacent-band INR of DC-MSS-IMT DL (System 3 at 340 km) in band 2 110-2 200 MHz into FS in
+band 2 200-2 290 MHz – Non-contiguous band
+FS antenna at [20, 40]m ([low, mid]-rise, below rooftop probability of [0.6, 0.1])
+FIGURE A4.3.1.1-22
+CCDF of Adjacent-band INR of DC-MSS-IMT DL (System 3 at 525 km) in band 2 110-2 200 MHz into FS in
+band 2 200-2 290 MHz – Non-contiguous band
+FS antenna at [20, 40]m ([low, mid]-rise, below rooftop probability of [0.6, 0.1])
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25
+
+===== PAGE 25 =====
+- 25 -
+XXX-E
+A4.3.1.1.6 Conclusion of study A
+Two case studies were addressed in this contribution: 1) DC-MSS-IMT coverage of two South
+American countries under adjacent-band interference to an FS system receiving station located in a
+third country not covered by the DC-MSS-IMT system, with varying antenna azimuths and heights;
+2) DC-MSS-IMT coverage of all South American countries, including the country where the victim
+FS receiving station is located. Scenarios related to DC-MSS-IMT System 3 at altitudes of 340 km
+and 525 km were studied, with load factors of 20% and 50%. The results showed that compatibility
+between the DC-MSS-IMT and FS systems is feasible in adjacent-band condition with contiguous
+and non-contigous band conditions. An interference mitigation strategy based on operational or
+service margin, implementing a form of exclusion zone at the border between countries involved in
+a cross-border interference situation, as in Case (1), was presented and tested, and the results showed
+that its use may be of interest in certain situations.
+C:\PROGRAM FILES (X86)\PDF TOOLS AG\3-HEIGHTS(TM) DOCUMENT CONVERTER
+SERVICE\TEMP\9348D4DD92F85AABF089CFD3A3BE29625F75FBF4488ADEA2FD6209A0CAAEDB5A.DOCX (
+) 06.10.25 06.10.25

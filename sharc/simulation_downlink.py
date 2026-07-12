@@ -198,6 +198,8 @@ class SimulationDownlink(Simulation):
                 interf_tx_pow = bs_tx_power_per_beam_array[bs_interf]
                 # get UE RB index
                 ue_rb_beam_idx = int(self.bs_to_ue_beam_rbs[ui])
+                if ue_rb_beam_idx >= interf_tx_pow.shape[1]:
+                    ue_rb_beam_idx = 0
                 # only overlapping RB interf power is considered
                 interf_tx_pow = interf_tx_pow[:, ue_rb_beam_idx]
                 # coupling loss already considers only the overlapping beam

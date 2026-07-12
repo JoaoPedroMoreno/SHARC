@@ -15,7 +15,7 @@ SYSTEMS = {
         "sats_per_plane": 110,
         "beam_radius_m": 23775,
         "margins_km": list(range(0, 101, 10)),
-        "exclusion_radii_km": list(range(0, 11, 1)),
+        "exclusion_radii_km": list(range(0, 101, 10)),
     },
     "Sys3_525km": {
         "n_planes": 28,
@@ -23,7 +23,7 @@ SYSTEMS = {
         "sats_per_plane": 120,
         "beam_radius_m": 36712,
         "margins_km": list(range(0, 101, 10)),
-        "exclusion_radii_km": list(range(0, 11, 1)),
+        "exclusion_radii_km": list(range(0, 101, 10)),
     },
 }
 
@@ -221,7 +221,8 @@ def replace_grid_exclusion_zone(
 def update_template(template: str, *, output_dir_prefix: str, system: dict, countries: list[str],
                     fs_height_m: int, fs_params: dict, load_factor: float,
                     margin_km: int, azimuth_deg: int,
-                    use_exclusion_zone: bool = False) -> str:
+                    use_exclusion_zone: bool = False,
+                    disable_power_backoff: bool = False) -> str:
     lines = template.splitlines()
 
     imt_start = find_line(lines, r"^imt:\s*$")
@@ -246,8 +247,8 @@ def update_template(template: str, *, output_dir_prefix: str, system: dict, coun
     replace_first_scalar(lines, "sats_per_plane", system["sats_per_plane"], start=mss_dc_start, end=imt_end)
     replace_first_scalar(lines, "beam_radius", system["beam_radius_m"], start=mss_dc_start, end=imt_end)
     replace_grid_margin(lines, 0, mss_dc_start=mss_dc_start, imt_end=imt_end)
-    replace_power_backoff_margin(lines, 0 if use_exclusion_zone else margin_km, mss_dc_start=mss_dc_start, imt_end=imt_end)
-    replace_power_backoff_values(lines, 0.0 if use_exclusion_zone else 10.0, mss_dc_start=mss_dc_start, imt_end=imt_end)
+    replace_power_backoff_margin(lines, 0 if disable_power_backoff else margin_km, mss_dc_start=mss_dc_start, imt_end=imt_end)
+    replace_power_backoff_values(lines, 0.0 if disable_power_backoff else 10.0, mss_dc_start=mss_dc_start, imt_end=imt_end)
     replace_grid_exclusion_zone(
         lines,
         enabled=use_exclusion_zone,
@@ -286,14 +287,17 @@ for system_name, system in SYSTEMS.items():
                     distances_km = system["margins_km"]
                     distance_prefix = "M"
                     use_exclusion_zone = False
+                    disable_power_backoff = False
                 elif distance_mode == "EXCLUSION_ZONE":
                     distances_km = system["exclusion_radii_km"]
                     distance_prefix = "EZ"
                     use_exclusion_zone = True
+                    disable_power_backoff = True
                 else:
                     distances_km = [0]
                     distance_prefix = "M"
                     use_exclusion_zone = False
+                    disable_power_backoff = False
 
                 for margin_km in distances_km:
                     distance_token = f"{distance_prefix}{margin_km}km"
@@ -320,6 +324,7 @@ for system_name, system in SYSTEMS.items():
                                 margin_km=margin_km,
                                 azimuth_deg=azimuth_deg,
                                 use_exclusion_zone=effective_use_exclusion_zone,
+                                disable_power_backoff=disable_power_backoff,
                             ),
                             encoding="utf-8",
                         )

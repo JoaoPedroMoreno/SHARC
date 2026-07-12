@@ -3,7 +3,7 @@
 This script replaces the old heatmap idea with margin curves, which are easier
 to discuss in a paper:
 
-    x-axis: border margin / exclusion distance in km
+    x-axis: border margin / exclusion radius in km
     y-axis: protection margin against the -6 dB criterion at 20% time
 
 The protection margin is computed as:
@@ -39,7 +39,7 @@ EXCEEDANCE_PROBABILITY = 0.2
 
 AREA_LABELS = {
     "BR_AR_Paraguay": "BR, AR, PY",
-    "SouthAmerica": "South America",
+    "SouthAmerica": "America do Sul",
 }
 
 FS_COLORS = {
@@ -65,6 +65,7 @@ class MarginPoint:
     altitude_km: int
     fs_height_m: int
     load_factor_pct: int
+    distance_type: str
     border_margin_km: int
     azimuth_mode: str
     inr_20_pct_db: float
@@ -86,13 +87,14 @@ def inr_at_exceedance_probability(samples: np.ndarray, probability: float) -> fl
     return float(x[index])
 
 
-def point_sort_key(point: MarginPoint) -> tuple[int, int, int, int, int]:
+def point_sort_key(point: MarginPoint) -> tuple[int, int, int, int, str, int]:
     area_order = 0 if point.area == "BR_AR_Paraguay" else 1
     return (
         area_order,
         point.altitude_km,
         point.fs_height_m,
         point.load_factor_pct,
+        point.distance_type,
         point.border_margin_km,
     )
 
@@ -106,8 +108,6 @@ def collect_points_from_outputs(
 
     for scenario in sorted(scenarios, key=scenario_sort_key):
         if scenario.area != area:
-            continue
-        if scenario.margin_km <= 0:
             continue
 
         samples = read_series_csv(scenario.folder / f"{FIELD}.csv", FIELD)
@@ -132,6 +132,7 @@ def collect_points_from_outputs(
                 altitude_km=row["scenario"].altitude_km,
                 fs_height_m=row["scenario"].fs_height_m,
                 load_factor_pct=row["scenario"].load_factor_pct,
+                distance_type=row["scenario"].distance_type,
                 border_margin_km=row["scenario"].margin_km,
                 azimuth_mode=f"Azi{row['scenario'].azimuth_deg}",
                 inr_20_pct_db=float(row["inr_20_pct_db"]),
@@ -141,7 +142,7 @@ def collect_points_from_outputs(
             for row in raw_rows
         ]
 
-    grouped: dict[tuple[int, int, int, int, int], list[dict[str, object]]] = defaultdict(list)
+    grouped: dict[tuple[int, int, int, int, str, int], list[dict[str, object]]] = defaultdict(list)
     for row in raw_rows:
         scenario = row["scenario"]
         grouped[
@@ -150,12 +151,13 @@ def collect_points_from_outputs(
                 scenario.altitude_km,
                 scenario.fs_height_m,
                 scenario.load_factor_pct,
+                scenario.distance_type,
                 scenario.margin_km,
             )
         ].append(row)
 
     points: list[MarginPoint] = []
-    for (system, altitude_km, fs_height_m, load_factor_pct, margin_km), rows in grouped.items():
+    for (system, altitude_km, fs_height_m, load_factor_pct, distance_type, margin_km), rows in grouped.items():
         margins = np.asarray([float(row["protection_margin_db"]) for row in rows], dtype=float)
         inrs = np.asarray([float(row["inr_20_pct_db"]) for row in rows], dtype=float)
 
@@ -174,6 +176,7 @@ def collect_points_from_outputs(
                 altitude_km=altitude_km,
                 fs_height_m=fs_height_m,
                 load_factor_pct=load_factor_pct,
+                distance_type=distance_type,
                 border_margin_km=margin_km,
                 azimuth_mode=azimuth_mode,
                 inr_20_pct_db=inr_20_pct,
@@ -206,6 +209,7 @@ def generate_demo_points(area: str) -> list[MarginPoint]:
                             altitude_km=altitude_km,
                             fs_height_m=fs_height_m,
                             load_factor_pct=load_factor_pct,
+                            distance_type="M",
                             border_margin_km=border_margin_km,
                             azimuth_mode="demo",
                             inr_20_pct_db=inr_20_pct,
@@ -228,6 +232,7 @@ def save_points_csv(points: list[MarginPoint], path: Path) -> None:
                 "altitude_km",
                 "fs_height_m",
                 "load_factor_pct",
+                "distance_type",
                 "border_margin_km",
                 "azimuth_mode",
                 "inr_20_pct_db",
@@ -244,6 +249,7 @@ def save_points_csv(points: list[MarginPoint], path: Path) -> None:
                     "altitude_km": point.altitude_km,
                     "fs_height_m": point.fs_height_m,
                     "load_factor_pct": point.load_factor_pct,
+                    "distance_type": point.distance_type,
                     "border_margin_km": point.border_margin_km,
                     "azimuth_mode": point.azimuth_mode,
                     "inr_20_pct_db": f"{point.inr_20_pct_db:.6f}",
@@ -273,6 +279,13 @@ def plot_margin_curves(points: list[MarginPoint], out_path: Path, demo: bool) ->
 
     for ax, altitude_km in zip(axes, altitudes):
         subset = [point for point in points if point.altitude_km == altitude_km]
+        distance_types = sorted({point.distance_type for point in subset})
+        if distance_types == ["EZ"]:
+            distance_label = "Raio da Exclusion zone (km)"
+        elif distance_types == ["M"]:
+            distance_label = "Margem de fronteira para Power backoff (km)"
+        else:
+            distance_label = "Margem de fronteira / raio da Exclusion zone (km)"
         for fs_height_m in sorted({point.fs_height_m for point in subset}):
             for load_factor_pct in sorted({point.load_factor_pct for point in subset}):
                 curve = sorted(
@@ -299,21 +312,21 @@ def plot_margin_curves(points: list[MarginPoint], out_path: Path, demo: bool) ->
                     label=f"FS={fs_height_m} m, LF={load_factor_pct}%",
                 )
 
-        ax.axhline(0.0, color="black", linestyle=":", linewidth=1.8, label="Protection criterion")
-        ax.set_title(f"System 3 - {altitude_km} km")
-        ax.set_xlabel("Border margin / exclusion distance (km)")
+        ax.axhline(0.0, color="black", linestyle=":", linewidth=1.8, label="Criterio de protecao")
+        ax.set_title(f"Sistema 3 - {altitude_km} km")
+        ax.set_xlabel(distance_label)
         ax.grid(True, which="both", alpha=0.3)
         ax.legend(fontsize=8)
 
-    axes[0].set_ylabel("Protection margin at 20% time (dB)")
+    axes[0].set_ylabel("Margem de protecao para 20% do tempo (dB)")
 
-    title_suffix = "fictional sketch" if demo else "SHARC results"
-    fig.suptitle(f"{area_label}: INR Protection Margin Curves ({title_suffix})", fontsize=14, fontweight="bold")
+    title_suffix = "rascunho ficticio" if demo else "resultados SHARC"
+    fig.suptitle(f"{area_label}: curvas de margem de protecao INR ({title_suffix})", fontsize=14, fontweight="bold")
     fig.text(
         0.01,
         0.01,
-        "Criterion: INR_20% <= -6 dB. Positive margin passes; negative margin fails. "
-        "Default real-data mode aggregates azimuths using the worst case.",
+        "Criterio: INR_20% <= -6 dB. Margem positiva atende ao criterio; margem negativa viola o criterio. "
+        "No modo padrao com dados reais, os azimutes sao agregados pelo pior caso.",
         fontsize=8,
         color="#333333",
     )
@@ -345,9 +358,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--area",
-        choices=sorted(AREA_LABELS),
-        default="BR_AR_Paraguay",
-        help="Area to plot. SouthAmerica has no border-margin sweep in the current outputs.",
+        choices=["all", *sorted(AREA_LABELS)],
+        default="all",
+        help="Area to plot. Use 'all' to generate one curve plot per available area.",
     )
     parser.add_argument(
         "--azimuth-mode",
@@ -373,7 +386,8 @@ def main() -> int:
     plots_dir = args.plots_dir.resolve()
 
     if args.demo:
-        points = generate_demo_points(args.area)
+        areas = sorted(AREA_LABELS) if args.area == "all" else [args.area]
+        points_by_area = {area: generate_demo_points(area) for area in areas}
         suffix = "demo"
     else:
         output_root = args.output_root.resolve()
@@ -381,22 +395,37 @@ def main() -> int:
             print(f"Output root not found: {output_root}")
             return 2
         scenarios = discover_scenarios(output_root, all_runs=args.all_runs)
-        points = collect_points_from_outputs(scenarios, area=args.area, azimuth_mode=args.azimuth_mode)
+        available_areas = sorted({scenario.area for scenario in scenarios}, key=lambda area: AREA_LABELS.get(area, area))
+        areas = available_areas if args.area == "all" else [args.area]
+        points_by_area = {
+            area: collect_points_from_outputs(scenarios, area=area, azimuth_mode=args.azimuth_mode)
+            for area in areas
+        }
         suffix = args.azimuth_mode
 
-    if not points:
+    total_points = sum(len(points) for points in points_by_area.values())
+    if not total_points:
         print("No usable margin data found.")
         return 1
 
-    csv_path = plots_dir / f"system_inr_margin_curves_{args.area}_{suffix}.csv"
-    png_path = plots_dir / f"system_inr_margin_curves_{args.area}_{suffix}.png"
+    saved = 0
+    for area, points in points_by_area.items():
+        if not points:
+            print(f"[skip] no usable margin data for {area}")
+            continue
 
-    save_points_csv(points, csv_path)
-    plot_margin_curves(points, png_path, demo=args.demo)
+        csv_path = plots_dir / f"system_inr_margin_curves_{area}_{suffix}.csv"
+        png_path = plots_dir / f"system_inr_margin_curves_{area}_{suffix}.png"
 
-    print(f"[ok] {png_path}")
-    print(f"[ok] {csv_path}")
-    return 0
+        save_points_csv(points, csv_path)
+        plot_margin_curves(points, png_path, demo=args.demo)
+
+        print(f"[ok] {png_path}")
+        print(f"[ok] {csv_path}")
+        saved += 1
+
+    print(f"Generated {saved} margin plot set(s) in {plots_dir}")
+    return 0 if saved else 1
 
 
 if __name__ == "__main__":
