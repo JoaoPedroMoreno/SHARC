@@ -14,6 +14,7 @@ The visible Space Stations are then used to generate the IMT Base Stations.
 import numpy as np
 import geopandas as gpd
 import functools
+import hashlib
 
 from sharc.support.sharc_logger import SimulationLogger
 from collections import defaultdict
@@ -66,6 +67,9 @@ class TopologyImtMssDc(Topology):
         self.space_station_z = None
         self.beam_ground_elev_angles = None  # beam ground elevation angle
         self.power_backoff = None  # power backoff per beam
+        self.power_backoff_affected = None  # stable PBO mask per beam
+        self.requested_affected_fraction = np.nan
+        self.realized_affected_fraction = np.nan
 
         self.lat = None
         self.lon = None
@@ -281,7 +285,7 @@ class TopologyImtMssDc(Topology):
             _, all_azimuth, all_elevation = cartesian_to_polar(
                 pointing_vec_x, pointing_vec_y, pointing_vec_z)
 
-            beams_power_backoff, beams_elev, beams_azim, beams_ground_elev, sx, sy = TopologyImtMssDc.get_satellite_pointing(
+            beams_power_backoff, beams_power_backoff_affected, beams_elev, beams_azim, beams_ground_elev, sx, sy = TopologyImtMssDc.get_satellite_pointing(
                 random_number_gen,
                 coordinate_system,
                 orbit_params,
@@ -321,6 +325,12 @@ class TopologyImtMssDc(Topology):
                     y: list(x) +
                     list(y),
                     beams_power_backoff))
+            space_station_power_backoff_affected = np.array(
+                functools.reduce(
+                    lambda x,
+                    y: list(x) +
+                    list(y),
+                    beams_power_backoff_affected), dtype=bool)
 
             space_station_x = np.repeat(space_station_x, sat_ocurr)
             space_station_y = np.repeat(space_station_y, sat_ocurr)
@@ -336,6 +346,7 @@ class TopologyImtMssDc(Topology):
         assert (space_station_y.shape == (num_base_stations,))
         assert (space_station_z.shape == (num_base_stations,))
         assert (space_station_power_backoff.shape == (num_base_stations,))
+        assert (space_station_power_backoff_affected.shape == (num_base_stations,))
         assert (lat.shape == (num_base_stations,))
         assert (lon.shape == (num_base_stations,))
         assert (altitudes.shape == (num_base_stations,))
@@ -358,6 +369,7 @@ class TopologyImtMssDc(Topology):
             "num_active_satellites": len(active_satellite_idxs),
             "active_satellites_idxs": active_satellite_idxs,
             "sat_power_backoff": space_station_power_backoff,
+            "sat_power_backoff_affected": space_station_power_backoff_affected,
             "sat_x": space_station_x,
             "sat_y": space_station_y,
             "sat_z": space_station_z,
@@ -419,6 +431,17 @@ class TopologyImtMssDc(Topology):
                     zone.geometry._polygon
                 )
                 grid_power_backoffs[mask] = zone.power_backoff_db
+
+            grid_power_backoff_affected = grid_power_backoffs != 0.0
+            affected_fraction = orbit_params.power_control_zones.affected_fraction
+            if (
+                orbit_params.power_control_zones.mode == "GEOGRAPHIC"
+                and affected_fraction < 1.0
+            ):
+                fraction_mask = TopologyImtMssDc.get_stable_fraction_mask(
+                    grid_lon, grid_lat, affected_fraction)
+                grid_power_backoff_affected &= fraction_mask
+                grid_power_backoffs[~grid_power_backoff_affected] = 0.0
 
             # pb = grid_power_backoffs[grid_power_backoffs!= 0.]
             # print("pb", pb)
@@ -509,6 +532,7 @@ class TopologyImtMssDc(Topology):
             beams_ground_elev = []
             n = 0
             power_backoff = []
+            power_backoff_affected = []
 
             for act_sat in active_satellite_idxs:
                 if act_sat in sat_points_towards:
@@ -518,18 +542,21 @@ class TopologyImtMssDc(Topology):
                     beams_ground_elev.append(all_elevations[
                         sat_points_towards[act_sat], eligible_sats_idx == act_sat])
                     power_backoff.append(grid_power_backoffs[sat_points_towards[act_sat]])
+                    power_backoff_affected.append(
+                        grid_power_backoff_affected[sat_points_towards[act_sat]])
                 else:
                     beams_azim.append([])
                     beams_elev.append([])
                     beams_ground_elev.append([])
                     power_backoff.append([])
+                    power_backoff_affected.append([])
 
             # FIXME: change either this or the transform_ue_xyz to make this correct
             # we don't currently care
             sx = np.zeros(n)
             sy = np.zeros(n)
 
-            return power_backoff, beams_elev, beams_azim, beams_ground_elev, sx, sy
+            return power_backoff, power_backoff_affected, beams_elev, beams_azim, beams_ground_elev, sx, sy
         # We borrow the TopologyNTN method to calculate the sectors azimuth and elevation angles from their
         # respective x and y boresight coordinates
         sx, sy = TopologyNTN.get_sectors_xy(
@@ -650,7 +677,36 @@ class TopologyImtMssDc(Topology):
                 nadir_azim[i]
             )
 
-        return np.zeros_like(beams_elev), beams_elev, beams_azim, beams_ground_elev, sx, sy
+        return (
+            np.zeros_like(beams_elev),
+            np.zeros_like(beams_elev, dtype=bool),
+            beams_elev,
+            beams_azim,
+            beams_ground_elev,
+            sx,
+            sy,
+        )
+
+    @staticmethod
+    def get_stable_fraction_mask(
+        lon: np.ndarray,
+        lat: np.ndarray,
+        fraction: float,
+    ) -> np.ndarray:
+        """Return a deterministic geometry-based mask for PBO fractioning."""
+        if fraction <= 0.0:
+            return np.zeros_like(lon, dtype=bool)
+        if fraction >= 1.0:
+            return np.ones_like(lon, dtype=bool)
+
+        mask = np.zeros_like(lon, dtype=bool)
+        denominator = float(2**64 - 1)
+        for idx, (lon_i, lat_i) in enumerate(zip(lon, lat)):
+            key = f"mss-dc-pbo-v1:{float(lon_i):.8f}:{float(lat_i):.8f}:{fraction:.12g}"
+            digest = hashlib.sha256(key.encode("ascii")).digest()
+            score = int.from_bytes(digest[:8], byteorder="big") / denominator
+            mask[idx] = score < fraction
+        return mask
 
     @staticmethod
     def get_distr(
@@ -722,6 +778,7 @@ class TopologyImtMssDc(Topology):
 
         # power backoff per beam
         self.power_backoff = sat_values["sat_power_backoff"]
+        self.power_backoff_affected = sat_values["sat_power_backoff_affected"]
 
         self.indoor = np.zeros(
             self.num_base_stations,

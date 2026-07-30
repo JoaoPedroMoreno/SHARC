@@ -1,9 +1,9 @@
 general:
     seed: 838
-    num_snapshots: 4000
+    num_snapshots: 1000
     overwrite_output: false
     output_dir: campaigns/03_DC_MSS_ISOLADO/output/
-    output_dir_prefix: output_dc_mss_isolado_Sys3_340km_FS20m_LF20
+    output_dir_prefix: output_dc_mss_isolado_Sys3_340km_LF20_PBO0dB_F0pct
     system: SINGLE_EARTH_STATION
     imt_link: DOWNLINK
     enable_adjacent_channel: false
@@ -63,8 +63,11 @@ imt:
                             radius_km: 0
                     eligible_sats_margin_from_border: -200.0
                     minimum_service_angle: 32
-            beam_radius: 24000 #Variar entre 26km e 40km
+            beam_radius: 25803
             power_control_zones:
+                mode: ACTIVE_FRACTION
+                power_backoff_db: 0.0
+                affected_fraction: 0.0
                 zones:
                     - power_backoff_db: 0.0
                       geometry:
@@ -74,7 +77,7 @@ imt:
                                   - Brazil
                                   #   - Argentina
                               margin_from_border: 25 # Variar no gerador
-                    - power_backoff_db: 10.0
+                    - power_backoff_db: 0.0
                       geometry:
                           type: FROM_COUNTRIES
                           from_countries:

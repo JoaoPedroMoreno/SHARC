@@ -157,6 +157,21 @@ class TestTopologyImtMssDc(unittest.TestCase):
         # oblateness
         npt.assert_array_less(min_elevation_angle, xy_plane_elevations)
 
+    def test_stable_power_backoff_fraction_mask(self):
+        """Test deterministic PBO affected-beam selection."""
+        lon = np.array([-42.0, -41.5, -41.0, -40.5, -40.0])
+        lat = np.array([-15.0, -14.5, -14.0, -13.5, -13.0])
+        fraction = 0.4
+
+        mask_a = TopologyImtMssDc.get_stable_fraction_mask(lon, lat, fraction)
+        mask_b = TopologyImtMssDc.get_stable_fraction_mask(lon, lat, fraction)
+
+        npt.assert_array_equal(mask_a, mask_b)
+        npt.assert_array_equal(
+            np.where(mask_a, 2.0, 0.0) != 0.0,
+            np.where(mask_b, 8.0, 0.0) != 0.0,
+        )
+
     def test_minimum_service_angle(self):
         """Test minimum visibility angle for service grid service."""
         orbit = ParametersOrbit(

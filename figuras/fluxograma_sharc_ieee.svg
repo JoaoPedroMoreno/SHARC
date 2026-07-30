@@ -40,7 +40,7 @@
   <rect x="80" y="490" width="740" height="135" class="box"/>
   <circle cx="125" cy="535" r="23" class="badge"/><text x="125" y="543" text-anchor="middle" class="num">3</text>
   <text x="450" y="540" text-anchor="middle" class="label">Monte Carlo Loop</text>
-  <text x="450" y="590" text-anchor="middle" class="sub">10000 snapshots</text>
+  <text x="450" y="590" text-anchor="middle" class="sub">10 000 snapshots</text>
 
   <path d="M 450 625 V 680" class="arrow"/>
 

@@ -36,15 +36,34 @@ from plot_system_inr_ccdf import FIELD, Scenario, discover_scenarios, read_serie
 
 PROTECTION_LIMIT_DB = -6.0
 EXCEEDANCE_PROBABILITY = 0.2
+IEEE_TEXT_WIDTH_IN = 7.16
+IEEE_MARGIN_HEIGHT_IN = 3.55
+IEEE_DPI = 300
+
+plt.rcParams.update(
+    {
+        "font.family": "serif",
+        "font.serif": ["Times New Roman", "Times", "DejaVu Serif"],
+        "font.size": 9.5,
+        "axes.titlesize": 10.0,
+        "axes.labelsize": 10.0,
+        "xtick.labelsize": 9.0,
+        "ytick.labelsize": 9.0,
+        "legend.fontsize": 8.2,
+        "lines.linewidth": 1.7,
+        "axes.linewidth": 0.8,
+        "savefig.dpi": IEEE_DPI,
+    }
+)
 
 AREA_LABELS = {
-    "BR_AR_Paraguay": "BR, AR, PY",
-    "SouthAmerica": "America do Sul",
+    "BR_AR_Paraguay": "Brazil/Argentina",
+    "SouthAmerica": "South America",
 }
 
 FS_COLORS = {
-    20: "tab:blue",
-    40: "tab:orange",
+    20: "#0072B2",
+    40: "#D55E00",
 }
 
 LF_STYLES = {
@@ -112,7 +131,7 @@ def collect_points_from_outputs(
 
         samples = read_series_csv(scenario.folder / f"{FIELD}.csv", FIELD)
         if samples is None or samples.size == 0:
-            print(f"[skip] sem dados em {scenario.folder / f'{FIELD}.csv'}")
+            print(f"[skip] no data in {scenario.folder / f'{FIELD}.csv'}")
             continue
 
         inr_20_pct = inr_at_exceedance_probability(samples, EXCEEDANCE_PROBABILITY)
@@ -270,9 +289,10 @@ def plot_margin_curves(points: list[MarginPoint], out_path: Path, demo: bool) ->
     fig, axes = plt.subplots(
         1,
         len(altitudes),
-        figsize=(6.4 * len(altitudes), 4.8),
-        dpi=180,
+        figsize=(IEEE_TEXT_WIDTH_IN, IEEE_MARGIN_HEIGHT_IN),
+        dpi=IEEE_DPI,
         sharey=True,
+        constrained_layout=True,
     )
     if len(altitudes) == 1:
         axes = [axes]
@@ -281,11 +301,11 @@ def plot_margin_curves(points: list[MarginPoint], out_path: Path, demo: bool) ->
         subset = [point for point in points if point.altitude_km == altitude_km]
         distance_types = sorted({point.distance_type for point in subset})
         if distance_types == ["EZ"]:
-            distance_label = "Raio da Exclusion zone (km)"
+            distance_label = "Exclusion zone radius (km)"
         elif distance_types == ["M"]:
-            distance_label = "Margem de fronteira para Power backoff (km)"
+            distance_label = "Border margin for power backoff (km)"
         else:
-            distance_label = "Margem de fronteira / raio da Exclusion zone (km)"
+            distance_label = "Border margin / exclusion zone radius (km)"
         for fs_height_m in sorted({point.fs_height_m for point in subset}):
             for load_factor_pct in sorted({point.load_factor_pct for point in subset}):
                 curve = sorted(
@@ -307,33 +327,32 @@ def plot_margin_curves(points: list[MarginPoint], out_path: Path, demo: bool) ->
                     color=FS_COLORS.get(fs_height_m),
                     linestyle=LF_STYLES.get(load_factor_pct, "-"),
                     marker=LF_MARKERS.get(load_factor_pct, "o"),
-                    linewidth=2.0,
-                    markersize=5.0,
+                    linewidth=1.8,
+                    markersize=4.7,
+                    markeredgewidth=0.7,
                     label=f"FS={fs_height_m} m, LF={load_factor_pct}%",
                 )
 
-        ax.axhline(0.0, color="black", linestyle=":", linewidth=1.8, label="Criterio de protecao")
-        ax.set_title(f"Sistema 3 - {altitude_km} km")
+        ax.axhline(0.0, color="black", linestyle=":", linewidth=1.5, label="Protection criterion")
+        ax.set_title(f"System 3 - {altitude_km} km", pad=4)
         ax.set_xlabel(distance_label)
-        ax.grid(True, which="both", alpha=0.3)
-        ax.legend(fontsize=8)
+        ax.grid(True, which="both", alpha=0.28, linewidth=0.55)
+        ax.tick_params(axis="both", which="major", width=0.8, length=3.0)
+        ax.legend(
+            loc="best",
+            frameon=True,
+            fancybox=False,
+            framealpha=0.95,
+            borderpad=0.3,
+            handlelength=1.9,
+            handletextpad=0.45,
+        )
 
-    axes[0].set_ylabel("Margem de protecao para 20% do tempo (dB)")
-
-    title_suffix = "rascunho ficticio" if demo else "resultados SHARC"
-    fig.suptitle(f"{area_label}: curvas de margem de protecao INR ({title_suffix})", fontsize=14, fontweight="bold")
-    fig.text(
-        0.01,
-        0.01,
-        "Criterio: INR_20% <= -6 dB. Margem positiva atende ao criterio; margem negativa viola o criterio. "
-        "No modo padrao com dados reais, os azimutes sao agregados pelo pior caso.",
-        fontsize=8,
-        color="#333333",
-    )
+    axes[0].set_ylabel("Protection margin at 20% exceedance (dB)")
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    fig.tight_layout(rect=(0, 0.045, 1, 0.94))
-    fig.savefig(out_path, dpi=300, bbox_inches="tight")
+    fig.savefig(out_path, dpi=IEEE_DPI, bbox_inches="tight")
+    fig.savefig(out_path.with_suffix(".pdf"), bbox_inches="tight")
     plt.close(fig)
 
 

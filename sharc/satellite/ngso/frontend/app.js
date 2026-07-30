@@ -6,6 +6,12 @@ let brMinLon = 180, brMaxLon = -180, brMinLat = 90, brMaxLat = -90;
 function initBrazilPolygon() {
     const geometry = simulation.brazilGeoJson;
 
+    brazilPolygons = [];
+    brMinLon = 180;
+    brMaxLon = -180;
+    brMinLat = 90;
+    brMaxLat = -90;
+
     if (geometry.type === "MultiPolygon") {
         brazilPolygons = geometry.coordinates.map(poly => poly[0]);
     } else {
@@ -73,9 +79,18 @@ viewer.camera.setView({
     destination: Cesium.Cartesian3.fromDegrees(-55, -15, 2_600_000),
 });
 
+const hud = document.getElementById("hud");
+const hudDrawerToggle = document.getElementById("hudDrawerToggle");
 const profileSelect = document.getElementById("profileSelect");
 const footprintModeSelect = document.getElementById("footprintModeSelect");
 const footprintModeHelp = document.getElementById("footprintModeHelp");
+const scenarioSelect = document.getElementById("scenarioSelect");
+const scenarioHelp = document.getElementById("scenarioHelp");
+const mitigationToggleBtn = document.getElementById("mitigationToggleBtn");
+const mitigationHelp = document.getElementById("mitigationHelp");
+const azimuthToggleBtn = document.getElementById("azimuthToggleBtn");
+const ueDensitySlider = document.getElementById("ueDensitySlider");
+const ueDensityInfo = document.getElementById("ueDensityInfo");
 const reloadBtn = document.getElementById("reloadBtn");
 const playBtn = document.getElementById("playBtn");
 const captureBtn = document.getElementById("captureBtn");
@@ -104,10 +119,16 @@ let timerId = null;
 let satelliteEntities = new Map();
 let footprintEntities = [];
 let stationEntity = null;
+let azimuthVectorEntity = null;
 let brazilEntities = [];
+let ueEntities = [];
 let activeConesCount = 0; 
 let activeAntenna7dbPreviewCount = 0;
 let currentLinkBudgetScale = null;
+let mitigationEnabled = true;
+let scenarioWasSelectedByUser = false;
+let showAzimuthVector = true;
+let ueMaxPerCell = Number(ueDensitySlider?.value || 2);
 
 // Variáveis preenchidas pelo Backend
 let GLOBAL_HEX_RADIUS_KM = null; 
@@ -149,6 +170,22 @@ const FOOTPRINT_MODE_7DB_FIRST = "antenna_7db_first";
 const FOOTPRINT_MODE_SHARC_INTERFERENCE_MASK = "sharc_interference_mask";
 const FOOTPRINT_MODE_SHARC_INTERFERENCE_LINK = "sharc_interference_link_budget";
 const MAX_INTERFERENCE_CANDIDATE_SATELLITES = 72;
+const SCENARIO_PARAM_FILES = {
+    sa: "sharc/campaigns/02_DC_MSS_to_FS 2/input/dc_mss_to_fs_SouthAmerica_Sys3_340km_FS20m_LF20_EZ0km_Azi90deg.yaml",
+    brarg: "sharc/campaigns/02_DC_MSS_to_FS 2/output/output_dc_mss_to_fs_BR_AR_Paraguay_Sys3_340km_FS20m_LF20_M0km_Azi90deg_2026-07-02_01/dc_mss_to_fs_BR_AR_Paraguay_Sys3_340km_FS20m_LF20_M0km_Azi90deg.yaml",
+};
+const SCENARIO_LABELS = {
+    sa: "SA",
+    brarg: "BR/ARG",
+};
+const INACTIVE_SATELLITE_PIXEL_SIZE = 3.5;
+const ACTIVE_SATELLITE_PIXEL_SIZE = 10;
+const UE_MAX_POINTS = Number.POSITIVE_INFINITY;
+const UE_COLOR = Cesium.Color.fromBytes(255, 245, 92, 245);
+const UE_SCALE_BY_DISTANCE = new Cesium.NearFarScalar(600_000, 1.0, 7_500_000, 0.12);
+const UE_TRANSLUCENCY_BY_DISTANCE = new Cesium.NearFarScalar(600_000, 0.95, 7_500_000, 0.18);
+const DEFAULT_BS_AZIMUTH_DEG = 90;
+const BS_AZIMUTH_VECTOR_LENGTH_KM = 420;
 const ANTENNA_7DB_SECTOR_STEP_DB = 2;
 const ANTENNA_7DB_SECTOR_COLORS = [
     Cesium.Color.fromBytes(126, 211, 33, 185),
@@ -188,6 +225,80 @@ function isSouthAmericaServiceArea() {
     return !isBrArgServiceArea() && serviceAreaCountryNames().length > 2;
 }
 
+function selectedScenario() {
+    return scenarioSelect?.value || "sa";
+}
+
+function selectedScenarioParamFile() {
+    return SCENARIO_PARAM_FILES[selectedScenario()] || SCENARIO_PARAM_FILES.sa;
+}
+
+function isBrArgScenario() {
+    return selectedScenario() === "brarg" || isBrArgServiceArea();
+}
+
+function isSouthAmericaScenario() {
+    return selectedScenario() === "sa" || isSouthAmericaServiceArea();
+}
+
+function powerBackoffMitigationApplies() {
+    return mitigationEnabled && isBrArgScenario();
+}
+
+function exclusionZoneMitigationApplies() {
+    return mitigationEnabled && isSouthAmericaScenario() && !isBrArgScenario();
+}
+
+function shouldExcludeCellByMitigation(cell) {
+    return exclusionZoneMitigationApplies() && Boolean(cell?.isNearStation);
+}
+
+function exclusionZoneGridStyle() {
+    return {
+        material: Cesium.Color.WHITE.withAlpha(0.0),
+        outlineColor: Cesium.Color.WHITE.withAlpha(0.96),
+    };
+}
+
+function updateMitigationControls() {
+    const scenario = selectedScenario();
+    const method = scenario === "brarg" ? "power back-off nas celulas de fronteira" : "zona de exclusao ao redor da estacao";
+
+    if (scenarioHelp) {
+        scenarioHelp.textContent = scenario === "brarg"
+            ? "Usa o cenario BR/ARG do campaign 02_DC_MSS_to_FS."
+            : "Usa o cenario South America do campaign 02_DC_MSS_to_FS.";
+    }
+
+    if (mitigationToggleBtn) {
+        mitigationToggleBtn.textContent = mitigationEnabled ? "Ativada" : "Desativada";
+        mitigationToggleBtn.classList.toggle("is-active", mitigationEnabled);
+        mitigationToggleBtn.title = `${mitigationEnabled ? "Desativa" : "Ativa"} ${method}.`;
+    }
+
+    if (mitigationHelp) {
+        mitigationHelp.textContent = mitigationEnabled
+            ? `Mitigacao ativa: ${method}.`
+            : `Mitigacao desligada: ${method} ignorado.`;
+    }
+}
+
+function updateAzimuthToggleControl() {
+    if (!azimuthToggleBtn) return;
+
+    azimuthToggleBtn.textContent = showAzimuthVector ? "Vetor ativo" : "Vetor oculto";
+    azimuthToggleBtn.classList.toggle("is-active", showAzimuthVector);
+    azimuthToggleBtn.title = showAzimuthVector
+        ? "Ocultar vetor de azimute da antena FS/BS."
+        : "Mostrar vetor de azimute da antena FS/BS.";
+}
+
+function updateUeDensityControl() {
+    if (ueDensityInfo) {
+        ueDensityInfo.textContent = String(ueMaxPerCell);
+    }
+}
+
 function distanceKmBetween(lon1, lat1, lon2, lat2) {
     const toRad = Math.PI / 180;
     const dLat = (lat2 - lat1) * toRad;
@@ -198,7 +309,7 @@ function distanceKmBetween(lon1, lat1, lon2, lat2) {
 }
 
 function isNearPresentationStation(cell) {
-    if (!isPresentationProfile() || !isSouthAmericaServiceArea() || !simulation?.station) {
+    if (!isSouthAmericaScenario() || !simulation?.station) {
         return false;
     }
 
@@ -211,14 +322,14 @@ function isNearPresentationStation(cell) {
 }
 
 function gridCellStyle(isBorder, isNearStation, { showPowerBackoffBorder = true } = {}) {
-    if (isBrArgServiceArea() && isBorder && showPowerBackoffBorder) {
+    if (isBrArgScenario() && isBorder && showPowerBackoffBorder) {
         return {
             material: Cesium.Color.WHITE.withAlpha(0.34),
             outlineColor: Cesium.Color.WHITE.withAlpha(0.95),
         };
     }
 
-    if (isSouthAmericaServiceArea() && isNearStation) {
+    if (exclusionZoneMitigationApplies() && isNearStation) {
         return {
             material: Cesium.Color.RED.withAlpha(0.22),
             outlineColor: Cesium.Color.RED.withAlpha(0.95),
@@ -316,7 +427,9 @@ function baseGridMaterial(isBorder, { showPowerBackoffBorder = true } = {}) {
 
 function resetGridCellEntity(entity) {
     entity.show = false;
-    const style = gridCellStyle(entity.gridCellIsBorder, entity.gridCellNearStation);
+    const style = gridCellStyle(entity.gridCellIsBorder, entity.gridCellNearStation, {
+        showPowerBackoffBorder: powerBackoffMitigationApplies(),
+    });
     entity.polygon.material = style.material;
     entity.polygon.outlineColor = style.outlineColor;
     entity.gridCellSatelliteId = undefined;
@@ -331,6 +444,7 @@ function resetGridCellEntity(entity) {
     entity.gridCellScenarioTxPowerDbm = undefined;
     entity.gridCellPathLossDb = undefined;
     entity.gridCellDistanceKm = undefined;
+    entity.gridCellExcludedZone = undefined;
 }
 
 function applyFixedGridAssignment(entity, assignment) {
@@ -341,10 +455,11 @@ function applyFixedGridAssignment(entity, assignment) {
     const style = gridCellStyle(
         entity.gridCellIsBorder,
         entity.gridCellNearStation,
-        { showPowerBackoffBorder: isServiceGridMode }
+        { showPowerBackoffBorder: isServiceGridMode && powerBackoffMitigationApplies() }
     );
-    entity.polygon.material = details.heatmapColor || style.material;
-    entity.polygon.outlineColor = style.outlineColor;
+    const excludedStyle = details.isExcludedZone ? exclusionZoneGridStyle() : null;
+    entity.polygon.material = excludedStyle?.material || details.heatmapColor || style.material;
+    entity.polygon.outlineColor = excludedStyle?.outlineColor || style.outlineColor;
     entity.gridCellSatelliteId = details.satelliteId;
     entity.gridCellElevationDeg = details.elevationDeg;
     entity.gridCellElevationThresholdDeg = details.elevationThresholdDeg;
@@ -357,6 +472,7 @@ function applyFixedGridAssignment(entity, assignment) {
     entity.gridCellScenarioTxPowerDbm = details.scenarioTxPowerDbm;
     entity.gridCellPathLossDb = details.pathLossDb;
     entity.gridCellDistanceKm = details.distanceKm;
+    entity.gridCellExcludedZone = Boolean(details.isExcludedZone);
 }
 
 function setStatus(message) {
@@ -364,7 +480,7 @@ function setStatus(message) {
 }
 
 function satelliteColor(isActive) {
-    return isActive ? Cesium.Color.fromBytes(0, 255, 0, 255) : Cesium.Color.CYAN.withAlpha(0.9);
+    return isActive ? Cesium.Color.fromBytes(0, 255, 0, 255) : Cesium.Color.CYAN.withAlpha(0.58);
 }
 
 function hideCellTooltip() {
@@ -473,6 +589,29 @@ function updateInterferenceLegend(scale = currentLinkBudgetScale) {
 }
 
 function showCellTooltip(position, entity) {
+    if (entity.gridCellExcludedZone) {
+        const elevationText = Number.isFinite(entity.gridCellElevationDeg)
+            ? `${entity.gridCellElevationDeg.toFixed(2)}Â°`
+            : "indisponivel";
+        const distanceText = Number.isFinite(entity.gridCellDistanceKm)
+            ? `${entity.gridCellDistanceKm.toFixed(1)} km`
+            : "dentro da zona";
+
+        cellTooltip.innerHTML = `
+            <div class="tooltip-title">Zona de exclusao</div>
+            <div class="tooltip-row"><span>Estado</span><strong>Celula removida da grade ativa</strong></div>
+            <div class="tooltip-row"><span>Satelite</span><strong>${entity.gridCellSatelliteId || "n/a"}</strong></div>
+            <div class="tooltip-row"><span>Elevacao</span><strong>${elevationText}</strong></div>
+            <div class="tooltip-row"><span>Distancia FS</span><strong>${distanceText}</strong></div>
+        `;
+        cellTooltip.style.left = `${Math.min(position.x + 16, window.innerWidth - 310)}px`;
+        cellTooltip.style.top = `${Math.min(position.y + 16, window.innerHeight - 180)}px`;
+        cellTooltip.style.display = "block";
+        cellTooltip.setAttribute("aria-hidden", "false");
+        setStatus("Zona de exclusao: celula visualizada sem preenchimento, mas removida da grade ativa do SHARC.");
+        return;
+    }
+
     if (Number.isFinite(entity.gridCellInterferenceDbm)) {
         const interferenceText = `${entity.gridCellInterferenceDbm.toFixed(1)} dBm`;
         const couplingText = Number.isFinite(entity.gridCellCouplingLossDb)
@@ -584,14 +723,14 @@ function showCellTooltip(position, entity) {
         return;
     }
 
-    const isBorderCell = Boolean(entity.gridCellIsBorder);
-    const gain = isBorderCell ? ANTENNA_GAIN_LOW : ANTENNA_GAIN_HIGH;
+    const isPowerBackoffCell = powerBackoffMitigationApplies() && Boolean(entity.gridCellIsBorder);
+    const gain = isPowerBackoffCell ? ANTENNA_GAIN_LOW : ANTENNA_GAIN_HIGH;
     const gainText = Number.isFinite(gain) ? `${gain.toFixed(1)} dBi` : "indisponível";
-    const message = isBorderCell
+    const message = isPowerBackoffCell
         ? `Ganho: ${gainText} | Power back-off aplicado na fronteira`
         : `Ganho: ${gainText}`;
 
-    cellTooltip.innerHTML = isBorderCell
+    cellTooltip.innerHTML = isPowerBackoffCell
         ? `<strong>Ganho:</strong> ${gainText}\nPower back-off aplicado na fronteira`
         : `<strong>Ganho:</strong> ${gainText}`;
     cellTooltip.style.left = `${position.x + 14}px`;
@@ -668,6 +807,149 @@ function destinationFromOffsetKm(origin, eastKm, northKm) {
         lon: ((lon2 * 180 / Math.PI + 540) % 360) - 180,
         lat: lat2 * 180 / Math.PI,
     };
+}
+
+function destinationFromAzimuthKm(origin, azimuthDeg, distanceKm) {
+    // SHARC usa o plano local ENU com azimute 0 deg no eixo +x (leste)
+    // e 90 deg no eixo +y (norte). Esta conversao replica essa convencao.
+    const azimuthRad = azimuthDeg * Math.PI / 180;
+    return destinationFromOffsetKm(
+        origin,
+        Math.cos(azimuthRad) * distanceKm,
+        Math.sin(azimuthRad) * distanceKm
+    );
+}
+
+function updateAzimuthVector() {
+    if (!simulation?.station) return;
+
+    const station = simulation.station;
+    const azimuthDeg = Number.isFinite(simulation.meta?.bsAzimuthDeg)
+        ? simulation.meta.bsAzimuthDeg
+        : DEFAULT_BS_AZIMUTH_DEG;
+    const endPoint = destinationFromAzimuthKm(station, azimuthDeg, BS_AZIMUTH_VECTOR_LENGTH_KM);
+    const positions = Cesium.Cartesian3.fromDegreesArrayHeights([
+        station.lon,
+        station.lat,
+        Math.max(20, station.altKm * 1000 + 20),
+        endPoint.lon,
+        endPoint.lat,
+        20,
+    ]);
+
+    if (!azimuthVectorEntity) {
+        azimuthVectorEntity = viewer.entities.add({
+            id: "bs-azimuth-vector",
+            position: Cesium.Cartesian3.fromDegrees(endPoint.lon, endPoint.lat, 20),
+            polyline: {
+                positions,
+                width: 10,
+                material: new Cesium.PolylineArrowMaterialProperty(Cesium.Color.RED.withAlpha(0.92)),
+                clampToGround: false,
+            },
+            label: {
+                text: `Az ${azimuthDeg.toFixed(0)} deg`,
+                font: "bold 13px Segoe UI",
+                fillColor: Cesium.Color.RED,
+                outlineColor: Cesium.Color.BLACK,
+                outlineWidth: 3,
+                style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                showBackground: true,
+                backgroundColor: Cesium.Color.BLACK.withAlpha(0.65),
+                pixelOffset: new Cesium.Cartesian2(0, -14),
+                disableDepthTestDistance: Number.POSITIVE_INFINITY,
+            },
+        });
+    } else {
+        azimuthVectorEntity.polyline.positions = positions;
+        azimuthVectorEntity.position = Cesium.Cartesian3.fromDegrees(endPoint.lon, endPoint.lat, 20);
+        azimuthVectorEntity.label.text = `Az ${azimuthDeg.toFixed(0)} deg`;
+    }
+
+    azimuthVectorEntity.show = showAzimuthVector;
+    updateAzimuthToggleControl();
+}
+
+function hashString(value) {
+    let hash = 2166136261;
+    for (let index = 0; index < value.length; index++) {
+        hash ^= value.charCodeAt(index);
+        hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+}
+
+function randomUnit(seed) {
+    const value = Math.sin(seed * 12.9898) * 43758.5453;
+    return value - Math.floor(value);
+}
+
+function hideUnusedUeEntities(startIndex) {
+    for (let index = startIndex; index < ueEntities.length; index++) {
+        if (ueEntities[index]) ueEntities[index].show = false;
+    }
+}
+
+function renderRandomUesForActiveCells() {
+    let ueIndex = 0;
+    const jitterRadiusKm = Math.max(1, GLOBAL_HEX_RADIUS_KM * 0.45);
+
+    for (const entity of activeCellsThisFrame) {
+        if (ueIndex >= UE_MAX_POINTS) break;
+        if (!entity?.gridCellKey) continue;
+
+        const cell = globalGridCells.get(entity.gridCellKey);
+        if (!cell || shouldExcludeCellByMitigation(cell)) continue;
+
+        const seed = hashString(`${selectedScenario()}:${entity.gridCellKey}`);
+        const density = Math.max(1, Math.min(5, Math.round(ueMaxPerCell)));
+        const extraProbability = Math.min(0.95, 0.18 + Math.max(0, density - 2) * 0.18);
+        const rawExtraCount = Math.floor(randomUnit(seed) * density);
+        const ueCount = density === 1
+            ? 1
+            : 1 + Math.min(density - 1, randomUnit(seed + 53) < extraProbability ? rawExtraCount : 0);
+
+        for (let cellUeIndex = 0; cellUeIndex < ueCount; cellUeIndex++) {
+            if (ueIndex >= UE_MAX_POINTS) break;
+
+            const ueSeed = seed + 97 * (cellUeIndex + 1);
+            const angle = randomUnit(ueSeed + 17) * 2 * Math.PI;
+            const distanceKm = Math.sqrt(randomUnit(ueSeed + 31)) * jitterRadiusKm;
+            const point = destinationFromOffsetKm(
+                cell,
+                Math.cos(angle) * distanceKm,
+                Math.sin(angle) * distanceKm
+            );
+
+            let ueEntity = ueEntities[ueIndex];
+            const position = Cesium.Cartesian3.fromDegrees(point.lon, point.lat, 35);
+
+            if (!ueEntity) {
+                ueEntity = viewer.entities.add({
+                    position,
+                    point: {
+                        pixelSize: 8.0,
+                        color: UE_COLOR,
+                        outlineColor: Cesium.Color.BLACK.withAlpha(0.7),
+                        outlineWidth: 1.0,
+                        scaleByDistance: UE_SCALE_BY_DISTANCE,
+                        translucencyByDistance: UE_TRANSLUCENCY_BY_DISTANCE,
+                        heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
+                    },
+                });
+                ueEntities.push(ueEntity);
+            } else {
+                ueEntity.position = position;
+                ueEntity.point.scaleByDistance = UE_SCALE_BY_DISTANCE;
+                ueEntity.point.translucencyByDistance = UE_TRANSLUCENCY_BY_DISTANCE;
+            }
+
+            ueEntity.show = true;
+            ueIndex += 1;
+        }
+    }
+
+    hideUnusedUeEntities(ueIndex);
 }
 
 function lonLatToVectorKm(point, radiusKm = EARTH_RADIUS_KM) {
@@ -890,7 +1172,8 @@ function handleCellPointer(event, { hideWhenEmpty = true } = {}) {
 
 async function loadSimulation(profile) {
     stopPlayback();
-    setStatus(`Carregando perfil ${profile}...`);
+    updateMitigationControls();
+    setStatus(`Carregando perfil ${profile} (${SCENARIO_LABELS[selectedScenario()]})...`);
 
     if (window.location.protocol === "file:") {
         throw new Error("Abra o simulador pelo servidor da API: http://127.0.0.1:8000?profile=presentation");
@@ -898,9 +1181,9 @@ async function loadSimulation(profile) {
 
     const pageParams = new URLSearchParams(window.location.search);
     const apiParams = new URLSearchParams({ profile });
-    const paramFile = pageParams.get("param_file");
-    if (paramFile) {
-        apiParams.set("param_file", paramFile);
+    const paramFile = scenarioWasSelectedByUser ? null : pageParams.get("param_file");
+    if (paramFile || scenarioWasSelectedByUser) {
+        apiParams.set("param_file", paramFile || selectedScenarioParamFile());
     }
 
     const response = await fetch(`/api/simulation?${apiParams.toString()}`);
@@ -957,6 +1240,7 @@ async function loadSimulation(profile) {
     ANTENNA_SYSTEM4_LOW = simulation.meta.antennaSystem4Low;
     updateFootprintModeHelp();
     updateFootprintInfo();
+    updateMitigationControls();
 
     console.log(`Configurações carregadas: Raio = ${GLOBAL_HEX_RADIUS_KM}km, Guardband = ${GUARDBAND_HEX_COUNT} hexs`);
 
@@ -965,7 +1249,7 @@ async function loadSimulation(profile) {
     preBuildGrid();
     renderFrame(0);
     applyPresentationCamera();
-    setStatus(`Perfil ${simulation.meta.profile} carregado com ${simulation.meta.frameCount} frames.`);
+    setStatus(`Perfil ${simulation.meta.profile} carregado em ${SCENARIO_LABELS[selectedScenario()]} com ${simulation.meta.frameCount} frames.`);
 }
 
 function buildStaticScene() {
@@ -998,6 +1282,8 @@ function buildStaticScene() {
         },
     });
 
+    updateAzimuthVector();
+
     brazilPolygons.forEach((poly, index) => {
         brazilEntities.push(viewer.entities.add({
             id: `brazil-outline-${index}`,
@@ -1028,7 +1314,7 @@ function buildSatelliteEntities() {
                 satellite.altKm * 1000
             ),
             point: {
-                pixelSize: 7,
+                pixelSize: satellite.active ? ACTIVE_SATELLITE_PIXEL_SIZE : INACTIVE_SATELLITE_PIXEL_SIZE,
                 color: satelliteColor(satellite.active),
                 outlineColor: Cesium.Color.BLACK,
                 outlineWidth: 1,
@@ -1085,11 +1371,26 @@ function assignGridCellsToSatellites(frame) {
         });
 
         if (bestSatellite && bestElevation >= MINIMUM_SERVICE_ANGLE_DEG) {
-            assignedCells.set(key, bestSatellite.id);
-            satBeamCounts.set(
-                bestSatellite.id,
-                (satBeamCounts.get(bestSatellite.id) || 0) + 1
+            const isExcludedZone = shouldExcludeCellByMitigation(cell);
+            assignedCells.set(key, isExcludedZone
+                ? {
+                    satelliteId: bestSatellite.id,
+                    lon: cell.lon,
+                    lat: cell.lat,
+                    elevationDeg: bestElevation,
+                    elevationThresholdDeg: MINIMUM_SERVICE_ANGLE_DEG,
+                    distanceKm: distanceKmBetween(cell.lon, cell.lat, simulation.station.lon, simulation.station.lat),
+                    isExcludedZone: true,
+                }
+                : bestSatellite.id
             );
+
+            if (!isExcludedZone) {
+                satBeamCounts.set(
+                    bestSatellite.id,
+                    (satBeamCounts.get(bestSatellite.id) || 0) + 1
+                );
+            }
         }
     });
 
@@ -1336,10 +1637,13 @@ function assignSharcInterferenceMask(frame) {
 
         if (!bestSatellite || bestElevation < thresholdDeg) return;
 
-        satBeamCounts.set(
-            bestSatellite.id,
-            (satBeamCounts.get(bestSatellite.id) || 0) + 1
-        );
+        const isExcludedZone = shouldExcludeCellByMitigation(cell);
+        if (!isExcludedZone) {
+            satBeamCounts.set(
+                bestSatellite.id,
+                (satBeamCounts.get(bestSatellite.id) || 0) + 1
+            );
+        }
         assignedCells.set(key, {
             satelliteId: bestSatellite.id,
             lon: cell.lon,
@@ -1347,7 +1651,11 @@ function assignSharcInterferenceMask(frame) {
             radiusKm: GLOBAL_HEX_RADIUS_KM,
             elevationDeg: bestElevation,
             elevationThresholdDeg: thresholdDeg,
-            heatmapColor: getInterferenceColor(bestElevation, thresholdDeg, 90),
+            distanceKm: isExcludedZone
+                ? distanceKmBetween(cell.lon, cell.lat, simulation.station.lon, simulation.station.lat)
+                : undefined,
+            heatmapColor: isExcludedZone ? undefined : getInterferenceColor(bestElevation, thresholdDeg, 90),
+            isExcludedZone,
         });
     });
 
@@ -1378,7 +1686,7 @@ function assignSharcInterferenceLinkBudget(frame) {
             const rxGainDb = Number.isFinite(SINGLE_EARTH_STATION_GAIN_DB)
                 ? SINGLE_EARTH_STATION_GAIN_DB
                 : 0;
-            const powerBackoffDb = cell.isBorder && Number.isFinite(POWER_BACKOFF_DB)
+            const powerBackoffDb = powerBackoffMitigationApplies() && cell.isBorder && Number.isFinite(POWER_BACKOFF_DB)
                 ? POWER_BACKOFF_DB
                 : 0;
             const effectiveConductedPowerDbm = IMT_CONDUCTED_POWER_DBM - powerBackoffDb;
@@ -1413,6 +1721,21 @@ function assignSharcInterferenceLinkBudget(frame) {
         });
 
         if (best) {
+            if (shouldExcludeCellByMitigation(cell)) {
+                assignedCells.set(key, {
+                    ...best,
+                    interferenceDbm: undefined,
+                    couplingLossDb: undefined,
+                    powerBackoffDb: undefined,
+                    effectivePowerDbm: undefined,
+                    scenarioTxPowerDbm: undefined,
+                    pathLossDb: undefined,
+                    distanceKm: distanceKmBetween(cell.lon, cell.lat, simulation.station.lon, simulation.station.lat),
+                    isExcludedZone: true,
+                });
+                return;
+            }
+
             candidates.push([key, best]);
             satBeamCounts.set(
                 best.satelliteId,
@@ -1645,7 +1968,7 @@ function drawAntenna7dbPreviewCells(activeHexagonsMap) {
 }
 
 function getFootprintAssignment(frame, frameIndex) {
-    const cacheKey = `${footprintModeSelect.value}:${frameIndex}`;
+    const cacheKey = `${footprintModeSelect.value}:${selectedScenario()}:${mitigationEnabled ? "mit" : "raw"}:${frameIndex}`;
     if (footprintAssignmentCache.has(cacheKey)) {
         return footprintAssignmentCache.get(cacheKey);
     }
@@ -1829,9 +2152,9 @@ function renderFrame(frameIndex) {
 
         entity.point.color = satellite.active
             ? Cesium.Color.LIME.withAlpha(1.0)
-            : Cesium.Color.CYAN.withAlpha(0.9);
+            : Cesium.Color.CYAN.withAlpha(0.58);
 
-        entity.point.pixelSize = satellite.active ? 10 : 6;
+        entity.point.pixelSize = satellite.active ? ACTIVE_SATELLITE_PIXEL_SIZE : INACTIVE_SATELLITE_PIXEL_SIZE;
     });
 
     for (let i = 0; i < activeConesCount; i++) {
@@ -2019,7 +2342,7 @@ function renderFrame(frameIndex) {
 
         if (count > 0) {
             entity.point.color = Cesium.Color.LIME.withAlpha(1.0);
-            entity.point.pixelSize = 10;
+            entity.point.pixelSize = ACTIVE_SATELLITE_PIXEL_SIZE;
             entity.label.text = `${satellite.id}\n${count} cel`;
             entity.label.show = true;
             entity.label.font = "bold 15px monospace";
@@ -2042,8 +2365,8 @@ function renderFrame(frameIndex) {
             entity.label.disableDepthTestDistance = Number.POSITIVE_INFINITY; 
         } else {
             entity.label.show = false;
-            entity.point.color = Cesium.Color.CYAN.withAlpha(0.9);
-            entity.point.pixelSize = 6;
+            entity.point.color = Cesium.Color.CYAN.withAlpha(0.58);
+            entity.point.pixelSize = INACTIVE_SATELLITE_PIXEL_SIZE;
         }
 
         if (isPresentationProfile()) {
@@ -2064,6 +2387,8 @@ function renderFrame(frameIndex) {
             }
         });
     }
+
+    renderRandomUesForActiveCells();
 
     viewer.entities.resumeEvents(); 
 
@@ -2107,6 +2432,57 @@ if (captureBtn) {
     });
 }
 
+if (hudDrawerToggle && hud) {
+    hudDrawerToggle.addEventListener("click", () => {
+        const collapsed = hud.classList.toggle("is-collapsed");
+        hudDrawerToggle.setAttribute("aria-label", collapsed ? "Abrir painel" : "Recolher painel");
+        hudDrawerToggle.title = collapsed ? "Abrir painel" : "Recolher painel";
+    });
+}
+
+if (scenarioSelect) {
+    scenarioSelect.addEventListener("change", async () => {
+        try {
+            scenarioWasSelectedByUser = true;
+            footprintAssignmentCache.clear();
+            await loadSimulation(profileSelect.value);
+        } catch (error) {
+            setStatus(error.message);
+            console.error(error);
+        }
+    });
+}
+
+if (mitigationToggleBtn) {
+    mitigationToggleBtn.addEventListener("click", () => {
+        mitigationEnabled = !mitigationEnabled;
+        footprintAssignmentCache.clear();
+        updateMitigationControls();
+        activeCellsThisFrame.forEach(entity => { if (entity) resetGridCellEntity(entity); });
+        activeCellsThisFrame.length = 0;
+        activeCellEntitySet.clear();
+        renderFrame(currentFrameIndex);
+    });
+}
+
+if (azimuthToggleBtn) {
+    azimuthToggleBtn.addEventListener("click", () => {
+        showAzimuthVector = !showAzimuthVector;
+        updateAzimuthVector();
+        viewer.scene.requestRender();
+    });
+}
+
+if (ueDensitySlider) {
+    ueDensitySlider.addEventListener("input", (event) => {
+        ueMaxPerCell = Number(event.target.value) || 1;
+        updateUeDensityControl();
+        renderRandomUesForActiveCells();
+        viewer.scene.requestRender();
+    });
+    updateUeDensityControl();
+}
+
 reloadBtn.addEventListener("click", async () => {
     try {
         await loadSimulation(profileSelect.value);
@@ -2146,6 +2522,18 @@ async function init() {
         if (requestedProfile) {
             profileSelect.value = requestedProfile;
         }
+        const requestedScenario = pageParams.get("scenario");
+        const requestedParamFile = pageParams.get("param_file") || "";
+        if (requestedScenario && SCENARIO_PARAM_FILES[requestedScenario] && scenarioSelect) {
+            scenarioSelect.value = requestedScenario;
+            scenarioWasSelectedByUser = true;
+        } else if (requestedParamFile.includes("BR_AR") && scenarioSelect) {
+            scenarioSelect.value = "brarg";
+        } else if (requestedParamFile.includes("SouthAmerica") && scenarioSelect) {
+            scenarioSelect.value = "sa";
+        }
+        updateMitigationControls();
+        updateAzimuthToggleControl();
         viewer.terrainProvider = await Cesium.createWorldTerrainAsync();
         viewer.imageryLayers.removeAll();
         const imagery = await Cesium.IonImageryProvider.fromAssetId(2);

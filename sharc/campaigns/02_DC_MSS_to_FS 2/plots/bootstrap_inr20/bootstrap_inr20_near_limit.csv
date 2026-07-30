@@ -1,0 +1,16 @@
+area,system,altitude_km,fs_height_m,load_factor_pct,mechanism,distance_type,distance_km,azimuth_deg,samples,bootstrap_resamples,bootstrap_seed,inr_20_pct_db,inr_20_pct_ci95_low_db,inr_20_pct_ci95_high_db,inr_20_pct_ci95_half_width_db,protection_margin_db,protection_margin_ci95_low_db,protection_margin_ci95_high_db,classification
+BR_AR_Paraguay,3,340,20,20,power back-off,M,10,90,4000,10000,20260727,-6.171454,-6.327916,-5.937636,0.195140,0.171454,-0.062364,0.327916,borderline
+BR_AR_Paraguay,3,340,40,20,power back-off,M,10,90,4000,10000,20260727,-6.247401,-6.411686,-6.020864,0.195411,0.247401,0.020864,0.411686,supported compliant
+BR_AR_Paraguay,3,525,20,50,power back-off,M,40,90,4000,10000,20260727,-5.771911,-5.996025,-5.605270,0.195377,-0.228089,-0.394730,-0.003975,supported non-compliant
+BR_AR_Paraguay,3,525,20,50,power back-off,M,50,90,4000,10000,20260727,-5.990259,-6.214765,-5.773743,0.220511,-0.009741,-0.226257,0.214765,borderline
+BR_AR_Paraguay,3,525,20,50,power back-off,M,60,90,4000,10000,20260727,-6.164240,-6.331264,-5.925138,0.203063,0.164240,-0.074862,0.331264,borderline
+BR_AR_Paraguay,3,525,20,50,power back-off,M,70,90,4000,10000,20260727,-6.241124,-6.467139,-6.018811,0.224164,0.241124,0.018811,0.467139,supported compliant
+BR_AR_Paraguay,3,525,40,50,power back-off,M,40,90,4000,10000,20260727,-5.882031,-6.067323,-5.699178,0.184073,-0.117969,-0.300822,0.067323,borderline
+BR_AR_Paraguay,3,525,40,50,power back-off,M,50,90,4000,10000,20260727,-6.063255,-6.294424,-5.901715,0.196354,0.063255,-0.098285,0.294424,borderline
+SouthAmerica,3,340,20,20,exclusion zone,EZ,80,90,4000,10000,20260727,-5.911607,-5.953140,-5.883087,0.035026,-0.088393,-0.116913,-0.046860,supported non-compliant
+SouthAmerica,3,340,20,20,exclusion zone,EZ,90,90,4000,10000,20260727,-6.117296,-6.154215,-6.075526,0.039345,0.117296,0.075526,0.154215,supported compliant
+SouthAmerica,3,340,40,20,exclusion zone,EZ,80,90,4000,10000,20260727,-5.997361,-6.033650,-5.961968,0.035841,-0.002639,-0.038032,0.033650,borderline
+SouthAmerica,3,340,40,20,exclusion zone,EZ,90,90,4000,10000,20260727,-6.195784,-6.237610,-6.159496,0.039057,0.195784,0.159496,0.237610,supported compliant
+SouthAmerica,3,525,20,50,exclusion zone,EZ,100,90,4000,10000,20260727,-6.144842,-6.176467,-6.120990,0.027739,0.144842,0.120990,0.176467,supported compliant
+SouthAmerica,3,525,40,50,exclusion zone,EZ,90,90,4000,10000,20260727,-5.841247,-5.870805,-5.804703,0.033051,-0.158753,-0.195297,-0.129195,supported non-compliant
+SouthAmerica,3,525,40,50,exclusion zone,EZ,100,90,4000,10000,20260727,-6.238457,-6.266887,-6.218001,0.024443,0.238457,0.218001,0.266887,supported compliant

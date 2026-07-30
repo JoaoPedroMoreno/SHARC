@@ -47,6 +47,29 @@ def default_param_file() -> Path:
     )
 
 
+def resolve_param_file(param_file: str | Path | None) -> Path:
+    """Resolve arquivos de parametros enviados pela URL do frontend.
+
+    O servidor pode ser iniciado a partir da raiz do repositorio ou da pasta do
+    simulador. Por isso, caminhos relativos sao testados contra os locais mais
+    provaveis antes de serem entregues ao leitor de parametros do SHARC.
+    """
+    if not param_file:
+        return default_param_file()
+
+    candidate = Path(param_file)
+    if candidate.is_absolute() or candidate.exists():
+        return candidate
+
+    package_root = _package_root()
+    for base_path in (Path.cwd(), package_root, package_root.parent):
+        resolved = base_path / candidate
+        if resolved.exists():
+            return resolved
+
+    return candidate
+
+
 def _latlon_to_ecef(lat_deg: float, lon_deg: float, radius_km: float = EARTH_RADIUS_KM) -> np.ndarray:
     lat = np.radians(lat_deg)
     lon = np.radians(lon_deg)
@@ -196,7 +219,7 @@ class OrbitSimulationBackend:
             raise ValueError(f"Perfil invalido: {profile}. Use um destes: {', '.join(PROFILES)}")
 
         self.profile = PROFILES[profile]
-        self.param_file = Path(param_file) if param_file else default_param_file()
+        self.param_file = resolve_param_file(param_file)
         self.parameters = self._load_parameters()
         self.topology = self.parameters.imt.topology
         self.mss_dc = self.topology.mss_dc
@@ -518,6 +541,11 @@ class OrbitSimulationBackend:
             for zone in topology.mss_dc.power_control_zones.zones
         )
         gain_low = gain_high - power_backoff_db
+        try:
+            bs_azimuth_deg = float(system.geometry.azimuth.fixed)
+        except Exception:
+            bs_azimuth_deg = 90.0
+
         return {
             "meta": {
                 "profile": self.profile.name,
@@ -570,6 +598,7 @@ class OrbitSimulationBackend:
                     else None
                 ),
                 "polarizationLossDb": float(system.polarization_loss or 0.0),
+                "bsAzimuthDeg": bs_azimuth_deg,
                 "antennaSystem4High": antenna_system4_high,
                 "antennaSystem4Low": antenna_system4_low,
             },

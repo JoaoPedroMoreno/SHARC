@@ -24,6 +24,21 @@ class SampleList(list):
 class Results(object):
     """Handle the output of the simulator"""
 
+    imt_dl_selected_ue_metrics_columns = [
+        "snapshot_id",
+        "ue_id",
+        "beam_id",
+        "beam_active",
+        "beam_affected_by_pbo",
+        "power_backoff_db",
+        "tx_power_dbm",
+        "sinr_db",
+        "snr_db",
+        "spectral_efficiency_proxy",
+        "requested_affected_fraction",
+        "realized_affected_fraction",
+    ]
+
     # This should always be true for 1st samples flush
     overwrite_sample_files = True
 
@@ -109,6 +124,7 @@ class Results(object):
         self.system_inr = SampleList()
         self.system_pfd = SampleList()
         self.system_rx_interf = SampleList()
+        self.imt_dl_selected_ue_metrics = []
 
         self.__sharc_dir = pathlib.Path(__file__).parent.resolve()
 
@@ -221,6 +237,21 @@ class Results(object):
             else:
                 df.to_csv(file_path, mode="a", index=False, header=False)
             setattr(self, attr_name, SampleList())
+
+        if self.imt_dl_selected_ue_metrics:
+            file_path = os.path.join(
+                self.output_directory,
+                "imt_dl_selected_ue_metrics.csv",
+            )
+            df = pd.DataFrame(
+                self.imt_dl_selected_ue_metrics,
+                columns=self.imt_dl_selected_ue_metrics_columns,
+            )
+            if self.overwrite_sample_files:
+                df.to_csv(file_path, mode="w", index=False)
+            else:
+                df.to_csv(file_path, mode="a", index=False, header=False)
+            self.imt_dl_selected_ue_metrics = []
 
         if self.overwrite_sample_files:
             self.overwrite_sample_files = False

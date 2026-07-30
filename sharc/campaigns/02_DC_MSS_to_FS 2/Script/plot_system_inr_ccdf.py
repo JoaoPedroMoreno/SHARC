@@ -21,11 +21,33 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
+from matplotlib.cm import ScalarMappable
+from matplotlib.colors import Normalize
 import numpy as np
 
 
 FIELD = "system_inr"
 Y_LOG_FLOOR = 1e-4
+IEEE_TEXT_WIDTH_IN = 7.16
+IEEE_CCDF_HEIGHT_IN = 3.35
+IEEE_DPI = 300
+
+plt.rcParams.update(
+    {
+        "font.family": "serif",
+        "font.serif": ["Times New Roman", "Times", "DejaVu Serif"],
+        "font.size": 9.5,
+        "axes.titlesize": 9.8,
+        "axes.labelsize": 10.0,
+        "xtick.labelsize": 9.0,
+        "ytick.labelsize": 9.0,
+        "legend.fontsize": 8.5,
+        "lines.linewidth": 1.6,
+        "axes.linewidth": 0.8,
+        "savefig.dpi": IEEE_DPI,
+    }
+)
 
 OUTPUT_NAME_RE = re.compile(
     r"^output_dc_mss_to_fs_"
@@ -45,17 +67,10 @@ AREA_ORDER = {
     "SouthAmerica": 1,
 }
 
-COLOR_CYCLE = [
-    "tab:blue",
-    "tab:orange",
-    "tab:green",
-    "tab:red",
-    "tab:purple",
-    "tab:brown",
-    "tab:pink",
-    "tab:gray",
-]
-
+AREA_LABELS = {
+    "BR_AR_Paraguay": "Brazil/Argentina",
+    "SouthAmerica": "South America",
+}
 
 @dataclass(frozen=True)
 class Scenario:
@@ -93,12 +108,7 @@ class Scenario:
 
     @property
     def label(self) -> str:
-        return (
-            f"h={self.fs_height_m}m, "
-            f"azi={self.azimuth_deg}deg,"
-            f"lf={self.load_factor_pct}%,"
-            f"{self.distance_type}={self.margin_km}km"
-        )
+        return f"LF={self.load_factor_pct}%, {self.distance_type}={self.margin_km} km"
 
 
 def parse_scenario(folder: Path) -> Scenario | None:
@@ -207,34 +217,31 @@ def group_sort_key(group_key: tuple[str, int, int]) -> tuple[int, int, int]:
     return (AREA_ORDER.get(area, 99), altitude_km, fs_height_m)
 
 
-def color_map_for_group(group: list[Scenario]) -> dict[tuple[int, int], str]:
-    tokens = sorted({(item.margin_km, item.azimuth_deg) for item in group})
-    return {token: COLOR_CYCLE[index % len(COLOR_CYCLE)] for index, token in enumerate(tokens)}
-
-
 def plot_group(group_key: tuple[str, int, int], group: list[Scenario], plots_dir: Path) -> Path | None:
     area, altitude_km, fs_height_m = group_key
-    colors = color_map_for_group(group)
+    margins = sorted({item.margin_km for item in group})
+    margin_norm = Normalize(vmin=min(margins), vmax=max(margins))
+    colormap = plt.get_cmap("viridis")
 
-    fig, ax = plt.subplots(figsize=(9.5, 6.0), dpi=140)
+    fig, ax = plt.subplots(figsize=(IEEE_TEXT_WIDTH_IN, IEEE_CCDF_HEIGHT_IN), dpi=IEEE_DPI, constrained_layout=True)
     plotted = 0
 
     for scenario in sorted(group, key=scenario_sort_key):
         csv_path = scenario.folder / f"{FIELD}.csv"
         samples = read_series_csv(csv_path, FIELD)
         if samples is None or samples.size == 0:
-            print(f"[skip] sem dados em {csv_path}")
+            print(f"[skip] no data in {csv_path}")
             continue
 
         xs, ys = compute_ccdf(samples)
-        line_style = "-" if scenario.load_factor_pct == 20 else ":"
+        line_style = "-" if scenario.load_factor_pct == 20 else "--"
         ax.plot(
             xs,
             ys,
-            label=scenario.label,
-            color=colors[(scenario.margin_km, scenario.azimuth_deg)],
+            color=colormap(margin_norm(scenario.margin_km)),
             linestyle=line_style,
-            linewidth=1.8,
+            linewidth=1.55,
+            alpha=0.98,
         )
         plotted += 1
 
@@ -243,26 +250,50 @@ def plot_group(group_key: tuple[str, int, int], group: list[Scenario], plots_dir
         [1.0, 0.2],
         color="black",
         linestyle=":",
-        linewidth=2.0,
-        label="6dB [20% of the time]",
+        linewidth=1.7,
     )
 
-    ax.set_title(f"System 3_{altitude_km}km - {area} - FS={fs_height_m}m")
+    area_label = AREA_LABELS.get(area, area)
+    azimuths = sorted({scenario.azimuth_deg for scenario in group})
+    azimuth_label = f", azimuth {azimuths[0]} deg" if len(azimuths) == 1 else ""
+    ax.set_title(f"{area_label}, System 3, {altitude_km} km, FS {fs_height_m} m{azimuth_label}", pad=4)
     ax.set_xlabel("INR [dB]")
-    ax.set_ylabel("CCDF")
+    ax.set_ylabel("Exceedance probability")
     ax.set_yscale("log")
     ax.set_ylim(Y_LOG_FLOOR, 1.0)
-    ax.grid(True, which="both", alpha=0.3)
+    ax.grid(True, which="both", alpha=0.28, linewidth=0.55)
+    ax.tick_params(axis="both", which="major", width=0.8, length=3.2)
+    ax.tick_params(axis="both", which="minor", width=0.6, length=2.0)
 
     if plotted:
-        ax.legend(fontsize=8.0)
-    else:
-        ax.text(0.5, 0.5, "sem dados", ha="center", va="center", transform=ax.transAxes)
+        distance_label = "Exclusion radius" if group[0].distance_type == "EZ" else "Border margin"
+        scalar_mappable = ScalarMappable(norm=margin_norm, cmap=colormap)
+        scalar_mappable.set_array([])
+        cbar = fig.colorbar(scalar_mappable, ax=ax, pad=0.012, fraction=0.04)
+        cbar.set_label(f"{distance_label} (km)", fontsize=9.5)
+        cbar.ax.tick_params(labelsize=8.5, width=0.7, length=2.8)
 
-    fig.tight_layout()
+        legend_handles = [
+            Line2D([0], [0], color="0.15", linestyle="-", linewidth=1.8, label="LF=20%"),
+            Line2D([0], [0], color="0.15", linestyle="--", linewidth=1.8, label="LF=50%"),
+            Line2D([0], [0], color="black", linestyle=":", linewidth=1.8, label="-6 dB criterion"),
+        ]
+        ax.legend(
+            handles=legend_handles,
+            loc="lower left",
+            frameon=False,
+            fancybox=False,
+            handlelength=2.2,
+            borderpad=0.2,
+            labelspacing=0.25,
+        )
+    else:
+        ax.text(0.5, 0.5, "no data", ha="center", va="center", transform=ax.transAxes)
+
     plots_dir.mkdir(parents=True, exist_ok=True)
     out_path = plots_dir / f"system_inr_ccdf_{area}_Sys3_{altitude_km}km_FS{fs_height_m}m.png"
     fig.savefig(out_path, bbox_inches="tight")
+    fig.savefig(out_path.with_suffix(".pdf"), bbox_inches="tight")
     plt.close(fig)
     return out_path if plotted else None
 

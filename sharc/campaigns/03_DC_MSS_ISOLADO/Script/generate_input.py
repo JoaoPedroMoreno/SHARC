@@ -2,46 +2,50 @@ from pathlib import Path
 import re
 
 
-base_dir = Path(__file__).resolve().parent
-input_file = base_dir / "base_input.yaml"
-output_dir = base_dir.parent / "input"
-output_dir.mkdir(parents=True, exist_ok=True)
+BASE_DIR = Path(__file__).resolve().parent
+INPUT_FILE = BASE_DIR / "base_input.yaml"
+OUTPUT_DIR = BASE_DIR.parent / "input"
 
-SYSTEMS = {
-    "Sys3_340km": {
-        "n_planes": 48,
-        "alt_km": 340,
-        "sats_per_plane": 110,
-        "beam_radius_m": 23775,
-    },
-    "Sys3_525km": {
-        "n_planes": 28,
-        "alt_km": 525,
-        "sats_per_plane": 120,
-        "beam_radius_m": 36712,
-    },
-}
-
-FS_HEIGHTS = {
-    20: {
-        "mean_clutter_height": "low",
-        "below_rooftop": 60,
-    },
-    40: {
-        "mean_clutter_height": "mid",
-        "below_rooftop": 10,
-    },
-}
+SYSTEM_NAME = "Sys3_340km"
+N_PLANES = 48
+ALTITUDE_KM = 340.0
+SATS_PER_PLANE = 110
+BEAM_RADIUS_M = 25803
 
 LOAD_FACTORS = [0.2, 0.5]
+POWER_BACKOFF_LEVELS_DB = [0.0, 5.0, 10.0, 15.0, 20.0]
+AFFECTED_FRACTIONS = [0.05, 0.10, 0.15]
 SERVED_COUNTRIES = ["Brazil"]
 
 
-def scenario_name(system_name: str, fs_height_m: int, load_percent: int) -> str:
-    return f"dc_mss_isolado_{system_name}_FS{fs_height_m}m_LF{load_percent}"
+def scenario_name(
+    load_factor: float,
+    power_backoff_db: float,
+    affected_fraction: float,
+) -> str:
+    load_percent = int(round(load_factor * 100))
+    pbo_db = int(round(power_backoff_db))
+    fraction_percent = int(round(affected_fraction * 100))
+    return (
+        f"dc_mss_isolado_{SYSTEM_NAME}_LF{load_percent}"
+        f"_PBO{pbo_db}dB_F{fraction_percent:02d}pct"
+    )
 
 
-def cleanup_generated_inputs() -> None:
+def build_scenarios() -> list[tuple[float, float, float]]:
+    scenarios = []
+    for load_factor in LOAD_FACTORS:
+        scenarios.append((load_factor, 0.0, 0.0))
+        for power_backoff_db in POWER_BACKOFF_LEVELS_DB:
+            if power_backoff_db == 0.0:
+                continue
+            for affected_fraction in AFFECTED_FRACTIONS:
+                scenarios.append(
+                    (load_factor, power_backoff_db, affected_fraction))
+    return scenarios
+
+
+def cleanup_generated_inputs(output_dir: Path) -> None:
     for generated_file in output_dir.glob("dc_mss_isolado_*.yaml"):
         generated_file.unlink()
 
@@ -61,7 +65,14 @@ def replace_scalar(line: str, key: str, value) -> tuple[str, bool]:
     return f"{prefix}{separator}{value_text}{suffix}", True
 
 
-def replace_first_scalar(lines: list[str], key: str, value, *, start: int = 0, end: int | None = None) -> None:
+def replace_first_scalar(
+    lines: list[str],
+    key: str,
+    value,
+    *,
+    start: int = 0,
+    end: int | None = None,
+) -> None:
     end = len(lines) if end is None else end
     for index in range(start, end):
         updated, matched = replace_scalar(lines[index], key, value)
@@ -71,7 +82,13 @@ def replace_first_scalar(lines: list[str], key: str, value, *, start: int = 0, e
     raise KeyError(f"Could not find key '{key}' in template")
 
 
-def find_line(lines: list[str], pattern: str, *, start: int = 0, end: int | None = None) -> int:
+def find_line(
+    lines: list[str],
+    pattern: str,
+    *,
+    start: int = 0,
+    end: int | None = None,
+) -> int:
     end = len(lines) if end is None else end
     regex = re.compile(pattern)
     for index in range(start, end):
@@ -82,12 +99,19 @@ def find_line(lines: list[str], pattern: str, *, start: int = 0, end: int | None
 
 def find_next_top_level_section(lines: list[str], start: int) -> int:
     for index in range(start + 1, len(lines)):
-        if lines[index].strip() and line_indent(lines[index]) == 0 and not lines[index].lstrip().startswith("#"):
+        if (
+            lines[index].strip()
+            and line_indent(lines[index]) == 0
+            and not lines[index].lstrip().startswith("#")
+        ):
             return index
     return len(lines)
 
 
-def replace_country_name_blocks(lines: list[str], countries: list[str]) -> None:
+def replace_country_name_blocks(
+    lines: list[str],
+    countries: list[str],
+) -> None:
     index = 0
     while index < len(lines):
         if not re.match(r"^\s*country_names:\s*$", lines[index]):
@@ -108,90 +132,194 @@ def replace_country_name_blocks(lines: list[str], countries: list[str]) -> None:
                 continue
             break
 
-        lines[insert_at:remove_until] = [f"{' ' * item_indent}- {country}" for country in countries]
+        lines[insert_at:remove_until] = [
+            f"{' ' * item_indent}- {country}" for country in countries
+        ]
         index = insert_at + len(countries)
 
 
-def replace_power_backoff_values(lines: list[str], *, mss_dc_start: int, imt_end: int) -> None:
-    power_control_start = find_line(lines, r"^\s*power_control_zones:\s*$", start=mss_dc_start, end=imt_end)
-    matches = [
-        index for index in range(power_control_start, imt_end)
-        if re.match(r"^\s*-\s*power_backoff_db:\s*", lines[index])
-    ]
-    if len(matches) < 2:
-        raise KeyError("Expected at least two power_backoff_db zones in template")
-    lines[matches[0]], _ = replace_scalar(lines[matches[0]], "power_backoff_db", 0.0)
-    lines[matches[1]], _ = replace_scalar(lines[matches[1]], "power_backoff_db", 0.0)
+def neutralize_geographic_power_backoff(
+    lines: list[str],
+    *,
+    power_control_start: int,
+    imt_end: int,
+) -> None:
+    for index in range(power_control_start, imt_end):
+        if not re.match(r"^\s*-\s*power_backoff_db:\s*", lines[index]):
+            continue
+        lines[index], _ = replace_scalar(
+            lines[index],
+            "power_backoff_db",
+            0.0,
+        )
 
 
-def replace_mss_border_margins(lines: list[str], *, mss_dc_start: int, imt_end: int) -> None:
-    for index in range(mss_dc_start, imt_end):
-        updated, matched = replace_scalar(lines[index], "margin_from_border", 0)
-        if matched:
-            lines[index] = updated
-
-
-def update_template(template: str, *, output_prefix: str, system: dict, fs_height_m: int,
-                    fs_params: dict, load_factor: float) -> str:
+def update_template(
+    template: str,
+    *,
+    output_prefix: str,
+    load_factor: float,
+    power_backoff_db: float,
+    affected_fraction: float,
+) -> str:
     lines = template.splitlines()
 
     imt_start = find_line(lines, r"^imt:\s*$")
     imt_end = find_next_top_level_section(lines, imt_start)
-    topology_start = find_line(lines, r"^\s{4}topology:\s*$", start=imt_start, end=imt_end)
-    mss_dc_start = find_line(lines, r"^\s{8}mss_dc:\s*$", start=topology_start, end=imt_end)
-    bs_start = find_line(lines, r"^\s{4}bs:\s*$", start=imt_start, end=imt_end)
-    ue_start = find_line(lines, r"^\s{4}ue:\s*$", start=bs_start, end=imt_end)
-
-    fs_start = find_line(lines, r"^single_earth_station:\s*$")
-    fs_end = find_next_top_level_section(lines, fs_start)
-    fs_geometry_start = find_line(lines, r"^\s{2}geometry:\s*$", start=fs_start, end=fs_end)
-    fs_antenna_start = find_line(lines, r"^\s{2}antenna:\s*$", start=fs_geometry_start, end=fs_end)
-    param_p619_start = find_line(lines, r"^\s{2}param_p619:\s*$", start=fs_start, end=fs_end)
+    topology_start = find_line(
+        lines,
+        r"^\s{4}topology:\s*$",
+        start=imt_start,
+        end=imt_end,
+    )
+    mss_dc_start = find_line(
+        lines,
+        r"^\s{8}mss_dc:\s*$",
+        start=topology_start,
+        end=imt_end,
+    )
+    power_control_start = find_line(
+        lines,
+        r"^\s*power_control_zones:\s*$",
+        start=mss_dc_start,
+        end=imt_end,
+    )
+    bs_start = find_line(
+        lines,
+        r"^\s{4}bs:\s*$",
+        start=imt_start,
+        end=imt_end,
+    )
+    ue_start = find_line(
+        lines,
+        r"^\s{4}ue:\s*$",
+        start=bs_start,
+        end=imt_end,
+    )
 
     replace_first_scalar(lines, "output_dir_prefix", f"output_{output_prefix}")
-    replace_first_scalar(lines, "interfered_with", "false", start=imt_start, end=imt_end)
-    replace_first_scalar(lines, "imt_dl_intra_sinr_calculation_disabled", "false", start=imt_start, end=imt_end)
+    replace_first_scalar(
+        lines,
+        "interfered_with",
+        "false",
+        start=imt_start,
+        end=imt_end,
+    )
+    replace_first_scalar(
+        lines,
+        "imt_dl_intra_sinr_calculation_disabled",
+        "false",
+        start=imt_start,
+        end=imt_end,
+    )
 
-    replace_first_scalar(lines, "n_planes", system["n_planes"], start=mss_dc_start, end=imt_end)
-    replace_first_scalar(lines, "perigee_alt_km", float(system["alt_km"]), start=mss_dc_start, end=imt_end)
-    replace_first_scalar(lines, "apogee_alt_km", float(system["alt_km"]), start=mss_dc_start, end=imt_end)
-    replace_first_scalar(lines, "sats_per_plane", system["sats_per_plane"], start=mss_dc_start, end=imt_end)
-    replace_first_scalar(lines, "beam_radius", system["beam_radius_m"], start=mss_dc_start, end=imt_end)
-    replace_power_backoff_values(lines, mss_dc_start=mss_dc_start, imt_end=imt_end)
-    replace_mss_border_margins(lines, mss_dc_start=mss_dc_start, imt_end=imt_end)
+    replace_first_scalar(
+        lines, "n_planes", N_PLANES, start=mss_dc_start, end=imt_end)
+    replace_first_scalar(
+        lines,
+        "perigee_alt_km",
+        ALTITUDE_KM,
+        start=mss_dc_start,
+        end=imt_end,
+    )
+    replace_first_scalar(
+        lines,
+        "apogee_alt_km",
+        ALTITUDE_KM,
+        start=mss_dc_start,
+        end=imt_end,
+    )
+    replace_first_scalar(
+        lines,
+        "sats_per_plane",
+        SATS_PER_PLANE,
+        start=mss_dc_start,
+        end=imt_end,
+    )
+    replace_first_scalar(
+        lines,
+        "beam_radius",
+        BEAM_RADIUS_M,
+        start=mss_dc_start,
+        end=imt_end,
+    )
+    replace_first_scalar(
+        lines,
+        "mode",
+        "ACTIVE_FRACTION",
+        start=power_control_start,
+        end=bs_start,
+    )
+    replace_first_scalar(
+        lines,
+        "power_backoff_db",
+        float(power_backoff_db),
+        start=power_control_start,
+        end=bs_start,
+    )
+    replace_first_scalar(
+        lines,
+        "affected_fraction",
+        float(affected_fraction),
+        start=power_control_start,
+        end=bs_start,
+    )
+    neutralize_geographic_power_backoff(
+        lines,
+        power_control_start=power_control_start,
+        imt_end=bs_start,
+    )
 
-    replace_first_scalar(lines, "load_probability", load_factor, start=bs_start, end=ue_start)
-    replace_first_scalar(lines, "height", float(system["alt_km"] * 1000), start=bs_start, end=ue_start)
-
-    replace_first_scalar(lines, "height", fs_height_m, start=fs_geometry_start, end=fs_antenna_start)
-    replace_first_scalar(lines, "mean_clutter_height", fs_params["mean_clutter_height"], start=param_p619_start, end=fs_end)
-    replace_first_scalar(lines, "below_rooftop", fs_params["below_rooftop"], start=param_p619_start, end=fs_end)
+    replace_first_scalar(
+        lines,
+        "load_probability",
+        load_factor,
+        start=bs_start,
+        end=ue_start,
+    )
+    replace_first_scalar(
+        lines,
+        "height",
+        ALTITUDE_KM * 1000,
+        start=bs_start,
+        end=ue_start,
+    )
 
     replace_country_name_blocks(lines, SERVED_COUNTRIES)
     return "\n".join(lines) + "\n"
 
 
-template = input_file.read_text(encoding="utf-8")
-cleanup_generated_inputs()
+def generate_inputs(
+    template_path: Path = INPUT_FILE,
+    output_dir: Path = OUTPUT_DIR,
+) -> list[Path]:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    template = template_path.read_text(encoding="utf-8")
+    cleanup_generated_inputs(output_dir)
 
-created = 0
-for system_name, system in SYSTEMS.items():
-    for fs_height_m, fs_params in FS_HEIGHTS.items():
-        for load_factor in LOAD_FACTORS:
-            load_percent = int(load_factor * 100)
-            name = scenario_name(system_name, fs_height_m, load_percent)
-            output_path = output_dir / f"{name}.yaml"
-            output_path.write_text(
-                update_template(
-                    template,
-                    output_prefix=name,
-                    system=system,
-                    fs_height_m=fs_height_m,
-                    fs_params=fs_params,
-                    load_factor=load_factor,
-                ),
-                encoding="utf-8",
-            )
-            created += 1
+    generated_paths = []
+    for load_factor, power_backoff_db, affected_fraction in build_scenarios():
+        name = scenario_name(
+            load_factor,
+            power_backoff_db,
+            affected_fraction,
+        )
+        output_path = output_dir / f"{name}.yaml"
+        output_path.write_text(
+            update_template(
+                template,
+                output_prefix=name,
+                load_factor=load_factor,
+                power_backoff_db=power_backoff_db,
+                affected_fraction=affected_fraction,
+            ),
+            encoding="utf-8",
+        )
+        generated_paths.append(output_path)
 
-print(f"{created} arquivos YAML gerados com sucesso.")
+    return generated_paths
+
+
+if __name__ == "__main__":
+    generated = generate_inputs()
+    print(f"{len(generated)} arquivos YAML gerados com sucesso.")

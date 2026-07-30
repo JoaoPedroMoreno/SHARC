@@ -22,6 +22,7 @@ class SimulationDownlink(Simulation):
     """
     Implements the flowchart of simulation downlink method
     """
+    _PBO_RANDOM_STREAM_ID = 0x50424F
 
     def __init__(self, parameters: Parameters, parameter_file: str):
         """Initialize the SimulationDownlink with parameters and parameter file.
@@ -69,6 +70,7 @@ class SimulationDownlink(Simulation):
             self.parameters.imt.bs.antenna.array,
             self.topology, random_number_gen,
         )
+        self.apply_mss_dc_power_backoff(seed)
 
         # Create the other system (FSS, HAPS, etc...)
         self.system = StationFactory.generate_system(
@@ -132,6 +134,86 @@ class SimulationDownlink(Simulation):
             self.calculate_external_interference()
 
         self.collect_results(write_to_file, snapshot_number)
+
+    @staticmethod
+    def select_active_beams_for_pbo(
+        active_beams: np.ndarray,
+        affected_fraction: float,
+        snapshot_seed: int,
+    ) -> tuple[np.ndarray, float]:
+        """Select a deterministic nested fraction of active beams for PBO."""
+        if affected_fraction < 0.0 or affected_fraction > 1.0:
+            raise ValueError("affected_fraction needs to be in [0, 1]")
+
+        active_beams = np.asarray(active_beams, dtype=bool)
+        active_ids = np.flatnonzero(active_beams)
+        affected_mask = np.zeros_like(active_beams, dtype=bool)
+        if active_ids.size == 0:
+            return affected_mask, 0.0
+
+        seed_sequence = np.random.SeedSequence([
+            int(snapshot_seed),
+            SimulationDownlink._PBO_RANDOM_STREAM_ID,
+        ])
+        pbo_random_number_gen = np.random.default_rng(seed_sequence)
+        ranked_active_ids = pbo_random_number_gen.permutation(active_ids)
+        num_affected = int(np.floor(
+            affected_fraction * active_ids.size + 0.5))
+        affected_mask[ranked_active_ids[:num_affected]] = True
+
+        realized_fraction = num_affected / active_ids.size
+        return affected_mask, realized_fraction
+
+    def apply_mss_dc_power_backoff(self, snapshot_seed: int) -> None:
+        """Apply configured MSS-DC PBO after the active-beam draw."""
+        if self.parameters.imt.topology.type != "MSS_DC":
+            return
+
+        power_control = self.parameters.imt.topology.mss_dc.power_control_zones
+        active_beams = np.asarray(self.bs.active, dtype=bool)
+        num_active = int(np.count_nonzero(active_beams))
+
+        if power_control.mode == "ACTIVE_FRACTION":
+            selected_mask, selected_fraction = (
+                self.select_active_beams_for_pbo(
+                    active_beams,
+                    power_control.affected_fraction,
+                    snapshot_seed,
+                )
+            )
+            applied_mask = (
+                selected_mask & (power_control.power_backoff_db > 0.0)
+            )
+            effective_backoff = np.where(
+                applied_mask,
+                power_control.power_backoff_db,
+                0.0,
+            )
+
+            self.bs.tx_power = (
+                self.parameters.imt.bs.conducted_power
+                * np.ones(self.bs.num_stations)
+                - effective_backoff
+            )
+            self.topology.power_backoff = effective_backoff
+            self.topology.power_backoff_affected = applied_mask
+            self.topology.requested_affected_fraction = (
+                power_control.affected_fraction)
+            self.topology.realized_affected_fraction = (
+                selected_fraction
+                if power_control.power_backoff_db > 0.0 else 0.0
+            )
+            return
+
+        geographic_mask = np.asarray(
+            self.topology.power_backoff_affected,
+            dtype=bool,
+        )
+        self.topology.requested_affected_fraction = np.nan
+        self.topology.realized_affected_fraction = (
+            np.count_nonzero(geographic_mask & active_beams) / num_active
+            if num_active else 0.0
+        )
 
     def finalize(self, *args, **kwargs):
         """
@@ -693,6 +775,37 @@ class SimulationDownlink(Simulation):
                     self.parameters.imt.downlink.attenuation_factor,
                 )
                 self.results.imt_dl_tput.extend(tput.tolist())
+                power_backoff_db = 0.0
+                beam_affected_by_pbo = False
+                if (
+                    hasattr(self.topology, "power_backoff")
+                    and self.topology.power_backoff is not None
+                ):
+                    power_backoff_db = float(self.topology.power_backoff[bs])
+                if (hasattr(self.topology, "power_backoff_affected")
+                        and self.topology.power_backoff_affected is not None):
+                    beam_affected_by_pbo = bool(
+                        self.topology.power_backoff_affected[bs])
+                else:
+                    beam_affected_by_pbo = bool(power_backoff_db != 0.0)
+
+                for idx, ue_id in enumerate(ue):
+                    self.results.imt_dl_selected_ue_metrics.append({
+                        "snapshot_id": snapshot_number,
+                        "ue_id": int(ue_id),
+                        "beam_id": int(bs),
+                        "beam_active": bool(self.bs.active[bs]),
+                        "beam_affected_by_pbo": beam_affected_by_pbo,
+                        "power_backoff_db": power_backoff_db,
+                        "tx_power_dbm": float(self.bs.tx_power[bs][idx]),
+                        "sinr_db": float(self.ue.sinr[ue_id]),
+                        "snr_db": float(self.ue.snr[ue_id]),
+                        "spectral_efficiency_proxy": float(tput[idx]),
+                        "requested_affected_fraction": float(
+                            self.topology.requested_affected_fraction),
+                        "realized_affected_fraction": float(
+                            self.topology.realized_affected_fraction),
+                    })
 
             # Results for IMT-SYSTEM
             if self.parameters.imt.interfered_with:  # IMT suffers interference

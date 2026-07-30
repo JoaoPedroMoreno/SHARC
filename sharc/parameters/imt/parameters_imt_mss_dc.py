@@ -205,16 +205,36 @@ class ParametersPowerControl(ParametersBase):
     """Dataclass for power control parameters in the IMT MSS-DC topology."""
     zones: list[ParametersPowerControlZone] = field(
         default_factory=lambda: [ParametersPowerControlZone()])
+    mode: typing.Literal["GEOGRAPHIC", "ACTIVE_FRACTION"] = "GEOGRAPHIC"
+    power_backoff_db: float = 0.0
+    affected_fraction: float = 1.0
 
     def validate(self, ctx):
         """
         Validate the power control parameters.
         """
         super().validate(ctx)
+        self.mode = self.mode.upper()
+        if self.mode not in ["GEOGRAPHIC", "ACTIVE_FRACTION"]:
+            raise ValueError(
+                f"{ctx}.mode must be GEOGRAPHIC or ACTIVE_FRACTION")
+        if not isinstance(self.power_backoff_db, (float, int)):
+            raise ValueError(f"{ctx}.power_backoff_db needs to be a number")
+        if self.power_backoff_db < 0.0:
+            raise ValueError(f"{ctx}.power_backoff_db needs to be non-negative")
+        self.power_backoff_db = float(self.power_backoff_db)
+        if not isinstance(self.affected_fraction, (float, int)):
+            raise ValueError(f"{ctx}.affected_fraction needs to be a number")
+        if self.affected_fraction < 0.0 or self.affected_fraction > 1.0:
+            raise ValueError(f"{ctx}.affected_fraction needs to be in [0, 1]")
+        self.affected_fraction = float(self.affected_fraction)
         for i in range(len(self.zones)):
             self.zones[i].geometry.validate(ctx + f"zones.{i}.geometry")
-            if not isinstance(self.zones[i].power_backoff_db, float):
+            if not isinstance(self.zones[i].power_backoff_db, (float, int)):
                 self.zones[i].power_backoff_db = 0.0  # Default to 0 dB if not set - we make sure it's not applied later.
+            else:
+                self.zones[i].power_backoff_db = float(
+                    self.zones[i].power_backoff_db)
 
 
 @dataclass
