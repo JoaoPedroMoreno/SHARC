@@ -52,6 +52,7 @@ OUTAGE_METRICS = {
     for key in OUTAGE_THRESHOLDS
 }
 MAIN_OUTAGE_METRIC = OUTAGE_METRICS["m6"]
+RETENTION_METRIC = "spectral_efficiency_p5_retention_percent"
 BOOTSTRAP_METRICS = [
     "sinr_mean_db",
     "sinr_p5_db",
@@ -69,6 +70,8 @@ METRIC_LABELS = {
     "outage_probability_m1": "Outage para SINR < -1 dB",
     "outage_probability_m6": "Outage para SINR < -6 dB",
     "outage_probability_m10": "Outage para SINR < -10 dB",
+    RETENTION_METRIC:
+        "Retenção da proxy de eficiência espectral P5 (%)",
 }
 EXPECTED_LOAD_FACTORS = (0.2, 0.5)
 EXPECTED_PBO_LEVELS = (5.0, 10.0, 15.0, 20.0)
@@ -316,9 +319,45 @@ def normalize_bool(series: pd.Series) -> pd.Series:
     return normalized.map(mapping)
 
 
-def load_scenario_dataframe(scenario: Scenario) -> pd.DataFrame:
+def read_flat_samples(path: Path) -> np.ndarray | None:
+    if not path.exists():
+        return None
+    try:
+        frame = pd.read_csv(path)
+    except (OSError, pd.errors.ParserError):
+        return None
+    if frame.shape[1] != 1:
+        return None
+    return pd.to_numeric(
+        frame.iloc[:, 0], errors="coerce").to_numpy(float)
+
+
+def load_scenario_dataframe(
+    scenario: Scenario,
+    include_path_loss: bool = False,
+) -> pd.DataFrame:
     path = Path(scenario.metrics_csv_path)
     frame = pd.read_csv(path, usecols=REQUIRED_COLUMNS)
+    if include_path_loss:
+        output_path = Path(scenario.output_path)
+        path_loss = read_flat_samples(output_path / "imt_path_loss.csv")
+        flat_snr = read_flat_samples(output_path / "imt_dl_snr.csv")
+        count_matches = (
+            path_loss is not None
+            and flat_snr is not None
+            and len(path_loss) == len(frame)
+            and len(flat_snr) == len(frame)
+        )
+        frame.attrs["path_loss_count_matches"] = count_matches
+        if count_matches:
+            structured_snr = pd.to_numeric(
+                frame["snr_db"], errors="coerce").to_numpy(float)
+            frame.attrs["flat_snr_alignment_max_error_db"] = float(
+                np.nanmax(np.abs(flat_snr - structured_snr)))
+            frame["path_loss_db"] = path_loss
+        else:
+            frame.attrs["flat_snr_alignment_max_error_db"] = np.inf
+            frame["path_loss_db"] = np.nan
     for column in ["beam_active", "beam_affected_by_pbo"]:
         frame[column] = normalize_bool(frame[column])
     for column in set(REQUIRED_COLUMNS) - {
@@ -333,6 +372,11 @@ def load_scenario_dataframe(scenario: Scenario) -> pd.DataFrame:
 def key_digest(frame: pd.DataFrame) -> str:
     values = frame[KEY_COLUMNS].to_numpy(dtype=np.int64, copy=False)
     return hashlib.sha256(values.tobytes()).hexdigest()
+
+
+def numeric_digest(values: pd.Series | np.ndarray) -> str:
+    array = np.asarray(values, dtype=np.float64)
+    return hashlib.sha256(array.tobytes()).hexdigest()
 
 
 def sharc_spectral_efficiency_proxy(
@@ -494,8 +538,30 @@ def validate_dataframe(
         f"Erro absoluto máximo contra a equação do SHARC={proxy_error:.3g}.",
         sid,
     )
+    path_loss_available = (
+        "path_loss_db" in frame
+        and frame.attrs.get("path_loss_count_matches", False)
+        and np.isfinite(frame["path_loss_db"].to_numpy(float)).all()
+    )
+    flat_snr_error = float(frame.attrs.get(
+        "flat_snr_alignment_max_error_db", np.inf))
+    path_loss_aligned = path_loss_available and flat_snr_error <= tolerance
+    qc.add(
+        "path_loss_row_alignment",
+        "PASS" if path_loss_aligned else "FAIL",
+        "Amostras de path loss e SNR achatada possuem a mesma quantidade e "
+        f"ordem do CSV estruturado; erro máximo de SNR={flat_snr_error:.3g} dB."
+        if path_loss_aligned else
+        "Não foi possível confirmar quantidade e ordem entre path loss, SNR "
+        f"achatada e CSV estruturado; erro máximo={flat_snr_error:.3g} dB.",
+        sid,
+    )
     return {
         "key_digest": key_digest(frame),
+        "path_loss_digest": (
+            numeric_digest(frame["path_loss_db"])
+            if path_loss_available else None
+        ),
         "mask": affected.copy(),
         "actual_snapshots": actual_snapshots,
         "user_records": len(frame),
@@ -538,6 +604,7 @@ def validate_cross_scenario(
             )
             masks_equal = complete
             geometry_equal = complete
+            path_loss_equal = complete
             if complete:
                 reference = summaries[members[0].scenario_id]
                 for member in members[1:]:
@@ -549,6 +616,13 @@ def validate_cross_scenario(
                 geometry_equal &= all(
                     summaries[member.scenario_id]["key_digest"]
                     == baseline_summary.get("key_digest")
+                    for member in members
+                )
+                path_loss_equal &= all(
+                    summaries[member.scenario_id].get("path_loss_digest")
+                    == baseline_summary.get("path_loss_digest")
+                    and summaries[member.scenario_id].get(
+                        "path_loss_digest") is not None
                     for member in members
                 )
             label = (
@@ -565,6 +639,13 @@ def validate_cross_scenario(
                 f"{label}: chaves snapshot_id+ue_id+beam_id "
                 f"{'coincidem' if geometry_equal else 'não coincidem'} "
                 "com o baseline.",
+            )
+            qc.add(
+                "paired_path_loss_unchanged",
+                "PASS" if path_loss_equal else "WARNING",
+                f"{label}: path loss por chave "
+                f"{'coincide' if path_loss_equal else 'não coincide'} "
+                "com o baseline nos quatro níveis de PBO.",
             )
             pairable[(load_factor, fraction)] = bool(
                 masks_equal and geometry_equal)
@@ -908,6 +989,59 @@ def paired_difference_records(
     return rows
 
 
+def paired_bootstrap_ratio_percent(
+    scenario_distribution: dict[str, np.ndarray],
+    baseline_distribution: dict[str, np.ndarray],
+    metric: str,
+) -> np.ndarray:
+    numerator = np.asarray(scenario_distribution[metric], dtype=float)
+    denominator = np.asarray(baseline_distribution[metric], dtype=float)
+    result = np.full(numerator.shape, np.nan, dtype=float)
+    valid = np.isfinite(numerator) & np.isfinite(denominator) & (
+        denominator > 0)
+    result[valid] = 100.0 * numerator[valid] / denominator[valid]
+    return result
+
+
+def paired_retention_record(
+    scenario: Scenario,
+    group: str,
+    analysis_fraction: float,
+    scenario_points: dict,
+    baseline_points: dict,
+    scenario_distribution: dict[str, np.ndarray],
+    baseline_distribution: dict[str, np.ndarray],
+    repetitions: int,
+    seed: int,
+) -> dict:
+    source_metric = "spectral_efficiency_p5_bpshz"
+    denominator = float(baseline_points[source_metric])
+    estimate = (
+        100.0 * float(scenario_points[source_metric]) / denominator
+        if denominator > 0 else np.nan
+    )
+    distribution = paired_bootstrap_ratio_percent(
+        scenario_distribution,
+        baseline_distribution,
+        source_metric,
+    )
+    lower, upper = percentile_interval(distribution)
+    return {
+        "scenario_id": scenario.scenario_id,
+        "load_factor": scenario.load_factor,
+        "pbo_db": scenario.pbo_db,
+        "affected_fraction": analysis_fraction,
+        "group": group,
+        "metric": RETENTION_METRIC,
+        "estimate": estimate,
+        "ci95_lower": lower,
+        "ci95_upper": upper,
+        "repetitions": repetitions,
+        "seed": seed,
+        "analysis_type": "paired_ratio_pbo_over_baseline",
+    }
+
+
 def ensure_generated_dirs(output_dir: Path) -> dict[str, Path]:
     paths = {
         "root": output_dir,
@@ -1166,6 +1300,18 @@ def process_metrics_and_bootstrap(
                     repetitions,
                     seed,
                 ))
+                if group == "all":
+                    paired_rows.append(paired_retention_record(
+                        scenario,
+                        group,
+                        scenario.requested_fraction,
+                        points,
+                        baseline_points,
+                        distribution,
+                        baseline_distribution,
+                        repetitions,
+                        seed,
+                    ))
 
     metrics_df = pd.DataFrame(metric_rows).sort_values([
         "load_factor", "affected_fraction", "pbo_db", "group",
@@ -1258,7 +1404,7 @@ def configure_matplotlib() -> None:
 
 def save_figure(figure: plt.Figure, base_path: Path) -> None:
     figure.savefig(base_path.with_suffix(".pdf"))
-    figure.savefig(base_path.with_suffix(".png"), dpi=350)
+    figure.savefig(base_path.with_suffix(".png"), dpi=300)
     plt.close(figure)
 
 
@@ -1286,6 +1432,217 @@ def add_sinr_reference_lines(axis: plt.Axes) -> None:
             va="bottom",
             ha="left",
         )
+
+
+def build_system_performance_values(
+    bootstrap_df: pd.DataFrame,
+    paired_df: pd.DataFrame,
+) -> pd.DataFrame:
+    rows = []
+    for load_factor in EXPECTED_LOAD_FACTORS:
+        outage = _metric_ci(
+            bootstrap_df,
+            load_factor,
+            0.0,
+            0.0,
+            "all",
+            MAIN_OUTAGE_METRIC,
+        )
+        rows.append({
+            "scenario_id": scenario_id(load_factor, 0.0, 0.0),
+            "load_factor": load_factor,
+            "pbo_db": 0.0,
+            "affected_fraction": 0.0,
+            "is_baseline": True,
+            "outage_probability_m6": outage[0],
+            "outage_m6_ci95_lower": outage[1],
+            "outage_m6_ci95_upper": outage[2],
+            RETENTION_METRIC: 100.0,
+            "retention_se_p5_ci95_lower_percent": 100.0,
+            "retention_se_p5_ci95_upper_percent": 100.0,
+        })
+        for fraction in EXPECTED_FRACTIONS:
+            for pbo in EXPECTED_PBO_LEVELS:
+                outage = _metric_ci(
+                    bootstrap_df,
+                    load_factor,
+                    pbo,
+                    fraction,
+                    "all",
+                    MAIN_OUTAGE_METRIC,
+                )
+                retention = _paired_ci(
+                    paired_df,
+                    load_factor,
+                    pbo,
+                    fraction,
+                    "all",
+                    RETENTION_METRIC,
+                )
+                rows.append({
+                    "scenario_id": scenario_id(
+                        load_factor, pbo, fraction),
+                    "load_factor": load_factor,
+                    "pbo_db": pbo,
+                    "affected_fraction": fraction,
+                    "is_baseline": False,
+                    "outage_probability_m6": outage[0],
+                    "outage_m6_ci95_lower": outage[1],
+                    "outage_m6_ci95_upper": outage[2],
+                    RETENTION_METRIC: retention[0],
+                    "retention_se_p5_ci95_lower_percent": retention[1],
+                    "retention_se_p5_ci95_upper_percent": retention[2],
+                })
+    result = pd.DataFrame(rows).sort_values([
+        "load_factor", "affected_fraction", "pbo_db",
+    ]).reset_index(drop=True)
+    if len(result) != 26 or int((~result["is_baseline"]).sum()) != 24:
+        raise ValueError(
+            "A figura principal exige 24 cenários com PBO e dois baselines.")
+    return result
+
+
+def _asymmetric_errors(
+    estimate: np.ndarray,
+    lower: np.ndarray,
+    upper: np.ndarray,
+) -> np.ndarray:
+    return np.vstack([
+        np.maximum(0.0, estimate - lower),
+        np.maximum(0.0, upper - estimate),
+    ])
+
+
+def plot_system_performance(
+    values: pd.DataFrame,
+    figures_dir: Path,
+) -> None:
+    colors = ["#0072B2", "#D55E00", "#009E73"]
+    markers = ["o", "s", "^"]
+    figure, axes = plt.subplots(
+        2, 2, figsize=(7.16, 5.4), constrained_layout=False,
+        sharex="col",
+    )
+    for col_idx, (load_factor, panel) in enumerate(zip(
+        EXPECTED_LOAD_FACTORS, ("(a)", "(b)")
+    )):
+        top = axes[0, col_idx]
+        bottom = axes[1, col_idx]
+        baseline = values[
+            np.isclose(values["load_factor"], load_factor)
+            & values["is_baseline"]
+        ].iloc[0]
+        baseline_outage = 100.0 * float(
+            baseline["outage_probability_m6"])
+        top.errorbar(
+            [0.0],
+            [baseline_outage],
+            yerr=_asymmetric_errors(
+                np.array([baseline_outage]),
+                np.array([100.0 * baseline["outage_m6_ci95_lower"]]),
+                np.array([100.0 * baseline["outage_m6_ci95_upper"]]),
+            ),
+            color="#333333",
+            marker="D",
+            linestyle="none",
+            capsize=2,
+        )
+        top.annotate(
+            "Baseline",
+            (0.0, baseline_outage),
+            xytext=(5, 5),
+            textcoords="offset points",
+            fontsize=6.5,
+        )
+        bottom.plot(
+            [0.0], [100.0], color="#333333", marker="D",
+            linestyle="none",
+        )
+        bottom.annotate(
+            "Baseline",
+            (0.0, 100.0),
+            xytext=(5, 5),
+            textcoords="offset points",
+            fontsize=6.5,
+        )
+
+        for fraction, color, marker in zip(
+            EXPECTED_FRACTIONS, colors, markers
+        ):
+            subset = values[
+                np.isclose(values["load_factor"], load_factor)
+                & np.isclose(values["affected_fraction"], fraction)
+                & (~values["is_baseline"])
+            ].sort_values("pbo_db")
+            outage_estimate = (
+                100.0 * subset["outage_probability_m6"].to_numpy(float))
+            top.errorbar(
+                subset["pbo_db"],
+                outage_estimate,
+                yerr=_asymmetric_errors(
+                    outage_estimate,
+                    100.0 * subset[
+                        "outage_m6_ci95_lower"].to_numpy(float),
+                    100.0 * subset[
+                        "outage_m6_ci95_upper"].to_numpy(float),
+                ),
+                color=color,
+                marker=marker,
+                capsize=2,
+                label=f"{100 * fraction:.0f}%",
+            )
+            retention = subset[RETENTION_METRIC].to_numpy(float)
+            bottom.errorbar(
+                subset["pbo_db"],
+                retention,
+                yerr=_asymmetric_errors(
+                    retention,
+                    subset[
+                        "retention_se_p5_ci95_lower_percent"].to_numpy(float),
+                    subset[
+                        "retention_se_p5_ci95_upper_percent"].to_numpy(float),
+                ),
+                color=color,
+                marker=marker,
+                capsize=2,
+                label=f"{100 * fraction:.0f}%",
+            )
+
+        top.axhline(
+            5.0, color="#555555", linestyle="--", linewidth=0.8)
+        top.text(
+            0.99, 5.0, "Outage = 5%",
+            transform=top.get_yaxis_transform(),
+            ha="right", va="bottom", fontsize=6.5, color="#555555",
+        )
+        top.set_title(f"{panel} LF = {100 * load_factor:.0f}%")
+        top.set_ylabel("Outage para SINR < −6 dB (%)")
+        bottom.set_ylabel(
+            "Retenção da proxy de eficiência\nespectral P5 (%)")
+        bottom.set_xlabel("Power back-off (dB)")
+        bottom.set_xticks([0, *EXPECTED_PBO_LEVELS])
+        bottom.set_xlim(-0.8, 20.8)
+
+    handles, labels = axes[0, 1].get_legend_handles_labels()
+    figure.subplots_adjust(
+        left=0.10, right=0.99, top=0.94, bottom=0.12,
+        hspace=0.20, wspace=0.23,
+    )
+    figure.legend(
+        handles,
+        labels,
+        title="Fração de feixes ativos afetados",
+        frameon=False,
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.005),
+        ncol=3,
+        fontsize=7,
+        title_fontsize=7,
+    )
+    save_figure(
+        figure,
+        figures_dir / "fig_system_performance_outage_se_p5",
+    )
 
 
 def build_operational_classification(
@@ -1381,7 +1738,7 @@ def plot_operational_region(
     }
 
     figure, axes = plt.subplots(
-        1, 2, figsize=(7.16, 3.2), constrained_layout=True,
+        1, 2, figsize=(7.16, 4.0), constrained_layout=False,
         sharex=True, sharey=True,
     )
     for axis, load_factor, panel in zip(
@@ -1441,28 +1798,27 @@ def plot_operational_region(
         label for label in [*shape_labels, *frontier_labels]
         if label in unique
     ]
-    legend_shapes = axes[1].legend(
-        [unique[label] for label in ordered_labels],
-        ordered_labels,
-        frameon=False,
-        loc="upper right",
-        fontsize=6.3,
-    )
-    axes[1].add_artist(legend_shapes)
     size_handles = [
         axes[1].scatter(
             [], [], s=_outage_marker_size(value), marker="o",
             facecolors="none", edgecolors="#555555")
         for value in (0.01, 0.05, 0.10)
     ]
-    axes[1].legend(
-        size_handles,
-        ["1%", "5%", "10%"],
-        title="Outage (SINR < −6 dB)",
+    figure.subplots_adjust(
+        left=0.08, right=0.99, top=0.91, bottom=0.31, wspace=0.20)
+    figure.legend(
+        [*[unique[label] for label in ordered_labels], *size_handles],
+        [
+            *ordered_labels,
+            "Outage 1%",
+            "Outage 5%",
+            "Outage 10%",
+        ],
         frameon=False,
-        loc="lower right",
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.01),
+        ncol=3,
         fontsize=6.3,
-        title_fontsize=6.3,
     )
     save_figure(figure, figures_dir / "fig_operational_region_pbo")
 
@@ -1540,6 +1896,7 @@ def plot_sinr_affected_unaffected(
                 capsize=2,
                 label=GROUP_LABELS[group],
             )
+        add_sinr_reference_lines(axis)
         axis.set_title(f"{panel} LF = {100 * load_factor:.0f}%")
         axis.set_xlabel("Power back-off (dB)")
         axis.set_xticks([0, *EXPECTED_PBO_LEVELS])
@@ -1568,7 +1925,7 @@ def plot_outage(
     ):
         baseline = _metric_ci(
             bootstrap_df, load_factor, 0.0, 0.0, "all",
-            "outage_probability")
+            MAIN_OUTAGE_METRIC)
         axis.errorbar(
             [0],
             [100 * baseline[0]],
@@ -1591,7 +1948,7 @@ def plot_outage(
                     pbo,
                     fraction,
                     "all",
-                    "outage_probability",
+                    MAIN_OUTAGE_METRIC,
                 )
                 ys.append(100 * estimate)
                 lower.append(100 * max(0.0, estimate - low))
@@ -1605,12 +1962,88 @@ def plot_outage(
                 capsize=2,
                 label=f"{100 * fraction:.0f}%",
             )
+        axis.axhline(
+            5.0,
+            color="#555555",
+            linestyle="--",
+            linewidth=0.8,
+            label="Outage = 5%" if load_factor == EXPECTED_LOAD_FACTORS[1]
+            else "_nolegend_",
+        )
+        axis.set_title(f"{panel} LF = {100 * load_factor:.0f}%")
+        axis.set_xlabel("Power back-off (dB)")
+        axis.set_ylabel("Outage para SINR < −6 dB (%)")
+        axis.set_xticks([0, *EXPECTED_PBO_LEVELS])
+    axes[1].legend(frameon=False, title="Fração / critério")
+    save_figure(
+        figure, figures_dir / "fig_outage_vs_pbo_threshold_m6")
+
+
+def plot_outage_threshold_sensitivity(
+    bootstrap_df: pd.DataFrame,
+    figures_dir: Path,
+) -> None:
+    threshold_styles = [
+        (
+            "m1", "#7B3294", "o", ":",
+            "SINR < −1 dB (ref. NR-NTN restritiva)",
+        ),
+        ("m6", "#0072B2", "s", "--", "SINR < −6 dB (principal)"),
+        ("m10", "#555555", "^", "-.", "SINR < −10 dB (degradação severa)"),
+    ]
+    fraction = 0.10
+    figure, axes = plt.subplots(
+        1, 2, figsize=(7.16, 3.25), constrained_layout=False,
+        sharey=True,
+    )
+    for axis, load_factor, panel in zip(
+        axes, EXPECTED_LOAD_FACTORS, ("(a)", "(b)")
+    ):
+        for key, color, marker, linestyle, label in threshold_styles:
+            xs = [0.0, *EXPECTED_PBO_LEVELS]
+            values, lower, upper = [], [], []
+            metric = OUTAGE_METRICS[key]
+            for pbo in xs:
+                baseline_fraction = 0.0 if pbo == 0.0 else fraction
+                estimate, low, high = _metric_ci(
+                    bootstrap_df,
+                    load_factor,
+                    pbo,
+                    baseline_fraction,
+                    "all",
+                    metric,
+                )
+                values.append(100 * estimate)
+                lower.append(100 * max(0.0, estimate - low))
+                upper.append(100 * max(0.0, high - estimate))
+            axis.errorbar(
+                xs,
+                values,
+                yerr=np.vstack([lower, upper]),
+                color=color,
+                marker=marker,
+                linestyle=linestyle,
+                capsize=2,
+                label=label,
+            )
         axis.set_title(f"{panel} LF = {100 * load_factor:.0f}%")
         axis.set_xlabel("Power back-off (dB)")
         axis.set_ylabel("Probabilidade de outage (%)")
         axis.set_xticks([0, *EXPECTED_PBO_LEVELS])
-    axes[1].legend(frameon=False, title="Fração afetada")
-    save_figure(figure, figures_dir / "fig_outage_vs_pbo")
+    handles, labels = axes[1].get_legend_handles_labels()
+    figure.subplots_adjust(
+        left=0.08, right=0.99, top=0.89, bottom=0.27, wspace=0.18)
+    figure.legend(
+        handles,
+        labels,
+        frameon=False,
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.01),
+        ncol=3,
+        fontsize=6.5,
+    )
+    save_figure(
+        figure, figures_dir / "fig_outage_threshold_sensitivity_f10")
 
 
 def ecdf_xy(values: np.ndarray, maximum_points: int = 6000):
@@ -1622,6 +2055,478 @@ def ecdf_xy(values: np.ndarray, maximum_points: int = 6000):
         y = (indices + 1) / ordered.size
         return x, y
     return ordered, np.arange(1, ordered.size + 1) / ordered.size
+
+
+def inr_db_from_snr_sinr(
+    snr_db: pd.Series | np.ndarray,
+    sinr_db: pd.Series | np.ndarray,
+) -> tuple[np.ndarray, int]:
+    snr_linear = np.power(10.0, np.asarray(snr_db, dtype=float) / 10.0)
+    sinr_linear = np.power(10.0, np.asarray(sinr_db, dtype=float) / 10.0)
+    with np.errstate(divide="ignore", invalid="ignore", over="ignore"):
+        inr_linear = snr_linear / sinr_linear - 1.0
+    valid = np.isfinite(inr_linear) & (inr_linear > 0.0)
+    result = np.full(inr_linear.shape, np.nan, dtype=float)
+    result[valid] = 10.0 * np.log10(inr_linear[valid])
+    return result, int((~valid).sum())
+
+
+def distribution_statistics(
+    values: np.ndarray,
+    total_records: int | None = None,
+) -> dict:
+    array = np.asarray(values, dtype=float)
+    finite = array[np.isfinite(array)]
+    total = int(array.size if total_records is None else total_records)
+    omitted = total - int(finite.size)
+    if finite.size == 0:
+        return {
+            "total_records": total,
+            "valid_records": 0,
+            "omitted_records": omitted,
+            "mean": np.nan,
+            "median": np.nan,
+            "p5": np.nan,
+            "p95": np.nan,
+        }
+    return {
+        "total_records": total,
+        "valid_records": int(finite.size),
+        "omitted_records": omitted,
+        "mean": float(np.mean(finite)),
+        "median": float(np.median(finite)),
+        "p5": linear_quantile(finite, 0.05),
+        "p95": linear_quantile(finite, 0.95),
+    }
+
+
+def _same_keys(left: pd.DataFrame, right: pd.DataFrame) -> bool:
+    return len(left) == len(right) and np.array_equal(
+        left[KEY_COLUMNS].to_numpy(dtype=np.int64, copy=False),
+        right[KEY_COLUMNS].to_numpy(dtype=np.int64, copy=False),
+    )
+
+
+def _append_cdf_rows(
+    rows: list[dict],
+    values: np.ndarray,
+    scenario: Scenario,
+    analysis_fraction: float,
+    metric: str,
+    group: str,
+) -> None:
+    finite = np.asarray(values, dtype=float)
+    finite = finite[np.isfinite(finite)]
+    x, y = ecdf_xy(finite)
+    for index, (x_value, probability) in enumerate(zip(x, y)):
+        rows.append({
+            "scenario_id": scenario.scenario_id,
+            "load_factor": scenario.load_factor,
+            "pbo_db": scenario.pbo_db,
+            "affected_fraction": analysis_fraction,
+            "metric": metric,
+            "group": group,
+            "cdf_point_index": index,
+            "x_value": x_value,
+            "cdf_probability": probability,
+        })
+
+
+def build_mechanism_analysis(
+    scenarios: Sequence[Scenario],
+    summaries: dict[str, dict],
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    by_key = {
+        (item.load_factor, item.pbo_db, item.requested_fraction): item
+        for item in scenarios
+    }
+    cdf_rows: list[dict] = []
+    summary_rows: list[dict] = []
+    control_rows: list[dict] = []
+
+    for load_factor in EXPECTED_LOAD_FACTORS:
+        baseline_scenario = by_key[(load_factor, 0.0, 0.0)]
+        baseline_raw = load_scenario_dataframe(
+            baseline_scenario, include_path_loss=True)
+        for fraction in EXPECTED_FRACTIONS:
+            mask_source = by_key[(load_factor, 5.0, fraction)]
+            baseline = baseline_raw.copy()
+            baseline["beam_affected_by_pbo"] = summaries[
+                mask_source.scenario_id]["mask"]
+            scenario_frames = {
+                pbo: load_scenario_dataframe(
+                    by_key[(load_factor, pbo, fraction)],
+                    include_path_loss=True,
+                )
+                for pbo in EXPECTED_PBO_LEVELS
+            }
+
+            for pbo, frame in scenario_frames.items():
+                if not _same_keys(baseline, frame):
+                    raise ValueError(
+                        f"Chaves não pareadas em LF={load_factor}, "
+                        f"fração={fraction}, PBO={pbo}.")
+                baseline_affected = select_group(baseline, "affected")
+                scenario_affected = select_group(frame, "affected")
+                baseline_unaffected = select_group(baseline, "unaffected")
+                scenario_unaffected = select_group(frame, "unaffected")
+                if (
+                    not _same_keys(baseline_affected, scenario_affected)
+                    or not _same_keys(
+                        baseline_unaffected, scenario_unaffected)
+                ):
+                    raise ValueError(
+                        f"Grupos não pareados em LF={load_factor}, "
+                        f"fração={fraction}, PBO={pbo}.")
+
+                snr_affected_delta = (
+                    scenario_affected["snr_db"].to_numpy(float)
+                    - baseline_affected["snr_db"].to_numpy(float)
+                )
+                snr_unaffected_delta = (
+                    scenario_unaffected["snr_db"].to_numpy(float)
+                    - baseline_unaffected["snr_db"].to_numpy(float)
+                )
+                baseline_inr, baseline_inr_omitted = inr_db_from_snr_sinr(
+                    baseline_unaffected["snr_db"],
+                    baseline_unaffected["sinr_db"],
+                )
+                scenario_inr, scenario_inr_omitted = inr_db_from_snr_sinr(
+                    scenario_unaffected["snr_db"],
+                    scenario_unaffected["sinr_db"],
+                )
+                paired_inr_valid = (
+                    np.isfinite(baseline_inr) & np.isfinite(scenario_inr))
+                inr_delta = (
+                    scenario_inr[paired_inr_valid]
+                    - baseline_inr[paired_inr_valid]
+                )
+                path_loss_delta = (
+                    frame["path_loss_db"].to_numpy(float)
+                    - baseline["path_loss_db"].to_numpy(float)
+                )
+                snr_affected_median = float(
+                    np.median(snr_affected_delta))
+                inr_unaffected_median = (
+                    float(np.median(inr_delta))
+                    if inr_delta.size else np.nan
+                )
+                control_rows.append({
+                    "scenario_id": by_key[(
+                        load_factor, pbo, fraction)].scenario_id,
+                    "load_factor": load_factor,
+                    "pbo_db": pbo,
+                    "affected_fraction": fraction,
+                    "paired_user_records": len(frame),
+                    "snr_affected_mean_delta_db":
+                        float(np.mean(snr_affected_delta)),
+                    "snr_affected_median_delta_db":
+                        snr_affected_median,
+                    "snr_unaffected_mean_delta_db":
+                        float(np.mean(snr_unaffected_delta)),
+                    "snr_unaffected_median_delta_db":
+                        float(np.median(snr_unaffected_delta)),
+                    "snr_unaffected_max_abs_delta_db":
+                        float(np.max(np.abs(snr_unaffected_delta))),
+                    "inr_unaffected_valid_pairs": int(inr_delta.size),
+                    "inr_unaffected_mean_delta_db": (
+                        float(np.mean(inr_delta))
+                        if inr_delta.size else np.nan
+                    ),
+                    "inr_unaffected_median_delta_db":
+                        inr_unaffected_median,
+                    "inr_baseline_omitted_records":
+                        baseline_inr_omitted,
+                    "inr_pbo_omitted_records":
+                        scenario_inr_omitted,
+                    "path_loss_mean_delta_db":
+                        float(np.mean(path_loss_delta)),
+                    "path_loss_max_abs_delta_db":
+                        float(np.max(np.abs(path_loss_delta))),
+                    "snr_unaffected_practically_constant": bool(
+                        np.max(np.abs(snr_unaffected_delta)) <= 1e-9),
+                    "path_loss_overlaid": bool(
+                        np.max(np.abs(path_loss_delta)) <= 1e-9),
+                    "inr_unaffected_decreased": bool(
+                        np.isfinite(inr_unaffected_median)
+                        and inr_unaffected_median < 0.0),
+                    "snr_reduction_dominates_inr_benefit": bool(
+                        np.isfinite(inr_unaffected_median)
+                        and abs(snr_affected_median)
+                        > abs(inr_unaffected_median)
+                    ),
+                })
+
+            plotted_frames = {
+                0.0: (baseline_scenario, baseline),
+                10.0: (
+                    by_key[(load_factor, 10.0, fraction)],
+                    scenario_frames[10.0],
+                ),
+                20.0: (
+                    by_key[(load_factor, 20.0, fraction)],
+                    scenario_frames[20.0],
+                ),
+            }
+            for pbo, (scenario, frame) in plotted_frames.items():
+                affected = select_group(frame, "affected")
+                unaffected = select_group(frame, "unaffected")
+                inr_db, inr_omitted = inr_db_from_snr_sinr(
+                    unaffected["snr_db"], unaffected["sinr_db"])
+                curve_specs = [
+                    (
+                        "snr_affected_db",
+                        "affected",
+                        affected["snr_db"].to_numpy(float),
+                        len(affected),
+                    ),
+                    (
+                        "inr_unaffected_db",
+                        "unaffected",
+                        inr_db,
+                        len(unaffected),
+                    ),
+                    (
+                        "path_loss_db",
+                        "all",
+                        frame["path_loss_db"].to_numpy(float),
+                        len(frame),
+                    ),
+                ]
+                if np.isclose(fraction, 0.10):
+                    curve_specs.extend([
+                        (
+                            "sinr_all_db",
+                            "all",
+                            frame["sinr_db"].to_numpy(float),
+                            len(frame),
+                        ),
+                        (
+                            "spectral_efficiency_proxy_all_bpshz",
+                            "all",
+                            frame[
+                                "spectral_efficiency_proxy"].to_numpy(float),
+                            len(frame),
+                        ),
+                    ])
+                for metric, group, values, total_records in curve_specs:
+                    _append_cdf_rows(
+                        cdf_rows,
+                        values,
+                        scenario,
+                        fraction,
+                        metric,
+                        group,
+                    )
+                    statistics = distribution_statistics(
+                        values, total_records=total_records)
+                    summary_rows.append({
+                        "scenario_id": scenario.scenario_id,
+                        "load_factor": load_factor,
+                        "pbo_db": pbo,
+                        "affected_fraction": fraction,
+                        "metric": metric,
+                        "group": group,
+                        **statistics,
+                    })
+                    if metric == "inr_unaffected_db":
+                        summary_rows[-1]["omitted_records"] = inr_omitted
+
+    cdf_values = pd.DataFrame(cdf_rows).sort_values([
+        "metric", "affected_fraction", "load_factor", "pbo_db",
+        "cdf_point_index",
+    ]).reset_index(drop=True)
+    distribution_summary = pd.DataFrame(summary_rows).sort_values([
+        "metric", "affected_fraction", "load_factor", "pbo_db",
+    ]).reset_index(drop=True)
+    paired_controls = pd.DataFrame(control_rows).sort_values([
+        "load_factor", "affected_fraction", "pbo_db",
+    ]).reset_index(drop=True)
+    return cdf_values, distribution_summary, paired_controls
+
+
+def _cdf_curve(
+    cdf_values: pd.DataFrame,
+    load_factor: float,
+    pbo_db: float,
+    fraction: float,
+    metric: str,
+) -> pd.DataFrame:
+    return cdf_values[
+        np.isclose(cdf_values["load_factor"], load_factor)
+        & np.isclose(cdf_values["pbo_db"], pbo_db)
+        & np.isclose(cdf_values["affected_fraction"], fraction)
+        & (cdf_values["metric"] == metric)
+    ].sort_values("cdf_point_index")
+
+
+def plot_mechanism_cdf(
+    cdf_values: pd.DataFrame,
+    figures_dir: Path,
+    fraction: float,
+    supplementary: bool = False,
+) -> None:
+    styles = [
+        (0.0, "#333333", "--", "Baseline pareado"),
+        (10.0, "#0072B2", "-", "PBO = 10 dB"),
+        (20.0, "#D55E00", "-.", "PBO = 20 dB"),
+    ]
+    figure, axes = plt.subplots(
+        2, 2, figsize=(7.16, 5.0), constrained_layout=False,
+        sharey=True,
+    )
+    for col_idx, (load_factor, panel) in enumerate(zip(
+        EXPECTED_LOAD_FACTORS, ("(a)", "(b)")
+    )):
+        for row_idx, (metric, x_label) in enumerate([
+            ("snr_affected_db", "SNR dos usuários afetados (dB)"),
+            ("inr_unaffected_db", "I/N dos usuários não afetados (dB)"),
+        ]):
+            axis = axes[row_idx, col_idx]
+            for pbo, color, linestyle, label in styles:
+                curve = _cdf_curve(
+                    cdf_values, load_factor, pbo, fraction, metric)
+                axis.plot(
+                    curve["x_value"],
+                    curve["cdf_probability"],
+                    color=color,
+                    linestyle=linestyle,
+                    label=label,
+                )
+            axis.set_xlabel(x_label)
+            axis.set_ylabel("CDF empírica")
+            axis.set_ylim(0.0, 1.0)
+        axes[0, col_idx].set_title(
+            f"{panel} LF = {100 * load_factor:.0f}%")
+
+    handles, labels = axes[0, 1].get_legend_handles_labels()
+    figure.subplots_adjust(
+        left=0.09, right=0.99, top=0.94, bottom=0.12,
+        hspace=0.25, wspace=0.20,
+    )
+    figure.legend(
+        handles,
+        labels,
+        frameon=False,
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.005),
+        ncol=3,
+        fontsize=7,
+    )
+    destination = (
+        figures_dir
+        / f"fig_cdf_snr_inr_mechanism_f{int(round(100 * fraction)):02d}"
+    )
+    save_figure(figure, destination)
+
+
+def plot_path_loss_control_cdf(
+    cdf_values: pd.DataFrame,
+    supplementary_dir: Path,
+) -> None:
+    styles = [
+        (0.0, "#333333", "--", "Baseline pareado"),
+        (10.0, "#0072B2", "-", "PBO = 10 dB"),
+        (20.0, "#D55E00", "-.", "PBO = 20 dB"),
+    ]
+    figure, axes = plt.subplots(
+        2, 3, figsize=(7.16, 4.6), constrained_layout=False,
+        sharex=True, sharey=True,
+    )
+    for row_idx, load_factor in enumerate(EXPECTED_LOAD_FACTORS):
+        for col_idx, fraction in enumerate(EXPECTED_FRACTIONS):
+            axis = axes[row_idx, col_idx]
+            for pbo, color, linestyle, label in styles:
+                curve = _cdf_curve(
+                    cdf_values,
+                    load_factor,
+                    pbo,
+                    fraction,
+                    "path_loss_db",
+                )
+                axis.plot(
+                    curve["x_value"],
+                    curve["cdf_probability"],
+                    color=color,
+                    linestyle=linestyle,
+                    label=label,
+                )
+            if row_idx == 0:
+                axis.set_title(
+                    f"Fração = {100 * fraction:.0f}%")
+            if col_idx == 0:
+                axis.set_ylabel(
+                    f"CDF empírica\nLF = {100 * load_factor:.0f}%")
+            if row_idx == 1:
+                axis.set_xlabel("Path loss (dB)")
+            axis.set_ylim(0.0, 1.0)
+    handles, labels = axes[0, 0].get_legend_handles_labels()
+    figure.subplots_adjust(
+        left=0.10, right=0.99, top=0.93, bottom=0.14,
+        hspace=0.15, wspace=0.13,
+    )
+    figure.legend(
+        handles,
+        labels,
+        frameon=False,
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.005),
+        ncol=3,
+        fontsize=7,
+    )
+    save_figure(
+        figure,
+        supplementary_dir / "fig_cdf_path_loss_paired_control",
+    )
+
+
+def plot_supplementary_cdf_metric(
+    cdf_values: pd.DataFrame,
+    supplementary_dir: Path,
+    metric: str,
+    x_label: str,
+    filename: str,
+) -> None:
+    fraction = 0.10
+    styles = [
+        (0.0, "#333333", "--", "Baseline pareado"),
+        (10.0, "#0072B2", "-", "PBO = 10 dB"),
+        (20.0, "#D55E00", "-.", "PBO = 20 dB"),
+    ]
+    figure, axes = plt.subplots(
+        1, 2, figsize=(7.16, 2.9), constrained_layout=False,
+        sharey=True,
+    )
+    for axis, load_factor, panel in zip(
+        axes, EXPECTED_LOAD_FACTORS, ("(a)", "(b)")
+    ):
+        for pbo, color, linestyle, label in styles:
+            curve = _cdf_curve(
+                cdf_values, load_factor, pbo, fraction, metric)
+            axis.plot(
+                curve["x_value"],
+                curve["cdf_probability"],
+                color=color,
+                linestyle=linestyle,
+                label=label,
+            )
+        axis.set_title(f"{panel} LF = {100 * load_factor:.0f}%")
+        axis.set_xlabel(x_label)
+        axis.set_ylabel("CDF empírica")
+        axis.set_ylim(0.0, 1.0)
+    handles, labels = axes[1].get_legend_handles_labels()
+    figure.subplots_adjust(
+        left=0.09, right=0.99, top=0.90, bottom=0.23, wspace=0.18)
+    figure.legend(
+        handles,
+        labels,
+        frameon=False,
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.005),
+        ncol=3,
+        fontsize=7,
+    )
+    save_figure(figure, supplementary_dir / filename)
 
 
 def plot_representative_cdf(
@@ -1689,7 +2594,8 @@ def plot_metric_all_fractions(
     ):
         baseline = _metric_ci(
             bootstrap_df, load_factor, 0.0, 0.0, "all", metric)
-        scale = 100.0 if metric == "outage_probability" else 1.0
+        is_outage = metric.startswith("outage_probability")
+        scale = 100.0 if is_outage else 1.0
         axis.errorbar(
             [0],
             [scale * baseline[0]],
@@ -1724,9 +2630,11 @@ def plot_metric_all_fractions(
         axis.set_xlabel("Power back-off (dB)")
         axis.set_ylabel(
             "Probabilidade de outage (%)"
-            if metric == "outage_probability" else METRIC_LABELS[metric]
+            if is_outage else METRIC_LABELS[metric]
         )
         axis.set_xticks([0, *EXPECTED_PBO_LEVELS])
+        if metric.startswith("sinr_"):
+            add_sinr_reference_lines(axis)
     axes[1].legend(frameon=False, title="Fração afetada")
     save_figure(figure, supplementary_dir / filename)
 
@@ -1755,7 +2663,7 @@ def plot_outage_by_group(
                         pbo,
                         baseline_fraction,
                         group,
-                        "outage_probability",
+                        MAIN_OUTAGE_METRIC,
                     )[0]
                     values.append(100 * estimate)
                 axis.plot(
@@ -1767,7 +2675,7 @@ def plot_outage_by_group(
                 )
             axis.set_title(
                 f"{GROUP_LABELS[group]}; LF = {100 * load_factor:.0f}%")
-            axis.set_ylabel("Outage (%)")
+            axis.set_ylabel("Outage para SINR < −6 dB (%)")
             axis.set_xlabel("Power back-off (dB)")
             axis.set_xticks([0, *EXPECTED_PBO_LEVELS])
     axes[0, 1].legend(frameon=False, title="Fração afetada")
@@ -1956,42 +2864,33 @@ def plot_paired_group_delta(
 
 def generate_supplementary_figures(
     metrics_df: pd.DataFrame,
-    bootstrap_df: pd.DataFrame,
-    paired_df: pd.DataFrame,
     scenarios: Sequence[Scenario],
+    cdf_values: pd.DataFrame,
     paths: dict[str, Path],
 ) -> None:
     supplementary = paths["supplementary"]
-    plot_metric_all_fractions(
-        bootstrap_df,
+    plot_mechanism_cdf(
+        cdf_values, supplementary, 0.05, supplementary=True)
+    plot_mechanism_cdf(
+        cdf_values, supplementary, 0.15, supplementary=True)
+    plot_path_loss_control_cdf(cdf_values, supplementary)
+    plot_supplementary_cdf_metric(
+        cdf_values,
         supplementary,
-        "sinr_mean_db",
-        "fig_sinr_mean_all_fractions",
+        "sinr_all_db",
+        "SINR (dB)",
+        "fig_cdf_sinr_supplementary_f10",
     )
-    plot_metric_all_fractions(
-        bootstrap_df,
+    plot_supplementary_cdf_metric(
+        cdf_values,
         supplementary,
-        "sinr_p5_db",
-        "fig_sinr_p5_all_fractions",
+        "spectral_efficiency_proxy_all_bpshz",
+        "Proxy de eficiência espectral (bit/s/Hz)",
+        "fig_cdf_spectral_efficiency_proxy_f10",
     )
-    plot_metric_all_fractions(
-        bootstrap_df,
-        supplementary,
-        "spectral_efficiency_mean_bpshz",
-        "fig_spectral_efficiency_mean_all_fractions",
-    )
-    plot_metric_all_fractions(
-        bootstrap_df,
-        supplementary,
-        "spectral_efficiency_p5_bpshz",
-        "fig_spectral_efficiency_p5_all_fractions",
-    )
-    plot_outage_by_group(bootstrap_df, supplementary)
     plot_realized_fraction(metrics_df, supplementary)
     plot_affected_user_counts(metrics_df, supplementary)
     plot_active_beam_distribution(scenarios, supplementary)
-    plot_paired_group_delta(paired_df, supplementary, "unaffected")
-    plot_paired_group_delta(paired_df, supplementary, "affected")
 
 
 def latex_escape(value: object) -> str:
@@ -2032,9 +2931,21 @@ def write_latex_table(
 def build_tables(
     scenarios: Sequence[Scenario],
     metrics_df: pd.DataFrame,
-    paired_df: pd.DataFrame,
+    performance_values: pd.DataFrame,
+    distribution_summary: pd.DataFrame,
+    paired_controls: pd.DataFrame,
     tables_dir: Path,
 ) -> dict[str, pd.DataFrame]:
+    for obsolete_stem in [
+        "table_main_results",
+        "table_affected_unaffected",
+        "table_operational_region",
+    ]:
+        for extension in (".csv", ".tex"):
+            obsolete = tables_dir / f"{obsolete_stem}{extension}"
+            if obsolete.exists():
+                obsolete.unlink()
+
     count_rows = []
     for scenario in scenarios:
         all_row = _single_row(
@@ -2089,163 +3000,106 @@ def build_tables(
         tables_dir / "table_scenario_counts.tex",
     )
 
-    main_rows = []
-    for load_factor in EXPECTED_LOAD_FACTORS:
-        baseline = _single_row(
-            metrics_df,
-            load_factor=load_factor,
-            pbo_db=0.0,
-            affected_fraction=0.0,
-            group="all",
-        )
-        for fraction in EXPECTED_FRACTIONS:
-            pbo10 = _single_row(
-                metrics_df,
-                load_factor=load_factor,
-                pbo_db=10.0,
-                affected_fraction=fraction,
-                group="all",
-            )
-            pbo20 = _single_row(
-                metrics_df,
-                load_factor=load_factor,
-                pbo_db=20.0,
-                affected_fraction=fraction,
-                group="all",
-            )
-            delta10 = _paired_ci(
-                paired_df, load_factor, 10.0, fraction, "all",
-                "sinr_p5_db")
-            delta20 = _paired_ci(
-                paired_df, load_factor, 20.0, fraction, "all",
-                "sinr_p5_db")
-            main_rows.append({
-                "load_factor": load_factor,
-                "requested_fraction": fraction,
-                "baseline_sinr_p5_db": baseline["sinr_p5_db"],
-                "pbo10_sinr_p5_db": pbo10["sinr_p5_db"],
-                "pbo10_delta_sinr_p5_db": delta10[0],
-                "pbo10_delta_ci95_lower_db": delta10[1],
-                "pbo10_delta_ci95_upper_db": delta10[2],
-                "pbo20_sinr_p5_db": pbo20["sinr_p5_db"],
-                "pbo20_delta_sinr_p5_db": delta20[0],
-                "pbo20_delta_ci95_lower_db": delta20[1],
-                "pbo20_delta_ci95_upper_db": delta20[2],
-                "pbo10_outage_probability":
-                    pbo10["outage_probability"],
-                "pbo20_outage_probability":
-                    pbo20["outage_probability"],
-            })
-    main = pd.DataFrame(main_rows)
-    main.to_csv(tables_dir / "table_main_results.csv", index=False)
-    main_fmt = pd.DataFrame({
-        "LF": main["load_factor"].map(lambda value: f"{100 * value:.0f}%"),
-        "Fração": main["requested_fraction"].map(
+    performance_values.to_csv(
+        tables_dir / "table_system_performance.csv", index=False)
+    performance_fmt = pd.DataFrame({
+        "LF": performance_values["load_factor"].map(
             lambda value: f"{100 * value:.0f}%"),
-        "P5 base": main["baseline_sinr_p5_db"].map(
-            lambda value: f"{value:.2f}"),
-        "P5 10 dB": main["pbo10_sinr_p5_db"].map(
-            lambda value: f"{value:.2f}"),
-        "Δ 10 dB [IC95%]": main.apply(
+        "Fração": performance_values.apply(
             lambda row: (
-                f"{row['pbo10_delta_sinr_p5_db']:.2f} "
-                f"[{row['pbo10_delta_ci95_lower_db']:.2f}, "
-                f"{row['pbo10_delta_ci95_upper_db']:.2f}]"
+                "Baseline" if row["is_baseline"]
+                else f"{100 * row['affected_fraction']:.0f}%"
             ),
             axis=1,
         ),
-        "P5 20 dB": main["pbo20_sinr_p5_db"].map(
-            lambda value: f"{value:.2f}"),
-        "Δ 20 dB [IC95%]": main.apply(
+        "PBO (dB)": performance_values["pbo_db"].map(
+            lambda value: f"{value:.0f}"),
+        "Outage SINR < -6 dB [IC95%]": performance_values.apply(
             lambda row: (
-                f"{row['pbo20_delta_sinr_p5_db']:.2f} "
-                f"[{row['pbo20_delta_ci95_lower_db']:.2f}, "
-                f"{row['pbo20_delta_ci95_upper_db']:.2f}]"
+                f"{100 * row['outage_probability_m6']:.2f}% "
+                f"[{100 * row['outage_m6_ci95_lower']:.2f}%, "
+                f"{100 * row['outage_m6_ci95_upper']:.2f}%]"
             ),
             axis=1,
         ),
-        "Outage 10 dB": main["pbo10_outage_probability"].map(
-            lambda value: f"{100 * value:.2f}%"),
-        "Outage 20 dB": main["pbo20_outage_probability"].map(
-            lambda value: f"{100 * value:.2f}%"),
+        "Retenção SE P5 [IC95%]": performance_values.apply(
+            lambda row: (
+                f"{row[RETENTION_METRIC]:.2f}% "
+                f"[{row['retention_se_p5_ci95_lower_percent']:.2f}%, "
+                f"{row['retention_se_p5_ci95_upper_percent']:.2f}%]"
+            ),
+            axis=1,
+        ),
     })
     write_latex_table(
-        main_fmt,
-        tables_dir / "table_main_results.tex",
+        performance_fmt,
+        tables_dir / "table_system_performance.tex",
     )
 
-    comparison_rows = []
-    fraction = 0.10
-    for load_factor in EXPECTED_LOAD_FACTORS:
-        for pbo in EXPECTED_PBO_LEVELS:
-            affected = _single_row(
-                metrics_df,
-                load_factor=load_factor,
-                pbo_db=pbo,
-                affected_fraction=fraction,
-                group="affected",
-            )
-            unaffected = _single_row(
-                metrics_df,
-                load_factor=load_factor,
-                pbo_db=pbo,
-                affected_fraction=fraction,
-                group="unaffected",
-            )
-            delta_affected = _paired_ci(
-                paired_df, load_factor, pbo, fraction, "affected",
-                "sinr_p5_db")
-            delta_unaffected = _paired_ci(
-                paired_df, load_factor, pbo, fraction, "unaffected",
-                "sinr_p5_db")
-            comparison_rows.append({
-                "load_factor": load_factor,
-                "pbo_db": pbo,
-                "affected_sinr_p5_db": affected["sinr_p5_db"],
-                "affected_delta_db": delta_affected[0],
-                "affected_delta_ci95_lower_db": delta_affected[1],
-                "affected_delta_ci95_upper_db": delta_affected[2],
-                "unaffected_sinr_p5_db": unaffected["sinr_p5_db"],
-                "unaffected_delta_db": delta_unaffected[0],
-                "unaffected_delta_ci95_lower_db": delta_unaffected[1],
-                "unaffected_delta_ci95_upper_db": delta_unaffected[2],
-            })
-    comparison = pd.DataFrame(comparison_rows)
-    comparison.to_csv(
-        tables_dir / "table_affected_unaffected.csv", index=False)
-    comparison_fmt = pd.DataFrame({
-        "LF": comparison["load_factor"].map(
+    mechanism = distribution_summary[
+        distribution_summary["metric"].isin(
+            ["snr_affected_db", "inr_unaffected_db"])
+    ].copy()
+    mechanism.to_csv(
+        tables_dir / "table_mechanism_summary.csv", index=False)
+    mechanism_fmt = pd.DataFrame({
+        "LF": mechanism["load_factor"].map(
             lambda value: f"{100 * value:.0f}%"),
-        "PBO": comparison["pbo_db"].map(lambda value: f"{value:.0f}"),
-        "P5 afetados": comparison["affected_sinr_p5_db"].map(
-            lambda value: f"{value:.2f}"),
-        "Δ afetados [IC95%]": comparison.apply(
-            lambda row: (
-                f"{row['affected_delta_db']:.2f} "
-                f"[{row['affected_delta_ci95_lower_db']:.2f}, "
-                f"{row['affected_delta_ci95_upper_db']:.2f}]"
-            ),
-            axis=1,
-        ),
-        "P5 não afetados": comparison["unaffected_sinr_p5_db"].map(
-            lambda value: f"{value:.2f}"),
-        "Δ não afetados [IC95%]": comparison.apply(
-            lambda row: (
-                f"{row['unaffected_delta_db']:.2f} "
-                f"[{row['unaffected_delta_ci95_lower_db']:.2f}, "
-                f"{row['unaffected_delta_ci95_upper_db']:.2f}]"
-            ),
-            axis=1,
-        ),
+        "Fração": mechanism["affected_fraction"].map(
+            lambda value: f"{100 * value:.0f}%"),
+        "PBO": mechanism["pbo_db"].map(
+            lambda value: "Base" if value == 0 else f"{value:.0f} dB"),
+        "Métrica": mechanism["metric"].replace({
+            "snr_affected_db": "SNR afetados (dB)",
+            "inr_unaffected_db": "I/N não afetados (dB)",
+        }),
+        "Média": mechanism["mean"].map(lambda value: f"{value:.2f}"),
+        "Mediana": mechanism["median"].map(lambda value: f"{value:.2f}"),
+        "P5": mechanism["p5"].map(lambda value: f"{value:.2f}"),
+        "P95": mechanism["p95"].map(lambda value: f"{value:.2f}"),
+        "Omitidos": mechanism["omitted_records"].map(
+            lambda value: f"{int(value)}"),
     })
     write_latex_table(
-        comparison_fmt,
-        tables_dir / "table_affected_unaffected.tex",
+        mechanism_fmt,
+        tables_dir / "table_mechanism_summary.tex",
     )
+
+    paired_controls.to_csv(
+        tables_dir / "table_paired_controls.csv", index=False)
+    controls_fmt = pd.DataFrame({
+        "LF": paired_controls["load_factor"].map(
+            lambda value: f"{100 * value:.0f}%"),
+        "Fração": paired_controls["affected_fraction"].map(
+            lambda value: f"{100 * value:.0f}%"),
+        "PBO": paired_controls["pbo_db"].map(
+            lambda value: f"{value:.0f} dB"),
+        "Δ SNR afetados": paired_controls[
+            "snr_affected_median_delta_db"].map(
+                lambda value: f"{value:.2f} dB"),
+        "Δ I/N não afetados": paired_controls[
+            "inr_unaffected_median_delta_db"].map(
+                lambda value: f"{value:.2f} dB"),
+        "Máx. |Δ SNR não afetados|": paired_controls[
+            "snr_unaffected_max_abs_delta_db"].map(
+                lambda value: f"{value:.3g} dB"),
+        "Máx. |Δ path loss|": paired_controls[
+            "path_loss_max_abs_delta_db"].map(
+                lambda value: f"{value:.3g} dB"),
+        "SNR domina": paired_controls[
+            "snr_reduction_dominates_inr_benefit"].map(
+                lambda value: "Sim" if value else "Não"),
+    })
+    write_latex_table(
+        controls_fmt,
+        tables_dir / "table_paired_controls.tex",
+    )
+
     return {
         "scenario_counts": counts,
-        "main_results": main,
-        "affected_unaffected": comparison,
+        "system_performance": performance_values,
+        "mechanism_summary": mechanism,
+        "paired_controls": paired_controls,
     }
 
 
@@ -2260,6 +3114,7 @@ def _scenario_description(row: pd.Series) -> str:
 def generate_results_report(
     metrics_df: pd.DataFrame,
     paired_df: pd.DataFrame,
+    operational_classification: pd.DataFrame,
     qc: QCRecorder,
     outage_threshold: float,
     repetitions: int,
@@ -2279,8 +3134,12 @@ def generate_results_report(
         & (paired_df["group"] == "all")
     ]
     worst = sinr_deltas.loc[sinr_deltas["estimate"].idxmin()]
-    greatest_outage = all_positive.loc[
-        all_positive["outage_probability"].idxmax()]
+    greatest_outages = {
+        key: all_positive.loc[
+            all_positive[metric].idxmax()]
+        for key, metric in OUTAGE_METRICS.items()
+    }
+    greatest_outage = greatest_outages["m6"]
     unaffected = paired_df[
         (paired_df["metric"] == "sinr_p5_db")
         & (paired_df["group"] == "unaffected")
@@ -2290,6 +3149,18 @@ def generate_results_report(
     differences = paired_df[
         (paired_df["ci95_lower"] > 0)
         | (paired_df["ci95_upper"] < 0)
+    ]
+    point_meets = operational_classification[
+        operational_classification[
+            "meets_sinr_p5_m6_point_criterion"]
+    ]
+    robust_meets = operational_classification[
+        operational_classification[
+            "operational_status_m6"] == "acima_com_ic95"
+    ]
+    borderline = operational_classification[
+        operational_classification[
+            "operational_status_m6"] == "limitrofe_ic95"
     ]
     status_counts = qc.dataframe()["status"].value_counts().to_dict()
 
@@ -2316,8 +3187,10 @@ def generate_results_report(
             f"{row.sinr_mean_db:.2f} dB, SINR P5 {row.sinr_p5_db:.2f} dB, "
             f"proxy de eficiência espectral baseada em Shannon média "
             f"{row.spectral_efficiency_mean_bpshz:.3f} bit/s/Hz, P5 "
-            f"{row.spectral_efficiency_p5_bpshz:.3f} bit/s/Hz e outage "
-            f"{100 * row.outage_probability:.2f}%."
+            f"{row.spectral_efficiency_p5_bpshz:.3f} bit/s/Hz. Outage: "
+            f"{100 * row.outage_probability_m1:.2f}% para −1 dB, "
+            f"{100 * row.outage_probability_m6:.2f}% para −6 dB e "
+            f"{100 * row.outage_probability_m10:.2f}% para −10 dB."
         )
     lines.extend([
         "",
@@ -2393,11 +3266,21 @@ def generate_results_report(
         "",
         "## 7. Outage",
         "",
-        f"Outage foi calculado para o limiar operacional adotado para "
-        f"comparação de SINR < {outage_threshold:.1f} dB. A maior "
-        f"probabilidade observada foi "
-        f"{100 * float(greatest_outage['outage_probability']):.2f}% em "
-        f"{_scenario_description(greatest_outage)}.",
+        "Foram calculados três indicadores diretamente da SINR de cada "
+        "registro: −1 dB como referência NR-NTN mais restritiva, −6 dB como "
+        "limiar "
+        "operacional principal adotado no artigo e −10 dB como indicador "
+        "complementar de degradação severa.",
+        "",
+        "Nenhum desses valores é apresentado como limiar universal de "
+        "conformidade NR-NTN.",
+        "",
+        f"Para o critério principal SINR < {outage_threshold:.1f} dB, a maior "
+        f"probabilidade de outage foi "
+        f"{100 * float(greatest_outage[MAIN_OUTAGE_METRIC]):.2f}% em "
+        f"{_scenario_description(greatest_outage)}. A linha de 5% nas figuras "
+        "representa o critério de comparação de pelo menos 95% dos usuários "
+        "acima do limiar principal.",
         "",
         "## 8. Proxy de eficiência espectral",
         "",
@@ -2448,12 +3331,47 @@ def generate_results_report(
         "assumida independência entre usuários de um mesmo snapshot.",
         "- A campanha contém níveis discretos de PBO e fração; não foram "
         "interpolados cruzamentos entre níveis simulados.",
+        "- As fronteiras operacionais conectam somente o maior nível de PBO "
+        "simulado que permaneceu acima de cada limiar para cada fração.",
+        "- Os limiares de −1, −6 e −10 dB são referências analíticas desta "
+        "avaliação, não critérios universais de conformidade NR-NTN.",
         "- A proxy de eficiência espectral não modela scheduler, MCS/BLER, "
         "HARQ, overhead ou entrega de bits na camada 3.",
         "",
-        "## Valores sugeridos para citação no artigo",
+        "## 13. Região operacional para SINR P5 ≥ −6 dB",
         "",
     ])
+    lines.append(
+        f"{len(point_meets)} das 24 combinações possuem estimativa pontual de "
+        "SINR P5 ≥ −6 dB. Destas, "
+        f"{len(robust_meets)} têm IC95% inteiramente acima de −6 dB e "
+        f"{len(borderline)} são limítrofes porque o IC95% intercepta −6 dB."
+    )
+    lines.extend(["", "Combinações com estimativa pontual SINR P5 ≥ −6 dB:", ""])
+    for row in point_meets.itertuples(index=False):
+        suffix = " — limítrofe pelo IC95%" \
+            if row.operational_status_m6 == "limitrofe_ic95" else ""
+        lines.append(
+            f"- LF={100 * row.load_factor:.0f}%, fração="
+            f"{100 * row.affected_fraction:.0f}%, PBO={row.pbo_db:.0f} dB: "
+            f"SINR P5={row.sinr_p5_db:.2f} dB, IC95% "
+            f"[{row.sinr_p5_ci95_lower_db:.2f}, "
+            f"{row.sinr_p5_ci95_upper_db:.2f}] dB{suffix}."
+        )
+    lines.extend(["", "Combinações limítrofes pelo IC95%:", ""])
+    if borderline.empty:
+        lines.append("- Nenhuma.")
+    else:
+        for row in borderline.itertuples(index=False):
+            lines.append(
+                f"- LF={100 * row.load_factor:.0f}%, fração="
+                f"{100 * row.affected_fraction:.0f}%, "
+                f"PBO={row.pbo_db:.0f} dB: SINR P5="
+                f"{row.sinr_p5_db:.2f} dB, IC95% "
+                f"[{row.sinr_p5_ci95_lower_db:.2f}, "
+                f"{row.sinr_p5_ci95_upper_db:.2f}] dB."
+            )
+    lines.extend(["", "## Valores sugeridos para citação no artigo", ""])
     for load_factor in EXPECTED_LOAD_FACTORS:
         row = _single_row(
             sinr_deltas,
@@ -2471,8 +3389,9 @@ def generate_results_report(
             f"{float(row['ci95_upper']):.2f}] dB."
         )
     lines.append(
-        f"- A maior probabilidade de outage observada foi "
-        f"{100 * float(greatest_outage['outage_probability']):.2f}% em "
+        f"- Para o limiar operacional principal de −6 dB, a maior "
+        f"probabilidade de outage observada foi "
+        f"{100 * float(greatest_outage[MAIN_OUTAGE_METRIC]):.2f}% em "
         f"{_scenario_description(greatest_outage)}."
     )
     (reports_dir / "results_report.md").write_text(
@@ -2481,10 +3400,192 @@ def generate_results_report(
     )
     return {
         "worst_sinr_delta": worst.to_dict(),
-        "greatest_outage": greatest_outage.to_dict(),
+        "greatest_outage_m6": greatest_outage.to_dict(),
+        "greatest_outage_by_threshold": {
+            key: row.to_dict() for key, row in greatest_outages.items()
+        },
+        "sinr_p5_m6_point_criterion_scenarios":
+            point_meets["scenario_id"].tolist(),
+        "sinr_p5_m6_robust_scenarios":
+            robust_meets["scenario_id"].tolist(),
+        "sinr_p5_m6_borderline_scenarios":
+            borderline["scenario_id"].tolist(),
         "unaffected_improvement_count": int(len(improvements)),
         "largest_unaffected_improvement":
             improvements.iloc[0].to_dict() if not improvements.empty else None,
+    }
+
+
+def generate_performance_report(
+    performance_values: pd.DataFrame,
+    distribution_summary: pd.DataFrame,
+    paired_controls: pd.DataFrame,
+    qc: QCRecorder,
+    repetitions: int,
+    reports_dir: Path,
+) -> dict:
+    positives = performance_values[~performance_values["is_baseline"]]
+    baselines = performance_values[
+        performance_values["is_baseline"]].sort_values("load_factor")
+    greatest_outage = positives.loc[
+        positives["outage_probability_m6"].idxmax()]
+    minimum_retention = positives.loc[
+        positives[RETENTION_METRIC].idxmin()]
+    availability_pass = positives[
+        positives["outage_probability_m6"] <= 0.05]
+    main_controls = paired_controls[
+        np.isclose(paired_controls["affected_fraction"], 0.10)
+        & paired_controls["pbo_db"].isin([10.0, 20.0])
+    ].sort_values(["load_factor", "pbo_db"])
+    main_inr = distribution_summary[
+        (distribution_summary["metric"] == "inr_unaffected_db")
+        & np.isclose(distribution_summary["affected_fraction"], 0.10)
+        & distribution_summary["pbo_db"].isin([0.0, 10.0, 20.0])
+    ].sort_values(["load_factor", "pbo_db"])
+    status_counts = qc.dataframe()["status"].value_counts().to_dict()
+    snr_constant_count = int(
+        paired_controls["snr_unaffected_practically_constant"].sum())
+    path_loss_count = int(paired_controls["path_loss_overlaid"].sum())
+    inr_decreased_count = int(
+        paired_controls["inr_unaffected_decreased"].sum())
+    dominance_count = int(
+        paired_controls["snr_reduction_dominates_inr_benefit"].sum())
+
+    lines = [
+        "# Resultados da Campanha 03 — disponibilidade, qualidade e mecanismo",
+        "",
+        "## Escopo e integridade",
+        "",
+        f"O controle de qualidade registrou {status_counts.get('PASS', 0)} "
+        f"verificações PASS, {status_counts.get('WARNING', 0)} WARNING e "
+        f"{status_counts.get('FAIL', 0)} FAIL. Foram processados 26 cenários "
+        "selecionados, cada um com 1.000 snapshots.",
+        "",
+        "O pós-processamento leu os CSVs existentes sem executar novamente o "
+        "simulador ou modificar os dados brutos.",
+        "",
+        "A disponibilidade e a qualidade são apresentadas conjuntamente. "
+        "Outage ≤ 5% para SINR < −6 dB e SINR P5 ≥ −6 dB expressam "
+        "essencialmente o mesmo corte estatístico e não são tratados como "
+        "análises independentes.",
+        "",
+        "O limiar de −6 dB é o critério operacional principal desta análise; "
+        "não é apresentado como limiar universal de conformidade NR-NTN.",
+        "",
+        "## 1. Disponibilidade: qual é a probabilidade de SINR < −6 dB?",
+        "",
+    ]
+    for row in baselines.itertuples(index=False):
+        lines.append(
+            f"- Baseline LF = {100 * row.load_factor:.0f}%: outage "
+            f"{100 * row.outage_probability_m6:.2f}%, IC95% "
+            f"[{100 * row.outage_m6_ci95_lower:.2f}%, "
+            f"{100 * row.outage_m6_ci95_upper:.2f}%]."
+        )
+    lines.extend([
+        "",
+        f"{len(availability_pass)} dos 24 cenários com PBO possuem outage "
+        "pontual ≤ 5%. O maior outage foi "
+        f"{100 * greatest_outage['outage_probability_m6']:.2f}% em "
+        f"{_scenario_description(greatest_outage)}.",
+        "",
+        "Os IC95% foram obtidos por bootstrap agrupado por snapshot. A figura "
+        "principal contém os 24 cenários com PBO e os dois baselines.",
+        "",
+        "## 2. Qualidade: quanto da proxy de eficiência espectral P5 é preservado?",
+        "",
+        "A retenção foi calculada diretamente da proxy salva pelo SHARC como "
+        "100 × SE P5 do cenário / SE P5 do baseline. O IC95% usa a razão "
+        "repetição a repetição do bootstrap pareado por snapshot.",
+        "",
+        f"A menor retenção pontual foi "
+        f"{minimum_retention[RETENTION_METRIC]:.2f}% em "
+        f"{_scenario_description(minimum_retention)}. Não foi aplicado limiar "
+        "arbitrário à retenção.",
+        "",
+        "A grandeza permanece identificada como proxy de eficiência espectral; "
+        "não é chamada de throughput.",
+        "",
+        "## 3. Mecanismo: redução de SNR e benefício de interferência",
+        "",
+        "As comparações usam as mesmas chaves `snapshot_id`, `ue_id` e "
+        "`beam_id`. O baseline recebe a mesma máscara da fração analisada.",
+        "",
+    ])
+    for row in main_controls.itertuples(index=False):
+        lines.append(
+            f"- LF={100 * row.load_factor:.0f}%, fração=10% e "
+            f"PBO={row.pbo_db:.0f} dB: mediana da ΔSNR dos usuários afetados "
+            f"= {row.snr_affected_median_delta_db:.2f} dB; mediana da ΔI/N "
+            f"dos usuários não afetados = "
+            f"{row.inr_unaffected_median_delta_db:.2f} dB."
+        )
+    lines.extend([
+        "",
+        "O I/N foi derivado registro a registro por "
+        "`SNR_linear / SINR_linear - 1`. Valores não positivos ou não finitos "
+        "foram omitidos, sem substituição artificial.",
+        "",
+    ])
+    for row in main_inr.itertuples(index=False):
+        label = "baseline" if row.pbo_db == 0 else f"PBO={row.pbo_db:.0f} dB"
+        lines.append(
+            f"- LF={100 * row.load_factor:.0f}%, {label}: "
+            f"{row.omitted_records} de {row.total_records} registros de I/N "
+            "omitidos por precisão numérica."
+        )
+    lines.extend([
+        "",
+        "## Controles pareados",
+        "",
+        f"- SNR dos usuários não afetados praticamente constante: "
+        f"{snr_constant_count}/24 cenários.",
+        f"- Path loss sobreposto ao baseline por chave: "
+        f"{path_loss_count}/24 cenários.",
+        f"- Mediana de I/N dos usuários não afetados reduzida: "
+        f"{inr_decreased_count}/24 cenários.",
+        f"- Redução de SNR dos afetados dominante sobre a redução de I/N: "
+        f"{dominance_count}/24 cenários.",
+        "",
+        "A CDF de path loss é usada apenas como controle de qualidade, pois o "
+        "PBO não deve alterar a perda de propagação.",
+        "",
+        "## Método estatístico e limitações",
+        "",
+        f"- Os IC95% usam bootstrap agrupado por snapshot com {repetitions} "
+        "repetições.",
+        "- A retenção usa bootstrap pareado; os mesmos snapshots são "
+        "reamostrados no cenário e no baseline.",
+        "- As CDFs não recebem bandas de confiança para preservar a "
+        "legibilidade.",
+        "- A proxy de eficiência espectral não modela scheduler, MCS/BLER, "
+        "HARQ, overhead ou entrega de bits na camada 3.",
+        "",
+        "## Valores sugeridos para citação no artigo",
+        "",
+        f"- O maior outage para SINR < −6 dB foi "
+        f"{100 * greatest_outage['outage_probability_m6']:.2f}% em "
+        f"{_scenario_description(greatest_outage)}.",
+        f"- A menor retenção da proxy de eficiência espectral P5 foi "
+        f"{minimum_retention[RETENTION_METRIC]:.2f}% em "
+        f"{_scenario_description(minimum_retention)}.",
+    ])
+    (reports_dir / "results_report.md").write_text(
+        "\n".join(lines) + "\n",
+        encoding="utf-8",
+    )
+    return {
+        "greatest_outage_m6": greatest_outage.to_dict(),
+        "minimum_spectral_efficiency_p5_retention":
+            minimum_retention.to_dict(),
+        "availability_scenarios_outage_le_5_percent":
+            int(len(availability_pass)),
+        "snr_unaffected_constant_scenarios": snr_constant_count,
+        "path_loss_overlaid_scenarios": path_loss_count,
+        "inr_unaffected_decreased_scenarios": inr_decreased_count,
+        "snr_reduction_dominant_scenarios": dominance_count,
+        "main_inr_omitted_records": int(main_inr[
+            "omitted_records"].sum()),
     }
 
 
@@ -2494,28 +3595,29 @@ def generate_figure_captions(
 ) -> None:
     captions = [
         r"% Legendas geradas a partir do mesmo conjunto de dados das figuras.",
-        r"\newcommand{\CaptionHeatmapDeltaSinrPFive}{"
-        r"Variação da SINR no percentil 5 em relação ao baseline agregado, "
-        r"para (a) LF de 20\% e (b) LF de 50\%. Os valores nas células estão "
-        r"em dB.}",
-        r"\newcommand{\CaptionHeatmapAbsoluteSinrPFive}{"
-        r"SINR absoluta no percentil 5 para as combinações simuladas de "
-        r"power back-off e fração afetada, em dB.}",
-        r"\newcommand{\CaptionAffectedUnaffected}{"
-        r"SINR no percentil 5 para todos os usuários e para os grupos "
-        r"atendidos por feixes afetados e não afetados. As barras indicam "
-        r"IC95\% por bootstrap agrupado por snapshot; os grupos do baseline "
-        r"foram pareados pela máscara de PBO.}",
-        r"\newcommand{\CaptionOutagePbo}{"
-        rf"Probabilidade de outage em função do power back-off. Outage "
-        rf"calculado para o limiar operacional adotado de SINR < "
-        rf"{outage_threshold:.1f} dB. As barras indicam IC95\% por bootstrap "
-        r"agrupado por snapshot.}",
-        r"\newcommand{\CaptionRepresentativeCdf}{"
-        r"CDF empírica da SINR para LF de 50\%, fração afetada de 10\% e "
-        r"PBO de 0, 10 e 20 dB: (a) usuários em feixes afetados e (b) "
-        r"usuários em feixes não afetados. O baseline foi classificado com "
-        r"a máscara pareada de 10\%.}",
+        r"\newcommand{\CaptionSystemPerformance}{"
+        rf"Disponibilidade e qualidade do sistema para LF de 20\% e 50\%. "
+        rf"A linha superior mostra outage para SINR $< "
+        rf"{outage_threshold:.0f}$ dB, com IC95\% por bootstrap agrupado por "
+        r"snapshot e referência horizontal de 5\%. A linha inferior mostra "
+        r"a retenção da proxy de eficiência espectral P5 em relação ao "
+        r"baseline, com IC95\% por bootstrap pareado por snapshot.}",
+        r"\newcommand{\CaptionMechanismFten}{"
+        r"Mecanismo físico para fração afetada de 10\%: CDF da SNR dos "
+        r"usuários em feixes afetados e CDF de I/N dos usuários em feixes "
+        r"não afetados. Baseline, PBO de 10 dB e PBO de 20 dB usam as mesmas "
+        r"chaves de snapshot, usuário e feixe.}",
+        r"\newcommand{\CaptionPathLossControl}{"
+        r"Controle pareado da CDF de path loss. A sobreposição entre baseline "
+        r"e cenários com PBO confirma que a perda de propagação não foi "
+        r"alterada pelo controle de potência.}",
+        r"\newcommand{\CaptionSupplementarySinrCdf}{"
+        r"CDF suplementar da SINR de todos os usuários para fração afetada "
+        r"de 10\%, apresentada apenas como apoio à análise conjunta de "
+        r"disponibilidade e qualidade.}",
+        r"\newcommand{\CaptionSupplementarySpectralEfficiencyCdf}{"
+        r"CDF suplementar da proxy de eficiência espectral salva pelo SHARC "
+        r"para fração afetada de 10\%. A grandeza não representa throughput.}",
         "",
     ]
     (reports_dir / "figure_captions.tex").write_text(
@@ -2584,8 +3686,15 @@ def generate_results_values(
                     "SinrPfive", load_factor, pbo, fraction)
                 delta_name = latex_command_name(
                     "DeltaSinrPfive", load_factor, pbo, fraction)
-                outage_name = latex_command_name(
-                    "Outage", load_factor, pbo, fraction)
+                outage_names = {
+                    key: latex_command_name(
+                        f"Outage{key.upper()}",
+                        load_factor,
+                        pbo,
+                        fraction,
+                    )
+                    for key in OUTAGE_THRESHOLDS
+                }
                 lines.extend([
                     rf"\newcommand{{\{sinr_name}}}"
                     rf"{{{float(metric['sinr_p5_db']):.2f}\,\mathrm{{dB}}}}",
@@ -2595,9 +3704,71 @@ def generate_results_values(
                     rf"{{{delta[1]:.2f}\,\mathrm{{dB}}}}",
                     rf"\newcommand{{\{delta_name}CiHigh}}"
                     rf"{{{delta[2]:.2f}\,\mathrm{{dB}}}}",
-                    rf"\newcommand{{\{outage_name}}}"
-                    rf"{{{100 * float(metric['outage_probability']):.2f}\%}}",
                 ])
+                for key, outage_name in outage_names.items():
+                    lines.append(
+                        rf"\newcommand{{\{outage_name}}}"
+                        rf"{{{100 * float(metric[OUTAGE_METRICS[key]]):.2f}\%}}"
+                    )
+    lines.append("")
+    (reports_dir / "results_values.tex").write_text(
+        "\n".join(lines),
+        encoding="utf-8",
+    )
+
+
+def generate_performance_results_values(
+    performance_values: pd.DataFrame,
+    paired_controls: pd.DataFrame,
+    reports_dir: Path,
+) -> None:
+    lines = [
+        r"% Valores gerados automaticamente; não editar manualmente.",
+    ]
+    for row in performance_values.itertuples(index=False):
+        if row.is_baseline:
+            prefix = (
+                "BaselinePerformanceLf"
+                + ("Twenty" if np.isclose(row.load_factor, 0.2) else "Fifty")
+            )
+        else:
+            prefix = latex_command_name(
+                "Performance",
+                row.load_factor,
+                row.pbo_db,
+                row.affected_fraction,
+            )
+        lines.extend([
+            rf"\newcommand{{\{prefix}OutageM6}}"
+            rf"{{{100 * row.outage_probability_m6:.2f}\%}}",
+            rf"\newcommand{{\{prefix}OutageM6CiLow}}"
+            rf"{{{100 * row.outage_m6_ci95_lower:.2f}\%}}",
+            rf"\newcommand{{\{prefix}OutageM6CiHigh}}"
+            rf"{{{100 * row.outage_m6_ci95_upper:.2f}\%}}",
+            rf"\newcommand{{\{prefix}SePfiveRetention}}"
+            rf"{{{getattr(row, RETENTION_METRIC):.2f}\%}}",
+            rf"\newcommand{{\{prefix}SePfiveRetentionCiLow}}"
+            rf"{{{row.retention_se_p5_ci95_lower_percent:.2f}\%}}",
+            rf"\newcommand{{\{prefix}SePfiveRetentionCiHigh}}"
+            rf"{{{row.retention_se_p5_ci95_upper_percent:.2f}\%}}",
+        ])
+    controls = paired_controls[
+        np.isclose(paired_controls["affected_fraction"], 0.10)
+        & paired_controls["pbo_db"].isin([10.0, 20.0])
+    ]
+    for row in controls.itertuples(index=False):
+        prefix = latex_command_name(
+            "Mechanism",
+            row.load_factor,
+            row.pbo_db,
+            row.affected_fraction,
+        )
+        lines.extend([
+            rf"\newcommand{{\{prefix}SnrAffectedDeltaMedian}}"
+            rf"{{{row.snr_affected_median_delta_db:.2f}\,\mathrm{{dB}}}}",
+            rf"\newcommand{{\{prefix}InrUnaffectedDeltaMedian}}"
+            rf"{{{row.inr_unaffected_median_delta_db:.2f}\,\mathrm{{dB}}}}",
+        ])
     lines.append("")
     (reports_dir / "results_values.tex").write_text(
         "\n".join(lines),
@@ -2607,24 +3778,47 @@ def generate_results_values(
 
 def generate_all_figures(
     scenarios: Sequence[Scenario],
-    summaries: dict[str, dict],
     metrics_df: pd.DataFrame,
-    bootstrap_df: pd.DataFrame,
-    paired_df: pd.DataFrame,
+    performance_values: pd.DataFrame,
+    cdf_values: pd.DataFrame,
     paths: dict[str, Path],
 ) -> None:
     configure_matplotlib()
-    plot_heatmaps(metrics_df, paired_df, paths["figures"])
-    plot_sinr_affected_unaffected(
-        bootstrap_df, paths["figures"], 0.10, supplementary=False)
-    plot_sinr_affected_unaffected(
-        bootstrap_df, paths["figures"], 0.05, supplementary=True)
-    plot_sinr_affected_unaffected(
-        bootstrap_df, paths["figures"], 0.15, supplementary=True)
-    plot_outage(bootstrap_df, paths["figures"])
-    plot_representative_cdf(scenarios, summaries, paths["figures"])
+    for obsolete_stem in [
+        "fig_heatmap_delta_sinr_p5",
+        "fig_heatmap_absolute_sinr_p5",
+        "fig_outage_vs_pbo",
+        "fig_operational_region_pbo",
+        "fig_operational_frontiers_pbo",
+        "fig_outage_threshold_sensitivity_f10",
+        "fig_outage_vs_pbo_threshold_m6",
+        "fig_sinr_p5_affected_unaffected_f10",
+        "fig_cdf_representative",
+    ]:
+        for extension in (".pdf", ".png"):
+            obsolete = paths["figures"] / f"{obsolete_stem}{extension}"
+            if obsolete.exists():
+                obsolete.unlink()
+    for obsolete_stem in [
+        "fig_sinr_mean_all_fractions",
+        "fig_sinr_p5_all_fractions",
+        "fig_spectral_efficiency_mean_all_fractions",
+        "fig_spectral_efficiency_p5_all_fractions",
+        "fig_outage_by_group",
+        "fig_delta_sinr_p5_unaffected",
+        "fig_delta_sinr_p5_affected",
+        "fig_sinr_p5_affected_unaffected_f05",
+        "fig_sinr_p5_affected_unaffected_f15",
+    ]:
+        for extension in (".pdf", ".png"):
+            obsolete = paths["supplementary"] / f"{obsolete_stem}{extension}"
+            if obsolete.exists():
+                obsolete.unlink()
+    plot_system_performance(performance_values, paths["figures"])
+    plot_mechanism_cdf(
+        cdf_values, paths["figures"], 0.10, supplementary=False)
     generate_supplementary_figures(
-        metrics_df, bootstrap_df, paired_df, scenarios, paths)
+        metrics_df, scenarios, cdf_values, paths)
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
@@ -2646,8 +3840,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--outage-threshold",
         type=float,
-        default=-10.0,
-        help="Limiar operacional adotado para comparação, em dB.",
+        default=-6.0,
+        help="Limiar operacional principal adotado para comparação, em dB.",
     )
     parser.add_argument(
         "--bootstrap-repetitions",
@@ -2711,7 +3905,8 @@ def run_analysis(args: argparse.Namespace) -> dict:
             scenario.scenario_id,
         )
         try:
-            frame = load_scenario_dataframe(scenario)
+            frame = load_scenario_dataframe(
+                scenario, include_path_loss=True)
         except (OSError, ValueError, pd.errors.ParserError) as error:
             qc.add(
                 "structured_csv_readable",
@@ -2760,29 +3955,119 @@ def run_analysis(args: argparse.Namespace) -> dict:
         paths["data"] / "bootstrap_metrics.csv", index=False)
     paired_df.to_csv(
         paths["data"] / "paired_baseline_differences.csv", index=False)
+    performance_values = build_system_performance_values(
+        bootstrap_df, paired_df)
+    performance_values.to_csv(
+        paths["data"] / "system_performance_figure_values.csv",
+        index=False,
+    )
+    print("Construindo CDFs pareadas e controles do mecanismo físico...")
+    cdf_values, distribution_summary, paired_controls = (
+        build_mechanism_analysis(scenarios, summaries)
+    )
+    cdf_values.to_csv(
+        paths["data"] / "cdf_figure_values.csv", index=False)
+    distribution_summary.to_csv(
+        paths["data"] / "distribution_summary.csv", index=False)
+    paired_controls.to_csv(
+        paths["data"] / "paired_control_checks.csv", index=False)
+    for obsolete_name in [
+        "operational_region_classification.csv",
+        "operational_frontiers.csv",
+    ]:
+        obsolete = paths["data"] / obsolete_name
+        if obsolete.exists():
+            obsolete.unlink()
 
-    print("Gerando figuras em PDF vetorial e PNG a 350 dpi...")
+    qc.add(
+        "main_figure_inventory",
+        "PASS" if (
+            len(performance_values) == 26
+            and int((~performance_values["is_baseline"]).sum()) == 24
+            and int(performance_values["is_baseline"].sum()) == 2
+        ) else "FAIL",
+        f"Linhas={len(performance_values)}; cenários com PBO="
+        f"{int((~performance_values['is_baseline']).sum())}; baselines="
+        f"{int(performance_values['is_baseline'].sum())}.",
+    )
+    paired_checks = [
+        (
+            "snr_unaffected_constant",
+            "snr_unaffected_practically_constant",
+            "SNR dos usuários não afetados constante",
+        ),
+        (
+            "path_loss_control",
+            "path_loss_overlaid",
+            "path loss sobreposto",
+        ),
+        (
+            "inr_unaffected_decreases",
+            "inr_unaffected_decreased",
+            "I/N dos usuários não afetados reduzido",
+        ),
+        (
+            "snr_reduction_dominates",
+            "snr_reduction_dominates_inr_benefit",
+            "redução de SNR dominante",
+        ),
+    ]
+    for check, column, label in paired_checks:
+        passed = int(paired_controls[column].sum())
+        qc.add(
+            check,
+            "PASS" if passed == 24 else "WARNING",
+            f"{label}: {passed}/24 cenários pareados.",
+        )
+    total_inr_omitted = int(distribution_summary.loc[
+        distribution_summary["metric"] == "inr_unaffected_db",
+        "omitted_records",
+    ].sum())
+    total_inr_records = int(distribution_summary.loc[
+        distribution_summary["metric"] == "inr_unaffected_db",
+        "total_records",
+    ].sum())
+    qc.add(
+        "inr_numerical_omissions",
+        "PASS",
+        f"Registros de I/N omitidos por resultado linear não positivo ou "
+        f"não finito: {total_inr_omitted}/{total_inr_records}.",
+    )
+    write_qc_outputs(qc, paths)
+    if qc.has_failures():
+        raise RuntimeError(
+            "O controle de qualidade pós-bootstrap encontrou falhas. "
+            "Consulte generated/quality_control/qc_report.md.")
+
+    print("Gerando figuras em PDF vetorial e PNG a 300 dpi...")
     generate_all_figures(
         scenarios,
-        summaries,
         metrics_df,
-        bootstrap_df,
-        paired_df,
+        performance_values,
+        cdf_values,
         paths,
     )
     print("Gerando tabelas e relatórios...")
-    build_tables(scenarios, metrics_df, paired_df, paths["tables"])
-    result_summary = generate_results_report(
+    build_tables(
+        scenarios,
         metrics_df,
-        paired_df,
+        performance_values,
+        distribution_summary,
+        paired_controls,
+        paths["tables"],
+    )
+    result_summary = generate_performance_report(
+        performance_values,
+        distribution_summary,
+        paired_controls,
         qc,
-        args.outage_threshold,
         args.bootstrap_repetitions,
         paths["reports"],
     )
     generate_figure_captions(
         args.outage_threshold, paths["reports"])
-    generate_results_values(metrics_df, paired_df, paths["reports"])
+    generate_performance_results_values(
+        performance_values, paired_controls, paths["reports"])
 
     summary = {
         "campaign_dir": str(campaign_dir),
@@ -2823,6 +4108,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
     if args.bootstrap_repetitions <= 0:
         raise ValueError("--bootstrap-repetitions deve ser positivo")
+    if not np.isclose(args.outage_threshold, OUTAGE_THRESHOLDS["m6"]):
+        raise ValueError(
+            "A Campanha 03 usa -6 dB como limiar operacional principal; "
+            "--outage-threshold deve permanecer em -6.")
     summary = run_analysis(args)
     print("Resumo final:")
     print(json.dumps(summary, indent=2, ensure_ascii=False))

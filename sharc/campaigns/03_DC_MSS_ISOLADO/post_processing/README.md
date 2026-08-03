@@ -12,13 +12,19 @@ Na raiz do repositório:
 python sharc/campaigns/03_DC_MSS_ISOLADO/post_processing/analyze_results.py `
   --campaign-dir sharc/campaigns/03_DC_MSS_ISOLADO `
   --output-dir sharc/campaigns/03_DC_MSS_ISOLADO/post_processing/generated `
-  --outage-threshold -10 `
+  --outage-threshold -6 `
   --bootstrap-repetitions 2000 `
   --bootstrap-seed 838
 ```
 
-O valor de `-10 dB` é tratado em todos os artefatos como **limiar operacional
-adotado para comparação**, não como requisito normativo.
+São calculados três indicadores de outage diretamente dos CSVs:
+
+- `-1 dB`: referência NR-NTN mais restritiva;
+- `-6 dB`: limiar operacional principal adotado no artigo;
+- `-10 dB`: indicador complementar de degradação severa.
+
+Esses valores são referências analíticas da campanha e não são apresentados
+como limiares universais de conformidade NR-NTN.
 
 ## Metodologia
 
@@ -33,14 +39,25 @@ adotado para comparação**, não como requisito normativo.
 - Os percentis usam `numpy.quantile(..., method="linear")`.
 - Os IC95% usam bootstrap percentil agrupado por snapshot. Cada snapshot
   sorteado carrega conjuntamente todos os seus usuários.
+- A retenção da proxy de eficiência espectral P5 é calculada como
+  `100 * SE_P5_PBO / SE_P5_baseline`; seu IC95% usa a razão repetição a
+  repetição do bootstrap pareado.
+- O I/N é derivado de SNR e SINR em escala linear. Resultados não positivos ou
+  não finitos são contabilizados e omitidos, sem substituição artificial.
+- O arquivo achatado `imt_path_loss.csv` é alinhado ao CSV estruturado pela
+  ordem validada contra `imt_dl_snr.csv` e depois associado às mesmas chaves.
 - A coluna `spectral_efficiency_proxy` é reportada como **proxy de eficiência
   espectral baseada em Shannon**, em `bit/s/Hz`, e nunca como throughput.
-- Outage é definido por `sinr_db < outage_threshold`.
+- Outage é calculado para `sinr_db < -1`, `< -6` e `< -10 dB`. O argumento
+  `--outage-threshold` permanece em `-6 dB` para identificar o critério
+  principal nas tabelas e conclusões.
 
 ## Artefatos
 
-`generated/data/` contém manifesto, métricas pontuais, bootstrap absoluto e
-diferenças pareadas. `generated/figures/` contém PDF vetorial e PNG a 350 dpi.
+`generated/data/` contém manifesto, métricas pontuais, bootstrap, retenção
+pareada, valores das CDFs e controles pareados. A figura principal combina
+outage e retenção da proxy P5; a segunda figura mostra o mecanismo por SNR e
+I/N. `generated/figures/` contém PDF vetorial e PNG a 300 dpi.
 `generated/tables/` contém CSV e LaTeX. `generated/reports/` contém o relatório,
 legendas e comandos LaTeX. `generated/quality_control/` registra todas as
 verificações como PASS, WARNING ou FAIL.

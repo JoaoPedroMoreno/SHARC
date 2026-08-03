@@ -16,6 +16,7 @@ unaffected_nominal_power,PASS,LF20_PBO00_F00,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO00_F00,Erro salvo/observado=0; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO00_F00,Snapshots sem feixe afetado: 1000.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO00_F00,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO00_F00,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO05_F05,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO5dB_F05pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO05_F05,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO05_F05,As 12 colunas obrigatórias estão presentes.
@@ -28,6 +29,7 @@ unaffected_nominal_power,PASS,LF20_PBO05_F05,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO05_F05,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO05_F05,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO05_F05,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO05_F05,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO05_F10,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO5dB_F10pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO05_F10,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO05_F10,As 12 colunas obrigatórias estão presentes.
@@ -40,6 +42,7 @@ unaffected_nominal_power,PASS,LF20_PBO05_F10,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO05_F10,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO05_F10,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO05_F10,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO05_F10,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO05_F15,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO5dB_F15pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO05_F15,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO05_F15,As 12 colunas obrigatórias estão presentes.
@@ -52,6 +55,7 @@ unaffected_nominal_power,PASS,LF20_PBO05_F15,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO05_F15,Erro salvo/observado=8.33e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO05_F15,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO05_F15,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO05_F15,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO10_F05,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO10dB_F05pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO10_F05,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO10_F05,As 12 colunas obrigatórias estão presentes.
@@ -64,6 +68,7 @@ unaffected_nominal_power,PASS,LF20_PBO10_F05,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO10_F05,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO10_F05,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO10_F05,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO10_F05,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO10_F10,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO10dB_F10pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO10_F10,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO10_F10,As 12 colunas obrigatórias estão presentes.
@@ -76,6 +81,7 @@ unaffected_nominal_power,PASS,LF20_PBO10_F10,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO10_F10,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO10_F10,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO10_F10,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO10_F10,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO10_F15,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO10dB_F15pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO10_F15,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO10_F15,As 12 colunas obrigatórias estão presentes.
@@ -88,6 +94,7 @@ unaffected_nominal_power,PASS,LF20_PBO10_F15,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO10_F15,Erro salvo/observado=8.33e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO10_F15,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO10_F15,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO10_F15,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO15_F05,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO15dB_F05pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO15_F05,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO15_F05,As 12 colunas obrigatórias estão presentes.
@@ -100,6 +107,7 @@ unaffected_nominal_power,PASS,LF20_PBO15_F05,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO15_F05,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO15_F05,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO15_F05,Erro absoluto máximo contra a equação do SHARC=2.66e-15.
+path_loss_row_alignment,PASS,LF20_PBO15_F05,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO15_F10,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO15dB_F10pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO15_F10,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO15_F10,As 12 colunas obrigatórias estão presentes.
@@ -112,6 +120,7 @@ unaffected_nominal_power,PASS,LF20_PBO15_F10,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO15_F10,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO15_F10,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO15_F10,Erro absoluto máximo contra a equação do SHARC=2.22e-15.
+path_loss_row_alignment,PASS,LF20_PBO15_F10,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO15_F15,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO15dB_F15pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO15_F15,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO15_F15,As 12 colunas obrigatórias estão presentes.
@@ -124,6 +133,7 @@ unaffected_nominal_power,PASS,LF20_PBO15_F15,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO15_F15,Erro salvo/observado=8.33e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO15_F15,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO15_F15,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO15_F15,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO20_F05,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO20dB_F05pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO20_F05,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO20_F05,As 12 colunas obrigatórias estão presentes.
@@ -136,6 +146,7 @@ unaffected_nominal_power,PASS,LF20_PBO20_F05,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO20_F05,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO20_F05,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO20_F05,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO20_F05,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO20_F10,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO20dB_F10pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO20_F10,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO20_F10,As 12 colunas obrigatórias estão presentes.
@@ -148,6 +159,7 @@ unaffected_nominal_power,PASS,LF20_PBO20_F10,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO20_F10,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO20_F10,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO20_F10,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO20_F10,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF20_PBO20_F15,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF20_PBO20dB_F15pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF20_PBO20_F15,Registros lidos: 275169.
 required_columns,PASS,LF20_PBO20_F15,As 12 colunas obrigatórias estão presentes.
@@ -160,6 +172,7 @@ unaffected_nominal_power,PASS,LF20_PBO20_F15,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF20_PBO20_F15,Erro salvo/observado=8.33e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF20_PBO20_F15,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF20_PBO20_F15,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF20_PBO20_F15,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO00_F00,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO0dB_F00pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO00_F00,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO00_F00,As 12 colunas obrigatórias estão presentes.
@@ -172,6 +185,7 @@ unaffected_nominal_power,PASS,LF50_PBO00_F00,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO00_F00,Erro salvo/observado=0; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO00_F00,Snapshots sem feixe afetado: 1000.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO00_F00,Erro absoluto máximo contra a equação do SHARC=2.22e-15.
+path_loss_row_alignment,PASS,LF50_PBO00_F00,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO05_F05,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO5dB_F05pct_2026-07-28_01\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO05_F05,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO05_F05,As 12 colunas obrigatórias estão presentes.
@@ -184,6 +198,7 @@ unaffected_nominal_power,PASS,LF50_PBO05_F05,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO05_F05,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO05_F05,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO05_F05,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF50_PBO05_F05,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO05_F10,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO5dB_F10pct_2026-07-28_01\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO05_F10,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO05_F10,As 12 colunas obrigatórias estão presentes.
@@ -196,6 +211,7 @@ unaffected_nominal_power,PASS,LF50_PBO05_F10,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO05_F10,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO05_F10,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO05_F10,Erro absoluto máximo contra a equação do SHARC=2.22e-15.
+path_loss_row_alignment,PASS,LF50_PBO05_F10,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO05_F15,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO5dB_F15pct_2026-07-28_01\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO05_F15,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO05_F15,As 12 colunas obrigatórias estão presentes.
@@ -208,6 +224,7 @@ unaffected_nominal_power,PASS,LF50_PBO05_F15,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO05_F15,Erro salvo/observado=8.33e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO05_F15,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO05_F15,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF50_PBO05_F15,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO10_F05,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO10dB_F05pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO10_F05,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO10_F05,As 12 colunas obrigatórias estão presentes.
@@ -220,6 +237,7 @@ unaffected_nominal_power,PASS,LF50_PBO10_F05,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO10_F05,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO10_F05,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO10_F05,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF50_PBO10_F05,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO10_F10,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO10dB_F10pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO10_F10,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO10_F10,As 12 colunas obrigatórias estão presentes.
@@ -232,6 +250,7 @@ unaffected_nominal_power,PASS,LF50_PBO10_F10,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO10_F10,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO10_F10,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO10_F10,Erro absoluto máximo contra a equação do SHARC=2.22e-15.
+path_loss_row_alignment,PASS,LF50_PBO10_F10,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO10_F15,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO10dB_F15pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO10_F15,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO10_F15,As 12 colunas obrigatórias estão presentes.
@@ -244,6 +263,7 @@ unaffected_nominal_power,PASS,LF50_PBO10_F15,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO10_F15,Erro salvo/observado=8.33e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO10_F15,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO10_F15,Erro absoluto máximo contra a equação do SHARC=2.22e-15.
+path_loss_row_alignment,PASS,LF50_PBO10_F15,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO15_F05,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO15dB_F05pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO15_F05,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO15_F05,As 12 colunas obrigatórias estão presentes.
@@ -256,6 +276,7 @@ unaffected_nominal_power,PASS,LF50_PBO15_F05,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO15_F05,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO15_F05,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO15_F05,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF50_PBO15_F05,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO15_F10,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO15dB_F10pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO15_F10,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO15_F10,As 12 colunas obrigatórias estão presentes.
@@ -268,6 +289,7 @@ unaffected_nominal_power,PASS,LF50_PBO15_F10,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO15_F10,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO15_F10,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO15_F10,Erro absoluto máximo contra a equação do SHARC=2.66e-15.
+path_loss_row_alignment,PASS,LF50_PBO15_F10,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO15_F15,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO15dB_F15pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO15_F15,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO15_F15,As 12 colunas obrigatórias estão presentes.
@@ -280,6 +302,7 @@ unaffected_nominal_power,PASS,LF50_PBO15_F15,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO15_F15,Erro salvo/observado=8.33e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO15_F15,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO15_F15,Erro absoluto máximo contra a equação do SHARC=2.22e-15.
+path_loss_row_alignment,PASS,LF50_PBO15_F15,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO20_F05,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO20dB_F05pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO20_F05,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO20_F05,As 12 colunas obrigatórias estão presentes.
@@ -292,6 +315,7 @@ unaffected_nominal_power,PASS,LF50_PBO20_F05,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO20_F05,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO20_F05,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO20_F05,Erro absoluto máximo contra a equação do SHARC=2.22e-15.
+path_loss_row_alignment,PASS,LF50_PBO20_F05,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO20_F10,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO20dB_F10pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO20_F10,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO20_F10,As 12 colunas obrigatórias estão presentes.
@@ -304,6 +328,7 @@ unaffected_nominal_power,PASS,LF50_PBO20_F10,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO20_F10,Erro salvo/observado=9.71e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO20_F10,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO20_F10,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF50_PBO20_F10,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 structured_csv_exists,PASS,LF50_PBO20_F15,C:\GitHub\SHARC\sharc\campaigns\03_DC_MSS_ISOLADO\output\output_dc_mss_isolado_Sys3_340km_LF50_PBO20dB_F15pct_2026-07-28_02\imt_dl_selected_ue_metrics.csv
 structured_csv_readable,PASS,LF50_PBO20_F15,Registros lidos: 689089.
 required_columns,PASS,LF50_PBO20_F15,As 12 colunas obrigatórias estão presentes.
@@ -316,23 +341,36 @@ unaffected_nominal_power,PASS,LF50_PBO20_F15,Erro máximo em feixes não afetado
 realized_fraction,PASS,LF50_PBO20_F15,Erro salvo/observado=8.33e-17; erro de arredondamento=0; máximo de valores distintos por snapshot=1.
 snapshots_without_affected_beams,PASS,LF50_PBO20_F15,Snapshots sem feixe afetado: 0.
 spectral_efficiency_proxy_formula,PASS,LF50_PBO20_F15,Erro absoluto máximo contra a equação do SHARC=1.78e-15.
+path_loss_row_alignment,PASS,LF50_PBO20_F15,Amostras de path loss e SNR achatada possuem a mesma quantidade e ordem do CSV estruturado; erro máximo de SNR=0 dB.
 identical_masks_across_pbo,PASS,campaign,"LF=0.2, fração=5%: máscaras de 5, 10, 15 e 20 dB idênticas."
 paired_geometry_and_users,PASS,campaign,"LF=0.2, fração=5%: chaves snapshot_id+ue_id+beam_id coincidem com o baseline."
+paired_path_loss_unchanged,PASS,campaign,"LF=0.2, fração=5%: path loss por chave coincide com o baseline nos quatro níveis de PBO."
 identical_masks_across_pbo,PASS,campaign,"LF=0.2, fração=10%: máscaras de 5, 10, 15 e 20 dB idênticas."
 paired_geometry_and_users,PASS,campaign,"LF=0.2, fração=10%: chaves snapshot_id+ue_id+beam_id coincidem com o baseline."
+paired_path_loss_unchanged,PASS,campaign,"LF=0.2, fração=10%: path loss por chave coincide com o baseline nos quatro níveis de PBO."
 identical_masks_across_pbo,PASS,campaign,"LF=0.2, fração=15%: máscaras de 5, 10, 15 e 20 dB idênticas."
 paired_geometry_and_users,PASS,campaign,"LF=0.2, fração=15%: chaves snapshot_id+ue_id+beam_id coincidem com o baseline."
+paired_path_loss_unchanged,PASS,campaign,"LF=0.2, fração=15%: path loss por chave coincide com o baseline nos quatro níveis de PBO."
 nested_fraction_masks,PASS,campaign,"LF=0.2, PBO=5 dB: 5% ⊆ 10% ⊆ 15% = True."
 nested_fraction_masks,PASS,campaign,"LF=0.2, PBO=10 dB: 5% ⊆ 10% ⊆ 15% = True."
 nested_fraction_masks,PASS,campaign,"LF=0.2, PBO=15 dB: 5% ⊆ 10% ⊆ 15% = True."
 nested_fraction_masks,PASS,campaign,"LF=0.2, PBO=20 dB: 5% ⊆ 10% ⊆ 15% = True."
 identical_masks_across_pbo,PASS,campaign,"LF=0.5, fração=5%: máscaras de 5, 10, 15 e 20 dB idênticas."
 paired_geometry_and_users,PASS,campaign,"LF=0.5, fração=5%: chaves snapshot_id+ue_id+beam_id coincidem com o baseline."
+paired_path_loss_unchanged,PASS,campaign,"LF=0.5, fração=5%: path loss por chave coincide com o baseline nos quatro níveis de PBO."
 identical_masks_across_pbo,PASS,campaign,"LF=0.5, fração=10%: máscaras de 5, 10, 15 e 20 dB idênticas."
 paired_geometry_and_users,PASS,campaign,"LF=0.5, fração=10%: chaves snapshot_id+ue_id+beam_id coincidem com o baseline."
+paired_path_loss_unchanged,PASS,campaign,"LF=0.5, fração=10%: path loss por chave coincide com o baseline nos quatro níveis de PBO."
 identical_masks_across_pbo,PASS,campaign,"LF=0.5, fração=15%: máscaras de 5, 10, 15 e 20 dB idênticas."
 paired_geometry_and_users,PASS,campaign,"LF=0.5, fração=15%: chaves snapshot_id+ue_id+beam_id coincidem com o baseline."
+paired_path_loss_unchanged,PASS,campaign,"LF=0.5, fração=15%: path loss por chave coincide com o baseline nos quatro níveis de PBO."
 nested_fraction_masks,PASS,campaign,"LF=0.5, PBO=5 dB: 5% ⊆ 10% ⊆ 15% = True."
 nested_fraction_masks,PASS,campaign,"LF=0.5, PBO=10 dB: 5% ⊆ 10% ⊆ 15% = True."
 nested_fraction_masks,PASS,campaign,"LF=0.5, PBO=15 dB: 5% ⊆ 10% ⊆ 15% = True."
 nested_fraction_masks,PASS,campaign,"LF=0.5, PBO=20 dB: 5% ⊆ 10% ⊆ 15% = True."
+main_figure_inventory,PASS,campaign,Linhas=26; cenários com PBO=24; baselines=2.
+snr_unaffected_constant,PASS,campaign,SNR dos usuários não afetados constante: 24/24 cenários pareados.
+path_loss_control,PASS,campaign,path loss sobreposto: 24/24 cenários pareados.
+inr_unaffected_decreases,PASS,campaign,I/N dos usuários não afetados reduzido: 24/24 cenários pareados.
+snr_reduction_dominates,PASS,campaign,redução de SNR dominante: 24/24 cenários pareados.
+inr_numerical_omissions,PASS,campaign,Registros de I/N omitidos por resultado linear não positivo ou não finito: 0/7809954.
