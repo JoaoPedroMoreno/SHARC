@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-08-27T22:39:12.261247+00:00",
+  "git_commit": "4898ab767928c7cc76e5d5022ce12d64b52fc6f7",
+  "analysis_script_sha256": "b6a13d78b58d05f469c77abf6cac77776f4f0ff2760df0573ab0f8c3a1335501",
+  "output_sha256": "31d228f19ebcd0d91e73135e8ab1b55cd2658e62be5dfda9d4a2143f41d2e611",
+  "unique_geometries": 10000,
+  "altitudes_km": [
+    340,
+    525
+  ],
+  "workers": 6,
+  "chunk_size": 500,
+  "elapsed_seconds": 883.2350138999755,
+  "validated_topk_links": 30000,
+  "max_position_error_m": 4.656612873077393e-10,
+  "max_angle_error_deg": 2.5779378631796135e-13,
+  "active_candidate_mismatches": 0,
+  "propagation_calls": 0,
+  "interference_values_used": false,
+  "geometry_method": "GlobalGeometry.get_off_axis_angle",
+  "population": "candidate_satellite_indices: active/visible satellites intersected with SERVICE_GRID eligibility",
+  "sources": [
+    {
+      "altitude_km": 340,
+      "yaml": "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-27_01\\operational_risk_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE.yaml",
+      "snapshot_csv": "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-27_01\\operational_risk_snapshot.csv",
+      "topk_validation_csv": "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-27_01\\operational_risk_topk.csv"
+    },
+    {
+      "altitude_km": 525,
+      "yaml": "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE.yaml",
+      "snapshot_csv": "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_snapshot.csv",
+      "topk_validation_csv": "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_topk.csv"
+    }
+  ]
+}

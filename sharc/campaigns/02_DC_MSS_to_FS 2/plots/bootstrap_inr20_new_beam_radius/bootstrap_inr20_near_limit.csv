@@ -1,0 +1,9 @@
+area,system,altitude_km,fs_height_m,load_factor_pct,mechanism,distance_type,distance_km,azimuth_deg,samples,bootstrap_resamples,bootstrap_seed,inr_20_pct_db,inr_20_pct_ci95_low_db,inr_20_pct_ci95_high_db,inr_20_pct_ci95_half_width_db,protection_margin_db,protection_margin_ci95_low_db,protection_margin_ci95_high_db,classification
+BR_AR_Paraguay,3,525,20,50,power back-off,M,30,90,10000,10000,20260727,-5.986056,-6.136741,-5.847020,0.144860,-0.013944,-0.152980,0.136741,borderline
+BR_AR_Paraguay,3,525,40,50,power back-off,M,30,90,10000,10000,20260727,-6.082837,-6.232745,-5.948854,0.141946,0.082837,-0.051146,0.232745,borderline
+SouthAmerica,3,340,20,20,exclusion zone,EZ,60,90,10000,10000,20260727,-5.769898,-5.802751,-5.743582,0.029585,-0.230102,-0.256418,-0.197249,supported non-compliant
+SouthAmerica,3,340,40,20,exclusion zone,EZ,60,90,10000,10000,20260727,-5.857728,-5.884646,-5.829238,0.027704,-0.142272,-0.170762,-0.115354,supported non-compliant
+SouthAmerica,3,525,20,50,exclusion zone,EZ,70,90,10000,10000,20260727,-5.899679,-5.922749,-5.880069,0.021340,-0.100321,-0.119931,-0.077251,supported non-compliant
+SouthAmerica,3,525,20,50,exclusion zone,EZ,80,90,10000,10000,20260727,-6.087913,-6.105658,-6.068901,0.018379,0.087913,0.068901,0.105658,supported compliant
+SouthAmerica,3,525,40,50,exclusion zone,EZ,70,90,10000,10000,20260727,-6.004266,-6.025302,-5.984408,0.020447,0.004266,-0.015592,0.025302,borderline
+SouthAmerica,3,525,40,50,exclusion zone,EZ,80,90,10000,10000,20260727,-6.183533,-6.204729,-6.165792,0.019468,0.183533,0.165792,0.204729,supported compliant

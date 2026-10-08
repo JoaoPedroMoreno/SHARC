@@ -1,0 +1,57 @@
+{
+  "source_yaml": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\input\\system_340km_EESS_D_SA_P_Spu_OM_0_lf_0.5.yaml",
+  "run_root": "C:\\GitHub\\SHARC\\tmp\\handover_paraguay_smoke_20260817_203614",
+  "lookup_table": "C:\\GitHub\\SHARC\\tmp\\handover_paraguay_smoke_20260817_203614\\FOZ_2117_200m.csv",
+  "lookup_table_smoke_shim_source_mhz": 2155.0,
+  "configured_propagation_frequency_mhz": 2117.5,
+  "snapshots": 10,
+  "seeds": [
+    2626988360,
+    2108409309,
+    965510517,
+    689805853,
+    70528777,
+    127531839,
+    1500688920,
+    1488558332,
+    993672121,
+    1364279363
+  ],
+  "active_counts": [
+    1640,
+    1588,
+    1694,
+    1455,
+    1591,
+    1514,
+    1644,
+    1501,
+    1629,
+    1584
+  ],
+  "trigger_count": 0,
+  "successful_handover_count": 0,
+  "unresolved_count": 0,
+  "changed_rows": 0,
+  "unique_beam_grid_idx_per_snapshot": true,
+  "event_grid_indices_valid": true,
+  "rng_observables_off_on_exact": true,
+  "natural_trigger_observation": "none_in_smoke_window",
+  "physical_spectral_values_loaded_unchanged": {
+    "imt_frequency_mhz": 2117.5,
+    "imt_bandwidth_mhz": 5.0,
+    "eess_frequency_mhz": 2203.0,
+    "eess_bandwidth_mhz": 6.0,
+    "load_probability": 0.5
+  },
+  "nonfinite": {
+    "expected_unresolved_nan_fields": 0
+  },
+  "csv": {
+    "metrics_csv": "C:\\GitHub\\SHARC\\tmp\\handover_paraguay_smoke_20260817_203614\\on\\interference_aware_handover_snapshot_metrics.csv",
+    "metrics_rows": 10,
+    "events_csv": "C:\\GitHub\\SHARC\\tmp\\handover_paraguay_smoke_20260817_203614\\on\\interference_aware_handover_events.csv",
+    "event_rows": 0,
+    "event_outcomes": {}
+  }
+}

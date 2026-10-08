@@ -1,0 +1,11 @@
+bin_left_deg,bin_right_deg,psi_rx_min_center_deg,scenario_count,n_total,n_min_per_scenario,n_max_per_scenario,critical_events_total,balanced_p_hat,balanced_simultaneous_cp95_low,balanced_simultaneous_cp95_high,scenario_q25,scenario_q75,interval_method
+0.0593,3.679,2.5555530249255103,8,4000,491,509,269,0.06744735294235332,0.04082065039788231,0.10362948160621702,0.05352134091445628,0.0769759402046263,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints
+3.679,5.703,4.747283738219879,8,4000,495,505,108,0.027042704270427043,0.012065258638097428,0.05271730792004659,0.013576357635763578,0.03736873687368737,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints
+5.703,7.581,6.672443826499126,8,4000,487,513,78,0.019968498705124665,0.00954978979157722,0.041464298487927265,0.001949317738791423,0.029260780287474333,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints
+7.581,9.722,8.639019997612186,8,4000,491,509,12,0.003054989816700611,0.0004934977357703722,0.017138599813938872,0.0,0.004073319755600815,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints
+9.722,12.094,10.90038101816413,8,4000,453,547,0,0.0,0.0,0.011571420103673144,0.0,0.0,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints
+12.094,14.678,13.417202505435068,8,4000,468,532,0,0.0,0.0,0.011516981524032471,0.0,0.0,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints
+14.678,17.518,15.976330170739628,8,4000,462,538,0,0.0,0.0,0.011536217514828813,0.0,0.0,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints
+17.518,21.37,19.302562406846086,8,4000,431,569,0,0.0,0.0,0.011690423783947829,0.0,0.0,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints
+21.37,26.429,23.5826610385395,8,4000,424,576,0,0.0,0.0,0.011738437920324897,0.0,0.0,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints
+26.429,44.058,30.061057834809795,8,4000,492,508,0,0.0,0.0,0.011473253508929637,0.0,0.0,CP per scenario with alpha/8 Bonferroni simultaneous bounds; equal-weight mean of endpoints

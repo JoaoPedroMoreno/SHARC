@@ -1,0 +1,40 @@
+{
+  "title": "Probabilidade de excedência",
+  "caption_sugerida": "Probabilidade de excedência do critério de −154 dBW/MHz, antes e após a mitigação, para (a) GB = 10 MHz e (b) GB = 5 MHz. Barras: IC95% binomial exato de Clopper–Pearson; a classificação não é baseada apenas na estimativa pontual.",
+  "generated_utc": "2026-09-22T18:06:07.794966+00:00",
+  "analysis_git_commit": "4898ab767928c7cc76e5d5022ce12d64b52fc6f7",
+  "analysis_script": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\analysis\\final_figures\\generate_final_figures.py",
+  "analysis_script_sha256": "abde7436da08e915765a441e09d7464c96b5effcfe8317058e35f312aa283b5d",
+  "input_files": [
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\analysis\\clopper_pearson\\scenario_exceedance_cp95.csv",
+      "sha256": "b307f39639d390550705261d03603f58c73ab4a8d4c8423d7e16ab015f6798ab"
+    }
+  ],
+  "filters": {
+    "guard_band_mhz": [
+      10,
+      5
+    ],
+    "scenarios": [
+      "340-B-0,2",
+      "340-B-0,5",
+      "340-D-0,2",
+      "340-D-0,5",
+      "525-B-0,2",
+      "525-B-0,5",
+      "525-D-0,2",
+      "525-D-0,5"
+    ]
+  },
+  "metric_definitions": {
+    "exceedance": "Iagg > −154 dBW/MHz",
+    "probability": "k/n"
+  },
+  "sample_counts": {
+    "runs": 16,
+    "snapshots_per_run": 5000
+  },
+  "confidence_interval_method": "Clopper–Pearson exato, 95%, scipy.stats.binomtest(...).proportion_ci(method='exact')",
+  "notes": []
+}

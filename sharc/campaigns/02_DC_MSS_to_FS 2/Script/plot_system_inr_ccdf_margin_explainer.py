@@ -43,12 +43,12 @@ plt.rcParams.update(
     {
         "font.family": "serif",
         "font.serif": ["Times New Roman", "Times", "DejaVu Serif"],
-        "font.size": 9.5,
-        "axes.titlesize": 9.8,
-        "axes.labelsize": 10.0,
-        "xtick.labelsize": 9.0,
-        "ytick.labelsize": 9.0,
-        "legend.fontsize": 8.2,
+        "font.size": 13.0,
+        "axes.titlesize": 13.5,
+        "axes.labelsize": 14.0,
+        "xtick.labelsize": 12.5,
+        "ytick.labelsize": 12.5,
+        "legend.fontsize": 12.0,
         "lines.linewidth": 1.7,
         "axes.linewidth": 0.8,
         "savefig.dpi": IEEE_DPI,
@@ -162,7 +162,7 @@ def plot_explainer(scenarios: list[Scenario], out_path: Path) -> None:
             "positive margin",
             ha="center",
             va="center",
-            fontsize=8.4,
+            fontsize=12.5,
             color="#007A3D",
         )
 
@@ -182,7 +182,7 @@ def plot_explainer(scenarios: list[Scenario], out_path: Path) -> None:
             "negative margin",
             ha="center",
             va="center",
-            fontsize=8.4,
+            fontsize=12.5,
             color="#B00020",
         )
 

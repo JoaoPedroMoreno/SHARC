@@ -1,0 +1,1131 @@
+[
+  {
+    "kind": "table",
+    "number": 1,
+    "rows": [
+      [
+        "Radiocommunication Study Groups",
+        ""
+      ],
+      [
+        "",
+        ""
+      ],
+      [
+        "",
+        ""
+      ],
+      [
+        "Received: Date 20xx Subject:",
+        "Document XX/-E"
+      ],
+      [
+        "Received: Date 20xx Subject:",
+        "Date 20xx"
+      ],
+      [
+        "Received: Date 20xx Subject:",
+        "Original: English"
+      ],
+      [
+        "Introduction Following the structure adopted during the previous Working Party 4C (WP 4C) meeting for studies under WRC-27 agenda item 1.13, the Brazilian Administration is reviewing and providing the required sharing and compatibility studies. Proposal Brazil proposes an uattaatibility study between the Earth Exploration-Satellite Service (EESS) (s-E) in the frequency band 2 200-2 290 MHz and Direct Connectivity-Mobile Satellite Service-International Mobile Telecommunications (DC-MSS-IMT) operating in the frequency band 2 110-2 200 MHz to be added to Annex 4 of Working Document on sharing and compatibility studies under WRC-27 agenda item 1.13 (Annex 7 to Doc. 4C/356). Attachment: 1",
+        "Introduction Following the structure adopted during the previous Working Party 4C (WP 4C) meeting for studies under WRC-27 agenda item 1.13, the Brazilian Administration is reviewing and providing the required sharing and compatibility studies. Proposal Brazil proposes an uattaatibility study between the Earth Exploration-Satellite Service (EESS) (s-E) in the frequency band 2 200-2 290 MHz and Direct Connectivity-Mobile Satellite Service-International Mobile Telecommunications (DC-MSS-IMT) operating in the frequency band 2 110-2 200 MHz to be added to Annex 4 of Working Document on sharing and compatibility studies under WRC-27 agenda item 1.13 (Annex 7 to Doc. 4C/356). Attachment: 1"
+      ]
+    ]
+  },
+  {
+    "kind": "table",
+    "number": 2,
+    "rows": [
+      [
+        "attachment ANNEX 4 Sharing and compatibility studies of DC-MSS-IMT in the frequency range 1 710-2 200 MHz"
+      ],
+      [
+        "(…)"
+      ]
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "number": 2,
+    "style": "Normal",
+    "text": "A4.3 Adjacent-band studies"
+  },
+  {
+    "kind": "paragraph",
+    "number": 3,
+    "style": "Normal",
+    "text": "(…)"
+  },
+  {
+    "kind": "paragraph",
+    "number": 4,
+    "style": "Normal",
+    "text": "A4.3.1 Compatibility of EESS (s-E) in the frequency band 2 200-2 290 and DC-MSS-IMT operating in the frequency band 2 110-2 200 MHz (downlink)"
+  },
+  {
+    "kind": "paragraph",
+    "number": 5,
+    "style": "Normal",
+    "text": "(…)"
+  },
+  {
+    "kind": "paragraph",
+    "number": 6,
+    "style": "Normal",
+    "text": "A4.3.1.2 Study B (4C/427 (B))"
+  },
+  {
+    "kind": "paragraph",
+    "number": 7,
+    "style": "Normal",
+    "text": "The purpose of this study is to assess the interference from the usage of MSS for direct connectivity between space stations and International Mobile Telecommunications (IMT) equipment (DC-MSS-IMT) into EESS (s-E) operating in the frequency bands 2 200-2 290 MHz. This frequency band is adjacent to the frequency band 2 110-2 200 MHz."
+  },
+  {
+    "kind": "paragraph",
+    "number": 8,
+    "style": "Normal",
+    "text": "This study assesses the interference from space-to-Earth (downlink) transmissions of non-geostationary (non-GSO) DC-MSS-IMT systems into EESS (s-E) earth station receivers operating in the frequency band 2 200-2 290 MHz, considering various use cases and simulation scenarios."
+  },
+  {
+    "kind": "paragraph",
+    "number": 9,
+    "style": "Normal",
+    "text": "The compatibility scenarios between DC-MSS-IMT and EESS under study are in accordance with Document 4C/356, as well as with Document 4C/196, which describe parameters of EESS systems of interest to WP 7C and WP 7B, respectively. We have considered two different DC-MSS-IMT coverage scenarios interfering on EESS earth station in two different positions:"
+  },
+  {
+    "kind": "paragraph",
+    "number": 10,
+    "style": "Normal",
+    "text": "CASE I: this scenario involves the downlink operation of a DC-MSS-IMT system covering South America, and an EESS system operating in the space-to-Earth (s-E) direction, referred to as case I. Two earth station positions are evaluated: in Paraguay (25°55’S 54°57′49″W) and in Colombia (4°21’S 69°55′W), as shown in Figure A4.3.1.2-1 (a)."
+  },
+  {
+    "kind": "paragraph",
+    "number": 11,
+    "style": "Normal",
+    "text": "CASE II: The second scenario (Case II) is examined in the study within the context of four South American countries: the DC-MSS-IMT system has authorization to operate in Brazil and Argentina, while it does not have authorization in Paraguay and Colombia, where an EESS system operates in the adjacent frequency band to the DC-MSS-IMT system (Figure A4.3.1.2-1 (b))."
+  },
+  {
+    "kind": "paragraph",
+    "number": 12,
+    "style": "Normal",
+    "text": "It is important to note that, given the broad applicability of the adopted methodology, the study could have been conducted for any location on the globe and is therefore of interest to other administrations. Furthermore, the simulations use EESS earth station parameters proposed by other countries (Document 4C/196), which provides representativeness to this study."
+  },
+  {
+    "kind": "paragraph",
+    "number": 13,
+    "style": "Figure_No",
+    "text": "FIGURE A4.3.1.2-1"
+  },
+  {
+    "kind": "paragraph",
+    "number": 14,
+    "style": "Figure_title",
+    "text": "Compatibility study scenario between DC-MSS-IMT and EESS (s-E): in CASE I (a), the DC-MSS service covers the whole of South America, while in CASE II (b), it covers Brazil and Argentina."
+  },
+  {
+    "kind": "paragraph",
+    "number": 16,
+    "style": "Normal",
+    "text": "The study addresses adjacent channel interference caused by the DC-MSS-IMT system operating in the 2 110-2 200 MHz band, with a signal bandwidth of 5 MHz (System 3-DC-MSS-IMT), on the receiver of an earth station operating in the 2 200-2 290 MHz band, with reception bandwidths of 4 MHz (System B-EESS) and 6 MHz (System D-EESS). The elevation angle of the EESS earth station is varied in the study (Figure A4.3.1.2-2) to analyze its impact on the fulfillment of the protection criterion for the incumbent victim system."
+  },
+  {
+    "kind": "paragraph",
+    "number": 17,
+    "style": "Figure_No",
+    "text": "FIGURE A4.3.1.2-2"
+  },
+  {
+    "kind": "paragraph",
+    "number": 18,
+    "style": "Figure_title",
+    "text": "EESS earth station (EESS ES) at different elevation angles, between 5 and 90 degrees"
+  },
+  {
+    "kind": "paragraph",
+    "number": 20,
+    "style": "Heading 4",
+    "text": "A4.3.1.2.1 Technical and operational characteristics of DC-MSS-IMT operating in the frequency band 2 110-2 200 MHz"
+  },
+  {
+    "kind": "paragraph",
+    "number": 21,
+    "style": "Normal",
+    "text": "We analyze a representative non-GSO DC-MSS-IMT system (System 3, Annex 1, Document 4C/356). The relevant orbital and technical characteristics for this system are based on the parameters provided in Annex 1 to the working document on WRC-27 agenda item 1.13 (Annex 7 to Document 4C/356). In this contribution, we have selected System 3 at 525 km and 340 km altitudes."
+  },
+  {
+    "kind": "paragraph",
+    "number": 22,
+    "style": "Normal",
+    "text": "The parameters of System 3 are presented in Table A4.3.2.2-1, extracted from Document 4C/356. Moreover, the EIRP is kept constant on the satellite, and the resulting PFD on the ground depends on the elevation angle."
+  },
+  {
+    "kind": "paragraph",
+    "number": 23,
+    "style": "Table_No",
+    "text": "TABLE A4.3.1.2-1"
+  },
+  {
+    "kind": "paragraph",
+    "number": 24,
+    "style": "Table_title",
+    "text": "Parameters of orbital configuration – Part I"
+  },
+  {
+    "kind": "table",
+    "number": 3,
+    "rows": [
+      [
+        "System ID",
+        "Frequency range (MHz)",
+        "Altitude (km)",
+        "Inclination (deg)",
+        "# Planes",
+        "Sats per plane",
+        "RAAN spacing (deg)",
+        "Total number of sats"
+      ],
+      [
+        "System 3 (NGSO)",
+        "2 110-2 200",
+        "525",
+        "53",
+        "28",
+        "120",
+        "12.9",
+        "3 360"
+      ],
+      [
+        "System 3 (NGSO)",
+        "2 110-2 200",
+        "340",
+        "53",
+        "48",
+        "110",
+        "7.5",
+        "5 280"
+      ]
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "number": 26,
+    "style": "Table_title",
+    "text": "Parameters of orbital configuration – Part II"
+  },
+  {
+    "kind": "table",
+    "number": 4,
+    "rows": [
+      [
+        "System ID",
+        "Altitude (km)",
+        "Antenna polarisation",
+        "EIRP (dBW/Hz)",
+        "Antenna pattern",
+        "Peak antenna gain"
+      ],
+      [
+        "System 3 (NGSO)",
+        "525",
+        "RHCP",
+        "-20.1 @EL 90o",
+        "ITU-R S.1528 model 1.4",
+        "G_max = 34.1 dBi, L_r = L_t = 1.6 m, SLR = 20 dB, l = 2, λ = 0.15 m"
+      ],
+      [
+        "System 3 (NGSO)",
+        "340",
+        "RHCP",
+        "-20.1 @EL 90o",
+        "ITU-R S.1528 model 1.4",
+        "G_max = 34.1 dBi, L_r = L_t = 1.6 m, SLR = 20 dB, l = 2, λ = 0.15 m"
+      ]
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "number": 28,
+    "style": "Normal",
+    "text": "As can be observed in Table A4.3.1.2-1, the satellites of System 3 adopt the antenna model 1.4 from Recommendation ITU-R S.1528, whose radiation pattern for f = 2.0 GHz is illustrated in Figure A4.3.1.2-3."
+  },
+  {
+    "kind": "paragraph",
+    "number": 29,
+    "style": "Normal",
+    "text": "It is noted that the System3 characteristics specify the reference antenna with a fixed diameter and assume a wavelength of 0.15 m, irrespective of the actual system operating frequency. This formulation may not fully reflect frequency-dependent behavior when modelling systems in different bands. To better capture such effects in a consistent manner, we propose that the normalized aperture size, i.e. the ratio of the antenna diameter to the wavelength (D/λ), be specified instead, as this approach appropriately scales the radiation pattern parameters across frequency bands."
+  },
+  {
+    "kind": "paragraph",
+    "number": 30,
+    "style": "Figure_No",
+    "text": "FIGURE A4.3.1.2-3"
+  },
+  {
+    "kind": "paragraph",
+    "number": 31,
+    "style": "Figure_title",
+    "text": "Radiation pattern (ITU-R S.1528 – model 1.4)"
+  },
+  {
+    "kind": "paragraph",
+    "number": 33,
+    "style": "Normal_after_title",
+    "text": "Each satellite of System 3 has beams assigned to it to ensure maximum coverage of the area under study; those beams are determined at each iteration of the Monte Carlo process employed in this study. The coverage for each beam is specified as the area within the -7 dB contour relative to the antenna’s maximum gain when the beam is directed at Nadir, as illustrated in Figure, A4.3.1.2-4. The radius R and angle a in this figure are used to denote the -7 dB contour (Figures A4.3.1.2-3 and A4.3.1.2-4)."
+  },
+  {
+    "kind": "paragraph",
+    "number": 34,
+    "style": "Figure_No",
+    "text": "FIGURE A4.3.1.2-4"
+  },
+  {
+    "kind": "paragraph",
+    "number": 35,
+    "style": "Figure_title",
+    "text": "Geometry for determining the coverage area of a satellite beam"
+  },
+  {
+    "kind": "paragraph",
+    "number": 37,
+    "style": "Heading 4",
+    "text": "A4.3.1.2.2 Technical and operational characteristics of EESS (s-E) in the frequency band 2 200-2 290 MHz"
+  },
+  {
+    "kind": "paragraph",
+    "number": 38,
+    "style": "Normal",
+    "text": "The technical and operational characteristics of the EESS (s-E) system operating in the frequency band 2 200-2 290 MHz (Table A4.3.1.2-2) are in accordance with the parameters outlined in Document 4C/196, which refers to ITU-R Report SA.2488 and, for protection criteria, to Recommendation ITU-R SA.514."
+  },
+  {
+    "kind": "paragraph",
+    "number": 39,
+    "style": "Normal",
+    "text": "For this study, Systems B and D were selected. Although Table A4.3.1.1-2 specifies that systems B and D are located in the USA and Russia, respectively, in this study, the EESS earth station is positioned in the South American region. Therefore, the table provides the representative parameters of the EESS earth systems presented therein."
+  },
+  {
+    "kind": "paragraph",
+    "number": 40,
+    "style": "Table_No",
+    "text": "TABLE A4.3.1.2-2"
+  },
+  {
+    "kind": "paragraph",
+    "number": 41,
+    "style": "Table_title",
+    "text": "Earth station receiver parameters for (space-to-Earth) links in the 2 200-2 290 MHz band"
+  },
+  {
+    "kind": "table",
+    "number": 5,
+    "rows": [
+      [
+        "Parameter",
+        "Unit",
+        "System B",
+        "System D"
+      ],
+      [
+        "Receive antenna gain",
+        "dBi",
+        "45.8",
+        "39"
+      ],
+      [
+        "Receive channel bandwidth",
+        "MHz",
+        "4.0",
+        "6.0"
+      ],
+      [
+        "Receive antenna temperature",
+        "K",
+        "190",
+        "120"
+      ],
+      [
+        "Receive antenna pattern",
+        "",
+        "ITU-R S.465",
+        "ITU-R S.465"
+      ],
+      [
+        "Receive antenna height",
+        "m",
+        "15",
+        "15"
+      ],
+      [
+        "Minimum elevation angle",
+        "deg",
+        "5",
+        "5"
+      ]
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "number": 43,
+    "style": "Normal",
+    "text": "As can be observed in Table A4.3.1.2-2, both systems B and D use, for reception, an antenna modeled according to Recommendation ITU-R S.465. Figure A4.3.1.2-5 illustrates the gain of this antenna at 2 200 MHz for these systems."
+  },
+  {
+    "kind": "paragraph",
+    "number": 44,
+    "style": "Figure_No",
+    "text": "Figure A4.3.1.2-5"
+  },
+  {
+    "kind": "paragraph",
+    "number": 45,
+    "style": "Figure_title",
+    "text": "EESS earth station gain pattern at 2 200 MHz"
+  },
+  {
+    "kind": "paragraph",
+    "number": 47,
+    "style": "Heading_b",
+    "text": "Protection Criterion"
+  },
+  {
+    "kind": "paragraph",
+    "number": 48,
+    "style": "Normal",
+    "text": "Regarding protection criterion, Recommendation ITU-R SA.514 specifies that, for space-to-Earth data transmission links in frequency bands not addressed by Recommendations ITU-R SA.1026, ITU-R SA.1160, and ITU-R SA.1163, the interference criteria for Earth receiving sites operating between 1 and 10 GHz is: the power spectral density of noise interference, or the total power of continuous wave (CW)-type interference in any single band or combination of bands, must not exceed -154 dB(W/MHz) at the receiver input for more than 1% of the time."
+  },
+  {
+    "kind": "paragraph",
+    "number": 49,
+    "style": "Heading 4",
+    "text": "A4.3.1.2.3 Propagation models for sharing and compatibility studies in the frequency band 2 110-2 290 MHz"
+  },
+  {
+    "kind": "paragraph",
+    "number": 50,
+    "style": "Normal",
+    "text": "The propagation models used in this study are summarized in Table A4.3.1.2-3. Propagation between the EESS earth station (ES) and the DC-MSS-IMT satellite was modelled using Recommendation ITU-R P.619, which accounts for free space propagation and atmospheric conditions. In addition, statistical clutter loss at the receiver end of the link, as per Recommendation ITU-R P.2108, is characterized by a p-parameter drawn from a uniform distribution over [0, 1]."
+  },
+  {
+    "kind": "paragraph",
+    "number": 51,
+    "style": "Table_No",
+    "text": "Table A4.3.1.2-3"
+  },
+  {
+    "kind": "paragraph",
+    "number": 52,
+    "style": "Table_title",
+    "text": "Propagation loss consideration"
+  },
+  {
+    "kind": "table",
+    "number": 6,
+    "rows": [
+      [
+        "Propagation model",
+        "System",
+        "Characteristics"
+      ],
+      [
+        "Rec. ITU-R P.619",
+        "Earth-to-space path",
+        "Recommendation ITU-R P.835 is used for the reference atmosphere. Latitude < 15.5º and a single annual atmosphere profile were considered. In addition, a 3 dB polarization loss was taken into account following Item 2.2 of the Rec. ITU-P.619"
+      ],
+      [
+        "Rec. ITU-R P.2108",
+        "Earth-to-space path",
+        "Statistical clutter loss is added using ITU-R P.619 only on the terrestrial side. For every link, the p-parameter is calculated with a uniform distribution between [0, 1], following Recommendation ITU-R P.2108. For ITU-R P.2108, we have low-height clutter."
+      ]
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "number": 54,
+    "style": "Normal",
+    "text": "According to Document 5D/629, Working Party 3M (WP3M) has finalized revisions to Recommendation ITU-R P.619 (Document 3/47), as well as to Recommendation ITU-R 2108 (Document 3/45). These revisions have been taken into account in this study."
+  },
+  {
+    "kind": "paragraph",
+    "number": 55,
+    "style": "Heading 4",
+    "text": "A4.3.1.2.4 Methodology"
+  },
+  {
+    "kind": "paragraph",
+    "number": 56,
+    "style": "Heading 5",
+    "text": "A4.3.1.2.4.1 Interference Scenario"
+  },
+  {
+    "kind": "paragraph",
+    "number": 57,
+    "style": "Normal",
+    "text": "As mentioned, this study analyzes, as Case I, all South American countries covered by the DC-MSS-IMT system, with an EESS system receiver positioned in the center of Brazil. The DC-MSS-IMT system and the EESS system operate in an adjacent frequency band."
+  },
+  {
+    "kind": "paragraph",
+    "number": 58,
+    "style": "Normal",
+    "text": "In Case II, a specific cross-border interference scenario is analyzed, which is a concrete and representative implementation of the generalized case described in the working document. For this analysis, a hypothetical deployment is assumed where a DC-MSS-IMT system is fully operational, providing service over Brazil’s and Argentina’s territories. The victim under analysis comprises an EESS receiver, located in Paraguay and Colombia, and positioned at a representative point along its border with Brazil. Case II also includes an interference-mitigation feature, defined here as an operational margin (service margin)."
+  },
+  {
+    "kind": "paragraph",
+    "number": 59,
+    "style": "Normal",
+    "text": "To model an operational approach for managing cross-border interference, this analysis incorporates a service margin from the political borders (Figures A4.3.1.2-6), in the study Case II. This margin defines a distance from the border within the territories of Brazil and Argentina where the center of the DC-MSS satellite beams shall not be pointed. This operational constraint creates a beam-pointing exclusion zone, ensuring that the high-gain main lobe of any satellite beam is directed only within the licensed country. As a result, the interference received by the victim EESS earth station (ES) in Paraguay is primarily composed of side-lobe emissions, representing a practical mitigation technique that DC-MSS operators could implement."
+  },
+  {
+    "kind": "paragraph",
+    "number": 60,
+    "style": "Normal",
+    "text": "This scenario was specifically chosen to evaluate the aggregate interference from multiple DC-MSS-IMT systems operating in neighboring countries into the territory of a third country where the service is not deployed, representing a realistic challenge for cross-border coordination."
+  },
+  {
+    "kind": "paragraph",
+    "number": 61,
+    "style": "Normal",
+    "text": "The operational margin does not exist in Case I of this study; therefore, the satellite beams can be directed toward any region within the South American continent. All simulations presented in this study were conducted using the SHARC (SHARing and Compatibility study) software tool. This open-source simulator is publicly available for review and result replication at the following web address: https://github.com/Radio-Spectrum/SHARC."
+  },
+  {
+    "kind": "paragraph",
+    "number": 62,
+    "style": "Figure_No",
+    "text": "FIGURE A4.3.1.2-6"
+  },
+  {
+    "kind": "paragraph",
+    "number": 63,
+    "style": "Figure_title",
+    "text": "Service grid and margin delimiting the coverage close to the border (Grid limits)"
+  },
+  {
+    "kind": "paragraph",
+    "number": 65,
+    "style": "Heading_b",
+    "text": "Adjacent channel interference model and spurious emissions"
+  },
+  {
+    "kind": "paragraph",
+    "number": 66,
+    "style": "Normal",
+    "text": "The channel bandwidth for the interfering DC-MSS-IMT downlink (DC-MSS-DL) was assumed to be 5 MHz in the band 2 110-2 200 MHz of System 3. The victim EESS earth station system operates in the band 2 200-2 290 MHz. Moreover, it is assumed that the DC-MSS-IMT system transmits signals under two scenarios (see Figure A4.3.1.2-7):"
+  },
+  {
+    "kind": "paragraph",
+    "number": 67,
+    "style": "Normal",
+    "text": "(1) at f2 = 2 117.5 MHz, with a channel bandwidth of 5 MHz, while the EESS system operates in the frequency range 2 200-2 204 MHz, with a channel bandwidth of 4 MHz (System B), representing a spurious emissions interference case;"
+  },
+  {
+    "kind": "paragraph",
+    "number": 68,
+    "style": "Normal",
+    "text": "(2) at f2 = 2 117.5 MHz, with a channel bandwidth of 5 MHz, while the EESS system operates in the frequency range 2 200-2 206 MHz, with a channel bandwidth of 6 MHz (System D), representing a spurious emissions interference case."
+  },
+  {
+    "kind": "paragraph",
+    "number": 69,
+    "style": "Normal",
+    "text": "For the spurious emission, we have adopted a value of -13 dBm/MHz."
+  },
+  {
+    "kind": "paragraph",
+    "number": 70,
+    "style": "Figure_No",
+    "text": "FIGURE A4.3.1.2-7"
+  },
+  {
+    "kind": "paragraph",
+    "number": 71,
+    "style": "Figure_title",
+    "text": "Adjacent channel interference model in spurious emission band"
+  },
+  {
+    "kind": "paragraph",
+    "number": 73,
+    "style": "Figure_with_legend",
+    "text": "(b)"
+  },
+  {
+    "kind": "paragraph",
+    "number": 76,
+    "style": "Heading_b",
+    "text": "Interference Calculation Methodology"
+  },
+  {
+    "kind": "paragraph",
+    "number": 77,
+    "style": "Normal",
+    "text": "The total interference power at the victim EESS earth station receiver is calculated as the aggregate sum of the power received from all individual DC-MSS satellites that are visible from the receiver’s location (i.e., above its minimum elevation angle of 5 degrees)."
+  },
+  {
+    "kind": "paragraph",
+    "number": 78,
+    "style": "Normal",
+    "text": "For each snapshot in the Monte Carlo simulation, the interference power received by the earth station from a single satellite i, denoted as Ii (in dBW), is calculated using the following formula:"
+  },
+  {
+    "kind": "paragraph",
+    "number": 80,
+    "style": "Normal",
+    "text": "where is the Equivalent Isotropically Radiated Power of the interfering satellite i in the direction of the EESS earth station receiver. considers if the victim is at adjacent-channel interference conditions as illustrated in Figure A4.3.1.1-8. In this sense, it is calculated by integrating the emission spectrum mask shown in Figure A4.3.1.1-9, over the specific frequency bands assigned to earth station. The value of is a function of the satellite’s transmit antenna gain at the specific off-axis angle () towards the victim receiver. Finally, is the total propagation path loss between satellite i and earth station receiver, calculated in accordance with the appropriate ITU-R P-series Recommendations, and is the receive antenna gain of the receiver in the direction of the interfering satellite i, determined by the signal’s angle of arrival ()."
+  },
+  {
+    "kind": "paragraph",
+    "number": 81,
+    "style": "Normal",
+    "text": "According to Document 4C/356, the antenna radiation pattern may be modeled using ITU-R Recommendation S.1528, and for the immediately adjacent channels, the same pattern is considered more appropriate."
+  },
+  {
+    "kind": "paragraph",
+    "number": 82,
+    "style": "Normal",
+    "text": "For each snapshot in the Monte Carlo simulation, the aggregate interference power, , from all visible satellites, is then determined by the linear summation of the power received from each individual satellite:"
+  },
+  {
+    "kind": "paragraph",
+    "number": 84,
+    "style": "Normal",
+    "text": "The noise power at the victim receiver (EESS earth station) is determined, in dBW, by the expression"
+  },
+  {
+    "kind": "paragraph",
+    "number": 86,
+    "style": "Normal",
+    "text": "where K is Boltzmann’s constant (1.38 × 10⁻²³ J/K), T is the receiver system noise temperature, assumed to be 190 K (System B) or 120 K (System D) in this study, and B is the receiver system bandwidth, equal to 4 MHz or 6 MHz, for System B and System D, respectively."
+  },
+  {
+    "kind": "paragraph",
+    "number": 87,
+    "style": "Heading 5",
+    "text": "A4.3.1.2.4.2 Non-GSO Constellation Modelling"
+  },
+  {
+    "kind": "paragraph",
+    "number": 88,
+    "style": "Normal",
+    "text": "The NGSO constellations were modelled based on their defined Keplerian elements, including altitude, inclination, and the number of orbital planes and the number of satellites per plane."
+  },
+  {
+    "kind": "paragraph",
+    "number": 89,
+    "style": "Normal",
+    "text": "To perform the statistical analysis independent of a specific time epoch, a snapshot-based Monte Carlo methodology was employed. In this approach, instead of propagating the satellite positions over a time-based simulation, the initial orbital angles for each satellite in the constellation were randomized. Specifically, a reference satellite and orbital plane are defined. The mean anomaly (M) of this satellite within its orbital plane and the right ascension of the ascending node (RAAN, Ω) of that orbital plane (Figure A4.3.1.2-8) are modeled as independent random variables uniformly distributed over [0°, 360°]. In each snapshot of the Monte Carlo process, the values of M and Ω are randomly drawn, and the orbital positions of the remaining satellites and orbital planes are then determined in accordance with the orbital parameters of the DC-MSS-IMT system, as listed in Table A4.3.1.2-1."
+  },
+  {
+    "kind": "paragraph",
+    "number": 90,
+    "style": "Figure_No",
+    "text": "FIGURE A4.3.1.2-8"
+  },
+  {
+    "kind": "paragraph",
+    "number": 91,
+    "style": "Figure_title",
+    "text": "Orbit plane angles"
+  },
+  {
+    "kind": "paragraph",
+    "number": 93,
+    "style": "Normal_after_title",
+    "text": "This method generates a statistically representative snapshot of the entire constellation’s geometry at each simulation run. By repeating this process over many iterations, it is possible to accurately capture the statistical distribution of interference without the computational overhead and time-dependency of a full dynamic simulation, making it an efficient and effective approach for this type of study. A total of 10,000 snapshots were generated in this study, providing a sufficient sample size for statistical convergence."
+  },
+  {
+    "kind": "paragraph",
+    "number": 94,
+    "style": "Heading 5",
+    "text": "A4.3.1.2.4.3 Satellite Beam Generation and Pointing Methodology"
+  },
+  {
+    "kind": "paragraph",
+    "number": 95,
+    "style": "Figure_No",
+    "text": "FIGURE A4.3.1.2-9"
+  },
+  {
+    "kind": "paragraph",
+    "number": 96,
+    "style": "Figure_title",
+    "text": "Satellite beam assignment"
+  },
+  {
+    "kind": "paragraph",
+    "number": 98,
+    "style": "Normal_after_title",
+    "text": "To model the service deployment for the DC-MSS-IMT systems, a Service Grid methodology was employed to generate and point satellite beams (Figures A4.3.1.2-9 and A4.3.1.2-10). This method ensures that continuous coverage is provided throughout the intended service area while adhering to operational constraints."
+  },
+  {
+    "kind": "paragraph",
+    "number": 99,
+    "style": "Normal",
+    "text": "The process is defined by the following steps:"
+  },
+  {
+    "kind": "paragraph",
+    "number": 100,
+    "style": "Heading_b",
+    "text": "1) Service Grid Generation"
+  },
+  {
+    "kind": "paragraph",
+    "number": 101,
+    "style": "Normal",
+    "text": "The defined service area is tessellated into a grid of contiguous, non-overlapping hexagonal-cells (Figure A4.3.1.1-9), whose centers are illustrated in Figure A4.3.1.1-10. The radius of each hexagonal-cell is set to be equal to the coverage radius of a single satellite beam, R in the Figure A4.3.1.1-4, ensuring that one beam can effectively serve one hexagonal-cell. These hexagonal structures were used for illustrative purposes, with R, as described earlier in this document, being the most relevant element of the proposed methodology. In this study, R is set to 40.448 km and 26.195 km for the analysis of System 3, at altitudes of 525 km and 340 km, respectively, along the -7 dB contour of each beam's radiation pattern."
+  },
+  {
+    "kind": "paragraph",
+    "number": 102,
+    "style": "Normal",
+    "text": "The presented service grid in Figure A4.3.1.1-11 considers only the South American countries in which the service points are covered by DC-MSS-IMT satellites that allow visibility with the EESS earth station under study."
+  },
+  {
+    "kind": "paragraph",
+    "number": 103,
+    "style": "Figure_No",
+    "text": "FIGURE A4.3.1.2-10"
+  },
+  {
+    "kind": "paragraph",
+    "number": 104,
+    "style": "Figure_title",
+    "text": "Detail of the service grid showing the coverage of the DC-MSS-IMT system (Grid limits)"
+  },
+  {
+    "kind": "paragraph",
+    "number": 106,
+    "style": "Method_heading2",
+    "text": "2) Definition of the Service Area"
+  },
+  {
+    "kind": "paragraph",
+    "number": 107,
+    "style": "Normal",
+    "text": "The service area, which comprises all the (hexagonal) cells eligible to be served, is defined at each snapshot by a set of operational and geographical constraints. A satellite beam can only be placed within a cell if the following three conditions are met simultaneously:"
+  },
+  {
+    "kind": "paragraph",
+    "number": 108,
+    "style": "enumlev1",
+    "text": "– The hexagon is located entirely within the political borders of the country licensed to operate the service (e.g., Brazil), respecting the pre-defined grid limits from the international border (Figure A4.3.1.2-10)."
+  },
+  {
+    "kind": "paragraph",
+    "number": 109,
+    "style": "enumlev1",
+    "text": "– The hexagonal-cell is within the visibility footprint of at least one satellite in the constellation."
+  },
+  {
+    "kind": "paragraph",
+    "number": 110,
+    "style": "enumlev1",
+    "text": "– The satellite whose beam covers a cell is visible from the specific victim ground station under study, allowing for the calculation of the interference path. Visibility is defined by a minimum elevation angle, which in this study was set to 5 degrees, in accordance with Document 4C/356."
+  },
+  {
+    "kind": "paragraph",
+    "number": 111,
+    "style": "Heading_b",
+    "text": "3) Beam Assignment and Pointing"
+  },
+  {
+    "kind": "paragraph",
+    "number": 112,
+    "style": "Normal",
+    "text": "For each hexagonal-cell within the defined service area, a single beam is assigned based on the best server principle. The satellite with the highest elevation angle as seen from the center of that hexagonal cell is selected to provide service. This satellite then points the main lobe of one of its beams directly to the center of the assigned hexagon. This methodology ensures that the entire service area is systematically covered by the assigned beams, utilizing the satellite with the most favorable link geometry for each cell (Figure A4.3.1.2-11)."
+  },
+  {
+    "kind": "paragraph",
+    "number": 113,
+    "style": "Normal",
+    "text": "Figure A4.3.1.2-11 illustrates a snapshot of the Monte Carlo process. In this figure, the green points represent a subset of the satellites of System 3 that can cover the cells of the service grid in the given snapshot. Additionally, a subset of the footprints of the beams selected for cell coverage is shown."
+  },
+  {
+    "kind": "paragraph",
+    "number": 114,
+    "style": "Normal",
+    "text": "The satellite beam size is defined by its average service contour at the 7 dB power falloff point from the peak gain of the main lobe. This definition is used to implement an exclusive beam layout, where adjacent beams are placed no closer than their respective 7 dB contours. This 7 dB value must be derived using the specific antenna radiation pattern described in model 1.4 of Recommendation ITU-R S.1528."
+  },
+  {
+    "kind": "paragraph",
+    "number": 115,
+    "style": "Figure_No",
+    "text": "Figure A4.3.1.2-11"
+  },
+  {
+    "kind": "paragraph",
+    "number": 116,
+    "style": "Figure_title",
+    "text": "Image showing the resulting beam gain footprint for a single snapshot"
+  },
+  {
+    "kind": "paragraph",
+    "number": 118,
+    "style": "Heading_b",
+    "text": "4) Satellite system load factor"
+  },
+  {
+    "kind": "paragraph",
+    "number": 119,
+    "style": "Normal",
+    "text": "To model realistic network usage, a satellite system load factor was applied, defining the probability that any given beam is active and transmitting during a single simulation snapshot; for this analysis, load factors of 20% and 50% were considered."
+  },
+  {
+    "kind": "paragraph",
+    "number": 120,
+    "style": "Normal",
+    "text": "Figures A4.3.1.2-12 and A4.3.1.2-13 present the frequency histograms of the number of active beams per satellite, for system load factors of 20% and 50%, respectively. These distributions were generated from a simulation comprising 10,000 independent snapshots."
+  },
+  {
+    "kind": "paragraph",
+    "number": 121,
+    "style": "Figure_No",
+    "text": "Figure A4.3.1.2-12"
+  },
+  {
+    "kind": "paragraph",
+    "number": 122,
+    "style": "Figure_title",
+    "text": "Histogram of the number of active beams per satellite – 20% load factor"
+  },
+  {
+    "kind": "paragraph",
+    "number": 124,
+    "style": "Figure_No",
+    "text": "Figure A4.3.1.2-13"
+  },
+  {
+    "kind": "paragraph",
+    "number": 125,
+    "style": "Figure_title",
+    "text": "Histogram of the number of active beams per satellite – 50% load factor"
+  },
+  {
+    "kind": "paragraph",
+    "number": 127,
+    "style": "Heading 4",
+    "text": "A4.3.1.2.5 Results of the study"
+  },
+  {
+    "kind": "paragraph",
+    "number": 128,
+    "style": "Normal",
+    "text": "This study addresses an adjacent-channel interference scenario involving the DC-MSS-IMT (downlink) system and EESS (s-E) system."
+  },
+  {
+    "kind": "paragraph",
+    "number": 129,
+    "style": "Normal",
+    "text": "As previously mentioned, DC-MSS-IMT System 3 is considered in the study. Two altitude levels for System 3 are employed for comparison purposes: 340km and 525km. The study includes an analysis of the DC-MSS-IMT system load factor, assuming load factors of 20% and 50%."
+  },
+  {
+    "kind": "paragraph",
+    "number": 130,
+    "style": "Normal",
+    "text": "Case I – The whole of South America is covered by the DC-MSS system. Results of adjacent-band interference and spurious emission interference caused to the EESS (s-E) system B and D in the band 2 200-2 290 MHz by the DC-MSS-IMT system operating in the 2 110-2 200 MHz band (downlink)"
+  },
+  {
+    "kind": "paragraph",
+    "number": 131,
+    "style": "Normal",
+    "text": "In this case, two victim EESS earth stations located in Paraguay and Colombia are evaluated, as illustrated in Figure A4.3.1.2-1 (a). However, in each snapshot, the elevation and azimuth angles of the receiving antenna are randomly selected, reflecting the receiving antenna's tracking capability during communication with an NGSO satellite. These elevation and azimuth angles are modeled as independent random variables uniformly distributed over the ranges 5 to 90 degrees and 0 to 360 degrees, respectively."
+  },
+  {
+    "kind": "paragraph",
+    "number": 132,
+    "style": "Normal",
+    "text": "The panels (a-d) of Figs. A4.3.1.2-14 and A4.3.1.2-15 present the interference power density results in interference scenarios from the DC-MSS-IMT (downlink) system at 340km and 525km altitude, respectively, to the EESS (s-E) system, using the Complementary Cumulative Distribution Function (CCDF) of the Interference Power density for the station located in Paraguay (a,c) and Colombia (b,d) considering the EESS system B (a,b) and D (c,d). These figures show the results for the two operational margins of 0 km (solid lines) and 75 km (dashed), two load factors of 20% (blue lines) and 50% (red lines). The higher the load factor, the greater the interference, as shown in all cases."
+  },
+  {
+    "kind": "paragraph",
+    "number": 133,
+    "style": "Normal",
+    "text": "The results indicate that, for the 340 km altitude case, when no operational margin is applied around the victim EESS earth station, the protection criterion is exceeded for a load factor of 50%. However, when an operational margin is introduced around the victim, the interference levels are sufficiently reduced, and the protection criterion is satisfied for all evaluated conditions, enabling compatible operation. For the 525 km altitude case, the protection criterion is satisfied in almost all evaluated scenarios, even without applying an operational margin. For this altitude, in the exceedance scenarios, the margin at 0.01 % is no more than 2dB from the protection criteria, meaning that a simple operation margin can be employed to operationalize the compatibility."
+  },
+  {
+    "kind": "paragraph",
+    "number": 134,
+    "style": "Normal",
+    "text": "These results demonstrate that, in the spurious emission domain, compatibility can be achieved, particularly with the implementation of operational margins and/or higher orbital altitudes, which effectively reduce the aggregate interference levels at the EESS earth station."
+  },
+  {
+    "kind": "paragraph",
+    "number": 136,
+    "style": "Figure_No",
+    "text": "Figure A4.3.1.2-14"
+  },
+  {
+    "kind": "paragraph",
+    "number": 137,
+    "style": "Figure_title",
+    "text": "CCDF of Adjacent-band and Spurious Emission Interference into EESS (s-E) – Altitude of 340 km"
+  },
+  {
+    "kind": "paragraph",
+    "number": 138,
+    "style": "Figura",
+    "text": "Figure A4.3.1.2-15"
+  },
+  {
+    "kind": "paragraph",
+    "number": 139,
+    "style": "Figure_title",
+    "text": "CCDF of Adjacent-band and Spurious Emission Interference into EESS (s-E) – Altitude of 525 km"
+  },
+  {
+    "kind": "paragraph",
+    "number": 141,
+    "style": "Normal",
+    "text": "Case II – Only Argentina and Brazil are covered by the DC-MSS system. Results of adjacent-band interference and spurious emission interference caused to the EESS (s-E) system B and D in the band 2 200-2 290 MHz by the DC-MSS-IMT system operating in the 2 110-2 200 MHz band (downlink)"
+  },
+  {
+    "kind": "paragraph",
+    "number": 142,
+    "style": "Normal",
+    "text": "In this case, two victim EESS earth stations located in Paraguay and Colombia are evaluated, as illustrated in Figure A4.3.1.2-1 (b). Moreover, in each snapshot, the elevation and azimuth angles of the receiving antenna are randomly selected, reflecting the receiving antenna's tracking capability during communication with an NGSO satellite. These elevation and azimuth angles are modeled as independent random variables uniformly distributed over the ranges 5 to 90 degrees and 0 to 360 degrees, respectively."
+  },
+  {
+    "kind": "paragraph",
+    "number": 143,
+    "style": "Normal",
+    "text": "The panels (a-d) of Figs. A4.3.1.2-16 and A4.3.1.2-17 present the interference power density results in interference scenarios from the DC-MSS-IMT (downlink) system at 340km and 525km altitude, respectively, to the EESS (s-E) system, using the Complementary Cumulative Distribution Function (CCDF) of the Interference Power density for the station located in Paraguay (a,c) and Colombia (b,d) considering the EESS system B (a,b) and D (c,d). These figures show the results for the two operational margins of 0 km (solid lines) and 75 km (dashed), two load factors of 20% (blue lines) and 50% (red lines). The higher the load factor, the greater the interference, as shown in all cases."
+  },
+  {
+    "kind": "paragraph",
+    "number": 144,
+    "style": "Normal",
+    "text": "By reducing the DC-MSS coverage, The results indicate that, even at an altitude of 340 km, the protection criterion is almost satisfied for the worst load factor of 50%. However, when an operational margin is introduced around the victim, the interference levels are sufficiently reduced, and the protection criterion is satisfied for all evaluated conditions, enabling compatible operation. The same conclusions can be achieved for the 525 km altitude satellites."
+  },
+  {
+    "kind": "paragraph",
+    "number": 145,
+    "style": "Normal",
+    "text": "These results demonstrate that, in the spurious emission domain, compatibility can be achieved, particularly with the implementation of operational margins and/or higher orbital altitudes, which effectively reduce the aggregate interference levels at the EESS earth station. Table A4.3.1.1-5 provides a summary of the compliance with the protection criteria."
+  },
+  {
+    "kind": "paragraph",
+    "number": 146,
+    "style": "Figure_No",
+    "text": "Figure A4.3.1.1-16"
+  },
+  {
+    "kind": "paragraph",
+    "number": 147,
+    "style": "Figure_title",
+    "text": "CCDF of Adjacent-band and Spurious Emission Interference into EESS (s-E) System B – Altitude of 340 km"
+  },
+  {
+    "kind": "paragraph",
+    "number": 148,
+    "style": "Figura",
+    "text": "Figure A4.3.1.1-17"
+  },
+  {
+    "kind": "paragraph",
+    "number": 149,
+    "style": "Figure_title",
+    "text": "CCDF of Adjacent-band and Spurious Emission Interference into EESS (s-E) System B – Altitude of 525 km"
+  },
+  {
+    "kind": "paragraph",
+    "number": 152,
+    "style": "Table_No",
+    "text": "Table A4.3.1.1-5"
+  },
+  {
+    "kind": "paragraph",
+    "number": 153,
+    "style": "Table_title",
+    "text": "Summary of results for Case II"
+  },
+  {
+    "kind": "table",
+    "number": 7,
+    "rows": [
+      [
+        "Altitude",
+        "Coverage",
+        "EESS Position",
+        "EESS System",
+        "Margin",
+        "20% Load",
+        "50% Load"
+      ],
+      [
+        "Altitude",
+        "Coverage",
+        "EESS Position",
+        "EESS System",
+        "(km)",
+        "20% Load",
+        "50% Load"
+      ],
+      [
+        "Altitude",
+        "South America",
+        "Paraguay",
+        "B",
+        "0km",
+        "✓",
+        "✗"
+      ],
+      [
+        "Altitude",
+        "South America",
+        "Paraguay",
+        "B",
+        "75 km",
+        "✓",
+        "✓"
+      ],
+      [
+        "Altitude",
+        "South America",
+        "Paraguay",
+        "D",
+        "0km",
+        "✓",
+        "✗"
+      ],
+      [
+        "Altitude",
+        "South America",
+        "Paraguay",
+        "D",
+        "75 km",
+        "✓",
+        "✓"
+      ],
+      [
+        "Altitude",
+        "South America",
+        "Colombia",
+        "B",
+        "0km",
+        "✓",
+        "✗"
+      ],
+      [
+        "Altitude",
+        "South America",
+        "Colombia",
+        "B",
+        "75 km",
+        "✓",
+        "✓"
+      ],
+      [
+        "Altitude",
+        "South America",
+        "Colombia",
+        "D",
+        "0km",
+        "✓",
+        "✗"
+      ],
+      [
+        "Altitude",
+        "South America",
+        "Colombia",
+        "D",
+        "75 km",
+        "✓",
+        "✓"
+      ],
+      [
+        "Altitude",
+        "Brazil and Argentina",
+        "Paraguay",
+        "B",
+        "0km",
+        "✓",
+        "✗"
+      ],
+      [
+        "Altitude",
+        "Brazil and Argentina",
+        "Paraguay",
+        "B",
+        "75 km",
+        "✓",
+        "✓"
+      ],
+      [
+        "Altitude",
+        "Brazil and Argentina",
+        "Paraguay",
+        "D",
+        "0km",
+        "✓",
+        "✓"
+      ],
+      [
+        "Altitude",
+        "Brazil and Argentina",
+        "Paraguay",
+        "D",
+        "75 km",
+        "✓",
+        "✓"
+      ],
+      [
+        "Altitude",
+        "Brazil and Argentina",
+        "Colombia",
+        "B",
+        "0km",
+        "✓",
+        "✓"
+      ],
+      [
+        "Altitude",
+        "Brazil and Argentina",
+        "Colombia",
+        "B",
+        "75 km",
+        "✓",
+        "✓"
+      ],
+      [
+        "Altitude",
+        "Brazil and Argentina",
+        "Colombia",
+        "D",
+        "0km",
+        "✓",
+        "✗"
+      ],
+      [
+        "Altitude",
+        "Brazil and Argentina",
+        "Colombia",
+        "D",
+        "75 km",
+        "✓",
+        "✓"
+      ]
+    ]
+  },
+  {
+    "kind": "paragraph",
+    "number": 157,
+    "style": "Heading 4",
+    "text": "A4.3.1.2.6 Conclusion of study B"
+  },
+  {
+    "kind": "paragraph",
+    "number": 158,
+    "style": "Normal",
+    "text": "The results of this study indicate that coexistence between EESS (s-E) systems operating in the 2 200–2 290 MHz band and DC-MSS-IMT downlink systems operating in the 2 110–2 200 MHz band is feasible under the considered spurious emission conditions."
+  },
+  {
+    "kind": "paragraph",
+    "number": 159,
+    "style": "Normal",
+    "text": "For the 340 km case, some scenarios without the application of an operational margin around the EESS earth station and with a load factor of 50% exceed the protection criterion of -154 dBW/MHz. However, the introduction of a protection margin around the EESS station is sufficient to mitigate the interference and ensure compliance in all evaluated scenarios."
+  },
+  {
+    "kind": "paragraph",
+    "number": 160,
+    "style": "Normal",
+    "text": "Overall, the results demonstrate that, with appropriate mitigation measures, particularly the application of a protection margin around the EESS earth station, DC-MSS operation in the 2 110–2 120 MHz band is compatible with EESS systems."
+  }
+]

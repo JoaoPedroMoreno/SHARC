@@ -39,6 +39,218 @@ class Results(object):
         "realized_affected_fraction",
     ]
 
+    interference_aware_handover_snapshot_metrics_columns = [
+        "snapshot_id",
+        "active_beams_evaluated",
+        "primary_main_main_count",
+        "handover_trigger_count",
+        "successful_handover_count",
+        "unresolved_count",
+        "reassigned_fraction",
+        "unresolved_trigger_fraction",
+    ]
+
+    interference_aware_handover_event_columns = [
+        "snapshot_id",
+        "beam_row_idx",
+        "beam_grid_idx",
+        "primary_satellite_idx",
+        "target_satellite_idx",
+        "final_satellite_idx",
+        "primary_elevation_deg",
+        "target_elevation_deg",
+        "delta_elevation_deg",
+        "primary_dc_off_axis_deg",
+        "primary_eess_off_axis_deg",
+        "target_dc_off_axis_deg",
+        "target_eess_off_axis_deg",
+        "eess_phi_min_deg",
+        "eess_system",
+        "outcome",
+    ]
+
+    interference_link_diagnostic_columns = [
+        "snapshot_id", "secondary_seed", "beam_row_idx", "beam_grid_idx",
+        "service_cell_id", "primary_satellite_idx", "serving_satellite_idx",
+        "target_satellite_idx", "guard_band_mhz", "altitude_km",
+        "load_factor", "eess_system", "eess_position_label",
+        "eess_latitude_deg", "eess_longitude_deg", "eess_altitude_m", "eess_local_x_m",
+        "eess_local_y_m", "eess_local_z_m", "trigger_flag",
+        "handover_flag", "unresolved_flag", "i_link_linear_mw",
+        "i_link_dbw_per_mhz", "i_agg_linear_mw",
+        "i_agg_dbw_per_mhz", "risk_threshold_dbw_per_mhz",
+        "iagg_exceeds_risk_threshold", "rank_in_snapshot",
+        "fraction_of_iagg_linear", "fraction_top1", "fraction_top3",
+        "fraction_top5", "fraction_top10", "tx_offaxis_to_eess_deg",
+        "g_tx_toward_eess_dbi", "g_tx_peak_dbi",
+        "tx_gain_drop_from_peak_db", "service_cell_lat_deg",
+        "service_cell_lon_deg", "satellite_elevation_from_service_cell_deg",
+        "rx_offaxis_from_eess_boresight_deg",
+        "eess_boresight_azimuth_deg", "eess_boresight_elevation_deg",
+        "interferer_azimuth_from_eess_deg",
+        "interferer_elevation_from_eess_deg", "g_rx_from_interferer_dbi",
+        "g_rx_peak_dbi", "rx_gain_drop_from_peak_db",
+        "joint_gain_suppression_db", "path_loss_db",
+        "spectral_coupling_db", "tx_conducted_power_dbm",
+        "tx_spectral_power_dbm", "tx_spectral_psd_dbm_per_mhz",
+        "additional_loss_db", "geometric_coupling_score_db",
+        "full_coupling_score_dbm", "full_coupling_score_dbw_per_mhz",
+    ]
+
+    interference_link_snapshot_summary_columns = [
+        "snapshot_id", "secondary_seed", "active_links_evaluated",
+        "recorded_links", "i_agg_linear_mw", "i_agg_dbm",
+        "i_agg_dbw_per_mhz", "sum_i_link_linear_mw",
+        "sum_error_linear_mw", "fraction_top1", "fraction_top3",
+        "fraction_top5", "fraction_top10", "risk_threshold_dbw_per_mhz",
+        "iagg_exceeds_risk_threshold",
+    ]
+
+    interference_aware_handover_v2_snapshot_columns = [
+        "snapshot_id", "secondary_seed", "top_k_links_examined",
+        "actuation_flag", "reassigned_beams", "candidates_evaluated",
+        "unresolved_count", "risk_gate_dbw_per_mhz", "gate_entered",
+        "critical_before", "critical_after", "became_compliant",
+        "concentration_c1", "concentration_c1_c3", "iagg_before_linear_mw",
+        "iagg_after_linear_mw", "iagg_before_dbw_per_mhz",
+        "iagg_after_dbw_per_mhz", "iagg_reduction_db",
+        "top1_link_reassigned",
+    ]
+
+    interference_aware_handover_v2_event_columns = [
+        "snapshot_id", "secondary_seed", "rank_in_snapshot",
+        "beam_row_idx", "beam_grid_idx", "current_satellite_idx",
+        "selected_satellite_idx", "current_service_elevation_deg",
+        "selected_service_elevation_deg", "candidates_evaluated",
+        "current_i_linear_mw", "selected_i_linear_mw",
+        "predicted_reduction_db", "accepted", "unresolved", "reason",
+    ]
+
+    operational_risk_snapshot_columns = [
+        "snapshot_id", "secondary_seed", "master_seed", "altitude_km",
+        "eess_system", "load_factor", "guard_band_mhz",
+        "dc_mss_center_frequency_mhz", "dc_mss_bandwidth_mhz",
+        "active_beam_count", "active_beam_rows_sha256",
+        "serving_satellite_ids_before_sha256", "eess_latitude_deg",
+        "eess_longitude_deg", "eess_altitude_m", "eess_enu_x_m",
+        "eess_enu_y_m", "eess_enu_z_m", "eess_pointing_azimuth_deg",
+        "eess_pointing_elevation_deg", "eess_boresight_x",
+        "eess_boresight_y", "eess_boresight_z", "iagg_before_linear_mw",
+        "iagg_after_linear_mw", "iagg_before_dbw_per_mhz",
+        "iagg_after_dbw_per_mhz", "critical_before_flag",
+        "compliant_after_flag", "risk_gate_triggered",
+        "handover_performed", "handover_count", "candidates_evaluated",
+        "unresolved_count", "concentration_c1", "concentration_c1_c3",
+        "top1_beam_row_idx", "top1_beam_grid_idx", "top1_service_cell_id",
+        "top1_serving_satellite_idx", "top1_i_link_linear_mw",
+        "top1_i_link_dbw_per_mhz", "top1_satellite_latitude_deg",
+        "top1_satellite_longitude_deg", "top1_satellite_altitude_m",
+        "top1_satellite_enu_x_m", "top1_satellite_enu_y_m",
+        "top1_satellite_enu_z_m", "top1_service_cell_latitude_deg",
+        "top1_service_cell_longitude_deg", "top1_tx_offaxis_deg",
+        "top1_rx_offaxis_deg", "top1_eess_to_satellite_azimuth_deg",
+        "top1_eess_to_satellite_elevation_deg",
+        "top1_service_elevation_deg", "top1_tx_gain_dbi",
+        "top1_rx_gain_dbi", "top1_joint_gain_suppression_db",
+        "top1_path_loss_db", "top1_coupling_loss_db",
+        "top1_tx_spectral_power_dbm", "top1_spectral_coupling_db",
+    ]
+
+    operational_risk_topk_columns = [
+        "snapshot_id", "secondary_seed", "master_seed", "rank_in_snapshot",
+        "beam_row_idx", "beam_grid_idx", "service_cell_id",
+        "primary_satellite_idx", "serving_satellite_idx",
+        "individual_i_linear_mw", "individual_i_dbw_per_mhz",
+        "fraction_of_iagg_linear", "iagg_before_linear_mw",
+        "iagg_before_dbw_per_mhz", "critical_before_flag",
+        "eess_system", "altitude_km", "load_factor", "guard_band_mhz",
+        "dc_mss_center_frequency_mhz", "dc_mss_bandwidth_mhz",
+        "eess_latitude_deg", "eess_longitude_deg", "eess_altitude_m",
+        "eess_enu_x_m", "eess_enu_y_m", "eess_enu_z_m",
+        "eess_pointing_azimuth_deg", "eess_pointing_elevation_deg",
+        "eess_boresight_x", "eess_boresight_y", "eess_boresight_z",
+        "satellite_latitude_deg", "satellite_longitude_deg",
+        "satellite_altitude_m", "satellite_enu_x_m", "satellite_enu_y_m",
+        "satellite_enu_z_m", "service_cell_latitude_deg",
+        "service_cell_longitude_deg", "service_cell_ecef_x_m",
+        "service_cell_ecef_y_m", "service_cell_ecef_z_m",
+        "service_cell_enu_x_m", "service_cell_enu_y_m",
+        "service_cell_enu_z_m", "tx_boresight_azimuth_deg",
+        "tx_boresight_elevation_deg", "tx_offaxis_to_eess_deg",
+        "rx_offaxis_from_eess_boresight_deg",
+        "eess_to_satellite_azimuth_deg", "eess_to_satellite_elevation_deg",
+        "service_elevation_deg", "tx_gain_toward_eess_dbi",
+        "tx_peak_gain_dbi", "tx_gain_drop_db",
+        "rx_gain_from_interferer_dbi", "rx_peak_gain_dbi",
+        "rx_gain_drop_db", "joint_gain_suppression_db", "path_loss_db",
+        "coupling_loss_db", "additional_loss_db", "tx_conducted_power_dbm",
+        "tx_spectral_power_dbm", "tx_spectral_psd_dbm_per_mhz",
+        "spectral_coupling_db",
+    ]
+
+    operational_risk_handover_event_columns = [
+        "snapshot_id", "secondary_seed", "master_seed", "rank_in_snapshot",
+        "beam_row_idx", "beam_grid_idx", "service_cell_id", "accepted",
+        "unresolved", "reason", "candidates_evaluated",
+        "current_satellite_idx", "target_satellite_idx",
+        "current_i_linear_mw", "target_i_linear_mw",
+        "current_i_dbw_per_mhz", "target_i_dbw_per_mhz",
+        "predicted_reduction_db", "service_elevation_loss_deg",
+        "delta_rx_offaxis_deg", "delta_tx_offaxis_deg",
+        "delta_joint_gain_suppression_db", "iagg_before_linear_mw",
+        "iagg_after_linear_mw", "iagg_before_dbw_per_mhz",
+        "iagg_after_dbw_per_mhz", "current_service_elevation_deg",
+        "target_service_elevation_deg", "current_tx_offaxis_deg",
+        "target_tx_offaxis_deg", "current_rx_offaxis_deg",
+        "target_rx_offaxis_deg", "current_tx_gain_dbi",
+        "target_tx_gain_dbi", "current_rx_gain_dbi", "target_rx_gain_dbi",
+        "current_tx_peak_gain_dbi", "target_tx_peak_gain_dbi",
+        "current_rx_peak_gain_dbi", "target_rx_peak_gain_dbi",
+        "current_joint_gain_suppression_db",
+        "target_joint_gain_suppression_db", "current_path_loss_db",
+        "target_path_loss_db", "current_coupling_loss_db",
+        "target_coupling_loss_db", "current_tx_gain_drop_db",
+        "target_tx_gain_drop_db", "current_rx_gain_drop_db",
+        "target_rx_gain_drop_db", "current_tx_spectral_power_dbm",
+        "target_tx_spectral_power_dbm", "current_spectral_coupling_db",
+        "target_spectral_coupling_db", "current_eess_to_satellite_azimuth_deg",
+        "target_eess_to_satellite_azimuth_deg",
+        "current_eess_to_satellite_elevation_deg",
+        "target_eess_to_satellite_elevation_deg",
+        "current_tx_boresight_azimuth_deg", "target_tx_boresight_azimuth_deg",
+        "current_tx_boresight_elevation_deg",
+        "target_tx_boresight_elevation_deg", "current_satellite_latitude_deg",
+        "current_satellite_longitude_deg", "current_satellite_altitude_m",
+        "current_satellite_enu_x_m", "current_satellite_enu_y_m",
+        "current_satellite_enu_z_m", "target_satellite_latitude_deg",
+        "target_satellite_longitude_deg", "target_satellite_altitude_m",
+        "target_satellite_enu_x_m", "target_satellite_enu_y_m",
+        "target_satellite_enu_z_m", "service_cell_latitude_deg",
+        "service_cell_longitude_deg", "service_cell_ecef_x_m",
+        "service_cell_ecef_y_m", "service_cell_ecef_z_m",
+        "service_cell_enu_x_m", "service_cell_enu_y_m",
+        "service_cell_enu_z_m", "eess_latitude_deg", "eess_longitude_deg",
+        "eess_altitude_m", "eess_enu_x_m", "eess_enu_y_m", "eess_enu_z_m",
+        "eess_pointing_azimuth_deg", "eess_pointing_elevation_deg",
+        "eess_boresight_x", "eess_boresight_y", "eess_boresight_z",
+    ]
+
+    operational_risk_candidate_columns = [
+        "snapshot_id", "secondary_seed", "master_seed", "beam_row_idx",
+        "beam_grid_idx", "service_cell_id", "current_satellite_idx",
+        "candidate_satellite_idx", "candidate_order", "selected_flag",
+        "candidate_i_linear_mw", "candidate_service_elevation_deg",
+        "candidate_tx_offaxis_deg", "candidate_rx_offaxis_deg",
+        "candidate_tx_gain_dbi", "candidate_rx_gain_dbi",
+        "candidate_tx_gain_drop_db", "candidate_rx_gain_drop_db",
+        "candidate_joint_gain_suppression_db", "candidate_path_loss_db",
+        "candidate_coupling_loss_db", "candidate_spectral_coupling_db",
+        "candidate_tx_spectral_power_dbm", "candidate_satellite_latitude_deg",
+        "candidate_satellite_longitude_deg", "candidate_satellite_altitude_m",
+        "candidate_satellite_enu_x_m", "candidate_satellite_enu_y_m",
+        "candidate_satellite_enu_z_m",
+    ]
+
     # This should always be true for 1st samples flush
     overwrite_sample_files = True
 
@@ -125,6 +337,17 @@ class Results(object):
         self.system_pfd = SampleList()
         self.system_rx_interf = SampleList()
         self.imt_dl_selected_ue_metrics = []
+        self.interference_aware_handover_snapshot_metrics = []
+        self.interference_aware_handover_events = []
+        self.interference_link_diagnostics = []
+        self.interference_link_snapshot_summaries = []
+        self.interference_aware_handover_v2_snapshots = []
+        self.interference_aware_handover_v2_events = []
+        self.operational_risk_snapshots = []
+        self.operational_risk_topk = []
+        self.operational_risk_handover_events = []
+        self.operational_risk_candidates = []
+        self._structured_files_initialized = set()
 
         self.__sharc_dir = pathlib.Path(__file__).parent.resolve()
 
@@ -214,6 +437,25 @@ class Results(object):
 
         return results_relevant_attr_names
 
+    def _write_structured_rows(
+        self,
+        filename: str,
+        rows: list[dict],
+        columns: list[str],
+    ) -> None:
+        """Write a structured CSV with an independent first-write state."""
+        if not rows:
+            return
+        file_path = os.path.join(self.output_directory, filename)
+        first_write = filename not in self._structured_files_initialized
+        pd.DataFrame(rows, columns=columns).to_csv(
+            file_path,
+            mode="w" if first_write else "a",
+            index=False,
+            header=first_write,
+        )
+        self._structured_files_initialized.add(filename)
+
     def write_files(self, snapshot_number: int):
         """Writes the sample data to the output file
 
@@ -252,6 +494,76 @@ class Results(object):
             else:
                 df.to_csv(file_path, mode="a", index=False, header=False)
             self.imt_dl_selected_ue_metrics = []
+
+        self._write_structured_rows(
+            "interference_aware_handover_snapshot_metrics.csv",
+            self.interference_aware_handover_snapshot_metrics,
+            self.interference_aware_handover_snapshot_metrics_columns,
+        )
+        self.interference_aware_handover_snapshot_metrics = []
+
+        self._write_structured_rows(
+            "interference_aware_handover_events.csv",
+            self.interference_aware_handover_events,
+            self.interference_aware_handover_event_columns,
+        )
+        self.interference_aware_handover_events = []
+
+        self._write_structured_rows(
+            "interference_link_diagnostics.csv",
+            self.interference_link_diagnostics,
+            self.interference_link_diagnostic_columns,
+        )
+        self.interference_link_diagnostics = []
+
+        self._write_structured_rows(
+            "interference_link_snapshot_summary.csv",
+            self.interference_link_snapshot_summaries,
+            self.interference_link_snapshot_summary_columns,
+        )
+        self.interference_link_snapshot_summaries = []
+
+        self._write_structured_rows(
+            "interference_aware_handover_v2_snapshot.csv",
+            self.interference_aware_handover_v2_snapshots,
+            self.interference_aware_handover_v2_snapshot_columns,
+        )
+        self.interference_aware_handover_v2_snapshots = []
+
+        self._write_structured_rows(
+            "interference_aware_handover_v2_events.csv",
+            self.interference_aware_handover_v2_events,
+            self.interference_aware_handover_v2_event_columns,
+        )
+        self.interference_aware_handover_v2_events = []
+
+        self._write_structured_rows(
+            "operational_risk_snapshot.csv",
+            self.operational_risk_snapshots,
+            self.operational_risk_snapshot_columns,
+        )
+        self.operational_risk_snapshots = []
+
+        self._write_structured_rows(
+            "operational_risk_topk.csv",
+            self.operational_risk_topk,
+            self.operational_risk_topk_columns,
+        )
+        self.operational_risk_topk = []
+
+        self._write_structured_rows(
+            "operational_risk_handover_events.csv",
+            self.operational_risk_handover_events,
+            self.operational_risk_handover_event_columns,
+        )
+        self.operational_risk_handover_events = []
+
+        self._write_structured_rows(
+            "operational_risk_candidates.csv",
+            self.operational_risk_candidates,
+            self.operational_risk_candidate_columns,
+        )
+        self.operational_risk_candidates = []
 
         if self.overwrite_sample_files:
             self.overwrite_sample_files = False

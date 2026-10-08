@@ -1,107 +1,290 @@
-"""Generate the IEEE SHARC workflow flowchart as PNG/PDF."""
+"""Generate the compact IEEE workflow figure for campaign 02 DC-MSS-to-FS."""
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
 
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle, FancyArrowPatch, FancyBboxPatch
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_BASE = ROOT / "figuras" / "fluxograma_sharc_ieee"
 
-
-STEPS = [
-    ("Input YAML File", "scenario parameters, victim system,\nMSS_DC topology and physical models"),
-    ("SHARC Python Engine", "parameter parsing, initialization\nand pseudo-random seed control"),
-    ("Monte Carlo Loop", "10 000 snapshots"),
-    ("Geometry Generation", "NGSO satellites, active beams and FS receiver"),
-    ("Spatial Criteria", "visibility, elevation, service area and exclusion"),
-    ("Mitigation", "power back-off and exclusion zone"),
-    ("Link Budget Calculation", "antenna gains and propagation losses"),
-    ("Aggregate Interference", "summation of active beam contributions"),
-    ("I/N Calculation", "received interference and thermal noise"),
-    ("Statistical Results", "CSV files, CDF/CCDF, percentiles\nand protection margins"),
-]
+INK = "#111827"
+SECONDARY_INK = "#374151"
+ACCENT = "#1f4e79"
+SNAPSHOT_FILL = "#f8fafc"
 
 
-def add_box(ax, x: float, y: float, w: float, h: float, step: int, title: str, desc: str, module: bool) -> None:
-    rect = FancyBboxPatch(
+@dataclass(frozen=True)
+class Step:
+    number: int
+    title: str
+    description: str
+
+
+STEPS = {
+    1: Step(
+        1,
+        "Input YAML Configuration",
+        "scenario, DC-MSS-IMT / FS, propagation",
+    ),
+    2: Step(
+        2,
+        "Engine Initialization and Monte Carlo Loop",
+        "parameters, seeds, 10,000 snapshots",
+    ),
+    3: Step(
+        3,
+        "Geometry Generation",
+        "NGSO constellation, grid and FS receiver",
+    ),
+    4: Step(
+        4,
+        "Satellite / Cell Selection",
+        r"$5^\circ$ eligibility / highest elevation / $32^\circ$ threshold",
+    ),
+    5: Step(
+        5,
+        "Scenario-Specific Beam Control",
+        "candidate filter ($R_{\\mathrm{ez}}$) / 10 dB back-off",
+    ),
+    6: Step(
+        6,
+        "Beam Assignment / Activity",
+        "beam placement; LF-based activation",
+    ),
+    7: Step(
+        7,
+        "Per-Beam Interference",
+        "gains, losses and spectral overlap",
+    ),
+    8: Step(
+        8,
+        "Aggregate Interference and INR",
+        "linear beam sum; FS thermal noise",
+    ),
+    9: Step(
+        9,
+        "Statistical Post-Processing",
+        "$\\mathrm{INR}_{20\\%}$, bootstrap $\\mathrm{CI}_{95\\%}$, $M_{20}$ classification",
+    ),
+}
+
+
+def add_box(
+    ax,
+    *,
+    x: float,
+    y: float,
+    width: float,
+    height: float,
+    step: Step,
+    snapshot_step: bool,
+    title_size: float = 16.6,
+    description_size: float = 14.4,
+) -> None:
+    box = FancyBboxPatch(
         (x, y),
-        w,
-        h,
-        boxstyle="round,pad=0.012,rounding_size=0.018",
-        facecolor="#f8fafc" if module else "white",
-        edgecolor="#111827",
-        linewidth=1.35,
+        width,
+        height,
+        boxstyle="round,pad=0.006,rounding_size=0.014",
+        facecolor=SNAPSHOT_FILL if snapshot_step else "white",
+        edgecolor=INK,
+        linewidth=1.05,
     )
-    ax.add_patch(rect)
-    badge = Circle((x + 0.055, y + h - 0.055), 0.032, facecolor="#1f4e79", edgecolor="#1f4e79", linewidth=0.7)
-    ax.add_patch(badge)
-    ax.text(x + 0.055, y + h - 0.058, str(step), ha="center", va="center", color="white", fontsize=14, fontweight="bold")
-    ax.text(x + w / 2, y + h * 0.64, title, ha="center", va="center", fontsize=16, fontweight="bold", color="#111827")
-    ax.text(x + w / 2, y + h * 0.28, desc, ha="center", va="center", fontsize=12.6, color="#374151", linespacing=1.18)
+    ax.add_patch(box)
+
+    badge_x = x + 0.004
+    badge_y = y + height / 2
+    ax.text(
+        badge_x,
+        badge_y,
+        str(step.number),
+        ha="center",
+        va="center",
+        color="white",
+        fontsize=15.0,
+        fontweight="bold",
+        bbox={
+            "boxstyle": "circle,pad=0.20",
+            "facecolor": ACCENT,
+            "edgecolor": ACCENT,
+            "linewidth": 0.5,
+        },
+        zorder=4,
+    )
+
+    content_center_x = x + width / 2 + 0.024
+    ax.text(
+        content_center_x,
+        y + height * 0.70,
+        step.title,
+        ha="center",
+        va="center",
+        fontsize=title_size,
+        fontweight="bold",
+        color=INK,
+        linespacing=0.90,
+    )
+    ax.text(
+        content_center_x,
+        y + height * 0.25,
+        step.description,
+        ha="center",
+        va="center",
+        fontsize=description_size,
+        color=SECONDARY_INK,
+        linespacing=0.90,
+    )
 
 
-def add_arrow(ax, x: float, y0: float, y1: float) -> None:
+def add_arrow(
+    ax,
+    start: tuple[float, float],
+    end: tuple[float, float],
+    *,
+    connectionstyle: str = "arc3",
+) -> None:
     ax.add_patch(
         FancyArrowPatch(
-            (x, y0),
-            (x, y1),
+            start,
+            end,
             arrowstyle="-|>",
-            mutation_scale=12,
-            linewidth=1.15,
-            color="#111827",
-            shrinkA=0,
-            shrinkB=0,
+            mutation_scale=8.5,
+            linewidth=0.95,
+            color=INK,
+            shrinkA=1.0,
+            shrinkB=1.0,
+            connectionstyle=connectionstyle,
+            zorder=3,
         )
     )
 
 
 def main() -> None:
-    fig, ax = plt.subplots(figsize=(3.5, 7.0), dpi=600)
+    fig, ax = plt.subplots(figsize=(7.1, 7.6), dpi=600)
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
     ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
+    ax.set_ylim(-0.145, 1.04)
     ax.axis("off")
 
-    ax.text(0.5, 0.982, "SHARC Simulation Workflow", ha="center", va="top", fontsize=19, fontweight="bold", color="#111827")
+    ax.text(
+        0.5,
+        1.025,
+        "Simulation Workflow",
+        ha="center",
+        va="top",
+        fontsize=18.0,
+        fontweight="bold",
+        color=INK,
+    )
 
-    x, w = 0.08, 0.84
-    h = 0.064
-    y_positions = [0.89, 0.79, 0.69, 0.575, 0.49, 0.405, 0.32, 0.235, 0.15, 0.045]
-    loop = FancyBboxPatch(
-        (0.045, 0.123),
-        0.91,
-        0.555,
-        boxstyle="round,pad=0.006,rounding_size=0.014",
+    full_x = 0.035
+    full_width = 0.93
+    outer_box_height = 0.090
+    add_box(
+        ax,
+        x=full_x,
+        y=0.855,
+        width=full_width,
+        height=outer_box_height,
+        step=STEPS[1],
+        snapshot_step=False,
+    )
+    add_box(
+        ax,
+        x=full_x,
+        y=0.730,
+        width=full_width,
+        height=outer_box_height,
+        step=STEPS[2],
+        snapshot_step=False,
+        title_size=14.4,
+    )
+    add_arrow(ax, (0.5, 0.854), (0.5, 0.821))
+
+    snapshot_x = 0.035
+    snapshot_y = -0.015
+    snapshot_width = 0.93
+    snapshot_height = 0.710
+    snapshot_frame = FancyBboxPatch(
+        (snapshot_x, snapshot_y),
+        snapshot_width,
+        snapshot_height,
+        boxstyle="round,pad=0.005,rounding_size=0.012",
         facecolor="none",
         edgecolor="#1f2937",
-        linewidth=1.1,
+        linewidth=0.9,
         linestyle=(0, (4, 3)),
     )
-    ax.add_patch(loop)
-    ax.text(0.07, 0.662, "Processing in Each Snapshot", ha="left", va="center", fontsize=15.5, fontweight="bold", color="#111827")
+    ax.add_patch(snapshot_frame)
+    ax.text(
+        0.5,
+        snapshot_y + snapshot_height - 0.026,
+        "Processing in Each Snapshot",
+        ha="center",
+        va="center",
+        fontsize=15.3,
+        fontweight="bold",
+        color=INK,
+        bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.8},
+        zorder=4,
+    )
 
-    for idx, ((title, desc), y) in enumerate(zip(STEPS, y_positions), start=1):
-        box_h = 0.072 if idx in {1, 2, 10} else h
-        add_box(ax, x if idx not in range(4, 10) else 0.115, y, w if idx not in range(4, 10) else 0.77, box_h, idx, title, desc, idx in range(4, 10))
-        if idx < 10:
-            y0 = y - 0.002
-            y1 = y_positions[idx] + (0.072 if idx + 1 in {1, 2, 10} else h) + 0.002
-            add_arrow(ax, 0.5, y0, y1)
+    snapshot_box_x = 0.050
+    snapshot_box_width = 0.90
+    snapshot_box_height = 0.090
+    snapshot_rows = (0.545, 0.435, 0.325, 0.215, 0.105, -0.005)
+    for number, y in zip(range(3, 9), snapshot_rows):
+        add_box(
+            ax,
+            x=snapshot_box_x,
+            y=y,
+            width=snapshot_box_width,
+            height=snapshot_box_height,
+            step=STEPS[number],
+            snapshot_step=True,
+            description_size=13.8 if number == 4 else 14.4,
+        )
+
+    add_arrow(ax, (0.5, 0.729), (0.5, snapshot_y + snapshot_height))
+    for upper_y, lower_y in zip(snapshot_rows, snapshot_rows[1:]):
+        add_arrow(ax, (0.5, upper_y), (0.5, lower_y + snapshot_box_height))
+
+    final_y = -0.130
+    final_height = 0.090
+    add_box(
+        ax,
+        x=full_x,
+        y=final_y,
+        width=full_width,
+        height=final_height,
+        step=STEPS[9],
+        snapshot_step=False,
+        title_size=16.0,
+        description_size=14.4,
+    )
+    add_arrow(
+        ax,
+        (0.5, snapshot_rows[-1]),
+        (0.5, final_y + final_height),
+    )
 
     OUT_BASE.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(OUT_BASE.with_suffix(".png"), dpi=600, bbox_inches="tight", pad_inches=0.02)
-    fig.savefig(OUT_BASE.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.02)
+    fig.savefig(OUT_BASE.with_suffix(".png"), dpi=600, bbox_inches="tight", pad_inches=0.015)
+    fig.savefig(OUT_BASE.with_suffix(".pdf"), bbox_inches="tight", pad_inches=0.015)
+    fig.savefig(OUT_BASE.with_suffix(".svg"), bbox_inches="tight", pad_inches=0.015)
     plt.close(fig)
     print(f"[ok] {OUT_BASE.with_suffix('.png')}")
     print(f"[ok] {OUT_BASE.with_suffix('.pdf')}")
+    print(f"[ok] {OUT_BASE.with_suffix('.svg')}")
 
 
 if __name__ == "__main__":

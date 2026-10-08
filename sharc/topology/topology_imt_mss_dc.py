@@ -28,6 +28,9 @@ from sharc.topology.topology_ntn import TopologyNTN
 from sharc.satellite.utils.sat_utils import calc_elevation
 from sharc.support.sharc_geom import lla2ecef, cartesian_to_polar, polar_to_cartesian
 from sharc.satellite.ngso.constants import EARTH_DEFAULT_CRS
+from sharc.topology.interference_aware_handover import (
+    select_interference_aware_serving_satellites,
+)
 
 
 class TopologyImtMssDc(Topology):
@@ -73,6 +76,24 @@ class TopologyImtMssDc(Topology):
 
         self.lat = None
         self.lon = None
+
+        # SERVICE_GRID identity and serving association for the current
+        # snapshot. beam_grid_idx and cell centres never change during a
+        # handover; only serving-dependent fields are updated.
+        self.beam_grid_idx = None
+        self.primary_satellite_idx = None
+        self.serving_satellite_idx = None
+        self.beam_grid_center_lon = None
+        self.beam_grid_center_lat = None
+        self.beam_grid_center_ecef = None
+        self.beam_grid_center_enu = None
+        self._service_grid_snapshot = None
+
+        self.interference_aware_handover_metrics = None
+        self.interference_aware_handover_events = []
+        self.interference_aware_handover_triggered = None
+        self.interference_aware_handover_successful = None
+        self.interference_aware_handover_unresolved = None
 
     @staticmethod
     def get_coordinates(
@@ -285,7 +306,16 @@ class TopologyImtMssDc(Topology):
             _, all_azimuth, all_elevation = cartesian_to_polar(
                 pointing_vec_x, pointing_vec_y, pointing_vec_z)
 
-            beams_power_backoff, beams_power_backoff_affected, beams_elev, beams_azim, beams_ground_elev, sx, sy = TopologyImtMssDc.get_satellite_pointing(
+            (
+                beams_power_backoff,
+                beams_power_backoff_affected,
+                beams_elev,
+                beams_azim,
+                beams_ground_elev,
+                sx,
+                sy,
+                service_grid_snapshot,
+            ) = TopologyImtMssDc.get_satellite_pointing(
                 random_number_gen,
                 coordinate_system,
                 orbit_params,
@@ -342,6 +372,15 @@ class TopologyImtMssDc(Topology):
 
             altitudes = np.repeat(sat_altitude, sat_ocurr)
 
+            if service_grid_snapshot is None:
+                beam_grid_idx = np.full(num_base_stations, -1, dtype=int)
+                serving_satellite_idx = np.repeat(
+                    np.asarray(active_satellite_idxs, dtype=int), sat_ocurr)
+            else:
+                beam_grid_idx = service_grid_snapshot["beam_grid_indices"]
+                serving_satellite_idx = service_grid_snapshot[
+                    "primary_satellite_indices"]
+
         assert (space_station_x.shape == (num_base_stations,))
         assert (space_station_y.shape == (num_base_stations,))
         assert (space_station_z.shape == (num_base_stations,))
@@ -355,6 +394,8 @@ class TopologyImtMssDc(Topology):
         assert (sx.shape == (num_base_stations,)
                 ), (sx.shape, (num_base_stations,))
         assert (sy.shape == (num_base_stations,))
+        assert (beam_grid_idx.shape == (num_base_stations,))
+        assert (serving_satellite_idx.shape == (num_base_stations,))
 
         # update indices (multiply by num_beams)
         # and make all num_beams of satellite active
@@ -379,6 +420,9 @@ class TopologyImtMssDc(Topology):
             "sat_antenna_elev": elevation,
             "sat_antenna_azim": azimuth,
             "beams_ground_elev": ground_elev,
+            "beam_grid_idx": beam_grid_idx,
+            "serving_satellite_idx": serving_satellite_idx,
+            "service_grid_snapshot": service_grid_snapshot,
             "sectors_x": sx,
             "sectors_y": sy,
             "sectors_z": np.zeros_like(sx)
@@ -485,6 +529,25 @@ class TopologyImtMssDc(Topology):
                 es_height=0,
             )
 
+            # Handover targets must satisfy both existing notions of
+            # availability: SERVICE_GRID eligibility and sat_is_active_if.
+            candidate_mask = np.isin(
+                eligible_sats_idx, active_satellite_idxs)
+            candidate_satellite_indices = eligible_sats_idx[candidate_mask]
+            candidate_elevations = all_elevations[:, candidate_mask]
+            candidate_x, candidate_y, candidate_z = \
+                coordinate_system.ecef2enu(
+                    all_sat_x[candidate_satellite_indices],
+                    all_sat_y[candidate_satellite_indices],
+                    all_sat_z[candidate_satellite_indices],
+                )
+            candidate_positions_enu = np.stack(
+                (candidate_x, candidate_y, candidate_z), axis=-1)
+            grid_enu_x, grid_enu_y, grid_enu_z = \
+                coordinate_system.ecef2enu(grid_x, grid_y, grid_z)
+            grid_positions_enu = np.stack(
+                (grid_enu_x, grid_enu_y, grid_enu_z), axis=-1)
+
             best_sats = all_elevations.argmax(axis=-1)
 
             best_sats_true = eligible_sats_idx[best_sats]
@@ -533,30 +596,69 @@ class TopologyImtMssDc(Topology):
             n = 0
             power_backoff = []
             power_backoff_affected = []
+            beam_grid_indices = []
+            primary_satellite_indices = []
 
             for act_sat in active_satellite_idxs:
                 if act_sat in sat_points_towards:
-                    n += len(sat_points_towards[act_sat])
-                    beams_azim.append(azim[sat_points_towards[act_sat]])
-                    beams_elev.append(elev[sat_points_towards[act_sat]])
+                    cell_indices = np.asarray(
+                        sat_points_towards[act_sat], dtype=int)
+                    n += len(cell_indices)
+                    beams_azim.append(azim[cell_indices])
+                    beams_elev.append(elev[cell_indices])
                     beams_ground_elev.append(all_elevations[
-                        sat_points_towards[act_sat], eligible_sats_idx == act_sat])
-                    power_backoff.append(grid_power_backoffs[sat_points_towards[act_sat]])
+                        cell_indices, eligible_sats_idx == act_sat])
+                    power_backoff.append(grid_power_backoffs[cell_indices])
                     power_backoff_affected.append(
-                        grid_power_backoff_affected[sat_points_towards[act_sat]])
+                        grid_power_backoff_affected[cell_indices])
+                    beam_grid_indices.append(cell_indices)
+                    primary_satellite_indices.append(np.full(
+                        len(cell_indices), act_sat, dtype=int))
                 else:
                     beams_azim.append([])
                     beams_elev.append([])
                     beams_ground_elev.append([])
                     power_backoff.append([])
                     power_backoff_affected.append([])
+                    beam_grid_indices.append(np.empty(0, dtype=int))
+                    primary_satellite_indices.append(
+                        np.empty(0, dtype=int))
 
             # FIXME: change either this or the transform_ue_xyz to make this correct
             # we don't currently care
             sx = np.zeros(n)
             sy = np.zeros(n)
 
-            return power_backoff, power_backoff_affected, beams_elev, beams_azim, beams_ground_elev, sx, sy
+            service_grid_snapshot = {
+                "beam_grid_indices": np.concatenate(beam_grid_indices),
+                "primary_satellite_indices": np.concatenate(
+                    primary_satellite_indices),
+                "grid_longitudes": np.asarray(grid_lon),
+                "grid_latitudes": np.asarray(grid_lat),
+                "grid_positions_ecef": np.stack(
+                    (grid_x, grid_y, grid_z), axis=-1),
+                "grid_positions_enu": grid_positions_enu,
+                "candidate_satellite_indices": candidate_satellite_indices,
+                "candidate_elevations_deg": candidate_elevations,
+                "candidate_positions_enu": candidate_positions_enu,
+                "candidate_latitudes": all_sat_lat[
+                    candidate_satellite_indices],
+                "candidate_longitudes": all_sat_lon[
+                    candidate_satellite_indices],
+                "candidate_altitudes": all_sat_altitude[
+                    candidate_satellite_indices],
+            }
+
+            return (
+                power_backoff,
+                power_backoff_affected,
+                beams_elev,
+                beams_azim,
+                beams_ground_elev,
+                sx,
+                sy,
+                service_grid_snapshot,
+            )
         # We borrow the TopologyNTN method to calculate the sectors azimuth and elevation angles from their
         # respective x and y boresight coordinates
         sx, sy = TopologyNTN.get_sectors_xy(
@@ -685,6 +787,7 @@ class TopologyImtMssDc(Topology):
             beams_ground_elev,
             sx,
             sy,
+            None,
         )
 
     @staticmethod
@@ -752,6 +855,11 @@ class TopologyImtMssDc(Topology):
         """Compute the coordinates of the visible space stations."""
         self.coordinate_system.validate()
 
+        # Snapshot-local handover state must never leak into the next Monte
+        # Carlo realization.
+        self.interference_aware_handover_metrics = None
+        self.interference_aware_handover_events = []
+
         sat_values = self.get_coordinates(
             self.coordinate_system,
             self.orbit_params,
@@ -769,6 +877,29 @@ class TopologyImtMssDc(Topology):
         self.elevation = sat_values["sat_antenna_elev"]
         self.azimuth = sat_values["sat_antenna_azim"]
 
+        self.beam_grid_idx = sat_values["beam_grid_idx"].copy()
+        self.primary_satellite_idx = sat_values[
+            "serving_satellite_idx"].copy()
+        self.serving_satellite_idx = sat_values[
+            "serving_satellite_idx"].copy()
+        self._service_grid_snapshot = sat_values["service_grid_snapshot"]
+
+        if self._service_grid_snapshot is not None:
+            grid_idx = self.beam_grid_idx
+            self.beam_grid_center_lon = self._service_grid_snapshot[
+                "grid_longitudes"][grid_idx].copy()
+            self.beam_grid_center_lat = self._service_grid_snapshot[
+                "grid_latitudes"][grid_idx].copy()
+            self.beam_grid_center_ecef = self._service_grid_snapshot[
+                "grid_positions_ecef"][grid_idx].copy()
+            self.beam_grid_center_enu = self._service_grid_snapshot[
+                "grid_positions_enu"][grid_idx].copy()
+        else:
+            self.beam_grid_center_lon = None
+            self.beam_grid_center_lat = None
+            self.beam_grid_center_ecef = None
+            self.beam_grid_center_enu = None
+
         self.x = sat_values["sectors_x"]
         self.y = sat_values["sectors_y"]
         self.z = sat_values["sectors_z"]
@@ -784,7 +915,135 @@ class TopologyImtMssDc(Topology):
             self.num_base_stations,
             dtype=bool)  # ofcourse, all are outdoor
 
+        self.interference_aware_handover_triggered = np.zeros(
+            self.num_base_stations, dtype=bool)
+        self.interference_aware_handover_successful = np.zeros(
+            self.num_base_stations, dtype=bool)
+        self.interference_aware_handover_unresolved = np.zeros(
+            self.num_base_stations, dtype=bool)
+
         return
+
+    def apply_interference_aware_handover(
+        self,
+        eess_station,
+        active_mask: np.ndarray,
+        eess_system: str = "",
+    ):
+        """Apply deterministic inter-satellite handover within one snapshot.
+
+        The row and ``beam_grid_idx`` remain fixed.  Only fields derived from
+        the serving satellite are updated after a successful handover.
+        """
+        config = self.orbit_params.interference_aware_handover
+        if not config.enabled:
+            return None
+        if self._service_grid_snapshot is None:
+            raise ValueError(
+                "Interference-Aware Inter-Satellite Handover requires "
+                "SERVICE_GRID snapshot data")
+        if eess_station.num_stations != 1:
+            raise ValueError(
+                "Interference-Aware Inter-Satellite Handover requires one EESS")
+        if not hasattr(eess_station.antenna[0], "phi_min"):
+            raise ValueError(
+                "EESS antenna must expose the S.465 maximum-gain boundary "
+                "through phi_min")
+
+        eess_position = np.array([
+            eess_station.geom.x_global[0],
+            eess_station.geom.y_global[0],
+            eess_station.geom.z_global[0],
+        ])
+        state = self._service_grid_snapshot
+        outcome = select_interference_aware_serving_satellites(
+            primary_satellite_indices=self.primary_satellite_idx,
+            beam_grid_indices=self.beam_grid_idx,
+            active_mask=active_mask,
+            candidate_satellite_indices=state[
+                "candidate_satellite_indices"],
+            candidate_elevations_deg=state[
+                "candidate_elevations_deg"],
+            candidate_satellite_positions=state[
+                "candidate_positions_enu"],
+            cell_positions=state["grid_positions_enu"],
+            eess_position=eess_position,
+            eess_boresight_azimuth_deg=float(
+                eess_station.geom.pointn_azim_global[0]),
+            eess_boresight_elevation_deg=float(
+                eess_station.geom.pointn_elev_global[0]),
+            dc_mss_off_axis_limit_deg=(
+                config.dc_mss_off_axis_limit_deg),
+            eess_phi_min_deg=float(eess_station.antenna[0].phi_min),
+            minimum_service_angle_deg=(
+                self.orbit_params.beam_positioning.service_grid
+                .minimum_service_angle),
+            eess_system=eess_system,
+        )
+
+        self.interference_aware_handover_metrics = outcome.metrics.copy()
+        self.interference_aware_handover_events = [
+            event.as_dict() for event in outcome.events
+        ]
+        self.interference_aware_handover_triggered = \
+            outcome.triggered_mask.copy()
+        self.interference_aware_handover_successful = \
+            outcome.successful_mask.copy()
+        self.interference_aware_handover_unresolved = \
+            outcome.unresolved_mask.copy()
+
+        changed_rows = np.flatnonzero(outcome.successful_mask)
+        if changed_rows.size == 0:
+            return outcome
+
+        self.reassign_service_grid_rows(
+            changed_rows, outcome.serving_satellite_indices[changed_rows])
+        return outcome
+
+    def reassign_service_grid_rows(self, changed_rows, target_indices):
+        """Change only serving-satellite-dependent fields for fixed grid rows."""
+        state = self._service_grid_snapshot
+        changed_rows = np.asarray(changed_rows, dtype=int)
+        target_indices = np.asarray(target_indices, dtype=int)
+        if changed_rows.size == 0:
+            return
+        candidate_indices = state["candidate_satellite_indices"]
+        candidate_column = {
+            int(satellite_idx): column
+            for column, satellite_idx in enumerate(candidate_indices)
+        }
+        target_columns = np.array([
+            candidate_column[int(satellite_idx)]
+            for satellite_idx in target_indices
+        ], dtype=int)
+        grid_indices = self.beam_grid_idx[changed_rows]
+        satellite_positions = state[
+            "candidate_positions_enu"][target_columns]
+        cell_positions = state["grid_positions_enu"][grid_indices]
+        beam_vectors = cell_positions - satellite_positions
+        _, beam_azimuth, beam_elevation = cartesian_to_polar(
+            beam_vectors[:, 0],
+            beam_vectors[:, 1],
+            beam_vectors[:, 2],
+        )
+
+        self.serving_satellite_idx[changed_rows] = target_indices
+        self.space_station_x[changed_rows] = satellite_positions[:, 0]
+        self.space_station_y[changed_rows] = satellite_positions[:, 1]
+        self.space_station_z[changed_rows] = satellite_positions[:, 2]
+        self.lat[changed_rows] = state[
+            "candidate_latitudes"][target_columns]
+        self.lon[changed_rows] = state[
+            "candidate_longitudes"][target_columns]
+        self.height[changed_rows] = state[
+            "candidate_altitudes"][target_columns]
+        self.azimuth[changed_rows] = beam_azimuth
+        self.elevation[changed_rows] = beam_elevation
+        self.beam_ground_elev_angles[changed_rows] = state[
+            "candidate_elevations_deg"][grid_indices, target_columns]
+
+        # beam_grid_idx and every grid/cell coordinate intentionally remain
+        # untouched: V2 changes the serving satellite, never the service cell.
 
     # We can factor this out if another topology also ends up needing this
     def transform_ue_xyz(self, bs_i, x, y, z):

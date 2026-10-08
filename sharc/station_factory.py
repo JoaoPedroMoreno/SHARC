@@ -71,11 +71,23 @@ class StationFactory(object):
     """
 
     @staticmethod
+    def sample_imt_base_station_active_mask(
+        param: ParametersImt,
+        topology: Topology,
+        random_number_gen: np.random.RandomState,
+    ) -> np.ndarray:
+        """Draw the per-beam load mask exactly once for an IMT topology."""
+        return random_number_gen.rand(
+            topology.num_base_stations,
+        ) < param.bs.load_probability
+
+    @staticmethod
     def generate_imt_base_stations(
         param: ParametersImt,
         param_ant_bs: ParametersAntennaImt,
         topology: Topology,
         random_number_gen: np.random.RandomState,
+        active_mask: np.ndarray | None = None,
     ):
         """Generate IMT base stations for the given topology and parameters.
 
@@ -89,6 +101,9 @@ class StationFactory(object):
             Topology object containing station positions.
         random_number_gen : np.random.RandomState
             Random number generator instance.
+        active_mask : np.ndarray or None, optional
+            Previously sampled per-beam load mask. When supplied, the factory
+            does not consume random numbers for load selection.
 
         Returns
         -------
@@ -136,9 +151,17 @@ class StationFactory(object):
         imt_base_stations.geom.set_local_coords(
             azim=wrap2_180(topology.azimuth)
         )
-        imt_base_stations.active = random_number_gen.rand(
-            num_bs,
-        ) < param.bs.load_probability
+        if active_mask is None:
+            imt_base_stations.active = (
+                StationFactory.sample_imt_base_station_active_mask(
+                    param, topology, random_number_gen)
+            )
+        else:
+            active_mask = np.asarray(active_mask, dtype=bool)
+            if active_mask.shape != (num_bs,):
+                raise ValueError(
+                    "active_mask must match topology.num_base_stations")
+            imt_base_stations.active = active_mask.copy()
         # Conducted power per antenna element. Total power will depend on
         # the number of antenna elements and it's configured in power control.
         imt_base_stations.tx_power = param.bs.conducted_power * np.ones(num_bs) - power_backoff

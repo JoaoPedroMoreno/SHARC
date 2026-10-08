@@ -1,0 +1,17 @@
+Technique,Altitude,LF,FS height,Old supported distance,New supported distance,Changed?
+Exclusion zone,340,20,20,90 km,70 km,Yes
+Exclusion zone,340,20,40,90 km,70 km,Yes
+Exclusion zone,340,50,20,>100 km / non-compliant within evaluated range,>100 km / non-compliant within evaluated range,No
+Exclusion zone,340,50,40,>100 km / non-compliant within evaluated range,>100 km / non-compliant within evaluated range,No
+Exclusion zone,525,20,20,50 km,50 km,No
+Exclusion zone,525,20,40,50 km,50 km,No
+Exclusion zone,525,50,20,100 km,80 km,Yes
+Exclusion zone,525,50,40,100 km,80 km,Yes
+Power back-off,340,20,20,20 km,0 km,Yes
+Power back-off,340,20,40,10 km,0 km,Yes
+Power back-off,340,50,20,>100 km / non-compliant within evaluated range,>100 km / non-compliant within evaluated range,No
+Power back-off,340,50,40,>100 km / non-compliant within evaluated range,>100 km / non-compliant within evaluated range,No
+Power back-off,525,20,20,0 km,0 km,No
+Power back-off,525,20,40,0 km,0 km,No
+Power back-off,525,50,20,70 km,40 km,Yes
+Power back-off,525,50,40,60 km,40 km,Yes

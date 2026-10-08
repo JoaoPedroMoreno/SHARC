@@ -1,0 +1,6 @@
+parametro,valor
+top_k,3
+limiar_dbw_per_mhz,-154
+min_reduction_db,0
+max_reassociacoes_por_snapshot,1
+ordem_de_analise,rank 1 → rank 2 → rank 3

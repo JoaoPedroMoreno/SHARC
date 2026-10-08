@@ -1,0 +1,122 @@
+{
+  "created_utc": "2026-08-27T22:41:25.153668+00:00",
+  "git_commit": "4898ab767928c7cc76e5d5022ce12d64b52fc6f7",
+  "analysis_script_sha256": "8613e2b74365676f80c850e4a2128e64a790d0e3082a994128902c0259eedcdc",
+  "geometry_cache": "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\analysis\\operational_risk_rx_min.csv",
+  "geometry_cache_sha256": "31d228f19ebcd0d91e73135e8ab1b55cd2658e62be5dfda9d4a2143f41d2e611",
+  "input_snapshot_csvs": [
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-27_01\\operational_risk_snapshot.csv",
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_snapshot.csv",
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_snapshot.csv",
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_snapshot.csv",
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_snapshot.csv",
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_snapshot.csv",
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_snapshot.csv",
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\06_DC_MSS_to_EESS_operational_risk_diagnostics\\output\\operational_risk_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_V2_RISK_GATE_2026-08-25_01\\operational_risk_snapshot.csv"
+  ],
+  "filters": {
+    "guard_band_mhz": 10,
+    "critical_event": "iagg_before_dbw_per_mhz > -154",
+    "scenario_count": 8,
+    "snapshots_per_scenario": 5000
+  },
+  "auc_lower_psi_predicts_critical": 0.8959558682738747,
+  "risk_bins": {
+    "method": "10 global empirical quantile bins",
+    "minimum_n_per_scenario_bin": 424,
+    "confidence_interval": "Clopper-Pearson per scenario/bin; alpha/8 Bonferroni simultaneous bounds averaged with equal scenario weight"
+  },
+  "threshold_sweep": {
+    "rule": "consider handover when psi_RX_min < psi_threshold",
+    "threshold_count": 10001,
+    "selection_diagnostic": "empirical maximum of scenario-balanced Youden J; descriptive, not a definitive threshold",
+    "empirical_max_youden_threshold_deg": 7.193890794461438,
+    "balanced_detection_rate": 0.9677048066550493,
+    "balanced_false_activation_rate_among_safe": 0.26877925216113946,
+    "balanced_total_activation_rate": 0.27680000000000005,
+    "balanced_missed_critical_rate": 0.03229519334495062,
+    "loso_threshold_min_deg": 7.193890794461438,
+    "loso_threshold_q1_deg": 7.193890794461438,
+    "loso_threshold_median_deg": 7.193890794461438,
+    "loso_threshold_q3_deg": 7.193890794461438,
+    "loso_threshold_max_deg": 7.193890794461438,
+    "scenario_specific_threshold_min_deg": 5.194089262967294,
+    "scenario_specific_threshold_max_deg": 7.954697059727376,
+    "group_holdout_results": [
+      {
+        "holdout_axis": "altitude_km",
+        "held_out_value": 340,
+        "training_scenario_count": 4,
+        "held_out_scenario_count": 4,
+        "selected_threshold_deg": 5.397780312010294,
+        "training_balanced_youden_j": 0.795108024985918,
+        "held_out_detection_rate": 0.673474089287196,
+        "held_out_false_activation_rate_among_safe": 0.17584194157354716,
+        "held_out_total_activation_rate": 0.1832,
+        "held_out_missed_critical_rate": 0.32652591071280396
+      },
+      {
+        "holdout_axis": "altitude_km",
+        "held_out_value": 525,
+        "training_scenario_count": 4,
+        "held_out_scenario_count": 4,
+        "selected_threshold_deg": 7.954697059727376,
+        "training_balanced_youden_j": 0.6880952447426687,
+        "held_out_detection_rate": 1.0,
+        "held_out_false_activation_rate_among_safe": 0.3187763417366937,
+        "held_out_total_activation_rate": 0.3244,
+        "held_out_missed_critical_rate": 0.0
+      },
+      {
+        "holdout_axis": "eess_system",
+        "held_out_value": "B",
+        "training_scenario_count": 4,
+        "held_out_scenario_count": 4,
+        "selected_threshold_deg": 7.193890794461438,
+        "training_balanced_youden_j": 0.699715394892066,
+        "held_out_detection_rate": 0.9670442286947142,
+        "held_out_false_activation_rate_among_safe": 0.26890851459896026,
+        "held_out_total_activation_rate": 0.2768,
+        "held_out_missed_critical_rate": 0.03295577130528587
+      },
+      {
+        "holdout_axis": "eess_system",
+        "held_out_value": "D",
+        "training_scenario_count": 4,
+        "held_out_scenario_count": 4,
+        "selected_threshold_deg": 7.193890794461438,
+        "training_balanced_youden_j": 0.6981357140957538,
+        "held_out_detection_rate": 0.9683653846153846,
+        "held_out_false_activation_rate_among_safe": 0.2686499897233186,
+        "held_out_total_activation_rate": 0.2768,
+        "held_out_missed_critical_rate": 0.031634615384615386
+      },
+      {
+        "holdout_axis": "load_factor",
+        "held_out_value": 0.2,
+        "training_scenario_count": 4,
+        "held_out_scenario_count": 4,
+        "selected_threshold_deg": 7.258347172268692,
+        "training_balanced_youden_j": 0.6911770733194308,
+        "held_out_detection_rate": 0.9788888888888889,
+        "held_out_false_activation_rate_among_safe": 0.275373646284823,
+        "held_out_total_activation_rate": 0.28080000000000005,
+        "held_out_missed_critical_rate": 0.021111111111111112
+      },
+      {
+        "holdout_axis": "load_factor",
+        "held_out_value": 0.5,
+        "training_scenario_count": 4,
+        "held_out_scenario_count": 4,
+        "selected_threshold_deg": 7.185384257612265,
+        "training_balanced_youden_j": 0.7083527492114569,
+        "held_out_detection_rate": 0.9516896938013443,
+        "held_out_false_activation_rate_among_safe": 0.26550271146358806,
+        "held_out_total_activation_rate": 0.27599999999999997,
+        "held_out_missed_critical_rate": 0.048310306198655714
+      }
+    ]
+  },
+  "clopper_pearson_validation_max_abs_error": 8.680556273787943e-15,
+  "bootstrap_used_for_binomial_intervals": false
+}

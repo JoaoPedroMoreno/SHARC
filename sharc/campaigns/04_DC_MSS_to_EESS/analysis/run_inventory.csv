@@ -1,0 +1,133 @@
+run,complete,reason
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_0MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_0MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_0MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_0MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_2MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_2MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_2MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_2MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_4MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_4MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_4MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_4MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_6MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_6MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_6MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_6MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_8MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_8MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_8MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_8MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_0MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_0MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_0MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_0MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_2MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_2MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_2MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_2MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_4MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_4MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_4MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_4MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_6MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_6MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_6MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_6MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_8MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_8MHz_HO_OFF_2026-08-21_02,True,complete
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_8MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_8MHz_HO_ON_2026-08-21_02,True,complete
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_0MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_0MHz_HO_OFF_2026-08-22_01,False,aggregate rows 4320 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_0MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_0MHz_HO_ON_2026-08-22_01,False,aggregate rows 4260 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_HO_OFF_2026-08-22_01,False,aggregate rows 4300 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_HO_ON_2026-08-22_01,False,aggregate rows 4260 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_2MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_2MHz_HO_OFF_2026-08-22_01,False,invalid/truncated aggregate CSV: could not convert string to float: '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_2MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_2MHz_HO_ON_2026-08-22_01,False,aggregate rows 4080 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_4MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_4MHz_HO_OFF_2026-08-22_01,False,aggregate rows 4130 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_4MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_4MHz_HO_ON_2026-08-22_01,False,aggregate rows 4090 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_6MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_6MHz_HO_OFF_2026-08-22_01,False,aggregate rows 4130 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_6MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_6MHz_HO_ON_2026-08-22_01,False,aggregate rows 4030 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_8MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_8MHz_HO_OFF_2026-08-22_01,False,aggregate rows 3950 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_8MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_8MHz_HO_ON_2026-08-22_01,False,aggregate rows 3940 != expected 10000
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_0MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_0MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_2MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_2MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_4MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_4MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_6MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_6MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_8MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_8MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_0MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_0MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_2MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_2MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_4MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_4MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_6MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_6MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_8MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_8MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_0MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_0MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_2MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_2MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_4MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_4MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_6MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_6MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_8MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_8MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_0MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_0MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_2MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_2MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_4MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_4MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_6MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_6MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_8MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_8MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_0MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_0MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_2MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_2MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_4MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_4MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_6MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_6MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_8MHz_HO_OFF_2026-08-21_01,False,missing aggregate CSV
+system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_8MHz_HO_ON_2026-08-21_01,False,missing aggregate CSV

@@ -17,6 +17,10 @@ class ParametersSingleEarthStation(ParametersBase):
     section_name: str = "single_earth_station"
     nested_parameters_enabled: bool = True
 
+    # Non-physical label used only in structured diagnostics. It is required
+    # as EESS_B or EESS_D when interference-aware handover is enabled.
+    system_label: str = ""
+
     # for when other system needs it
     central_latitude: float = None
     central_altitude: float = None
@@ -317,6 +321,9 @@ class ParametersSingleEarthStation(ParametersBase):
             If any parameter is invalid.
         """
         super().validate(ctx)
+
+        if not isinstance(self.system_label, str):
+            raise ValueError(f"{ctx}.system_label must be a string")
 
         if None in [
             self.frequency, self.bandwidth,

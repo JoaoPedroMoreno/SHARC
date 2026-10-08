@@ -1,0 +1,2 @@
+max_abs_diff_Iagg_before,max_abs_diff_Iagg_after,max_abs_diff_Iagg_before_db,max_abs_diff_Iagg_after_db,number_of_changed_handover_decisions,number_of_changed_targets,number_of_changed_active_beams,number_of_changed_serving_satellite_sets_before_v2,number_of_changed_final_interference_values,snapshot_rows,topk_rows,event_rows,accepted_event_rows,geometry_reconstructible
+0.0,0.0,0.0,0.0,0,0,0,0,0,200,600,4,4,True

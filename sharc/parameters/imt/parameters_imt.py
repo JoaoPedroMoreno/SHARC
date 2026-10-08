@@ -61,6 +61,9 @@ class ParametersImt(ParametersBase):
             default_factory=lambda: ParametersAntenna(
                 pattern="ARRAY", array=ParametersAntennaImt(
                     downtilt=0.0)))
+        # Kept for compatibility with System 3 campaign inputs. The current
+        # station factory uses the regular antenna whenever this flag is false.
+        use_oob_antenna: bool = False
     bs: ParametersBS = field(default_factory=ParametersBS)
 
     topology: ParametersImtTopology = field(

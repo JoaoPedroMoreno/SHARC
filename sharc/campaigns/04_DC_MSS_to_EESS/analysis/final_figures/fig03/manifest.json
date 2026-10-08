@@ -1,0 +1,39 @@
+{
+  "title": "Fluxo do método proposto",
+  "caption_sugerida": "Fluxo da reassociação intersatelital orientada à interferência. Quando o limiar de risco é excedido, até três contribuintes são analisados sequencialmente, do rank 1 ao rank 3. Para cada contribuinte, avaliam-se os satélites elegíveis para a mesma célula; o primeiro rank que possuir um alvo válido encerra a busca após uma única reassociação no snapshot.",
+  "generated_utc": "2026-09-04T13:53:53.105845+00:00",
+  "analysis_git_commit": "4898ab767928c7cc76e5d5022ce12d64b52fc6f7",
+  "analysis_script": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\analysis\\final_figures\\generate_final_figures.py",
+  "analysis_script_sha256": "f5a705e8a59f66bfdafdb64707358430c296c5a3a13560be7f29e18a5817f3e9",
+  "input_files": [
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\simulation_downlink.py",
+      "sha256": "a532caba81f3096d44e6ddcea9a77b1b9e0ffa4298f9c6619cbc52ed2cc05582"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\interference_aware_handover_v2.py",
+      "sha256": "48e33b44814ef9b31f2e7a8c6e7e29a1cf78e9f652057f66b55b2a0101fbe456"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\Scripts\\base_input.yaml",
+      "sha256": "4bdfe72b7cf346563c101d7751cb2451aca3d4bdab939e4563e5c172ffa7e8f3"
+    }
+  ],
+  "filters": {
+    "trigger_mode": "RISK_GATED_TOP_K",
+    "top_k": 3,
+    "risk_gate_dbw_per_mhz": -154,
+    "max_handovers_per_snapshot": 1
+  },
+  "metric_definitions": {
+    "Iagg": "soma das contribuições individuais em potência linear",
+    "target": "candidato elegível com menor interferência física e redução prevista ≥ 0 dB"
+  },
+  "sample_counts": {
+    "diagram": "lógica determinística implementada"
+  },
+  "confidence_interval_method": "não aplicável",
+  "notes": [
+    "K=3 limita o número de contribuintes analisados; não é o número de reassociações."
+  ]
+}

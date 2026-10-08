@@ -238,6 +238,158 @@ class ParametersPowerControl(ParametersBase):
 
 
 @dataclass
+class ParametersInterferenceAwareHandover(ParametersBase):
+    """Snapshot-based Interference-Aware Inter-Satellite Handover settings."""
+
+    enabled: bool = False
+    dc_mss_off_axis_limit_deg: float = 4.322755
+    eess_boundary: typing.Literal[
+        "S465_MAX_GAIN_REGION",
+    ] = "S465_MAX_GAIN_REGION"
+    unresolved_policy: typing.Literal[
+        "KEEP_PRIMARY_AND_FLAG",
+    ] = "KEEP_PRIMARY_AND_FLAG"
+    record_event_details: bool = False
+
+    def validate(self, ctx: str):
+        """Validate supported detector and unresolved-event policies."""
+        if not isinstance(self.enabled, bool):
+            raise ValueError(f"{ctx}.enabled must be a boolean")
+        if isinstance(self.dc_mss_off_axis_limit_deg, bool) or not isinstance(
+            self.dc_mss_off_axis_limit_deg, (int, float)
+        ):
+            raise ValueError(
+                f"{ctx}.dc_mss_off_axis_limit_deg must be a number")
+        if not 0.0 <= self.dc_mss_off_axis_limit_deg <= 180.0:
+            raise ValueError(
+                f"{ctx}.dc_mss_off_axis_limit_deg must be in [0, 180]")
+        self.dc_mss_off_axis_limit_deg = float(
+            self.dc_mss_off_axis_limit_deg)
+        if not isinstance(self.eess_boundary, str):
+            raise ValueError(f"{ctx}.eess_boundary must be a string")
+        self.eess_boundary = self.eess_boundary.upper()
+        if self.eess_boundary != "S465_MAX_GAIN_REGION":
+            raise ValueError(
+                f"{ctx}.eess_boundary only supports "
+                "S465_MAX_GAIN_REGION")
+        if not isinstance(self.unresolved_policy, str):
+            raise ValueError(f"{ctx}.unresolved_policy must be a string")
+        self.unresolved_policy = self.unresolved_policy.upper()
+        if self.unresolved_policy != "KEEP_PRIMARY_AND_FLAG":
+            raise ValueError(
+                f"{ctx}.unresolved_policy only supports "
+                "KEEP_PRIMARY_AND_FLAG")
+        if not isinstance(self.record_event_details, bool):
+            raise ValueError(
+                f"{ctx}.record_event_details must be a boolean")
+
+
+@dataclass
+class ParametersInterferenceLinkDiagnostics(ParametersBase):
+    """Optional per-link diagnostics; never participates in decisions."""
+
+    enabled: bool = False
+    top_n: int = 10
+    eess_position_label: str = ""
+
+    def validate(self, ctx: str):
+        if not isinstance(self.enabled, bool):
+            raise ValueError(f"{ctx}.enabled must be a boolean")
+        if isinstance(self.top_n, bool) or not isinstance(self.top_n, int):
+            raise ValueError(f"{ctx}.top_n must be an integer")
+        if self.top_n < 1:
+            raise ValueError(f"{ctx}.top_n must be at least 1")
+        if not isinstance(self.eess_position_label, str):
+            raise ValueError(
+                f"{ctx}.eess_position_label must be a string")
+
+
+@dataclass
+class ParametersInterferenceAwareHandoverV2(ParametersBase):
+    """Interference-ranked serving-satellite handover research strategy."""
+
+    enabled: bool = False
+    top_k: int = 3
+    min_reduction_db: float = 0.0
+    max_service_elevation_loss_deg: float = 90.0
+    max_handovers_per_snapshot: int = 1
+    trigger_mode: typing.Literal[
+        "ORACLE_TOP_K", "RISK_GATED_TOP_K", "GEOMETRIC_RULE"
+    ] = "ORACLE_TOP_K"
+    risk_gate_dbw_per_mhz: float = -154.0
+    record_candidate_details: bool = False
+
+    def validate(self, ctx: str):
+        if not isinstance(self.enabled, bool):
+            raise ValueError(f"{ctx}.enabled must be a boolean")
+        if isinstance(self.top_k, bool) or not isinstance(self.top_k, int):
+            raise ValueError(f"{ctx}.top_k must be an integer")
+        if self.top_k < 1:
+            raise ValueError(f"{ctx}.top_k must be at least 1")
+        for name in [
+            "min_reduction_db", "max_service_elevation_loss_deg"
+        ]:
+            value = getattr(self, name)
+            if isinstance(value, bool) or not isinstance(value, (int, float)):
+                raise ValueError(f"{ctx}.{name} must be a number")
+            if value < 0.0:
+                raise ValueError(f"{ctx}.{name} must be non-negative")
+            setattr(self, name, float(value))
+        if (isinstance(self.max_handovers_per_snapshot, bool)
+                or not isinstance(self.max_handovers_per_snapshot, int)):
+            raise ValueError(
+                f"{ctx}.max_handovers_per_snapshot must be an integer")
+        if self.max_handovers_per_snapshot < 1:
+            raise ValueError(
+                f"{ctx}.max_handovers_per_snapshot must be at least 1")
+        if not isinstance(self.trigger_mode, str):
+            raise ValueError(f"{ctx}.trigger_mode must be a string")
+        self.trigger_mode = self.trigger_mode.upper()
+        if self.trigger_mode not in {
+            "ORACLE_TOP_K", "RISK_GATED_TOP_K", "GEOMETRIC_RULE"
+        }:
+            raise ValueError(
+                f"{ctx}.trigger_mode must be ORACLE_TOP_K, "
+                "RISK_GATED_TOP_K or GEOMETRIC_RULE")
+        if (isinstance(self.risk_gate_dbw_per_mhz, bool)
+                or not isinstance(self.risk_gate_dbw_per_mhz, (int, float))):
+            raise ValueError(
+                f"{ctx}.risk_gate_dbw_per_mhz must be a number")
+        self.risk_gate_dbw_per_mhz = float(self.risk_gate_dbw_per_mhz)
+        if self.enabled and self.trigger_mode == "GEOMETRIC_RULE":
+            raise ValueError(
+                f"{ctx}.GEOMETRIC_RULE is reserved until empirical "
+                "thresholds are configured")
+        if not isinstance(self.record_candidate_details, bool):
+            raise ValueError(
+                f"{ctx}.record_candidate_details must be a boolean")
+
+
+@dataclass
+class ParametersOperationalRiskDiagnostics(ParametersBase):
+    """Passive snapshot/link instrumentation for operational-risk research."""
+
+    enabled: bool = False
+    record_snapshot_summary: bool = True
+    record_top_k: int = 3
+    record_handover_events: bool = True
+    record_candidate_details: bool = False
+
+    def validate(self, ctx: str):
+        for name in (
+            "enabled", "record_snapshot_summary", "record_handover_events",
+            "record_candidate_details",
+        ):
+            if not isinstance(getattr(self, name), bool):
+                raise ValueError(f"{ctx}.{name} must be a boolean")
+        if (isinstance(self.record_top_k, bool)
+                or not isinstance(self.record_top_k, int)):
+            raise ValueError(f"{ctx}.record_top_k must be an integer")
+        if self.record_top_k < 1:
+            raise ValueError(f"{ctx}.record_top_k must be at least 1")
+
+
+@dataclass
 class ParametersImtMssDc(ParametersBase):
     """Dataclass for the IMT MSS-DC topology parameters."""
     section_name: str = "imt_mss_dc"
@@ -254,6 +406,10 @@ class ParametersImtMssDc(ParametersBase):
     # Number of beams
     num_beams: int = 19
 
+    # Maximum number of beams used by System 3 OOB normalization. Campaigns
+    # with the OOB antenna disabled retain this value as inert metadata.
+    N_max_beam: int = 100
+
     # Beam radius in meters
     # The beam radius should be calculated based on the Antenna Pattern used
     # for IMT Space Stations
@@ -261,6 +417,18 @@ class ParametersImtMssDc(ParametersBase):
 
     power_control_zones: ParametersPowerControl = field(
         default_factory=ParametersPowerControl)
+
+    interference_aware_handover: ParametersInterferenceAwareHandover = field(
+        default_factory=ParametersInterferenceAwareHandover)
+
+    interference_link_diagnostics: ParametersInterferenceLinkDiagnostics = field(
+        default_factory=ParametersInterferenceLinkDiagnostics)
+
+    interference_aware_handover_v2: ParametersInterferenceAwareHandoverV2 = field(
+        default_factory=ParametersInterferenceAwareHandoverV2)
+
+    operational_risk_diagnostics: ParametersOperationalRiskDiagnostics = field(
+        default_factory=ParametersOperationalRiskDiagnostics)
 
     sat_is_active_if: ParametersSelectActiveSatellite = field(
         default_factory=ParametersSelectActiveSatellite)
@@ -310,5 +478,25 @@ class ParametersImtMssDc(ParametersBase):
             self.intersite_distance = np.sqrt(3) * self.cell_radius
 
         self.propagate_parameters()
+
+        if (
+            self.interference_aware_handover.enabled
+            and self.beam_positioning.type != "SERVICE_GRID"
+        ):
+            raise ValueError(
+                f"{ctx}.interference_aware_handover requires "
+                "beam_positioning.type = SERVICE_GRID")
+
+        if (
+            self.interference_aware_handover_v2.enabled
+            and self.beam_positioning.type != "SERVICE_GRID"
+        ):
+            raise ValueError(
+                f"{ctx}.interference_aware_handover_v2 requires "
+                "beam_positioning.type = SERVICE_GRID")
+        if (self.interference_aware_handover.enabled
+                and self.interference_aware_handover_v2.enabled):
+            raise ValueError(
+                f"{ctx}: legacy and V2 handover cannot be enabled together")
 
         super().validate(ctx)

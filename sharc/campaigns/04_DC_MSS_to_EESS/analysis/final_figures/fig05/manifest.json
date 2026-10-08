@@ -1,0 +1,157 @@
+{
+  "title": "Benefício, atuação e custo da mitigação",
+  "caption_sugerida": "Benefício e custo geométrico do método proposto: (a) redução mediana de interferência nos snapshots com reassociação; (b) taxa de atuação; (c) distribuição da perda de elevação de serviço. No painel (c), o retângulo contém a metade central dos eventos, a linha interna é a mediana e as hastes abrangem os percentis 5 a 95. Na campanha, a perda máxima configurada foi 90°, permitindo avaliar o potencial de mitigação sem uma restrição efetiva de QoS por elevação.",
+  "generated_utc": "2026-08-28T15:23:20.397650+00:00",
+  "analysis_git_commit": "4898ab767928c7cc76e5d5022ce12d64b52fc6f7",
+  "analysis_script": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\analysis\\final_figures\\generate_final_figures.py",
+  "analysis_script_sha256": "bb13464992d541ffcf195774d93cc5760aed3ecdbcd9356eecdd7a9148d10ad7",
+  "input_files": [
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "29401dccaa351f62f6270ff6a155741d97ce6290b3d5e7c919f06fdf01422978"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "510952d1aa5d2fd4321521dbaf9061be19fe7602495892c989c5ed6ed50a4c2f"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "2ac340e14fc0fb94460c6a2c720baec01fd51f2672645d18e7f6906d687c702a"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "40efffcab1609ed8820b372112f0cfc1a00f922fd8e6c47122a0baf4df22da66"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "be6c2d173c2d804bd3143dcc4128bbf04cf6c8d5b0622e97ce75a7fca8dcff7d"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "81083c24a12773f20976910c5583c2d38feb8958af99fe79c24eccaf48190f18"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "42457c257272eb3e623b2609d257dd5b024985ce6638328fc39e2e6580c47c92"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "ff4492e82691ae9d0ae92fd700507597d23594ff9c0d3672f57a56245777b6b0"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "1498916638de4a99212a0b31dc6bfb038d2ead9ef852165f38926a9fdefbab23"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "86ba753c92492c0528742002d2968fc78095cb84fb0d09dfee55c8a1c6287b23"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "091af415917a34c05ae9b55db5dca4552ac99cf098848aa49943d76c9647c42c"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "7910715399741b2fa93ffce0264217fe80adf2d3abe5b3ca64ad42449eddced4"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "f85af35d2bb0b1fa6f35e631e2a472070cece8318cdc398263c1c3eb53eec055"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "cd0ceedce30a8b717e8193b1a572f36656f64381447e7e6ca8bca71493389527"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "2eb09e174ed73715bd5054876929dd7a53503c158a7e03eaf3ee3d3349ef608b"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_340km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "a6ce30f4b8ad29588289aecbdcacc3293376e1c7f0649d034fa87ba2a7fdf33f"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "0a1b7a1b4e28e8fef2614f88db4f060cfc804871669d519d9817aacb38470cf0"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "9f5fd402cab7e76708189d923dd7f86b2a98a2f7a39ee32f6190726e24fc661a"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "f47be5d914f555c9a5704e6c548c462a4e32c9bdd6d61aefe42cdc0f9e1575da"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_B_SA_P_OM_0_lf_0.2_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "ec0ffa49a3264b9d1f77cffa29711c334f8e816bd9ca3be2dba1fcc819c97f07"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "9a54b946dd15eec3764ca7af9841eeeb498cbfa4f02b28f23577c386405d58d2"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "03af4720e667b44032caca74163f098bf852db3acf42f29dcbe75e9e4196b876"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "2aaa1d9616bc925f70c345d3d35b63deb2d801a05dfd960bddcb31347a2a878e"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_B_SA_P_OM_0_lf_0.5_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-23_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "03a9c042c2c566330864623035d7b911a49c80c9acd432cd1b03ef314b64bd10"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-24_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "13e7f3a0933c3485819afde83c4a445804c52aeef893529990aafe72f259647e"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-24_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "693ac4b93547dc042d458fa1b654b57e0de47a21ab963bd27f700c4043faa363"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-24_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "b43556ddc4d0be3c76e0e3fd9dba307bb418ba523369a2608c076aeded48b165"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_D_SA_P_OM_0_lf_0.2_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-24_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "f84bc58696cb73318f34d9846e37cfc532c62df91a65ceaf51dc2e091749c6f0"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-24_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "55f9f4d841c4da932e154609fd679a1e1be97402ee9ffda13919f60f377a1bb6"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_5MHz_STRATEGY_V2_RISK_GATE_2026-08-24_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "3c37245cf31e8d64302fef030167f8217df073975be197a0fbdb28ce48f6d1ae"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-24_01\\interference_aware_handover_v2_snapshot.csv",
+      "sha256": "24076a9de57a68b6783c58a35fee1f900002873d31c9fa203dc04dd41d8521e0"
+    },
+    {
+      "path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\04_DC_MSS_to_EESS\\output\\system_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_STRATEGY_V2_RISK_GATE_2026-08-24_01\\interference_aware_handover_v2_events.csv",
+      "sha256": "361c1a841f23024fcbf07d55dd5047f7d6221fa40d6c6b38641c3a9787fbce2a"
+    }
+  ],
+  "filters": {
+    "guard_band_mhz": [
+      10,
+      5
+    ],
+    "accepted_events_only_in_panel_c": true
+  },
+  "metric_definitions": {
+    "reduction": "Iagg,antes − Iagg,após em dB",
+    "activation": "snapshots com ao menos uma reassociação / total",
+    "elevation_loss": "elevação servidor original − elevação alvo"
+  },
+  "sample_counts": {
+    "runs": 16,
+    "snapshots": 80000,
+    "accepted_events": 22891
+  },
+  "confidence_interval_method": "não aplicável",
+  "notes": []
+}
