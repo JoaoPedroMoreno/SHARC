@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "affected_active_beams": 43,
+  "active_beams": 927,
+  "baseline_inr_db": -6.273587884208823,
+  "pbo_inr_db": -9.32384816751194,
+  "same_geometry_users_activity": true,
+  "exact_10db_on_affected_links": true
+}

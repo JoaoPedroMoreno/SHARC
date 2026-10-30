@@ -1,0 +1,59 @@
+{
+  "purpose": "Three-stage conceptual overview, not a specific snapshot",
+  "steps": [
+    "Configuração do cenário",
+    "Monte Carlo no SHARC",
+    "Agregação estatística"
+  ],
+  "parameters": [
+    "LF",
+    "nível de PBO",
+    "fração de feixes afetados"
+  ],
+  "configured_snapshots": 1000,
+  "snapshot_examples": [
+    1,
+    2,
+    1000
+  ],
+  "illustrative_active_cells": [
+    3,
+    2,
+    3
+  ],
+  "illustrative_inactive_cells": [
+    1,
+    2,
+    1
+  ],
+  "illustrative_satellites_per_example": 2,
+  "reference_ue_servers": [
+    "A",
+    "B",
+    "A"
+  ],
+  "reference_ue_mark": "none",
+  "satellite_to_ue_arrows": false,
+  "single_boresight_line_per_active_beam": true,
+  "nearest_satellite_in_schematic_projection_checked": true,
+  "beam_volumes_drawn_above_ground_faces": true,
+  "satellite_positions_vary": true,
+  "ue_positions_vary": true,
+  "slide_headings_and_footer_removed": true,
+  "illustrative_positions_and_activation": true,
+  "illustrative_cdf_not_results": true,
+  "real_ids_or_network_counts": false,
+  "new_simulation_run": false,
+  "raw_data_accessed_or_modified": false,
+  "qa": {
+    "size_px": [
+      3200,
+      1100
+    ],
+    "text_count": 19,
+    "minimum_font_pt": 19.0,
+    "text_overlap_count": 0,
+    "text_inside_frame": true,
+    "text_padding_checked": false
+  }
+}

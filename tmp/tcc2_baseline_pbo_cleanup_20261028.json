@@ -1,0 +1,211 @@
+{
+  "Deleted": [
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE_2026-10-26_01\\tcc2_links.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 2316783239,
+      "Ticks": 639286825956118401
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE_2026-10-26_01\\tcc2_users.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1699765694,
+      "Ticks": 639286825954827676
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO100km_2026-10-26_01\\tcc2_links.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 2317969149,
+      "Ticks": 639286827170138681
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO100km_2026-10-26_01\\tcc2_users.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1699765694,
+      "Ticks": 639286827168594798
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_BASELINE_2026-10-26_01\\tcc2_links.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 2744225341,
+      "Ticks": 639286870087606962
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_BASELINE_2026-10-26_01\\tcc2_users.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1703535808,
+      "Ticks": 639286870085776551
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km_2026-10-26_01\\tcc2_links.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 2745770163,
+      "Ticks": 639286872431729632
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km_2026-10-26_01\\tcc2_users.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1703535808,
+      "Ticks": 639286872430072065
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_BASELINE_2026-10-26_01\\tcc2_links.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 2293268147,
+      "Ticks": 639286826168777808
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_BASELINE_2026-10-26_01\\tcc2_users.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1699765694,
+      "Ticks": 639286826167356312
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO100km_2026-10-26_01\\tcc2_links.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 2294450027,
+      "Ticks": 639286826336904070
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO100km_2026-10-26_01\\tcc2_users.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1699765694,
+      "Ticks": 639286826335009491
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE_2026-10-26_01\\tcc2_links.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 2685213828,
+      "Ticks": 639286869193311308
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE_2026-10-26_01\\tcc2_users.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1703535808,
+      "Ticks": 639286869191466119
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO100km_2026-10-26_01\\tcc2_links.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 2686755429,
+      "Ticks": 639286870915901025
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO100km_2026-10-26_01\\tcc2_users.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1703535808,
+      "Ticks": 639286870913779029
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_BASELINE_2026-10-27_01\\tcc2_links.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1419974071,
+      "Ticks": 639287001211701636
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_BASELINE_2026-10-27_01\\tcc2_users.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1032986186,
+      "Ticks": 639287001210762010
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO100km_2026-10-27_01\\tcc2_links.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1420641894,
+      "Ticks": 639287001879533179
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO100km_2026-10-27_01\\tcc2_users.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1032986186,
+      "Ticks": 639287001878548876
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_BASELINE_2026-10-27_01\\tcc2_links.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1681240135,
+      "Ticks": 639287030405374792
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_BASELINE_2026-10-27_01\\tcc2_users.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1035144177,
+      "Ticks": 639287030404326642
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO100km_2026-10-27_01\\tcc2_links.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1682050866,
+      "Ticks": 639287071626758901
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO100km_2026-10-27_01\\tcc2_users.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1035144177,
+      "Ticks": 639287071625629728
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE_2026-10-27_01\\tcc2_links.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1406302679,
+      "Ticks": 639287045617692893
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE_2026-10-27_01\\tcc2_users.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1032986186,
+      "Ticks": 639287045616715165
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO100km_2026-10-27_01\\tcc2_links.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1406966902,
+      "Ticks": 639287163635471191
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO100km_2026-10-27_01\\tcc2_users.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1032986186,
+      "Ticks": 639287163634508900
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_BASELINE_2026-10-27_01\\tcc2_links.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1646222874,
+      "Ticks": 639287188815009762
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_BASELINE_2026-10-27_01\\tcc2_users.csv.gz",
+      "Mode": "BASELINE",
+      "Bytes": 1035144177,
+      "Ticks": 639287188814017277
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km_2026-10-27_01\\tcc2_links.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1647031669,
+      "Ticks": 639287220047259606
+    },
+    {
+      "Path": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km_2026-10-27_01\\tcc2_users.csv.gz",
+      "Mode": "PBO100km",
+      "Bytes": 1035144177,
+      "Ticks": 639287220046491307
+    }
+  ],
+  "Summary": [
+    {
+      "Mode": "BASELINE",
+      "Files": 16,
+      "GiB": 25.272456970065832
+    },
+    {
+      "Mode": "PBO100km",
+      "Files": 16,
+      "GiB": 25.280285467393696
+    }
+  ],
+  "RetainedFilesVerified": 440,
+  "InrAndProvenanceHashesVerified": 96,
+  "TotalGiB": 50.55274243745953
+}

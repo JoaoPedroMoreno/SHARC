@@ -1,0 +1,441 @@
+{
+  "cover_pbo_selective.png": {
+    "illustrative_cell_count": 189,
+    "illustrative_selected_cells": 18,
+    "grid_radius_m_for_drawing_only": 150000,
+    "not_a_simulation_snapshot": true,
+    "external_receiver_and_callouts": false,
+    "beams": [
+      {
+        "pbo": false,
+        "footprint": [
+          [
+            48.21466539443413,
+            47.332285125995966
+          ],
+          [
+            47.0301245727679,
+            48.604329755790445
+          ],
+          [
+            44.66104292943544,
+            48.604329755790445
+          ],
+          [
+            43.47650210776921,
+            47.332285125995966
+          ],
+          [
+            44.66104292943544,
+            46.06024049620148
+          ],
+          [
+            47.0301245727679,
+            46.06024049620148
+          ]
+        ],
+        "visual_scale": 1.1
+      },
+      {
+        "pbo": false,
+        "footprint": [
+          [
+            62.42915525442889,
+            49.87637438558493
+          ],
+          [
+            61.24461443276266,
+            51.14841901537942
+          ],
+          [
+            58.8755327894302,
+            51.14841901537942
+          ],
+          [
+            57.69099196776397,
+            49.87637438558493
+          ],
+          [
+            58.875532789430196,
+            48.604329755790445
+          ],
+          [
+            61.24461443276266,
+            48.604329755790445
+          ]
+        ],
+        "visual_scale": 1.1
+      },
+      {
+        "pbo": false,
+        "footprint": [
+          [
+            80.19726757942234,
+            48.604329755790445
+          ],
+          [
+            79.01272675775611,
+            49.87637438558493
+          ],
+          [
+            76.64364511442365,
+            49.87637438558493
+          ],
+          [
+            75.45910429275742,
+            48.604329755790445
+          ],
+          [
+            76.64364511442365,
+            47.332285125995966
+          ],
+          [
+            79.01272675775611,
+            47.332285125995966
+          ]
+        ],
+        "visual_scale": 1.1
+      },
+      {
+        "pbo": false,
+        "footprint": [
+          [
+            69.53640018442627,
+            37.15592808764009
+          ],
+          [
+            68.35185936276004,
+            38.42797271743458
+          ],
+          [
+            65.98277771942759,
+            38.42797271743458
+          ],
+          [
+            64.79823689776136,
+            37.15592808764009
+          ],
+          [
+            65.98277771942757,
+            35.88388345784561
+          ],
+          [
+            68.35185936276004,
+            35.88388345784561
+          ]
+        ],
+        "visual_scale": 1.1
+      },
+      {
+        "pbo": false,
+        "footprint": [
+          [
+            83.75089004442103,
+            37.15592808764009
+          ],
+          [
+            82.56634922275481,
+            38.42797271743458
+          ],
+          [
+            80.19726757942234,
+            38.42797271743458
+          ],
+          [
+            79.01272675775611,
+            37.15592808764009
+          ],
+          [
+            80.19726757942234,
+            35.88388345784561
+          ],
+          [
+            82.56634922275481,
+            35.88388345784561
+          ]
+        ],
+        "visual_scale": 1.1
+      },
+      {
+        "pbo": false,
+        "footprint": [
+          [
+            73.09002264942497,
+            23.163437159900774
+          ],
+          [
+            71.90548182775873,
+            24.43548178969526
+          ],
+          [
+            69.53640018442627,
+            24.43548178969526
+          ],
+          [
+            68.35185936276004,
+            23.163437159900774
+          ],
+          [
+            69.53640018442627,
+            21.89139253010629
+          ],
+          [
+            71.90548182775873,
+            21.89139253010629
+          ]
+        ],
+        "visual_scale": 1.1
+      },
+      {
+        "pbo": true,
+        "footprint": [
+          [
+            65.98277771942759,
+            33.33979419825664
+          ],
+          [
+            64.79823689776136,
+            34.61183882805113
+          ],
+          [
+            62.42915525442889,
+            34.61183882805113
+          ],
+          [
+            61.24461443276266,
+            33.33979419825664
+          ],
+          [
+            62.42915525442889,
+            32.06774956846216
+          ],
+          [
+            64.79823689776136,
+            32.06774956846216
+          ]
+        ],
+        "visual_scale": 0.68
+      },
+      {
+        "pbo": true,
+        "footprint": [
+          [
+            94.4117574394171,
+            46.06024049620148
+          ],
+          [
+            93.22721661775087,
+            47.332285125995966
+          ],
+          [
+            90.85813497441842,
+            47.332285125995966
+          ],
+          [
+            89.67359415275219,
+            46.06024049620148
+          ],
+          [
+            90.85813497441842,
+            44.788195866406994
+          ],
+          [
+            93.22721661775087,
+            44.788195866406994
+          ]
+        ],
+        "visual_scale": 0.68
+      }
+    ],
+    "qa": {
+      "size_px": [
+        3200,
+        1800
+      ],
+      "text_count": 3,
+      "minimum_font_pt": 24.0,
+      "text_overlap_count": 0,
+      "text_inside_frame": true,
+      "text_padding_checked": false
+    }
+  },
+  "sharc_snapshot_illustrated.png": {
+    "snapshot_id": 1,
+    "source_folder": "C:\\GitHub\\SHARC\\sharc\\campaigns\\03_DC_MSS_ISOLADO\\output\\output_dc_mss_isolado_Sys3_340km_LF50_PBO10dB_F10pct_2026-07-28_02",
+    "layout": "logical associations, not geographic positions",
+    "counts": {
+      "drawn_cells": 19,
+      "drawn_satellites": 2,
+      "drawn_ues": 19,
+      "drawn_active_ues": 10,
+      "drawn_inactive_ues": 9,
+      "drawn_pbo_beams": 1,
+      "network_cells": 1472,
+      "network_active_ues": 717,
+      "network_pbo_beams": 72
+    },
+    "associations": [
+      {
+        "beam_id": 1112,
+        "ue_id": 1112,
+        "satellite_id": 4041,
+        "active": true,
+        "pbo": false
+      },
+      {
+        "beam_id": 1115,
+        "ue_id": 1115,
+        "satellite_id": 4041,
+        "active": true,
+        "pbo": false
+      },
+      {
+        "beam_id": 1118,
+        "ue_id": 1118,
+        "satellite_id": 4041,
+        "active": true,
+        "pbo": false
+      },
+      {
+        "beam_id": 1120,
+        "ue_id": 1120,
+        "satellite_id": 4041,
+        "active": true,
+        "pbo": false
+      },
+      {
+        "beam_id": 1123,
+        "ue_id": 1123,
+        "satellite_id": 4041,
+        "active": false,
+        "pbo": false
+      },
+      {
+        "beam_id": 1127,
+        "ue_id": 1127,
+        "satellite_id": 4041,
+        "active": false,
+        "pbo": false
+      },
+      {
+        "beam_id": 1188,
+        "ue_id": 1188,
+        "satellite_id": 4042,
+        "active": false,
+        "pbo": false
+      },
+      {
+        "beam_id": 1191,
+        "ue_id": 1191,
+        "satellite_id": 4042,
+        "active": false,
+        "pbo": false
+      },
+      {
+        "beam_id": 1192,
+        "ue_id": 1192,
+        "satellite_id": 4042,
+        "active": false,
+        "pbo": false
+      },
+      {
+        "beam_id": 1195,
+        "ue_id": 1195,
+        "satellite_id": 4042,
+        "active": true,
+        "pbo": false
+      },
+      {
+        "beam_id": 1196,
+        "ue_id": 1196,
+        "satellite_id": 4042,
+        "active": true,
+        "pbo": false
+      },
+      {
+        "beam_id": 1199,
+        "ue_id": 1199,
+        "satellite_id": 4042,
+        "active": false,
+        "pbo": false
+      },
+      {
+        "beam_id": 1203,
+        "ue_id": 1203,
+        "satellite_id": 4042,
+        "active": true,
+        "pbo": true
+      },
+      {
+        "beam_id": 1200,
+        "ue_id": 1200,
+        "satellite_id": 4042,
+        "active": true,
+        "pbo": false
+      },
+      {
+        "beam_id": 1204,
+        "ue_id": 1204,
+        "satellite_id": 4042,
+        "active": false,
+        "pbo": false
+      },
+      {
+        "beam_id": 1207,
+        "ue_id": 1207,
+        "satellite_id": 4042,
+        "active": true,
+        "pbo": false
+      },
+      {
+        "beam_id": 1211,
+        "ue_id": 1211,
+        "satellite_id": 4042,
+        "active": false,
+        "pbo": false
+      },
+      {
+        "beam_id": 1212,
+        "ue_id": 1212,
+        "satellite_id": 4042,
+        "active": false,
+        "pbo": false
+      },
+      {
+        "beam_id": 1215,
+        "ue_id": 1215,
+        "satellite_id": 4042,
+        "active": true,
+        "pbo": false
+      }
+    ],
+    "caution": {
+      "ue_to_assigned_grid_center_distance_km_p0_p50_p100": [
+        99.12701157221136,
+        1082.591231265179,
+        1731.7197587803162
+      ],
+      "actual_ue_locations_not_inside_assigned_grid_cells": true,
+      "reason": "SERVICE_GRID returns sectors_x=sectors_y=0; UNIFORM_IN_CELL uses those anchors"
+    },
+    "source_checks": {
+      "active_ids_match_saved_csv": true,
+      "pbo_ids_match_saved_csv": true,
+      "satellite_beam_counts_match_saved_logs": true,
+      "no_rf_calculation": true,
+      "no_simulation_output_writes": true,
+      "saved_pathloss_max_difference_db": 2.842170943040401e-14
+    },
+    "qa": {
+      "size_px": [
+        3200,
+        1800
+      ],
+      "text_count": 25,
+      "minimum_font_pt": 19.0,
+      "text_overlap_count": 0,
+      "text_inside_frame": true,
+      "text_padding_checked": false
+    }
+  }
+}

@@ -82,6 +82,10 @@ class SimulationDownlink(Simulation):
         if self.parameters.imt.topology.type != "MSS_DC":
             return
         cfg = self.parameters.imt.topology.mss_dc.interference_aware_handover_v2
+        if cfg.evaluation_mode == "COCHANNEL_INR":
+            from sharc.cochannel_handover import validate_configuration
+            validate_configuration(self.parameters)
+            return
         if not cfg.enabled:
             return
         if self.parameters.imt.topology.mss_dc.beam_positioning.type != "SERVICE_GRID":
@@ -213,6 +217,8 @@ class SimulationDownlink(Simulation):
         write_to_file = kwargs["write_to_file"]
         snapshot_number = kwargs["snapshot_number"]
         seed = kwargs["seed"]
+        self._current_snapshot_id = int(snapshot_number)
+        self._current_snapshot_seed = int(seed)
 
         if self._interference_link_diagnostics_enabled():
             self._diagnostic_snapshot_id = int(snapshot_number)
@@ -294,6 +300,11 @@ class SimulationDownlink(Simulation):
             self.parameters.imt.ue.antenna.array,
             self.topology, random_number_gen,
         )
+
+        if (self.parameters.imt.topology.type == "MSS_DC"
+                and self.parameters.imt.topology.mss_dc.interference_aware_handover_v2.evaluation_mode == "COCHANNEL_INR"):
+            from sharc.cochannel_handover import place_users_in_service_cells
+            place_users_in_service_cells(self)
 
         if self.parameters.imt.interfered_with:
             self.paths_between_imt_and_sys = PropagationPath.create_default(
@@ -1443,6 +1454,12 @@ class SimulationDownlink(Simulation):
         """
         Calculates interference that IMT system generates on other system
         """
+        if (self.parameters.imt.topology.type == "MSS_DC"
+                and self.parameters.imt.topology.mss_dc.interference_aware_handover_v2
+                .evaluation_mode == "COCHANNEL_INR"):
+            from sharc.cochannel_handover import CochannelHandover
+            CochannelHandover(self).run()
+            return
         if self.co_channel or (
             self.adjacent_channel and self.param_system.adjacent_ch_reception != "OFF"
         ):

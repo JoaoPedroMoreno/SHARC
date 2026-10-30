@@ -1,5 +1,0 @@
-final_performance_complete=56/56
-operational_geometry_complete=48/48
-pointing_types=[('UNIFORM_DIST', 'UNIFORM_DIST')]
-pointing_interpretation=realized per snapshot; not fixed across snapshots
-incomplete_operational_runs:

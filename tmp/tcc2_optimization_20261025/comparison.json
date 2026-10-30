@@ -1,0 +1,31 @@
+{
+  "old": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5_2026-10-25_01",
+  "new": "C:\\GitHub\\SHARC\\tmp\\tcc2_optimization_20261025\\physics_final\\handover_physics",
+  "tolerance": 1e-08,
+  "comparison": {
+    "snapshots": {
+      "rows": 1,
+      "max_abs_differences": {}
+    },
+    "steps": {
+      "rows": 5,
+      "max_abs_differences": {}
+    },
+    "events": {
+      "rows": 5,
+      "max_abs_differences": {}
+    },
+    "candidates": {
+      "rows": 250,
+      "max_abs_differences": {}
+    },
+    "users": {
+      "rows": 14985,
+      "max_abs_differences": {}
+    },
+    "links": {
+      "rows": 14985,
+      "max_abs_differences": {}
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "cover": [
+    {
+      "method": "ez",
+      "cells": 1656,
+      "outside_area_m2": 0.0
+    },
+    {
+      "method": "pbo",
+      "cells": 1294,
+      "outside_area_m2": 0.0
+    }
+  ],
+  "illustrative_grid_radius_m": 61927.2,
+  "display_cell_scale": 2.4,
+  "encom_functions": [
+    "fit_map",
+    "draw_grid",
+    "beam",
+    "draw_geometry"
+  ]
+}

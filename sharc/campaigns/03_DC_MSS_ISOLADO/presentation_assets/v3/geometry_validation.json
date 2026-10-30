@@ -262,10 +262,10 @@
   },
   "overview": {
     "mode": "GEOGRAPHIC",
-    "boundary": "complete_country_polygon_including_coastline",
+    "boundary": "shared_land_borders_only",
     "illustrative_band_width_m": 51606.0,
-    "orange_cells": 745,
-    "zone_formula": "country.difference(country.buffer(-band_width))"
+    "orange_cells": 459,
+    "zone_formula": "country.intersection(shared_land_border.buffer(band_width, cap_style='flat'))"
   },
   "brazil_covered_fraction": 0.9999999999999445,
   "grid_outside_brazil_m2": 0.0,

@@ -1516,6 +1516,10 @@ def _asymmetric_errors(
 def plot_system_performance(
     values: pd.DataFrame,
     figures_dir: Path,
+    *,
+    filename: str = "fig_system_performance_outage_se_p5",
+    method_note: str | None = None,
+    show_retention_uncertainty: bool = True,
 ) -> None:
     colors = ["#0072B2", "#D55E00", "#009E73"]
     markers = ["o", "s", "^"]
@@ -1561,8 +1565,9 @@ def plot_system_performance(
         bottom.annotate(
             "Baseline",
             (0.0, 100.0),
-            xytext=(5, 5),
+            xytext=(5, -7),
             textcoords="offset points",
+            va="top",
             fontsize=6.5,
         )
 
@@ -1601,7 +1606,7 @@ def plot_system_performance(
                         "retention_se_p5_ci95_lower_percent"].to_numpy(float),
                     subset[
                         "retention_se_p5_ci95_upper_percent"].to_numpy(float),
-                ),
+                ) if show_retention_uncertainty else None,
                 color=color,
                 marker=marker,
                 capsize=2,
@@ -1639,10 +1644,11 @@ def plot_system_performance(
         fontsize=7,
         title_fontsize=7,
     )
-    save_figure(
-        figure,
-        figures_dir / "fig_system_performance_outage_se_p5",
-    )
+    if method_note:
+        figure.text(
+            0.5, -0.045, method_note, ha="center", va="top", fontsize=7,
+        )
+    save_figure(figure, figures_dir / filename)
 
 
 def build_operational_classification(

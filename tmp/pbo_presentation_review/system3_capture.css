@@ -1,0 +1,7 @@
+body { background: white; color: #294756; }
+#hud, #cellTooltip, #interferenceLegend,
+.cesium-viewer-toolbar, .cesium-viewer-fullscreenContainer { display: none !important; }
+#cesiumContainer { position: absolute; left: 0; width: 100vw; height: 100vh; }
+#system3-state { position: absolute; top: 20px; right: 20px; font-size: 17px; color: #49616e; }
+.cesium-widget-credits { background: rgba(255,255,255,.85); color: #344e5c !important; }
+.cesium-widget-credits a { color: #344e5c !important; }

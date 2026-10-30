@@ -319,7 +319,25 @@ class ParametersInterferenceAwareHandoverV2(ParametersBase):
     risk_gate_dbw_per_mhz: float = -154.0
     record_candidate_details: bool = False
 
+    # Opt-in cocanal experiment; legacy PIBIC behavior remains the default.
+    evaluation_mode: str = "ADJACENT_LEGACY"
+    inr_threshold_db: float = -6.0
+    max_active_beams_per_satellite: typing.Optional[int] = None
+    # TCC2 audit exports only; never changes the interference calculation.
+    record_detailed_links_and_users: bool = True
+
     def validate(self, ctx: str):
+        if self.evaluation_mode not in {"ADJACENT_LEGACY", "COCHANNEL_INR"}:
+            raise ValueError(f"{ctx}.evaluation_mode is not supported")
+        if not isinstance(self.record_detailed_links_and_users, bool):
+            raise ValueError(f"{ctx}.record_detailed_links_and_users must be a boolean")
+        if not np.isfinite(self.inr_threshold_db):
+            raise ValueError(f"{ctx}.inr_threshold_db must be finite")
+        capacity = self.max_active_beams_per_satellite
+        if capacity is not None and (
+            isinstance(capacity, bool) or not isinstance(capacity, int) or capacity < 1
+        ):
+            raise ValueError(f"{ctx}.max_active_beams_per_satellite must be a positive integer or null")
         if not isinstance(self.enabled, bool):
             raise ValueError(f"{ctx}.enabled must be a boolean")
         if isinstance(self.top_k, bool) or not isinstance(self.top_k, int):

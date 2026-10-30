@@ -1,0 +1,15 @@
+repo:
+  url: https://github.com/JoaoPedroMoreno/SHARC.git
+  branch: tcc_joao
+  commit: 985a630ea651334368285b81746855b53039f4db
+root_dir: C:\GitHub\SHARC\sharc
+run:
+  command: C:\GitHub\SHARC\.venv\Scripts\python.exe C:\GitHub\SHARC\sharc\main_cli.py
+    -p C:\GitHub\SHARC\sharc\campaigns\07_TCC2_DC_MSS_to_FS\input\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO5.yaml
+  python_version: 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937
+    64 bit (AMD64)]
+  pkgs:
+  - Could not retrieve packages
+  started_at: '2026-10-25T13:12:34.676795'
+  ended_at: '2026-10-25T13:12:34.852371'
+  duration: '0:00:00.175576'

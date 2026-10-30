@@ -1,0 +1,48 @@
+[
+  {
+    "case": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE",
+    "snapshots": 2,
+    "exact_inr_decisions_and_rng": true,
+    "compared_datasets": [
+      "snapshots",
+      "steps"
+    ],
+    "detailed_files_absent": true,
+    "accepted_changes": 0
+  },
+  {
+    "case": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5",
+    "snapshots": 2,
+    "exact_inr_decisions_and_rng": true,
+    "compared_datasets": [
+      "snapshots",
+      "steps",
+      "events",
+      "candidates"
+    ],
+    "detailed_files_absent": true,
+    "accepted_changes": 4
+  },
+  {
+    "case": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km",
+    "snapshots": 2,
+    "exact_inr_decisions_and_rng": true,
+    "compared_datasets": [
+      "snapshots",
+      "steps"
+    ],
+    "detailed_files_absent": true,
+    "accepted_changes": 0
+  },
+  {
+    "case": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO5",
+    "snapshots": 2,
+    "exact_inr_decisions_and_rng": true,
+    "compared_datasets": [
+      "snapshots",
+      "steps"
+    ],
+    "detailed_files_absent": true,
+    "accepted_changes": 0
+  }
+]

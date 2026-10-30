@@ -1,0 +1,8 @@
+{
+  "reference": "itu_pbo_zoom_border.png / panel (a)",
+  "ground_cells": 52,
+  "service_beams": 5,
+  "satellites": 1,
+  "fs_directional_dishes": 2,
+  "original_geometry_preserved": true
+}

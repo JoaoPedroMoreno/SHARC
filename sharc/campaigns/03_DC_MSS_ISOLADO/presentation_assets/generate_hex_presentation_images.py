@@ -39,7 +39,7 @@ COVER_LOAD_FACTOR = 0.5
 COVER_AFFECTED_FRACTION = 0.1
 MECHANISM_PBO_DB = 10.0
 MECHANISM_VISUAL_GAMMA = 0.25
-OFF_AXIS_OPACITY = 0.28
+OFF_AXIS_OPACITY = 0.74
 BORDER_DRAWING_WIDTH_M = 2 * DRAWING_RADIUS_M
 BLUE = "#6BA8CA"
 BLUE_EDGE = "#7DADC5"
@@ -47,7 +47,7 @@ BLUE_PALE = "#ECF5F9"
 BLUE_SELECTED = "#B7D9E9"
 ORANGE = "#DB8B4D"
 ORANGE_PALE = "#F6D7BA"
-RED = "#CA7C73"
+RED = "#BF5750"
 GREEN = "#5A9E92"
 INK = "#46525A"
 BORDER = "#738C99"
@@ -116,11 +116,20 @@ def geography():
     center = brazil_ll.centroid
     crs = CRS.from_proj4(f"+proj=laea +lat_0={center.y} +lon_0={center.x} +datum=WGS84 +units=m")
     project = Transformer.from_crs("EPSG:4326", crs, always_xy=True)
-    projected = {name: transform(project.transform, countries[name])
-                 for name in ("Brazil", "Paraguay", "Argentina", "Bolivia", "Uruguay")}
+    # Only boundaries shared with another country define the illustrative zone.
+    shared = {name: brazil_ll.boundary.intersection(country.boundary)
+              for name, country in countries.items() if name != "Brazil"}
+    neighbors = {name: border for name, border in shared.items() if border.length > 0}
+    projected = {"Brazil": transform(project.transform, brazil_ll)}
+    for name in neighbors:
+        # Keep French Guiana, not France's unrelated overseas/mainland polygons.
+        adjacent = unary_union([part for part in polygons(countries[name])
+                                if part.boundary.intersection(brazil_ll.boundary).length > 0])
+        projected[name] = transform(project.transform, adjacent)
     brazil = projected["Brazil"]
-    # FROM_COUNTRIES shrinks the complete country polygon, including its coast.
-    zone = brazil.difference(brazil.buffer(-BORDER_DRAWING_WIDTH_M))
+    land_border_ll = linemerge(unary_union(list(neighbors.values())))
+    land_border = transform(project.transform, land_border_ll)
+    zone = brazil.intersection(land_border.buffer(BORDER_DRAWING_WIDTH_M, cap_style=2))
     r = DRAWING_RADIUS_M
     xmin, ymin, xmax, ymax = brazil.bounds
     cells = []
@@ -265,15 +274,18 @@ def overview(countries, cells, project):
     fig, ax = canvas(2400, 2400, 120, 120)
     affine = fit_map(countries["Brazil"], (8, 20, 114, 107))
     context_clip = Rectangle((6, 20), 110, 87, transform=ax.transData)
-    for name in ("Paraguay", "Argentina", "Bolivia", "Uruguay"):
-        for artist in draw_geometry(ax, countries[name], affine, WHITE, "#DCE4E8", 0.9, 1):
+    for name, country in countries.items():
+        if name == "Brazil":
+            continue
+        for artist in draw_geometry(ax, country, affine, WHITE, "#DCE4E8", 0.9, 1):
             artist.set_clip_path(context_clip)
+            artist.set_gid("context-country:" + name)
     draw_grid(ax, countries["Brazil"], cells, affine)
-    label(ax, 10, 113, "Brasil", 29)
+    #label(ax, 10, 113, "Brasil", 29)
     target_cell = closest_cell(cells, project, -57, -23, True)
     target = affine.transform(target_cell["center"])
-    label(ax, 6, 42, "Faixa com\nPBO", 23, color=ORANGE, va="center")
-    leader(ax, (32, 42), target, ORANGE, 1.8)
+    label(ax, 3, 38, "Região de aplicação \n          do PBO", 23, color=ORANGE, va="center")
+    leader(ax, (35, 42), target, ORANGE, 1.8)
     for x, color, fill, text in ((21, BLUE, BLUE_PALE, "Nominal"),
                                 (67, ORANGE, ORANGE_PALE, "Com PBO")):
         ax.add_patch(MplPolygon(hex_vertices((x, 9), 2.5), facecolor=fill,
@@ -330,30 +342,44 @@ def off_axis_radiation(ax, source, footprint, visual_scale, beam_id):
     directions = np.arctan2(footprint[:, 1] - source[1], footprint[:, 0] - source[0])
     offsets = np.arctan2(np.sin(directions - boresight), np.cos(directions - boresight))
     edge = boresight + offsets.min()
-    # A diffuse skirt attached to the service beam, independent of the victim.
-    inner, outer = edge + math.radians(2), edge - math.radians(29)
+    # Localize each soft skirt alongside its own border beam, not the satellite.
+    band_angle = edge - math.radians(4.5)
+    angular_scale = math.radians(1.8)
+    halo_sigma = math.radians(12)
+    inner, outer = band_angle + 4 * halo_sigma, band_angle - 4 * halo_sigma
     angles = np.linspace(outer, inner, 80)
-    rim = 1.4 * distance * np.stack((np.cos(angles), np.sin(angles)), axis=1)
+    rim = 1.9 * distance * np.stack((np.cos(angles), np.sin(angles)), axis=1)
     bounds = np.vstack((np.zeros(2), rim))
     xmin, ymin = bounds.min(axis=0)
     xmax, ymax = bounds.max(axis=0)
     x, y = np.meshgrid(np.linspace(xmin, xmax, 640), np.linspace(ymin, ymax, 640))
     radial = np.hypot(x, y) / distance
-    angular_offset = np.arctan2(np.sin(inner - np.arctan2(y, x)),
-                                np.cos(inner - np.arctan2(y, x)))
-    angular = angular_offset / (inner - outer)
-    angular_weight = np.cos(np.clip(angular, 0, 1) * math.pi / 2) ** 0.65
-    radial_weight = np.minimum(radial / 0.10, 1) * (1 - np.clip((radial - 0.9) / 0.5, 0, 1)) ** 1.5
-    mask = (angular >= 0) & (angular <= 1) & (radial <= 1.4)
+    angular_offset = np.arctan2(np.sin(np.arctan2(y, x) - band_angle),
+                                np.cos(np.arctan2(y, x) - band_angle))
+    # A single smooth falloff joins the peak to long shoulders, without a stripe.
+    core_radius_sq = ((angular_offset / angular_scale) ** 2
+                      + ((radial - 0.85) / 0.23) ** 2)
+    core_weight = np.exp(0.8 - np.sqrt(0.8 ** 2 + core_radius_sq))
+    halo_weight = np.exp(-0.5 * (angular_offset / halo_sigma) ** 2)
+    # Fade near the feed so the two beam-linked regions remain distinguishable.
+    fade_in = np.clip((radial - 0.18) / 0.40, 0, 1)
+    fade_out = np.clip((1.9 - radial) / 0.30, 0, 1)
+    radial_weight = (fade_in ** 2 * (3 - 2 * fade_in)
+                     * fade_out ** 2 * (3 - 2 * fade_out))
+    core = core_weight * radial_weight
+    # Retain the broad haze from the version with the two distinct opaque cores.
+    halo_radial = np.exp(-0.5 * ((radial - 0.85) / 0.36) ** 2)
+    halo_radial *= fade_in ** 2 * (3 - 2 * fade_in)
+    intensity = core + 0.48 * (1 - core) * halo_weight * halo_radial
+    mask = (np.abs(angular_offset) <= 4 * halo_sigma) & (radial <= 1.9)
     rgba = np.empty((*radial.shape, 4))
     rgba[..., :3] = to_rgba(RED)[:3]
-    rgba[..., 3] = OFF_AXIS_OPACITY * visual_scale * angular_weight * radial_weight * mask
+    rgba[..., 3] = OFF_AXIS_OPACITY * visual_scale * intensity * mask
     ax.imshow(rgba, extent=(source[0] + xmin, source[0] + xmax,
                            source[1] + ymin, source[1] + ymax),
               origin="lower", interpolation="bilinear", zorder=4,
               gid="off-axis:" + beam_id)
-    angle = edge - math.radians(13)
-    return source + 0.55 * distance * np.array((math.cos(angle), math.sin(angle)))
+    return source + 0.66 * distance * np.array((math.cos(band_angle), math.sin(band_angle)))
 
 
 def lobe_callout(ax, text, position, target, color, side="right"):
@@ -403,7 +429,7 @@ def local_scene(ax, base, selective):
         intensity = mechanism_visual_scale(affected)
         if column == 0:
             region_target = off_axis_radiation(ax, source, vertices, intensity, beam_id)
-            if row == 0:
+            if row == 2:
                 off_axis_target = region_target
         beam(ax, source, vertices, affected, broad=True, visual_scale=intensity,
              beam_id="service-beam:" + beam_id)
@@ -422,8 +448,8 @@ def local_scene(ax, base, selective):
     lobe_callout(ax, "Lóbulos\nprincipais", (94, base + 38),
                  (84, base + 30.5), BLUE, side="left")
     if selective:
-        label(ax, 84, base + 0.2, "Feixes com PBO", 21, color=ORANGE, ha="center")
-        label(ax, 84, base - 2.9, "PBO = 10 dB", 19, color=ORANGE, ha="center")
+        label(ax, 84, base + 0.2, "Feixes submetidos a PBO", 21, color=ORANGE, ha="center")
+        #label(ax, 84, base - 2.9, "PBO = 10 dB", 19, color=ORANGE, ha="center")
         leader(ax, (70, base + 1.6), local.transform((0, -2)), ORANGE)
 
 
@@ -466,10 +492,10 @@ def main():
         "cover": cover_metadata,
         "overview": {
             "mode": "GEOGRAPHIC",
-            "boundary": "complete_country_polygon_including_coastline",
+            "boundary": "shared_land_borders_only",
             "illustrative_band_width_m": BORDER_DRAWING_WIDTH_M,
             "orange_cells": sum(cell["pbo"] for cell in border_cells),
-            "zone_formula": "country.difference(country.buffer(-band_width))",
+            "zone_formula": "country.intersection(shared_land_border.buffer(band_width, cap_style='flat'))",
         },
         "brazil_covered_fraction": union.area / countries["Brazil"].area,
         "grid_outside_brazil_m2": union.difference(countries["Brazil"]).area,

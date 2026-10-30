@@ -1,0 +1,20 @@
+{
+  "size_px": [
+    3200,
+    1000
+  ],
+  "text_count": 0,
+  "illustrative_active_cells": [
+    3,
+    2,
+    3
+  ],
+  "illustrative_inactive_cells": [
+    1,
+    2,
+    1
+  ],
+  "ues_per_cell": 1,
+  "geometry_and_cdf_are_schematic": true,
+  "simulation_or_raw_data_modified": false
+}

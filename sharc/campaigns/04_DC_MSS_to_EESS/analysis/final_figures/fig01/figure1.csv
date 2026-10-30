@@ -1,5 +1,0 @@
-elemento,tipo,definicao
-servidor,satélite,atende a célula e origina o caminho de propagação da interferência
-candidato,satélite,alternativa elegível que preserva a mesma célula de serviço
-psi_TX,ângulo,afastamento entre o boresight do beam transmissor e a direção satélite→EESS
-psi_RX,ângulo,afastamento entre o boresight da antena EESS e a direção EESS→satélite

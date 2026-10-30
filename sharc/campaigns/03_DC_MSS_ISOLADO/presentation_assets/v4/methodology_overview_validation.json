@@ -1,0 +1,35 @@
+{
+  "purpose": "Three-stage conceptual overview, not a specific snapshot",
+  "steps": [
+    "Configuração do cenário",
+    "Monte Carlo no SHARC",
+    "Agregação estatística"
+  ],
+  "parameters": [
+    "LF",
+    "nível de PBO",
+    "fração de feixes afetados"
+  ],
+  "configured_snapshots": 1000,
+  "snapshot_examples": [
+    1,
+    2,
+    1000
+  ],
+  "illustrative_positions_and_activation": true,
+  "illustrative_cdf_not_results": true,
+  "real_ids_or_network_counts": false,
+  "new_simulation_run": false,
+  "raw_data_accessed_or_modified": false,
+  "qa": {
+    "size_px": [
+      3200,
+      1800
+    ],
+    "text_count": 19,
+    "minimum_font_pt": 19.0,
+    "text_overlap_count": 0,
+    "text_inside_frame": true,
+    "text_padding_checked": false
+  }
+}

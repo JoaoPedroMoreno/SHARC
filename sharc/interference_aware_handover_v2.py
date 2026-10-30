@@ -132,3 +132,78 @@ def replace_link_power_linear(
     """Apply one replacement without ever subtracting logarithmic values."""
     updated = aggregate_linear_mw - current_linear_mw + candidate_linear_mw
     return float(max(updated, 0.0))
+
+
+def run_inr_handover(*, config, link_powers, noise_dbm, cell_ids,
+                     current_satellite, current_elevation, evaluate, apply,
+                     record_step):
+    """Cocanal V2: fixed initial top-K cells, dynamic order, accepted-change cap.
+
+    evaluate returns physical candidates; apply independently recomputes the
+    entire snapshot and returns all link powers. No random draws occur here.
+    """
+    powers = dict(link_powers)
+    initial = select_triggered_links(powers, config.top_k, "ORACLE_TOP_K")
+    pending = set(initial)
+    processed_cells = set()
+    accepted = examined = attempts = candidates_count = 0
+    decisions = []
+
+    def inr():
+        total = sum(powers.values())
+        return 10 * np.log10(total) - noise_dbm if total > 0 else -np.inf
+
+    while True:
+        if not config.enabled:
+            reason = "BASELINE"
+            break
+        if inr() <= config.inr_threshold_db:
+            reason = "PROTECTION_REACHED"
+            break
+        if accepted >= config.max_handovers_per_snapshot:
+            reason = "ACCEPTED_LIMIT"
+            break
+        if not pending:
+            reason = "SEARCH_EXHAUSTED"
+            break
+        row = min(pending, key=lambda r: (-powers[r], r))
+        pending.remove(row)
+        cell = int(cell_ids[row])
+        if cell in processed_cells:
+            continue
+        processed_cells.add(cell)
+        examined += 1
+        candidates = tuple(evaluate(row))
+        candidates_count += len(candidates)
+        attempts += bool(candidates)
+        decision = choose_minimum_interference_target(
+            beam_row_idx=row, current_satellite_idx=current_satellite(row),
+            current_service_elevation_deg=current_elevation(row),
+            current_i_linear_mw=powers[row], candidates=candidates,
+            min_reduction_db=config.min_reduction_db,
+            max_service_elevation_loss_deg=config.max_service_elevation_loss_deg)
+        event = decision.as_dict()
+        event.pop("candidates")
+        event["cell_id"] = cell
+        event["inr_before_db"] = float(inr())
+        event["aggregate_before_mw"] = sum(powers.values())
+        # Unlike legacy V2, an equal-power change is not an improvement.
+        if decision.accepted and decision.selected_i_linear_mw >= powers[row]:
+            event.update(accepted=False, reason="NO_STRICT_REDUCTION")
+        if event["accepted"]:
+            updated = apply(row, decision)
+            if updated is None:
+                event.update(accepted=False, reason="NO_AGGREGATE_REDUCTION")
+            else:
+                powers = updated
+                accepted += 1
+                record_step(accepted, powers)
+        event["inr_after_db"] = float(inr())
+        event["aggregate_after_mw"] = sum(powers.values())
+        event["accepted_count"] = accepted
+        decisions.append(event)
+    return dict(
+        initial_top_k=initial, examined_beams=examined,
+        evaluated_candidates=candidates_count, attempts=attempts,
+        accepted_changes=accepted, stop_reason=reason,
+        inr_after_db=float(inr()), decisions=decisions, powers=powers)

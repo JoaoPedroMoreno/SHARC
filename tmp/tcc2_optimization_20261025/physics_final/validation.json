@@ -1,0 +1,59 @@
+{
+  "baseline": {
+    "snapshot_id": 1,
+    "secondary_seed": 2182114437,
+    "realization_sha256": "34942f66b58c50651c404e1a0efa7f367040929fa89cc911d949d92c5d02dcea",
+    "initial_performance_sha256": "b8203092ad9bda12628ebe02a9cec1b1b1a6f80c41a50485e7dc6f11ebcd0760",
+    "baseline_links_sha256": "3d3f0492347b1e1f1adac4644591bee192cf80c3bd9bafbb75e238181b61bfc3",
+    "inr_before_db": 9.795199108558563,
+    "inr_after_db": 9.795199108558563,
+    "initial_top_k": "[2247, 2244, 2251, 2241, 144]",
+    "examined_beams": 0,
+    "attempts": 0,
+    "candidate_satellites_considered": 0,
+    "evaluated_candidates": 0,
+    "accepted_changes": 0,
+    "stop_reason": "BASELINE",
+    "active_pbo_beams": 0,
+    "max_prediction_error_db": 0.0
+  },
+  "handover": {
+    "snapshot_id": 1,
+    "secondary_seed": 2182114437,
+    "realization_sha256": "34942f66b58c50651c404e1a0efa7f367040929fa89cc911d949d92c5d02dcea",
+    "initial_performance_sha256": "b8203092ad9bda12628ebe02a9cec1b1b1a6f80c41a50485e7dc6f11ebcd0760",
+    "baseline_links_sha256": "3d3f0492347b1e1f1adac4644591bee192cf80c3bd9bafbb75e238181b61bfc3",
+    "inr_before_db": 9.795199108558563,
+    "inr_after_db": 6.11147983607033,
+    "initial_top_k": "[2247, 2244, 2251, 2241, 144]",
+    "examined_beams": 5,
+    "attempts": 5,
+    "candidate_satellites_considered": 250,
+    "evaluated_candidates": 24,
+    "accepted_changes": 4,
+    "stop_reason": "SEARCH_EXHAUSTED",
+    "active_pbo_beams": 0,
+    "max_prediction_error_db": 0.0
+  },
+  "ordinary_sharc_inr_db": 9.795199108558563,
+  "controlled_gate": false,
+  "audit_gate_db": -6.0,
+  "users_and_cells_preserved": true,
+  "legacy_baseline_agrees": true,
+  "max_user_cell_distance_m": 29734.85747734087,
+  "source_input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE.yaml",
+  "campaign_yaml_modified": false,
+  "handover_seconds": 169.12292180000804,
+  "incremental_checks": [
+    {
+      "beam": 2247,
+      "incremental_seconds": 0.5000684999395162,
+      "full_seconds": 149.2124004000798,
+      "max_link_error_db": 3.741024556802586e-08,
+      "max_sinr_error_db": 3.410605131648481e-13
+    }
+  ],
+  "timing_includes_full_reference": true,
+  "link_tolerance_db": 1e-06,
+  "sinr_tolerance_db": 1e-10
+}

@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "pairing": "exact geometry/activity/initial interference/initial performance",
+  "users_retained": true,
+  "runs": [
+    {
+      "folder": "C:\\GitHub\\SHARC\\tmp\\tcc2_pairing_final\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE_2026-10-23_01",
+      "mode": 0,
+      "snapshots": 2,
+      "accepted_changes": [
+        0,
+        0
+      ],
+      "inr_before_db": [
+        9.795199108558563,
+        7.147446400104712
+      ],
+      "inr_after_db": [
+        9.795199108558563,
+        7.147446400104712
+      ],
+      "stop_reasons": [
+        "BASELINE",
+        "BASELINE"
+      ],
+      "max_prediction_error_db": 0.0,
+      "max_lost_users": 0,
+      "max_sinr_outage_users": 0
+    },
+    {
+      "folder": "C:\\GitHub\\SHARC\\tmp\\tcc2_pairing_final\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5_2026-10-23_01",
+      "mode": 5,
+      "snapshots": 2,
+      "accepted_changes": [
+        4,
+        5
+      ],
+      "inr_before_db": [
+        9.795199108558563,
+        7.147446400104712
+      ],
+      "inr_after_db": [
+        6.11147983607033,
+        5.2130381701362865
+      ],
+      "stop_reasons": [
+        "SEARCH_EXHAUSTED",
+        "ACCEPTED_LIMIT"
+      ],
+      "max_prediction_error_db": 0.0,
+      "max_lost_users": 0,
+      "max_sinr_outage_users": 0
+    }
+  ]
+}

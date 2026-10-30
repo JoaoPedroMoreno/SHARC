@@ -1,8 +1,0 @@
-scenario=525-D-0.5
-snapshot_id=3415
-serving_satellite=1334
-target_satellite=1576
-predicted_reduction_db=48.629964
-service_elevation_loss_deg=68.338098
-selection=minimum normalized absolute deviation from the GB=10 event medians
-source_path=C:\GitHub\SHARC\sharc\campaigns\06_DC_MSS_to_EESS_operational_risk_diagnostics\output\operational_risk_525km_EESS_D_SA_P_OM_0_lf_0.5_GB_10MHz_V2_RISK_GATE_2026-08-25_01

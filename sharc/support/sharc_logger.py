@@ -132,7 +132,7 @@ class SimulationLogger:
         self.output_dir = base_dir / f"simulation_{self.param_name}_{self.timestamp}"
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-        self.   path = self.output_dir / f"{self.log_base}_{self.timestamp}.yaml"
+        self.log_path = self.output_dir / f"{self.log_base}_{self.timestamp}.yaml"
 
         with open(self.log_path, "w") as f:
             yaml.dump(self.data, f, sort_keys=False, allow_unicode=True)

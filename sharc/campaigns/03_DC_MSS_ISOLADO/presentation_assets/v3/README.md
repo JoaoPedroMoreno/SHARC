@@ -40,21 +40,27 @@ snapshot recuperado dos resultados: a geometria nacional e ilustrativa.
 As celulas azuis fornecem o contexto da malha, sem codificar visualmente a
 atividade; os enlaces explicitamente desenhados terminam em celulas ativas.
 
-Na imagem 2, o PBO e geografico, formando um anel ao longo de TODO o contorno
-do Brasil, inclusive o litoral. Essa escolha acompanha a geometria
-FROM_COUNTRIES do repositorio: pais menos o interior recuado por buffer
-negativo. O anel desenhado tem largura ilustrativa de dois raios de celula
-(51,606 km), sem pretender fixar a largura para todos os casos da contribuicao.
-Ha 745 celulas laranja nessa figura. Esse anel de potencia nao deve ser
-confundido com uma zona de exclusao ou uma area sem cobertura.
+Na imagem 2, o PBO e geografico, somente junto as fronteiras terrestres do
+Brasil. A linha de fronteira e extraida da intersecao do limite brasileiro
+com os limites dos demais paises do mesmo mapa Natural Earth. O litoral nao
+e usado para gerar a faixa. Os limites compartilhados incluem a fronteira
+com a Guiana Francesa, identificada como France na base cartografica.
+O contexto inclui os contornos dos dez vizinhos terrestres: Argentina,
+Uruguai, Paraguai, Bolivia, Peru, Colombia, Venezuela, Guiana, Suriname e
+Guiana Francesa. Todos mantem o mesmo cinza claro #DCE4E8 e espessura de
+0.9 pt, recortados na janela do mapa, sem alterar a escala do Brasil.
+A faixa tem largura ilustrativa de dois raios de celula (51,606 km), buffer
+com extremidades planas e recorte no territorio brasileiro. Os hexagonos sao
+selecionados pelo ponto representativo de sua parte dentro do pais. A
+contagem de celulas laranja esta em geometry_validation.json. A faixa nao
+deve ser confundida com uma zona de exclusao ou uma area sem cobertura.
 
-Evidencias da geometria: parameters_grid.py, _calculate_polygon de from_countries,
-recuo com shrink_countries_by_km; sharc_geom.py, shrink_lonlat_polygon_by_km,
-polygon_proj.buffer(-km * 1000); topology_imt_mss_dc.py, get_satellite_pointing,
-prioridade da zona interior de PBO=0 sobre a zona do pais inteiro.
-No Script/base_input.yaml da campanha 02_DC_MSS_to_FS 2, power_control_zones
-usa essas duas zonas FROM_COUNTRIES. O desenho ilustra essa regra geometrica,
-nao um resultado quantitativo de compatibilidade do documento ITU-R.
+Esta revisao modifica somente a ilustracao, conforme solicitado pelo autor.
+Nao modifica o mecanismo FROM_COUNTRIES, os YAMLs ou os resultados de
+simulacao. O buffer negativo do poligono inteiro usado na versao anterior
+incluia o litoral; ele nao e usado para a faixa da imagem 2 atual.
+A figura permanece esquematica, nao um resultado quantitativo de
+compatibilidade do documento ITU-R.
 
 A malha nacional representa a distribuicao de celulas; apenas alguns enlaces
 sao desenhados para comunicar a operacao multifeixe. A capa usa tres satelites
@@ -65,15 +71,28 @@ uma predicao de cobertura simultanea. A mascara aleatoria de PBO foi mantida.
 No zoom, mantem-se a malha e o receptor antes/depois. O PBO modifica a cor e a
 intensidade dos feixes selecionados. Os lobulos principais sao identificados
 sobre as celulas, com boresights para o lado brasileiro. A radiacao off-axis
-e representada por regioes secundarias difusas, contiguas aos dois feixes de
-servico desenhados junto a fronteira. Essas regioes sao calculadas a partir
+e representada por duas faixas secundarias suaves, uma junto a borda de cada
+feixe de servico desenhado junto a fronteira. Esta revisao parte da versao
+com dois nucleos opacos e nevoa ampla, anterior a suavizacao geral do centro.
+A opacidade maxima dos nucleos foi mantida, com area central mais opaca
+estreita e transicao continua ate a nevoa. O nucleo usa um unico perfil
+exponencial suavizado em duas dimensoes: exp(0.8 - sqrt(0.8^2 + q)), com
+q = (desvio_angular/1.8_graus)^2 + ((distancia_normalizada-0.85)/0.23)^2.
+O pico normalizado permanece igual a 1. O decaimento varia suavemente tanto
+nas laterais como ao longo da faixa, removendo o trecho extenso de opacidade
+constante e a separacao marcada entre uma linha escura e a nevoa.
+A nevoa ampla foi preservada (sigma de 12 graus, peso 0.48 fora do nucleo),
+assim como seu decaimento radial gaussiano. As partes translucidas se
+sobrepoem e conectam os dois nucleos claramente identificaveis. Mantem-se o esmaecimento junto ao
+satelite para nao sugerir emissao uniforme de toda a sua lateral. Sao calculadas a partir
 da direcao e das bordas dos feixes de servico, sem usar a posicao do receptor
 para aponta-las. Nao ha um cone fechado, eixo proprio, secao eliptica ou feixe
 deliberadamente dirigido a vitima. A radiacao off-axis pode incluir roll-off
 do lobulo principal e/ou lobulos laterais, sem identifica-la exclusivamente
 como um destes mecanismos.
 
-No painel (b), "Feixes com PBO" e "PBO = 10 dB" identificam os feixes reduzidos.
+No painel (b), "Feixes submetidos a PBO" identifica os feixes reduzidos.
+O nivel ilustrativo de 10 dB permanece no script, sem rotulo numerico no PNG.
 A geometria dos feixes principais e das regioes off-axis e identica nos dois
 paineis. O PBO altera apenas a potencia transmitida: com ganho de antena fixo,
 EIRP_PBO(theta, phi) = EIRP_nominal(theta, phi) - 10 dB em todas as direcoes.
@@ -81,7 +100,11 @@ Nenhuma abertura, apontamento, roll-off ou formato relativo e modificado.
 Na ilustracao, o mesmo fator visual e aplicado a cada feixe reduzido e a sua
 regiao off-axis. A opacidade usa (10^(-PBO_dB/10))^0.25 para preservar a
 visibilidade em projecao; nao e uma escala quantitativa de potencia ou EIRP.
-O ganho visual da regiao off-axis foi reforcado para 0.28, e os rotulos foram
+O ganho visual de cada faixa off-axis e 0.74, com vermelho mais escuro
+(#BF5750), para reforcar o contraste em projecao. O reforco e aplicado aos
+dois paineis sem alterar a geometria nem a razao de intensidade visual entre
+eles. A opacidade maxima de cada regiao isolada e aproximadamente 0.740
+sem PBO e 0.416 com PBO, antes da sobreposicao das duas regioes. Os rotulos foram
 simplificados para "Radiacao off-axis" e "Menor radiacao off-axis".
 Os feixes nao submetidos ao PBO permanecem visualmente inalterados. As cores
 das celulas indicam categorias (nominal ou com PBO), nao potencia recebida.
@@ -114,10 +137,11 @@ Execute a partir de C:\GitHub\SHARC:
 ```
 
 Para atualizar apenas o mecanismo local, adicione `--figures mechanism`
-ao ultimo comando. A capa e o mapa aprovados foram preservados nesta revisao:
+ao ultimo comando. Para atualizar apenas o mapa, use `--figures overview`.
+A capa e o mecanismo local foram preservados na revisao das fronteiras:
 
 - SHA256 da capa: `CF9F16E91044E4C3F9453FA545DEB3227ADC9C93F00A5DD70DEDAE9CED4101C5`.
-- SHA256 do mapa: `47B571C3664EA9F62CBC23112B67C41352510F0726D188D499E4A14619AEE65A`.
+- SHA256 do mecanismo: `0DFAC6F9F4ED2F83FE590E2027F2CE0D3B1082E690683D3C3204060D1CB90602`.
 
 Nenhuma simulacao foi executada. Os resultados brutos e as versoes anteriores
 das figuras foram preservados.

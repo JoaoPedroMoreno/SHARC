@@ -1,0 +1,3 @@
+mode,lf,snapshots,source
+BASELINE,50,1,tmp\tcc2_pbo_validation_20261025T120057084784\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_BASELINE_2026-10-25_01
+PBO100km,50,1,tmp\tcc2_pbo_validation_20261025T120057084784\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km_2026-10-25_01
