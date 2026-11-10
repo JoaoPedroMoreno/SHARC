@@ -177,9 +177,10 @@ def main(output_dir=None,preview=False):
     if not preview:
         for ext in ['png','pdf','svg']:
             path=output_dir/f'dc_mss_fs_mitigation_methodology.{ext}'
-            fig.savefig(path,dpi=600,facecolor='white')
+            fig.savefig(path,dpi=600,transparent=True,facecolor='none')
             print(path)
-    fig.savefig(output_dir/'latincom_sharc_monte_carlo_preview.png',dpi=140,facecolor='white')
+    fig.savefig(output_dir/'latincom_sharc_monte_carlo_preview.png',dpi=140,
+                transparent=True,facecolor='none')
     plt.close(fig)
 
 if __name__=='__main__':

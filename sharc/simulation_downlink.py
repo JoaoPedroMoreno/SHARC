@@ -1846,6 +1846,15 @@ class SimulationDownlink(Simulation):
             write_to_file (bool): Whether to write results to file.
             snapshot_number (int): The current snapshot number.
         """
+        if (self.parameters.imt.topology.type == "MSS_DC"
+                and getattr(self.parameters.imt.topology.mss_dc.interference_aware_handover_v2,
+                            "performance_only_output", False)):
+            # The opt-in performance campaign streams identified UE rows itself.
+            # Do not duplicate them or the campaign-07 victim/link samples in RAM/CSV.
+            if write_to_file:
+                self.results.write_files(snapshot_number)
+                self.notify_observers(source=__name__, results=self.results)
+            return
         if (
             self.parameters.imt.topology.type == "MSS_DC"
             and self.parameters.imt.topology.mss_dc

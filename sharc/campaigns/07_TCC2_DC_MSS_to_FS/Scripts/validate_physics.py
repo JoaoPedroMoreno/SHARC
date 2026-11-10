@@ -17,6 +17,7 @@ import yaml
 from sharc.cochannel_handover import CochannelHandover, xyz
 from sharc.simulation_downlink import SimulationDownlink
 from sharc.support.sharc_logger import SimulationLogger
+from sharc.support.tcc2_detailed_records import read_delta_rows
 
 # Tiny angle rounding is amplified near deep Taylor-pattern nulls. Service
 # SINR and victim INR are checked separately, much more tightly.
@@ -52,6 +53,7 @@ def compare_victim_only(output):
             folder.mkdir(parents=True)
             cfg = build(altitude, height, lf, mode)
             cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"]["record_detailed_links_and_users"] = True
+            cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"]["detailed_record_format"] = "FULL"
             cfg["imt"]["imt_dl_intra_sinr_calculation_disabled"] = disabled
             cfg["general"].update(num_snapshots=2, output_dir=str(folder), overwrite_output=True)
             source = folder / "input.yaml"
@@ -113,7 +115,7 @@ def compare_victim_only(output):
     validate_comparison_report(report)
 
 
-def compare_recording(output):
+def compare_recording(output, delta=False):
     """Verify export-only changes with paired real snapshots, outside the campaign."""
     output.mkdir(parents=True)
     report = []
@@ -128,6 +130,10 @@ def compare_recording(output):
             cfg = build(altitude, height, lf, mode)
             cfg["imt"]["imt_dl_intra_sinr_calculation_disabled"] = True
             cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"]["record_detailed_links_and_users"] = detailed
+            cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"]["detailed_record_format"] = "FULL"
+            if delta:
+                cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"]["record_detailed_links_and_users"] = True
+                cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"]["detailed_record_format"] = "FULL" if detailed else "DELTA"
             cfg["general"].update(num_snapshots=2, output_dir=str(folder), overwrite_output=True)
             source = folder / "input.yaml"
             source.write_text(yaml.safe_dump(cfg, sort_keys=False), encoding="utf-8")
@@ -137,7 +143,7 @@ def compare_recording(output):
                 sim.initialize()
                 snapshots = []
                 with ExitStack() as stack:
-                    if not detailed:
+                    if not detailed and not delta:
                         stack.enter_context(patch.object(CochannelHandover, "border_distances",
                             side_effect=AssertionError("Export-only border distance must not be calculated")))
                         stack.enter_context(patch.object(CochannelHandover, "record_links",
@@ -165,10 +171,18 @@ def compare_recording(output):
         for dataset in ("links", "users"):
             assert (left["folder"] / f"tcc2_{dataset}.csv.gz").is_file()
             assert not (right["folder"] / f"tcc2_{dataset}.csv.gz").exists()
+            if delta:
+                with gzip.open(left["folder"] / f"tcc2_{dataset}.csv.gz", "rt", newline="") as stream:
+                    reconstructed = read_delta_rows(right["folder"] / f"tcc2_{dataset}.delta.jsonl.gz")
+                    for original, restored in zip_longest(csv.DictReader(stream), reconstructed):
+                        assert original is not None and original == restored, (case, dataset)
         report.append(dict(case=case, snapshots=2, exact_inr_decisions_and_rng=True,
                            compared_datasets=compared, detailed_files_absent=True,
+                           delta_roundtrip_exact=delta,
+                           original_detail_bytes=sum(p.stat().st_size for p in left["folder"].glob("tcc2_*.csv.gz") if p.name in {"tcc2_links.csv.gz", "tcc2_users.csv.gz"}),
+                           delta_detail_bytes=sum(p.stat().st_size for p in right["folder"].glob("*.delta.jsonl.gz")),
                            accepted_changes=sum(s["accepted_changes"] for s in right["snapshots"])))
-        (output / "recording_validation.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+        (output / ("delta_validation.json" if delta else "recording_validation.json")).write_text(json.dumps(report, indent=2), encoding="utf-8")
         print(json.dumps(report[-1]), flush=True)
     assert any(r["accepted_changes"] > 0 for r in report), "Must exercise accepted handovers"
 
@@ -181,6 +195,8 @@ def main():
                         help="Compare full/victim-only physics, decisions, CSVs and RNG on six profiles")
     parser.add_argument("--compare-recording", action="store_true",
                         help="Compare detailed/compact exports on four profiles without changing physics")
+    parser.add_argument("--compare-delta", action="store_true",
+                        help="Verify FULL/DELTA physics, RNG and exact reconstruction of detailed rows")
     parser.add_argument("--check-incremental", action="store_true",
                         help="Compare the first optimized row update with the full link calculation")
     args = parser.parse_args()
@@ -189,6 +205,9 @@ def main():
     output = args.output.resolve()
     if output.exists():
         raise FileExistsError(output)
+    if args.compare_delta:
+        compare_recording(output, delta=True)
+        return
     if args.compare_recording:
         compare_recording(output)
         return
@@ -200,6 +219,7 @@ def main():
     path = output / "input.yaml"
     cfg = build(340, 40, .5, "BASELINE")
     cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"]["record_detailed_links_and_users"] = True
+    cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"]["detailed_record_format"] = "FULL"
     cfg["imt"]["imt_dl_intra_sinr_calculation_disabled"] = False
     cfg["general"]["output_dir"] = str(output)
     path.write_text(yaml.safe_dump(cfg, sort_keys=False), encoding="utf-8")

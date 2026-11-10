@@ -1,0 +1,52 @@
+{
+  "cover": [
+    {
+      "method": "ez",
+      "cells": 1656,
+      "outside_area_m2": 0.0,
+      "fs_symbol_inside_paraguay": true,
+      "fs_symbol_scale": 0.021060000000000002,
+      "fs_placement": "nearest BR-AR-PY junction, inside Paraguay",
+      "fs_base_display": [
+        3.9975349733456995,
+        4.192131529126738
+      ],
+      "triple_border_display": [
+        4.204428846600242,
+        4.182130529126738
+      ],
+      "service_beams": 8
+    },
+    {
+      "method": "pbo",
+      "cells": 1294,
+      "outside_area_m2": 0.0,
+      "fs_symbol_inside_paraguay": true,
+      "fs_symbol_scale": 0.021060000000000002,
+      "fs_placement": "nearest BR-AR-PY junction, inside Paraguay",
+      "fs_base_display": [
+        10.7975349733457,
+        4.192131529126738
+      ],
+      "triple_border_display": [
+        11.004428846600241,
+        4.182130529126738
+      ],
+      "service_beams": 9
+    }
+  ],
+  "illustrative_grid_radius_m": 61927.2,
+  "display_cell_scale": 2.4,
+  "map_vertical_scale": 0.8,
+  "grid_line_width_pt": 0.58,
+  "panel_center_separation": 6.8,
+  "map_height": 5.5,
+  "legend_explains_cells": true,
+  "point_callout_leaders": 0,
+  "encom_functions": [
+    "fit_map",
+    "draw_grid",
+    "beam",
+    "draw_geometry"
+  ]
+}

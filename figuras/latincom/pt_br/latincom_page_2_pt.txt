@@ -1,0 +1,11 @@
+LEGENDA SUGERIDA
+Figura X - Comparação conceitual entre as arquiteturas MSS convencional e DC-MSS-IMT.
+
+FONTE SUGERIDA
+Fonte: Elaboração própria em Python/Matplotlib, com modelo de satélite renderizado no Blender.
+
+COMO A FIGURA FOI PRODUZIDA
+O Matplotlib compõe feeder link, service link, células, terminais, antena gateway e textos. O painel DC-MSS-IMT representa User Equipment (UE) do ecossistema IMT. O satélite é uma imagem transparente renderizada no Blender. O gateway desta figura é um desenho em Matplotlib, não o modelo Blender do receptor FS. A comparação é didática, não uma topologia completa de implantação.
+
+USO NO TCC
+Substitua X pelo número da figura. A descrição de produção pode ficar na metodologia ou na lista de recursos utilizados; não precisa ocupar toda a legenda. A composição autoral não dispensa a atribuição de bases cartográficas e recursos de terceiros quando presentes.

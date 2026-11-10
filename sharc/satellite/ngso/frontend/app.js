@@ -172,7 +172,7 @@ const FOOTPRINT_MODE_SHARC_INTERFERENCE_LINK = "sharc_interference_link_budget";
 const MAX_INTERFERENCE_CANDIDATE_SATELLITES = 72;
 const SCENARIO_PARAM_FILES = {
     sa: "sharc/campaigns/02_DC_MSS_to_FS 2/input/dc_mss_to_fs_SouthAmerica_Sys3_340km_FS20m_LF20_EZ0km_Azi90deg.yaml",
-    brarg: "sharc/campaigns/02_DC_MSS_to_FS 2/output/output_dc_mss_to_fs_BR_AR_Paraguay_Sys3_340km_FS20m_LF20_M0km_Azi90deg_2026-07-02_01/dc_mss_to_fs_BR_AR_Paraguay_Sys3_340km_FS20m_LF20_M0km_Azi90deg.yaml",
+    brarg: "sharc/campaigns/02_DC_MSS_to_FS 2/input/dc_mss_to_fs_BR_AR_Paraguay_Sys3_340km_FS20m_LF20_M0km_Azi90deg.yaml",
 };
 const SCENARIO_LABELS = {
     sa: "SA",
@@ -1250,6 +1250,7 @@ async function loadSimulation(profile) {
     renderFrame(0);
     applyPresentationCamera();
     setStatus(`Perfil ${simulation.meta.profile} carregado em ${SCENARIO_LABELS[selectedScenario()]} com ${simulation.meta.frameCount} frames.`);
+    window.dispatchEvent(new Event("ngso:simulation-loaded"));
 }
 
 function buildStaticScene() {
@@ -2071,7 +2072,8 @@ function drawPresentationFootprintCones(frame, satBeamCounts) {
         const satData = frame.satellites.find((satellite) => satellite.id === footprint.satelliteId);
         if (!satData) continue;
 
-        const count = satBeamCounts.get(footprint.satelliteId) || footprint.cellCount || 0;
+        // Match the current cell assignment used to color the satellite marker.
+        const count = satBeamCounts.get(footprint.satelliteId) || 0;
         if (count <= 0) continue;
 
         const satPos = Cesium.Cartesian3.fromDegrees(

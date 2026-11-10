@@ -325,12 +325,20 @@ class ParametersInterferenceAwareHandoverV2(ParametersBase):
     max_active_beams_per_satellite: typing.Optional[int] = None
     # TCC2 audit exports only; never changes the interference calculation.
     record_detailed_links_and_users: bool = True
+    detailed_record_format: str = "FULL"
+    performance_only_output: bool = False
 
     def validate(self, ctx: str):
         if self.evaluation_mode not in {"ADJACENT_LEGACY", "COCHANNEL_INR"}:
             raise ValueError(f"{ctx}.evaluation_mode is not supported")
         if not isinstance(self.record_detailed_links_and_users, bool):
             raise ValueError(f"{ctx}.record_detailed_links_and_users must be a boolean")
+        if self.detailed_record_format not in {"FULL", "DELTA"}:
+            raise ValueError(f"{ctx}.detailed_record_format must be FULL or DELTA")
+        if not isinstance(self.performance_only_output, bool):
+            raise ValueError(f"{ctx}.performance_only_output must be a boolean")
+        if self.performance_only_output and self.evaluation_mode != "COCHANNEL_INR":
+            raise ValueError(f"{ctx}.performance_only_output requires COCHANNEL_INR")
         if not np.isfinite(self.inr_threshold_db):
             raise ValueError(f"{ctx}.inr_threshold_db must be finite")
         capacity = self.max_active_beams_per_satellite

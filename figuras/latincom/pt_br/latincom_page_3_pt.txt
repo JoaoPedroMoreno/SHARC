@@ -1,0 +1,11 @@
+LEGENDA SUGERIDA
+Figura X - Geometria conceitual do acoplamento interferente do downlink DC-MSS ao receptor de um enlace FS na fronteira Brasil-Paraguai, sem power back-off.
+
+FONTE SUGERIDA
+Fonte: Elaboração própria em Python/Matplotlib, com modelos de satélite e antenas FS renderizados no Blender.
+
+COMO A FIGURA FOI PRODUZIDA
+Plano de solo, células, main lobes, off-axis radiation, enlace FS e anotações são compostos em Matplotlib. Satélite e parabólicas são renders transparentes do Blender. Trata-se de um esquema de acoplamento, não de um mapa quantitativo de potência ou de interferência.
+
+USO NO TCC
+Substitua X pelo número da figura. A descrição de produção pode ficar na metodologia ou na lista de recursos utilizados; não precisa ocupar toda a legenda. A composição autoral não dispensa a atribuição de bases cartográficas e recursos de terceiros quando presentes.

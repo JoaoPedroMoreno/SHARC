@@ -1,0 +1,846 @@
+{
+  "time": "2026-11-08T23:00:40.289290+00:00",
+  "records": [
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10",
+      "n": 82,
+      "complete": false,
+      "created": 1794178365.2011323,
+      "updated": 1794178839.0363138,
+      "bytes": 40340145,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 1.6341463414634145,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 67,
+        "ACCEPTED_LIMIT": 5,
+        "SEARCH_EXHAUSTED": 10
+      },
+      "advanced": 9,
+      "recent_seconds_per_snapshot": 6.168848143683539,
+      "lifetime_seconds_per_snapshot": 5.77847782286202
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15",
+      "n": 67,
+      "complete": false,
+      "created": 1794178365.1391954,
+      "updated": 1794178821.5204537,
+      "bytes": 34800990,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 2.626865671641791,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 54,
+        "SEARCH_EXHAUSTED": 12,
+        "ACCEPTED_LIMIT": 1
+      },
+      "advanced": 8,
+      "recent_seconds_per_snapshot": 7.05075541138649,
+      "lifetime_seconds_per_snapshot": 6.811660570884818
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20",
+      "n": 59,
+      "complete": false,
+      "created": 1794178364.944706,
+      "updated": 1794178829.2344942,
+      "bytes": 31837415,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 3.7457627118644066,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 47,
+        "SEARCH_EXHAUSTED": 11,
+        "ACCEPTED_LIMIT": 1
+      },
+      "advanced": 10,
+      "recent_seconds_per_snapshot": 4.67252471446991,
+      "lifetime_seconds_per_snapshot": 7.869318444850081
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25",
+      "n": 48,
+      "complete": false,
+      "created": 1794178364.9110918,
+      "updated": 1794178814.2425668,
+      "bytes": 27716058,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 5.333333333333333,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 37,
+        "SEARCH_EXHAUSTED": 10,
+        "ACCEPTED_LIMIT": 1
+      },
+      "advanced": 2,
+      "recent_seconds_per_snapshot": 16.180272817611694,
+      "lifetime_seconds_per_snapshot": 9.361072396238646
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30",
+      "n": 45,
+      "complete": false,
+      "created": 1794178365.2378142,
+      "updated": 1794178836.2270157,
+      "bytes": 26302774,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 6.288888888888889,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 35,
+        "SEARCH_EXHAUSTED": 9,
+        "ACCEPTED_LIMIT": 1
+      },
+      "advanced": 9,
+      "recent_seconds_per_snapshot": 8.278802712758383,
+      "lifetime_seconds_per_snapshot": 10.466426701015896
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5",
+      "n": 95,
+      "complete": false,
+      "created": 1794178365.2638886,
+      "updated": 1794178838.3701012,
+      "bytes": 45003794,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 0.7789473684210526,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 77,
+        "ACCEPTED_LIMIT": 6,
+        "SEARCH_EXHAUSTED": 12
+      },
+      "advanced": 9,
+      "recent_seconds_per_snapshot": 6.5560643672943115,
+      "lifetime_seconds_per_snapshot": 4.980065395957546
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10",
+      "n": 22,
+      "complete": false,
+      "created": 1794178365.2166665,
+      "updated": 1794178834.5686202,
+      "bytes": 19543221,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 7.318181818181818,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 13,
+        "PROTECTION_REACHED": 5,
+        "ACCEPTED_LIMIT": 4
+      },
+      "advanced": 3,
+      "recent_seconds_per_snapshot": 19.96116868654887,
+      "lifetime_seconds_per_snapshot": 21.33417971567674
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15",
+      "n": 15,
+      "complete": false,
+      "created": 1794178364.9711266,
+      "updated": 1794178810.3740816,
+      "bytes": 16725218,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 11.533333333333333,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 10,
+        "PROTECTION_REACHED": 3,
+        "ACCEPTED_LIMIT": 2
+      },
+      "advanced": 1,
+      "recent_seconds_per_snapshot": 30.104339122772217,
+      "lifetime_seconds_per_snapshot": 29.693530337015787
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20",
+      "n": 12,
+      "complete": false,
+      "created": 1794178365.0063782,
+      "updated": 1794178814.4314768,
+      "bytes": 15698660,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 15.416666666666666,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 9,
+        "PROTECTION_REACHED": 2,
+        "ACCEPTED_LIMIT": 1
+      },
+      "advanced": 1,
+      "recent_seconds_per_snapshot": 43.0123450756073,
+      "lifetime_seconds_per_snapshot": 37.45209155480067
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25",
+      "n": 10,
+      "complete": false,
+      "created": 1794178365.2273026,
+      "updated": 1794178788.895162,
+      "bytes": 15132119,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 18.3,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 6,
+        "PROTECTION_REACHED": 3,
+        "ACCEPTED_LIMIT": 1
+      },
+      "advanced": 1,
+      "recent_seconds_per_snapshot": 54.29290223121643,
+      "lifetime_seconds_per_snapshot": 42.36678595542908
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30",
+      "n": 9,
+      "complete": false,
+      "created": 1794178364.944706,
+      "updated": 1794178787.9969015,
+      "bytes": 14006628,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 20.88888888888889,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 5,
+        "PROTECTION_REACHED": 3,
+        "ACCEPTED_LIMIT": 1
+      },
+      "advanced": 1,
+      "recent_seconds_per_snapshot": 53.63015842437744,
+      "lifetime_seconds_per_snapshot": 47.005799505445694
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5",
+      "n": 36,
+      "complete": false,
+      "created": 1794178364.9846544,
+      "updated": 1794178831.51943,
+      "bytes": 25999322,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 3.5277777777777777,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 17,
+        "ACCEPTED_LIMIT": 12,
+        "PROTECTION_REACHED": 7
+      },
+      "advanced": 4,
+      "recent_seconds_per_snapshot": 11.448390245437622,
+      "lifetime_seconds_per_snapshot": 12.959299319320255
+    }
+  ],
+  "checks": "finite non-increasing INR, limits, pairing, runtime config/code, DELTA files",
+  "forecast": {
+    "remaining_hours": 213.3189094612361,
+    "days": 8.888287894218172,
+    "eta_local": "2026-11-17T17:19:48.382381-03:00",
+    "sensitivity_days": [
+      5.777387131241812,
+      13.332431841327256
+    ],
+    "jobs": [
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10",
+        "active": true,
+        "seconds_per_snapshot": 5.77847782286202,
+        "hours": 15.919706401984865
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15",
+        "active": true,
+        "seconds_per_snapshot": 6.811660570884818,
+        "hours": 18.79450679183303
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20",
+        "active": true,
+        "seconds_per_snapshot": 7.869318444850081,
+        "hours": 21.7302485167374
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25",
+        "active": true,
+        "seconds_per_snapshot": 9.361072396238646,
+        "hours": 25.87816457982417
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30",
+        "active": true,
+        "seconds_per_snapshot": 10.466426701015896,
+        "hours": 28.942577169059234
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5",
+        "active": true,
+        "seconds_per_snapshot": 4.980065395957546,
+        "hours": 13.702096596377636
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10",
+        "active": true,
+        "seconds_per_snapshot": 21.33417971567674,
+        "hours": 59.13123477861736
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15",
+        "active": true,
+        "seconds_per_snapshot": 29.693530337015787,
+        "hours": 82.35830567086185
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20",
+        "active": true,
+        "seconds_per_snapshot": 37.45209155480067,
+        "hours": 103.9087473470414
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25",
+        "active": true,
+        "seconds_per_snapshot": 42.36678595542908,
+        "hours": 117.56783102631569
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30",
+        "active": true,
+        "seconds_per_snapshot": 47.005799505445694,
+        "hours": 130.4541507941411
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5",
+        "active": true,
+        "seconds_per_snapshot": 12.959299319320255,
+        "hours": 35.86846067158528
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10",
+        "active": false,
+        "seconds_per_snapshot": 5.073092063851399,
+        "hours": 14.091922399587219
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO15",
+        "active": false,
+        "seconds_per_snapshot": 6.044664016837572,
+        "hours": 16.790733380104367
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO20",
+        "active": false,
+        "seconds_per_snapshot": 7.162331532702088,
+        "hours": 19.895365368616908
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO25",
+        "active": false,
+        "seconds_per_snapshot": 8.477937090511091,
+        "hours": 23.549825251419694
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO30",
+        "active": false,
+        "seconds_per_snapshot": 10.475313022154381,
+        "hours": 29.098091728206615
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO5",
+        "active": false,
+        "seconds_per_snapshot": 4.190308007699628,
+        "hours": 11.639744465832301
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO30km",
+        "active": false,
+        "seconds_per_snapshot": 4.2455956474,
+        "hours": 11.793321242777777
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO40km",
+        "active": false,
+        "seconds_per_snapshot": 4.2544627594,
+        "hours": 11.817952109444445
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO90km",
+        "active": false,
+        "seconds_per_snapshot": 3.687195023722628,
+        "hours": 10.242208399229522
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO10",
+        "active": false,
+        "seconds_per_snapshot": 21.33417971567674,
+        "hours": 59.26161032132428
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO15",
+        "active": false,
+        "seconds_per_snapshot": 29.693530337015787,
+        "hours": 82.48202871393275
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO20",
+        "active": false,
+        "seconds_per_snapshot": 37.45209155480067,
+        "hours": 104.03358765222407
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO25",
+        "active": false,
+        "seconds_per_snapshot": 42.36678595542908,
+        "hours": 117.68551654285855
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30",
+        "active": false,
+        "seconds_per_snapshot": 46.2062802972058,
+        "hours": 128.35077860334945
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5",
+        "active": false,
+        "seconds_per_snapshot": 12.959299319320255,
+        "hours": 35.99805366477849
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO10km",
+        "active": false,
+        "seconds_per_snapshot": 4.0537058529,
+        "hours": 11.260294035833335
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO20km",
+        "active": false,
+        "seconds_per_snapshot": 4.0967677868,
+        "hours": 11.379910518888888
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO30km",
+        "active": false,
+        "seconds_per_snapshot": 4.1751088629,
+        "hours": 11.597524619166666
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO40km",
+        "active": false,
+        "seconds_per_snapshot": 4.1830081266,
+        "hours": 11.619467018333333
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO50km",
+        "active": false,
+        "seconds_per_snapshot": 4.1705172353,
+        "hours": 11.584770098055555
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO60km",
+        "active": false,
+        "seconds_per_snapshot": 4.1587795056,
+        "hours": 11.552165293333333
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO70km",
+        "active": false,
+        "seconds_per_snapshot": 4.1054078544,
+        "hours": 11.403910706666668
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO80km",
+        "active": false,
+        "seconds_per_snapshot": 4.080044212,
+        "hours": 11.333456144444444
+      },
+      {
+        "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO90km",
+        "active": false,
+        "seconds_per_snapshot": 3.9871286698999997,
+        "hours": 11.075357416388888
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO10",
+        "active": false,
+        "seconds_per_snapshot": 3.425525073281164,
+        "hours": 9.51534742578101
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO15",
+        "active": false,
+        "seconds_per_snapshot": 4.038003569716875,
+        "hours": 11.216676582546874
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO20",
+        "active": false,
+        "seconds_per_snapshot": 4.664991104719096,
+        "hours": 12.958308624219711
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO25",
+        "active": false,
+        "seconds_per_snapshot": 5.549314056246291,
+        "hours": 15.414761267350809
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO30",
+        "active": false,
+        "seconds_per_snapshot": 6.204576393828192,
+        "hours": 17.234934427300534
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO5",
+        "active": false,
+        "seconds_per_snapshot": 2.952220187285092,
+        "hours": 8.200611631347478
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO10km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO20km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO30km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO40km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO50km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO60km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO70km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO80km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO90km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO10",
+        "active": false,
+        "seconds_per_snapshot": 9.429158461210303,
+        "hours": 26.192106836695288
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO15",
+        "active": false,
+        "seconds_per_snapshot": 13.12377633224582,
+        "hours": 36.45493425623839
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO20",
+        "active": false,
+        "seconds_per_snapshot": 16.552860746479826,
+        "hours": 45.98016874022174
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO25",
+        "active": false,
+        "seconds_per_snapshot": 18.725029206179066,
+        "hours": 52.01397001716407
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO30",
+        "active": false,
+        "seconds_per_snapshot": 20.775353823753463,
+        "hours": 57.70931617709296
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO5",
+        "active": false,
+        "seconds_per_snapshot": 5.7276768292307105,
+        "hours": 15.910213414529752
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO10km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO20km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO30km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO40km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO50km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO60km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO70km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO80km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO90km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO10",
+        "active": false,
+        "seconds_per_snapshot": 2.959185314277933,
+        "hours": 8.219959206327593
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO15",
+        "active": false,
+        "seconds_per_snapshot": 3.525912946825236,
+        "hours": 9.7942026300701
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO20",
+        "active": false,
+        "seconds_per_snapshot": 4.1778595816515045,
+        "hours": 11.605165504587513
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO25",
+        "active": false,
+        "seconds_per_snapshot": 4.945265455042111,
+        "hours": 13.736848486228086
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO30",
+        "active": false,
+        "seconds_per_snapshot": 6.1103548028438945,
+        "hours": 16.973207785677484
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO5",
+        "active": false,
+        "seconds_per_snapshot": 2.4442485495270487,
+        "hours": 6.789579304241802
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO10km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO20km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO30km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO40km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO50km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO60km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO70km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO80km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO90km",
+        "active": false,
+        "seconds_per_snapshot": 1.68871943065,
+        "hours": 4.690887307361112
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO10",
+        "active": false,
+        "seconds_per_snapshot": 9.290618314048196,
+        "hours": 25.80727309457832
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO15",
+        "active": false,
+        "seconds_per_snapshot": 12.930952135699382,
+        "hours": 35.919311488053836
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO20",
+        "active": false,
+        "seconds_per_snapshot": 16.309653913844112,
+        "hours": 45.304594205122534
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO25",
+        "active": false,
+        "seconds_per_snapshot": 18.4499072732398,
+        "hours": 51.24974242566611
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO30",
+        "active": false,
+        "seconds_per_snapshot": 20.121932020560333,
+        "hours": 55.894255612667585
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO5",
+        "active": false,
+        "seconds_per_snapshot": 5.643521578888597,
+        "hours": 15.676448830246104
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO10km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO20km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO30km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO40km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO50km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO60km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO70km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO80km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      },
+      {
+        "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO90km",
+        "active": false,
+        "seconds_per_snapshot": 1.8786514177,
+        "hours": 5.218476160277778
+      }
+    ],
+    "method": "12-worker list scheduling; current HO lifetime rates calibrated by historical same-profile rates; PBO historical; short initial sample, not a confidence interval"
+  }
+}

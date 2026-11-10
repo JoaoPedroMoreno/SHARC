@@ -4,8 +4,9 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.colors import to_rgba
 from matplotlib.transforms import Affine2D
-from shapely.geometry import Polygon
+from shapely.geometry import Point, Polygon
 from shapely.ops import unary_union
 import latincom_visual_style as style
 import latincom_encom_cover as cover
@@ -69,6 +70,21 @@ class LatincomFiguresTest(unittest.TestCase):
         self.assertEqual(len(links),1)
         self.assertEqual(links[0].arrowprops['arrowstyle'],'<->')
 
+    def test_cover_fs_is_next_to_triple_border(self):
+        countries,regional,_=cover.geography()
+        anchor=cover.triple_border()
+        for name in ('Brazil','Argentina','Paraguay'):
+            self.assertLess(countries[name].boundary.distance(anchor),1e-6)
+        for dx in cover.COVER_PANEL_OFFSETS:
+            affine=style.original.fit_map(regional,(dx+.35,1.5,dx+7.65,7),vertical_scale=.8)
+            foot,scale,bounds=cover.fs_symbol_placement(countries['Paraguay'],affine)
+            target=affine.transform(anchor.coords[0])
+            self.assertLess(np.linalg.norm(foot-target),.22)
+            self.assertLessEqual(scale,cover.FS_DISPLAY_SCALE)
+            self.assertGreaterEqual(scale,.8*cover.FS_DISPLAY_SCALE)
+            self.assertGreater(foot[1],target[1])
+            self.assertTrue(bounds.covers(Point(foot)))
+
     def test_both_snapshot_methods_use_directional_fs(self):
         fig,ax=plt.subplots()
         for index,method in enumerate(('ez','pbo')):
@@ -108,6 +124,20 @@ class LatincomFiguresTest(unittest.TestCase):
         self.assertEqual(len(sprites),1)
         self.assertEqual(sprites[0].get_array().shape[2],4)
         self.assertIn('antenna_proposal_v2',antenna.manifest()['source_model'])
+
+    def test_fs_labels_share_the_same_antenna_relative_position(self):
+        fig=perspective.context()
+        ax=fig.axes[0]
+        for model,text in zip(ax._fs_antenna_geometry,
+                              ('Victim FS receiver','FS transmitter')):
+            captions=[a for a in ax.texts if a.get_gid()=='fs-label:'+text]
+            self.assertEqual(len(captions),1)
+            caption=captions[0]
+            np.testing.assert_allclose(np.asarray(caption.get_position())-model['base'],
+                                       [0,-2.5])
+            self.assertEqual(caption.get_ha(),'center')
+            self.assertEqual(caption.get_va(),'center')
+            self.assertEqual(caption.get_fontsize(),17)
 
     def test_rendered_boresights_match_ground_north(self):
         for model in antenna.manifest()['views'].values():
@@ -153,16 +183,40 @@ class LatincomFiguresTest(unittest.TestCase):
         fig=cover.cover()
         ax=fig.axes[0]
         labels=[a.get_text() for a in ax.texts]
-        for expected in ('Nominal-power cell','10 dB back-off','Excluded cell',
-                         'Shown beam footprint','Victim FS (Paraguay)'):
+        for expected in ('Nominal-power cell','Power-reduced cell (10 dB)',
+                         'Excluded cell','Victim FS (Paraguay)'):
             self.assertIn(expected,labels)
+        self.assertNotIn('Shown beam footprint',labels)
         self.assertNotIn('Victim FS',labels)
         self.assertNotIn('Paraguay',labels)
+        self.assertNotIn('Schematic',labels)
         self.assertEqual(fig._latincom_validation['point_callout_leaders'],0)
         self.assertLess(fig._latincom_validation['panel_center_separation'],8)
         self.assertGreater(fig._latincom_validation['map_height'],5.05)
         legend_dish=ax._fs_antenna_geometry[-1]
         self.assertGreater(legend_dish['render_extent'][0][1],.03)
+        keys=[p for p in ax.patches if p.get_gid()=='cover-legend-cell']
+        self.assertEqual(len(keys),3)
+        self.assertEqual(keys[-1].get_facecolor()[3],0)
+        self.assertNotEqual(keys[-1].get_linestyle(),'solid')
+        footprints=[p for p in ax.patches if p.get_gid()=='cover-service-footprint']
+        self.assertEqual(len(footprints),17)
+        for footprint in footprints:
+            self.assertIn(footprint.get_facecolor(),
+                          (to_rgba(style.original.BLUE_PALE),to_rgba(style.original.ORANGE_PALE)))
+
+    def test_excluded_cover_cells_have_no_fill_or_underlay(self):
+        fig,ax=plt.subplots()
+        cells=[dict(shape=Polygon(style.hexagon(index*3,0,1)),
+                    excluded=index==2,pbo=index==1) for index in range(3)]
+        artist=cover.draw_cover_grid(ax,cells,Affine2D())
+        np.testing.assert_allclose(artist.get_facecolors(),
+            [to_rgba(style.original.BLUE_PALE),to_rgba(style.original.ORANGE_PALE),to_rgba('none')])
+        self.assertIsNone(artist.get_linestyles()[0][1])
+        self.assertIsNone(artist.get_linestyles()[1][1])
+        self.assertIsNotNone(artist.get_linestyles()[2][1])
+        self.assertEqual(len(ax.patches),0)
+        self.assertEqual(len(ax.collections),1)
 
 
 if __name__=='__main__':

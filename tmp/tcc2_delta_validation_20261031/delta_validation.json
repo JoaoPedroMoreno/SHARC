@@ -1,0 +1,60 @@
+[
+  {
+    "case": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE",
+    "snapshots": 2,
+    "exact_inr_decisions_and_rng": true,
+    "compared_datasets": [
+      "snapshots",
+      "steps"
+    ],
+    "detailed_files_absent": true,
+    "delta_roundtrip_exact": true,
+    "original_detail_bytes": 814724,
+    "delta_detail_bytes": 851752,
+    "accepted_changes": 0
+  },
+  {
+    "case": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5",
+    "snapshots": 2,
+    "exact_inr_decisions_and_rng": true,
+    "compared_datasets": [
+      "snapshots",
+      "steps",
+      "events",
+      "candidates"
+    ],
+    "detailed_files_absent": true,
+    "delta_roundtrip_exact": true,
+    "original_detail_bytes": 2685523,
+    "delta_detail_bytes": 1081649,
+    "accepted_changes": 4
+  },
+  {
+    "case": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km",
+    "snapshots": 2,
+    "exact_inr_decisions_and_rng": true,
+    "compared_datasets": [
+      "snapshots",
+      "steps"
+    ],
+    "detailed_files_absent": true,
+    "delta_roundtrip_exact": true,
+    "original_detail_bytes": 563414,
+    "delta_detail_bytes": 587735,
+    "accepted_changes": 0
+  },
+  {
+    "case": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO5",
+    "snapshots": 2,
+    "exact_inr_decisions_and_rng": true,
+    "compared_datasets": [
+      "snapshots",
+      "steps"
+    ],
+    "detailed_files_absent": true,
+    "delta_roundtrip_exact": true,
+    "original_detail_bytes": 570695,
+    "delta_detail_bytes": 595155,
+    "accepted_changes": 0
+  }
+]

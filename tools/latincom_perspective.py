@@ -2,6 +2,7 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as path_effects
 from matplotlib.patches import Polygon as Patch
 from matplotlib.transforms import Affine2D
 from shapely.geometry import Polygon, Point
@@ -130,8 +131,13 @@ def context():
     ax.annotate('',xy=rx,xytext=tx,zorder=25,
                 arrowprops=dict(arrowstyle='-|>',color=s.GREEN,lw=1.8,
                                 shrinkA=3,shrinkB=3))
-    label(ax,31,26,'FS transmitter',17,s.GREEN,ha='center')
-    label(ax,48.4,6.5,'Victim FS receiver',17,s.GREEN,ha='center')
+    for antenna,text in zip(ax._fs_antenna_geometry,
+                            ('Victim FS receiver','FS transmitter')):
+        x,y=antenna['base']+np.array([0,-2.5])
+        caption=label(ax,x,y,text,17,s.GREEN,ha='center')
+        caption.set_gid('fs-label:'+text)
+        caption.set_path_effects([path_effects.withStroke(linewidth=1.8,
+                                                        foreground='white')])
     s.original.lobe_callout(ax,'Off-axis radiation',(6,39),off_axis_target,s.RED)
     s.original.lobe_callout(ax,'Main lobes',(94,38),(84,30.5),s.BLUE,side='left')
     fig._latincom_validation={'reference':'itu_pbo_zoom_border.png / panel (a)',

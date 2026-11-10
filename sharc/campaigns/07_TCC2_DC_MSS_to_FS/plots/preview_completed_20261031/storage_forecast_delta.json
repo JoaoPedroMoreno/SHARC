@@ -1,0 +1,1396 @@
+{
+  "totals": {
+    "HO": {
+      "cases": 48,
+      "central_gib": 269.36705456228776,
+      "low_gib": 207.12096902711977,
+      "high_gib": 388.96976369775814,
+      "old_full_gib": 1139.8632425558562,
+      "initial_detail_gib": 158.37423191013215,
+      "changed_detail_gib": 80.70032604574553,
+      "other_gib": 30.29249660641005
+    },
+    "PBO": {
+      "cases": 48,
+      "central_gib": 23.174240267025837,
+      "low_gib": 20.85681624032325,
+      "high_gib": 26.65037630707971,
+      "old_full_gib": 23.174240267025837,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 23.174240267025837
+    },
+    "ALL": {
+      "cases": 96,
+      "central_gib": 292.5412948293136,
+      "low_gib": 227.977785267443,
+      "high_gib": 415.6201400048378,
+      "old_full_gib": 1163.037482822882,
+      "initial_detail_gib": 158.37423191013215,
+      "changed_detail_gib": 80.70032604574553,
+      "other_gib": 53.466736873435885
+    }
+  },
+  "initial_delta_full_ratio": {
+    "340km_LF20": 1.0457527251301189,
+    "340km_LF50": 1.042495051449306,
+    "525km_LF20": 1.0469391498462355,
+    "525km_LF50": 1.0434389212099084
+  },
+  "changed_frame_delta_full_ratio": 0.08424396379079384,
+  "benchmarks": [
+    {
+      "case": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE",
+      "dataset": "links",
+      "sizes": {
+        "initial": {
+          "full": 470396,
+          "delta": 486489,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE",
+      "dataset": "users",
+      "sizes": {
+        "initial": {
+          "full": 344244,
+          "delta": 365423,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km",
+      "dataset": "links",
+      "sizes": {
+        "initial": {
+          "full": 557200,
+          "delta": 574245,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km",
+      "dataset": "users",
+      "sizes": {
+        "initial": {
+          "full": 345031,
+          "delta": 366252,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30",
+      "dataset": "links",
+      "sizes": {
+        "initial": {
+          "full": 545182,
+          "delta": 561873,
+          "frames": 2
+        },
+        "changes": {
+          "full": 7138671,
+          "delta": 978313,
+          "frames": 26
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30",
+      "dataset": "users",
+      "sizes": {
+        "initial": {
+          "full": 345031,
+          "delta": 366244,
+          "frames": 2
+        },
+        "changes": {
+          "full": 4539685,
+          "delta": 5518,
+          "frames": 26
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO30",
+      "dataset": "links",
+      "sizes": {
+        "initial": {
+          "full": 353637,
+          "delta": 364777,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO30",
+      "dataset": "users",
+      "sizes": {
+        "initial": {
+          "full": 216972,
+          "delta": 230522,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE",
+      "dataset": "links",
+      "sizes": {
+        "initial": {
+          "full": 295966,
+          "delta": 306458,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE",
+      "dataset": "users",
+      "sizes": {
+        "initial": {
+          "full": 216506,
+          "delta": 230069,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km",
+      "dataset": "links",
+      "sizes": {
+        "initial": {
+          "full": 346356,
+          "delta": 357365,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    },
+    {
+      "case": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km",
+      "dataset": "users",
+      "sizes": {
+        "initial": {
+          "full": 216972,
+          "delta": 230530,
+          "frames": 2
+        },
+        "changes": {
+          "full": 0,
+          "delta": 0,
+          "frames": 0
+        }
+      }
+    }
+  ],
+  "predictions": [
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10",
+      "technique": "HO",
+      "central_gib": 4.779943761056386,
+      "low_gib": 4.074333848364969,
+      "high_gib": 6.0354450692147665,
+      "old_full_gib": 9.710807642899454,
+      "initial_detail_gib": 3.911850035472979,
+      "changed_detail_gib": 0.4693538800914614,
+      "other_gib": 0.39873984549194574,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15",
+      "technique": "HO",
+      "central_gib": 5.03915209635398,
+      "low_gib": 4.20814919899922,
+      "high_gib": 6.546843101500864,
+      "old_full_gib": 12.635095668025315,
+      "initial_detail_gib": 3.911850035472979,
+      "changed_detail_gib": 0.714524938770873,
+      "other_gib": 0.4127771221101284,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20",
+      "technique": "HO",
+      "central_gib": 5.296894104331577,
+      "low_gib": 4.3412323026742845,
+      "high_gib": 7.055306951312283,
+      "old_full_gib": 15.541944751515985,
+      "initial_detail_gib": 3.911850035472979,
+      "changed_detail_gib": 0.9582266144609201,
+      "other_gib": 0.4268174543976784,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25",
+      "technique": "HO",
+      "central_gib": 5.552890842343448,
+      "low_gib": 4.473432691848523,
+      "high_gib": 7.560297060388849,
+      "old_full_gib": 18.428442204371095,
+      "initial_detail_gib": 3.911850035472979,
+      "changed_detail_gib": 1.200216618578442,
+      "other_gib": 0.4408241882920265,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30",
+      "technique": "HO",
+      "central_gib": 5.807837938661365,
+      "low_gib": 4.60505907407614,
+      "high_gib": 8.063269862910253,
+      "old_full_gib": 21.30426233276702,
+      "initial_detail_gib": 3.911850035472979,
+      "changed_detail_gib": 1.4413209346675004,
+      "other_gib": 0.4546669685208853,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5",
+      "technique": "HO",
+      "central_gib": 4.5202021988290895,
+      "low_gib": 3.9401509446381286,
+      "high_gib": 5.523148815782159,
+      "old_full_gib": 6.783847536891699,
+      "initial_detail_gib": 3.911850035472979,
+      "changed_detail_gib": 0.22398605990813658,
+      "other_gib": 0.3843661034479737,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10",
+      "technique": "HO",
+      "central_gib": 7.895830492389055,
+      "low_gib": 5.994329835082729,
+      "high_gib": 11.589276604157925,
+      "old_full_gib": 35.04651983706149,
+      "initial_detail_gib": 4.318327631671894,
+      "changed_detail_gib": 2.513891073319014,
+      "other_gib": 1.0636117873981463,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15",
+      "technique": "HO",
+      "central_gib": 9.155562025479982,
+      "low_gib": 6.643018714495468,
+      "high_gib": 14.07736781556099,
+      "old_full_gib": 49.317852146579405,
+      "initial_detail_gib": 4.318327631671894,
+      "changed_detail_gib": 3.7108788968523583,
+      "other_gib": 1.1263554969557301,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20",
+      "technique": "HO",
+      "central_gib": 10.275967435154993,
+      "low_gib": 7.219988602523406,
+      "high_gib": 16.29023332959362,
+      "old_full_gib": 62.00983858105006,
+      "initial_detail_gib": 4.318327631671894,
+      "changed_detail_gib": 4.775393695892589,
+      "other_gib": 1.1822461075905077,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25",
+      "technique": "HO",
+      "central_gib": 11.284195838245205,
+      "low_gib": 7.738179264236701,
+      "high_gib": 18.28322936882707,
+      "old_full_gib": 73.46774822542163,
+      "initial_detail_gib": 4.318327631671894,
+      "changed_detail_gib": 5.736700565088844,
+      "other_gib": 1.2291676414844677,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30",
+      "technique": "HO",
+      "central_gib": 12.288831490189345,
+      "low_gib": 8.25490227734996,
+      "high_gib": 20.268492027480033,
+      "old_full_gib": 84.8710996956694,
+      "initial_detail_gib": 4.318327631671894,
+      "changed_detail_gib": 6.693318926562354,
+      "other_gib": 1.2771849319550974,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5",
+      "technique": "HO",
+      "central_gib": 6.576126990689403,
+      "low_gib": 5.314092262893568,
+      "high_gib": 8.983845969657512,
+      "old_full_gib": 20.11992669850588,
+      "initial_detail_gib": 4.318327631671894,
+      "changed_detail_gib": 1.2621403094171453,
+      "other_gib": 0.9956590496003628,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10",
+      "technique": "HO",
+      "central_gib": 4.750743930957541,
+      "low_gib": 4.050478118934347,
+      "high_gib": 5.99667048958913,
+      "old_full_gib": 9.617592903785408,
+      "initial_detail_gib": 3.8889479085454117,
+      "changed_detail_gib": 0.4633727222874245,
+      "other_gib": 0.39842330012470484,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO15",
+      "technique": "HO",
+      "central_gib": 5.010369388783571,
+      "low_gib": 4.184537461324788,
+      "high_gib": 6.508843716112148,
+      "old_full_gib": 12.545548494216915,
+      "initial_detail_gib": 3.8889479085454117,
+      "changed_detail_gib": 0.7088428018553696,
+      "other_gib": 0.41257867838279016,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO20",
+      "technique": "HO",
+      "central_gib": 5.261536564861766,
+      "low_gib": 4.314221806175725,
+      "high_gib": 7.004343473582137,
+      "old_full_gib": 15.378386868163943,
+      "initial_detail_gib": 3.8889479085454117,
+      "changed_detail_gib": 0.9463407885607625,
+      "other_gib": 0.42624786775559187,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO25",
+      "technique": "HO",
+      "central_gib": 5.511337374460231,
+      "low_gib": 4.443178350519093,
+      "high_gib": 7.497184860205507,
+      "old_full_gib": 18.196622755274216,
+      "initial_detail_gib": 3.8889479085454117,
+      "changed_detail_gib": 1.1826211330121075,
+      "other_gib": 0.4397683329027118,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO30",
+      "technique": "HO",
+      "central_gib": 5.764334989584816,
+      "low_gib": 4.573852493009203,
+      "high_gib": 7.996221198908316,
+      "old_full_gib": 21.0484866804262,
+      "initial_detail_gib": 3.8889479085454117,
+      "changed_detail_gib": 1.4217009650439714,
+      "other_gib": 0.45368611599543285,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO5",
+      "technique": "HO",
+      "central_gib": 4.495824991771539,
+      "low_gib": 3.9187547911556453,
+      "high_gib": 5.493939041526628,
+      "old_full_gib": 6.746129888546987,
+      "initial_detail_gib": 3.8889479085454117,
+      "changed_detail_gib": 0.2226666437204262,
+      "other_gib": 0.3842104395057015,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO30km",
+      "technique": "PBO",
+      "central_gib": 0.36563982628285885,
+      "low_gib": 0.329075843654573,
+      "high_gib": 0.42048580022528764,
+      "old_full_gib": 0.36563982628285885,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.36563982628285885,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO40km",
+      "technique": "PBO",
+      "central_gib": 0.36564138159155846,
+      "low_gib": 0.32907724343240263,
+      "high_gib": 0.4204875888302922,
+      "old_full_gib": 0.36564138159155846,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.36564138159155846,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO90km",
+      "technique": "PBO",
+      "central_gib": 0.365642053196736,
+      "low_gib": 0.3290778478770624,
+      "high_gib": 0.42048836117624633,
+      "old_full_gib": 0.365642053196736,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.365642053196736,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO10",
+      "technique": "HO",
+      "central_gib": 7.843166206382232,
+      "low_gib": 5.94508000035642,
+      "high_gib": 11.532648127055438,
+      "old_full_gib": 35.04651983706149,
+      "initial_detail_gib": 4.261033402364649,
+      "changed_detail_gib": 2.5185210166194367,
+      "other_gib": 1.0636117873981463,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO15",
+      "technique": "HO",
+      "central_gib": 9.102897739473159,
+      "low_gib": 6.593768879769158,
+      "high_gib": 14.020739338458501,
+      "old_full_gib": 49.317852146579405,
+      "initial_detail_gib": 4.261033402364649,
+      "changed_detail_gib": 3.7155088401527805,
+      "other_gib": 1.1263554969557301,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO20",
+      "technique": "HO",
+      "central_gib": 10.223303149148169,
+      "low_gib": 7.170738767797095,
+      "high_gib": 16.23360485249113,
+      "old_full_gib": 62.00983858105006,
+      "initial_detail_gib": 4.261033402364649,
+      "changed_detail_gib": 4.780023639193011,
+      "other_gib": 1.1822461075905077,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO25",
+      "technique": "HO",
+      "central_gib": 11.231531552238382,
+      "low_gib": 7.688929429510392,
+      "high_gib": 18.22660089172458,
+      "old_full_gib": 73.46774822542163,
+      "initial_detail_gib": 4.261033402364649,
+      "changed_detail_gib": 5.741330508389266,
+      "other_gib": 1.2291676414844677,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30",
+      "technique": "HO",
+      "central_gib": 12.003258693376019,
+      "low_gib": 8.086559128497136,
+      "high_gib": 19.75044495996997,
+      "old_full_gib": 82.20203332181701,
+      "initial_detail_gib": 4.261033402364649,
+      "changed_detail_gib": 6.473837221467143,
+      "other_gib": 1.2683880695442262,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5",
+      "technique": "HO",
+      "central_gib": 6.523462704682579,
+      "low_gib": 5.264842428167258,
+      "high_gib": 8.927217492555025,
+      "old_full_gib": 20.11992669850588,
+      "initial_detail_gib": 4.261033402364649,
+      "changed_detail_gib": 1.2667702527175675,
+      "other_gib": 0.9956590496003628,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO10km",
+      "technique": "PBO",
+      "central_gib": 0.9055514931678772,
+      "low_gib": 0.8149963438510895,
+      "high_gib": 1.0413842171430587,
+      "old_full_gib": 0.9055514931678772,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.9055514931678772,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO20km",
+      "technique": "PBO",
+      "central_gib": 0.9055579733103514,
+      "low_gib": 0.8150021759793162,
+      "high_gib": 1.041391669306904,
+      "old_full_gib": 0.9055579733103514,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.9055579733103514,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO30km",
+      "technique": "PBO",
+      "central_gib": 0.9055627081543207,
+      "low_gib": 0.8150064373388887,
+      "high_gib": 1.0413971143774687,
+      "old_full_gib": 0.9055627081543207,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.9055627081543207,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO40km",
+      "technique": "PBO",
+      "central_gib": 0.9055635575205087,
+      "low_gib": 0.8150072017684578,
+      "high_gib": 1.041398091148585,
+      "old_full_gib": 0.9055635575205087,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.9055635575205087,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO50km",
+      "technique": "PBO",
+      "central_gib": 0.9055636115372182,
+      "low_gib": 0.8150072503834964,
+      "high_gib": 1.041398153267801,
+      "old_full_gib": 0.9055636115372182,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.9055636115372182,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO60km",
+      "technique": "PBO",
+      "central_gib": 0.9055639104917645,
+      "low_gib": 0.8150075194425881,
+      "high_gib": 1.0413984970655292,
+      "old_full_gib": 0.9055639104917645,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.9055639104917645,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO70km",
+      "technique": "PBO",
+      "central_gib": 0.9055639766156673,
+      "low_gib": 0.8150075789541006,
+      "high_gib": 1.0413985731080173,
+      "old_full_gib": 0.9055639766156673,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.9055639766156673,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO80km",
+      "technique": "PBO",
+      "central_gib": 0.9055640576407313,
+      "low_gib": 0.8150076518766582,
+      "high_gib": 1.0413986662868409,
+      "old_full_gib": 0.9055640576407313,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.9055640576407313,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO90km",
+      "technique": "PBO",
+      "central_gib": 0.9055635929107666,
+      "low_gib": 0.81500723361969,
+      "high_gib": 1.0413981318473815,
+      "old_full_gib": 0.9055635929107666,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.9055635929107666,
+      "method": "same altitude/LF/mode, other FS height"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO10",
+      "technique": "HO",
+      "central_gib": 2.909944062555043,
+      "low_gib": 2.4917461915597747,
+      "high_gib": 3.653447427404627,
+      "old_full_gib": 5.534125614755096,
+      "initial_detail_gib": 2.391729621282018,
+      "changed_detail_gib": 0.2512734020415387,
+      "other_gib": 0.26694103923148615,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO15",
+      "technique": "HO",
+      "central_gib": 3.0580175782351877,
+      "low_gib": 2.5686021749556587,
+      "high_gib": 3.944895749505231,
+      "old_full_gib": 7.1896480601684125,
+      "initial_detail_gib": 2.391729621282018,
+      "changed_detail_gib": 0.38994949920231176,
+      "other_gib": 0.2763384577508581,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO20",
+      "technique": "HO",
+      "central_gib": 3.2052620125210503,
+      "low_gib": 2.645044231350448,
+      "high_gib": 4.234684885990525,
+      "old_full_gib": 8.835306834923054,
+      "initial_detail_gib": 2.391729621282018,
+      "changed_detail_gib": 0.5277944693153124,
+      "other_gib": 0.28573792192371983,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO25",
+      "technique": "HO",
+      "central_gib": 3.3515157812403875,
+      "low_gib": 2.7209842071111403,
+      "high_gib": 4.522503937760827,
+      "old_full_gib": 10.469450628990304,
+      "initial_detail_gib": 2.391729621282018,
+      "changed_detail_gib": 0.6646712666979042,
+      "other_gib": 0.295114893260465,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO30",
+      "technique": "HO",
+      "central_gib": 3.4971588175786206,
+      "low_gib": 2.796585888473318,
+      "high_gib": 4.809156405115526,
+      "old_full_gib": 12.097537984817953,
+      "initial_detail_gib": 2.391729621282018,
+      "changed_detail_gib": 0.8010470923926023,
+      "other_gib": 0.30438210390400045,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO5",
+      "technique": "HO",
+      "central_gib": 2.761534001969684,
+      "low_gib": 2.414654360500448,
+      "high_gib": 3.3614386408449883,
+      "old_full_gib": 3.877056824552008,
+      "initial_detail_gib": 2.391729621282018,
+      "changed_detail_gib": 0.11248601067833745,
+      "other_gib": 0.25731837000932856,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO10km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO20km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO30km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO40km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO50km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO60km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO70km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO80km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO90km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO10",
+      "technique": "HO",
+      "central_gib": 4.035045137287392,
+      "low_gib": 3.2617983543668614,
+      "high_gib": 5.512348059979269,
+      "old_full_gib": 12.266650132804028,
+      "initial_detail_gib": 2.639723118492215,
+      "changed_detail_gib": 0.7673668910409123,
+      "other_gib": 0.6279551277542645,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO15",
+      "technique": "HO",
+      "central_gib": 4.4820413922153115,
+      "low_gib": 3.4964096251650236,
+      "high_gib": 6.387818664278102,
+      "old_full_gib": 17.169946971042464,
+      "initial_detail_gib": 2.639723118492215,
+      "changed_detail_gib": 1.1773193348548234,
+      "other_gib": 0.6649989388682722,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO20",
+      "technique": "HO",
+      "central_gib": 4.879621332950202,
+      "low_gib": 3.7050989204432847,
+      "high_gib": 7.166479670896525,
+      "old_full_gib": 21.530639841282866,
+      "initial_detail_gib": 2.639723118492215,
+      "changed_detail_gib": 1.5419015258869953,
+      "other_gib": 0.6979966885709912,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO25",
+      "technique": "HO",
+      "central_gib": 5.236558595245442,
+      "low_gib": 3.8918782768460893,
+      "high_gib": 7.866502986728364,
+      "old_full_gib": 25.466454246450184,
+      "initial_detail_gib": 2.639723118492215,
+      "changed_detail_gib": 1.8711363706649522,
+      "other_gib": 0.7256991060882747,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO30",
+      "technique": "HO",
+      "central_gib": 5.59253703924178,
+      "low_gib": 4.078372304111317,
+      "high_gib": 8.564285199275941,
+      "old_full_gib": 29.383854852333027,
+      "initial_detail_gib": 2.639723118492215,
+      "changed_detail_gib": 2.1987654637710943,
+      "other_gib": 0.7540484569784701,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO5",
+      "technique": "HO",
+      "central_gib": 3.566217898020335,
+      "low_gib": 3.0153489701854115,
+      "high_gib": 4.594753189025022,
+      "old_full_gib": 7.137643775867031,
+      "initial_detail_gib": 2.639723118492215,
+      "changed_detail_gib": 0.3386588669335925,
+      "other_gib": 0.587835912594527,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO10km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO20km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO30km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO40km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO50km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO60km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO70km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO80km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO90km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO10",
+      "technique": "HO",
+      "central_gib": 2.8945989813805966,
+      "low_gib": 2.4786918653937975,
+      "high_gib": 3.6341707644126875,
+      "old_full_gib": 5.499277157872148,
+      "initial_detail_gib": 2.37839949368731,
+      "changed_detail_gib": 0.2494242302647032,
+      "other_gib": 0.2667752574285832,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO15",
+      "technique": "HO",
+      "central_gib": 3.0433979656505623,
+      "low_gib": 2.555934794153308,
+      "high_gib": 3.927029671911739,
+      "old_full_gib": 7.1625338525551,
+      "initial_detail_gib": 2.37839949368731,
+      "changed_detail_gib": 0.3887450924529088,
+      "other_gib": 0.27625337951034323,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO20",
+      "technique": "HO",
+      "central_gib": 3.1873467072500294,
+      "low_gib": 2.6306549392433216,
+      "high_gib": 4.210350864626874,
+      "old_full_gib": 8.771755501576203,
+      "initial_detail_gib": 2.37839949368731,
+      "changed_detail_gib": 0.5235412530847775,
+      "other_gib": 0.285405960477942,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO25",
+      "technique": "HO",
+      "central_gib": 3.3305047721785326,
+      "low_gib": 2.7049498712815048,
+      "high_gib": 4.492140495193994,
+      "old_full_gib": 10.372674080956033,
+      "initial_detail_gib": 2.37839949368731,
+      "changed_detail_gib": 0.6576463194335085,
+      "other_gib": 0.29445895905771413,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO30",
+      "technique": "HO",
+      "central_gib": 3.4755177706714164,
+      "low_gib": 2.780252080642968,
+      "high_gib": 4.777506975321393,
+      "old_full_gib": 11.992719375287956,
+      "initial_detail_gib": 2.37839949368731,
+      "changed_detail_gib": 0.793340284209655,
+      "other_gib": 0.3037779927744514,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO5",
+      "technique": "HO",
+      "central_gib": 2.7484654007986298,
+      "low_gib": 2.4027700918104884,
+      "high_gib": 3.346661908735964,
+      "old_full_gib": 3.8680779543405563,
+      "initial_detail_gib": 2.37839949368731,
+      "changed_detail_gib": 0.1128072606571561,
+      "other_gib": 0.25725864645416374,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO10km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO20km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO30km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO40km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO50km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO60km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO70km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO80km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO90km",
+      "technique": "PBO",
+      "central_gib": 0.22349031269550323,
+      "low_gib": 0.20114128142595292,
+      "high_gib": 0.2570138595998287,
+      "old_full_gib": 0.22349031269550323,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.22349031269550323,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO10",
+      "technique": "HO",
+      "central_gib": 4.0480448253176045,
+      "low_gib": 3.2564573265161725,
+      "high_gib": 5.5643208746191295,
+      "old_full_gib": 12.728120670214302,
+      "initial_detail_gib": 2.6056941068388833,
+      "changed_detail_gib": 0.8084931480726648,
+      "other_gib": 0.6338575704060563,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO15",
+      "technique": "HO",
+      "central_gib": 4.511435852557013,
+      "low_gib": 3.4993704410790905,
+      "high_gib": 6.472406927525925,
+      "old_full_gib": 17.822243208417976,
+      "initial_detail_gib": 2.6056941068388833,
+      "changed_detail_gib": 1.23449217216803,
+      "other_gib": 0.6712495735500998,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO20",
+      "technique": "HO",
+      "central_gib": 4.923596627814942,
+      "low_gib": 3.715443201983308,
+      "high_gib": 7.280074522583029,
+      "old_full_gib": 22.35264322294589,
+      "initial_detail_gib": 2.6056941068388833,
+      "changed_detail_gib": 1.6133450365084494,
+      "other_gib": 0.7045574844676098,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO25",
+      "technique": "HO",
+      "central_gib": 5.293681366395305,
+      "low_gib": 3.9088744129052198,
+      "high_gib": 8.0062625970242,
+      "old_full_gib": 26.441691449185736,
+      "initial_detail_gib": 2.6056941068388833,
+      "changed_detail_gib": 1.9554669696497082,
+      "other_gib": 0.7325202899067128,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO30",
+      "technique": "HO",
+      "central_gib": 5.577748378252406,
+      "low_gib": 4.0579199223301945,
+      "high_gib": 8.562709948244366,
+      "old_full_gib": 29.559573351682026,
+      "initial_detail_gib": 2.6056941068388833,
+      "changed_detail_gib": 2.2161606365187314,
+      "other_gib": 0.7558936348947917,
+      "method": "same scenario"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO5",
+      "technique": "HO",
+      "central_gib": 3.5620597655164423,
+      "low_gib": 3.001315902312255,
+      "high_gib": 4.612598912189033,
+      "old_full_gib": 7.3995452412284015,
+      "initial_detail_gib": 2.6056941068388833,
+      "changed_detail_gib": 0.3630044026159577,
+      "other_gib": 0.5933612560616014,
+      "method": "340-km same limit scaled by historical 525/340 HO30 ratio"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO10km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO20km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO30km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO40km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO50km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO60km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO70km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO80km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO90km",
+      "technique": "PBO",
+      "central_gib": 0.550246472004801,
+      "low_gib": 0.4952218248043209,
+      "high_gib": 0.6327834428055211,
+      "old_full_gib": 0.550246472004801,
+      "initial_detail_gib": 0.0,
+      "changed_detail_gib": 0.0,
+      "other_gib": 0.550246472004801,
+      "method": "same altitude/LF, other PBO distances"
+    }
+  ],
+  "caveats": [
+    "All 96 inputs counted from zero snapshots.",
+    "Uses historical deleted-file byte inventories; no simulation is run.",
+    "Delta calibration uses small existing physical-test samples; 525-km changed frames extrapolate from 340 km.",
+    "Bounds are engineering sensitivity scenarios, not a confidence interval or guaranteed maximum.",
+    "Excludes existing outputs, future user-performance campaigns, duplicate runs and full CSV re-expansion."
+  ]
+}

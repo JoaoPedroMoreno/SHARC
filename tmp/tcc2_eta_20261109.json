@@ -1,0 +1,822 @@
+{
+  "sampled_at": "2026-11-09T07:52:12.892146-03:00",
+  "counts": {
+    "active": 12,
+    "complete": 1,
+    "queued": 83
+  },
+  "remaining_hours": 177.31418830834312,
+  "remaining_days": 7.388091179514297,
+  "eta_local": "2026-11-16T17:11:03.970056-03:00",
+  "planning_range_days": [
+    4.802259266684293,
+    11.082136769271445
+  ],
+  "previous_eta": "2026-11-17T17:19:48.382381-03:00",
+  "advance_vs_previous_eta_hours": 24.145670090277775,
+  "records": [
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10",
+      "n": 8830,
+      "complete": false,
+      "updated": 1794221528.7256427,
+      "seconds_per_snapshot": 4.888281371504372,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10_2026-11-08_01",
+      "overnight_advance": 8748,
+      "overnight_seconds_per_snapshot": 4.8799370517728535
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15",
+      "n": 7717,
+      "complete": false,
+      "updated": 1794221528.5371685,
+      "seconds_per_snapshot": 5.5932872843152275,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15_2026-11-08_01",
+      "overnight_advance": 7650,
+      "overnight_seconds_per_snapshot": 5.582616564027624
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20",
+      "n": 6855,
+      "complete": false,
+      "updated": 1794221512.5774112,
+      "seconds_per_snapshot": 6.294330080993674,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20_2026-11-08_01",
+      "overnight_advance": 6796,
+      "overnight_seconds_per_snapshot": 6.280656697611166
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25",
+      "n": 6114,
+      "complete": false,
+      "updated": 1794221528.9535573,
+      "seconds_per_snapshot": 7.05986955601053,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25_2026-11-08_01",
+      "overnight_advance": 6066,
+      "overnight_seconds_per_snapshot": 7.041660235810901
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30",
+      "n": 5443,
+      "complete": false,
+      "updated": 1794221498.6291957,
+      "seconds_per_snapshot": 7.924562076336974,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30_2026-11-08_01",
+      "overnight_advance": 5398,
+      "overnight_seconds_per_snapshot": 7.9033720229634
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5",
+      "n": 10000,
+      "complete": true,
+      "updated": 1794219886.4560742,
+      "seconds_per_snapshot": 4.152119218564033,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5_2026-11-08_01",
+      "overnight_advance": 9905,
+      "overnight_seconds_per_snapshot": 4.144178291067579
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10",
+      "n": 2202,
+      "complete": false,
+      "updated": 1794221530.275555,
+      "seconds_per_snapshot": 19.60266071227764,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10_2026-11-08_01",
+      "overnight_advance": 2180,
+      "overnight_seconds_per_snapshot": 19.585186667289207
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15",
+      "n": 1643,
+      "complete": false,
+      "updated": 1794221530.8197281,
+      "seconds_per_snapshot": 26.272579794022924,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15_2026-11-08_01",
+      "overnight_advance": 1628,
+      "overnight_seconds_per_snapshot": 26.241059979437612
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20",
+      "n": 1349,
+      "complete": false,
+      "updated": 1794221498.130818,
+      "seconds_per_snapshot": 31.974147101346432,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20_2026-11-08_01",
+      "overnight_advance": 1337,
+      "overnight_seconds_per_snapshot": 31.924980808570478
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25",
+      "n": 1162,
+      "complete": false,
+      "updated": 1794221504.3784044,
+      "seconds_per_snapshot": 37.12491488969675,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25_2026-11-08_01",
+      "overnight_advance": 1152,
+      "overnight_seconds_per_snapshot": 37.0794125366956
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30",
+      "n": 1036,
+      "complete": false,
+      "updated": 1794221497.5052853,
+      "seconds_per_snapshot": 41.63374573291499,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30_2026-11-08_01",
+      "overnight_advance": 1027,
+      "overnight_seconds_per_snapshot": 41.58666833860848
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5",
+      "n": 3554,
+      "complete": false,
+      "updated": 1794221533.3954585,
+      "seconds_per_snapshot": 12.146429601585053,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5_2026-11-08_01",
+      "overnight_advance": 3518,
+      "overnight_seconds_per_snapshot": 12.138111435059054
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10",
+      "n": 328,
+      "complete": false,
+      "updated": 1794221522.075741,
+      "seconds_per_snapshot": 4.938012299014301,
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10_2026-11-09_01"
+    }
+  ],
+  "jobs": [
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10",
+      "status": "active",
+      "seconds_per_snapshot": 4.888281371504372,
+      "remaining_hours": 1.588691445738921,
+      "eta_local": "2026-11-09T09:27:32.181351-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15",
+      "status": "active",
+      "seconds_per_snapshot": 5.5932872843152275,
+      "remaining_hours": 3.54707635280324,
+      "eta_local": "2026-11-09T11:25:02.367016-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20",
+      "status": "active",
+      "seconds_per_snapshot": 6.294330080993674,
+      "remaining_hours": 5.498796695756974,
+      "eta_local": "2026-11-09T13:22:08.560251-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25",
+      "status": "active",
+      "seconds_per_snapshot": 7.05986955601053,
+      "remaining_hours": 7.620736970738033,
+      "eta_local": "2026-11-09T15:29:27.545241-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30",
+      "status": "active",
+      "seconds_per_snapshot": 7.924562076336974,
+      "remaining_hours": 10.031174828296553,
+      "eta_local": "2026-11-09T17:54:05.121528-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5",
+      "status": "complete",
+      "seconds_per_snapshot": 4.152119218564033,
+      "remaining_hours": 0.0,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10",
+      "status": "active",
+      "seconds_per_snapshot": 19.60266071227764,
+      "remaining_hours": 42.46154117620584,
+      "eta_local": "2026-11-11T02:19:54.440380-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15",
+      "status": "active",
+      "seconds_per_snapshot": 26.272579794022924,
+      "remaining_hours": 60.98887481629155,
+      "eta_local": "2026-11-11T20:51:32.841485-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20",
+      "status": "active",
+      "seconds_per_snapshot": 31.974147101346432,
+      "remaining_hours": 76.8356518260411,
+      "eta_local": "2026-11-12T12:42:21.238720-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25",
+      "status": "active",
+      "seconds_per_snapshot": 37.12491488969675,
+      "remaining_hours": 91.14166605420552,
+      "eta_local": "2026-11-13T03:00:42.889941-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30",
+      "status": "active",
+      "seconds_per_snapshot": 41.63374573291499,
+      "remaining_hours": 103.66802687495831,
+      "eta_local": "2026-11-13T15:32:17.788896-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5",
+      "status": "active",
+      "seconds_per_snapshot": 12.146429601585053,
+      "remaining_hours": 21.74885700328257,
+      "eta_local": "2026-11-10T05:37:08.777358-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10",
+      "status": "active",
+      "seconds_per_snapshot": 4.938012299014301,
+      "remaining_hours": 13.266793043351756,
+      "eta_local": "2026-11-09T21:08:13.347102-03:00"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO15",
+      "status": "queued",
+      "seconds_per_snapshot": 4.963480201560252,
+      "remaining_hours": 13.787445004334032,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO20",
+      "status": "queued",
+      "seconds_per_snapshot": 5.728841593116536,
+      "remaining_hours": 15.913448869768157,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO25",
+      "status": "queued",
+      "seconds_per_snapshot": 6.39383261122104,
+      "remaining_hours": 17.760646142280667,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO30",
+      "status": "queued",
+      "seconds_per_snapshot": 7.931290275511709,
+      "remaining_hours": 22.031361876421414,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO5",
+      "status": "queued",
+      "seconds_per_snapshot": 3.4936606303594644,
+      "remaining_hours": 9.704612862109624,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO30km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.2455956474,
+      "remaining_hours": 11.793321242777777,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO40km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.2544627594,
+      "remaining_hours": 11.817952109444445,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO90km",
+      "status": "queued",
+      "seconds_per_snapshot": 3.687195023722628,
+      "remaining_hours": 10.242208399229522,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO10",
+      "status": "queued",
+      "seconds_per_snapshot": 19.60266071227764,
+      "remaining_hours": 54.45183531188233,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO15",
+      "status": "queued",
+      "seconds_per_snapshot": 26.272579794022924,
+      "remaining_hours": 72.97938831673035,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO20",
+      "status": "queued",
+      "seconds_per_snapshot": 31.974147101346432,
+      "remaining_hours": 88.81707528151787,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO25",
+      "status": "queued",
+      "seconds_per_snapshot": 37.12491488969675,
+      "remaining_hours": 103.12476358249096,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30",
+      "status": "queued",
+      "seconds_per_snapshot": 40.925599508945645,
+      "remaining_hours": 113.68222085818235,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5",
+      "status": "queued",
+      "seconds_per_snapshot": 12.146429601585053,
+      "remaining_hours": 33.74008222662515,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO10km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.0537058529,
+      "remaining_hours": 11.260294035833335,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO20km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.0967677868,
+      "remaining_hours": 11.379910518888888,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO30km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.1751088629,
+      "remaining_hours": 11.597524619166666,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO40km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.1830081266,
+      "remaining_hours": 11.619467018333333,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO50km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.1705172353,
+      "remaining_hours": 11.584770098055555,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO60km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.1587795056,
+      "remaining_hours": 11.552165293333333,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO70km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.1054078544,
+      "remaining_hours": 11.403910706666668,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO80km",
+      "status": "queued",
+      "seconds_per_snapshot": 4.080044212,
+      "remaining_hours": 11.333456144444444,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO90km",
+      "status": "queued",
+      "seconds_per_snapshot": 3.9871286698999997,
+      "remaining_hours": 11.075357416388888,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO10",
+      "status": "queued",
+      "seconds_per_snapshot": 2.897809927917639,
+      "remaining_hours": 8.049472021993441,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO15",
+      "status": "queued",
+      "seconds_per_snapshot": 3.315742730495901,
+      "remaining_hours": 9.210396473599726,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO20",
+      "status": "queued",
+      "seconds_per_snapshot": 3.7313261680517384,
+      "remaining_hours": 10.364794911254828,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO25",
+      "status": "queued",
+      "seconds_per_snapshot": 4.18514372115916,
+      "remaining_hours": 11.625399225442111,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO30",
+      "status": "queued",
+      "seconds_per_snapshot": 4.697739944569056,
+      "remaining_hours": 13.049277623802935,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO5",
+      "status": "queued",
+      "seconds_per_snapshot": 2.461407472080441,
+      "remaining_hours": 6.837242978001225,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO10km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO20km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO30km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO40km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO50km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO60km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO70km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO80km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO90km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO10",
+      "status": "queued",
+      "seconds_per_snapshot": 8.663871617317737,
+      "remaining_hours": 24.066310048104825,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO15",
+      "status": "queued",
+      "seconds_per_snapshot": 11.61180422046407,
+      "remaining_hours": 32.2550117235113,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO20",
+      "status": "queued",
+      "seconds_per_snapshot": 14.131750257034904,
+      "remaining_hours": 39.25486182509695,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO25",
+      "status": "queued",
+      "seconds_per_snapshot": 16.40825707944461,
+      "remaining_hours": 45.57849188734614,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO30",
+      "status": "queued",
+      "seconds_per_snapshot": 18.401044290487782,
+      "remaining_hours": 51.11401191802162,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO5",
+      "status": "queued",
+      "seconds_per_snapshot": 5.368409330831775,
+      "remaining_hours": 14.912248141199376,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO10km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO20km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO30km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO40km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO50km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO60km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO70km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO80km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO90km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO10",
+      "status": "queued",
+      "seconds_per_snapshot": 2.503311579631468,
+      "remaining_hours": 6.953643276754079,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO15",
+      "status": "queued",
+      "seconds_per_snapshot": 2.895247619262722,
+      "remaining_hours": 8.042354497952005,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO20",
+      "status": "queued",
+      "seconds_per_snapshot": 3.341690569933175,
+      "remaining_hours": 9.28247380536993,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO25",
+      "status": "queued",
+      "seconds_per_snapshot": 3.729586478411454,
+      "remaining_hours": 10.359962440031815,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO30",
+      "status": "queued",
+      "seconds_per_snapshot": 4.626400903269142,
+      "remaining_hours": 12.851113620192061,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO5",
+      "status": "queued",
+      "seconds_per_snapshot": 2.0378871702521395,
+      "remaining_hours": 5.660797695144832,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO10km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO20km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO30km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO40km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO50km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO60km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO70km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO80km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO90km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.68871943065,
+      "remaining_hours": 4.690887307361112,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO10",
+      "status": "queued",
+      "seconds_per_snapshot": 8.536575628625364,
+      "remaining_hours": 23.712710079514903,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO15",
+      "status": "queued",
+      "seconds_per_snapshot": 11.44119503278963,
+      "remaining_hours": 31.781097313304528,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO20",
+      "status": "queued",
+      "seconds_per_snapshot": 13.924116164520516,
+      "remaining_hours": 38.678100457001435,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO25",
+      "status": "queued",
+      "seconds_per_snapshot": 16.16717487048487,
+      "remaining_hours": 44.908819084680204,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO30",
+      "status": "queued",
+      "seconds_per_snapshot": 17.82229874213616,
+      "remaining_hours": 49.506385394822665,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO5",
+      "status": "queued",
+      "seconds_per_snapshot": 5.289532703423352,
+      "remaining_hours": 14.693146398398198,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO10km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO20km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO30km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO40km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO50km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO60km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO70km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO80km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO90km",
+      "status": "queued",
+      "seconds_per_snapshot": 1.8786514177,
+      "remaining_hours": 5.218476160277778,
+      "eta_local": null
+    }
+  ],
+  "method": "Same 12-worker scheduling model; overnight measured HO rates and historical 525/340 and PBO proxies. Range is sensitivity, not a confidence interval. Assumes uninterrupted operation."
+}

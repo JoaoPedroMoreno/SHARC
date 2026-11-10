@@ -1,0 +1,11 @@
+LEGENDA SUGERIDA
+Figura X - Metodologia de avaliação da interferência no FS por Monte Carlo no SHARC, com zona de exclusão e power back-off condicional.
+
+FONTE SUGERIDA
+Fonte: Elaboração própria em Python/Matplotlib, com modelos de satélites e antenas FS renderizados no Blender.
+
+COMO A FIGURA FOI PRODUZIDA
+O Matplotlib compõe os quadros de snapshots, as células, os enlaces, os textos e a curva de CCDF ilustrativa. Satélites e receptores FS são renders transparentes do Blender. Os dois snapshots e a CCDF do esquema são didáticos, não resultados extraídos dos outputs. O número de 10 000 snapshots foi preservado da figura original.
+
+USO NO TCC
+Substitua X pelo número da figura. A descrição de produção pode ficar na metodologia ou na lista de recursos utilizados; não precisa ocupar toda a legenda. A composição autoral não dispensa a atribuição de bases cartográficas e recursos de terceiros quando presentes.

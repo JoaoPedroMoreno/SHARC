@@ -1,0 +1,1876 @@
+{
+  "summary": {
+    "audit_time": "2026-11-10T13:15:58.069529-03:00",
+    "change_cutoff": "2026-11-10T12:59:30.574068-03:00",
+    "cutoff_evidence": "First patch modified parameters_imt_mss_dc.py; unchanged mtime since that patch.",
+    "queue_inputs": 96,
+    "status_counts": {
+      "COMPLETED_BEFORE_CHANGE": 15,
+      "STARTED_BEFORE_CHANGE": 12,
+      "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS": 69
+    },
+    "pending_at_change": 69,
+    "pending_by_technique": {
+      "PBO": 45,
+      "HO": 24
+    },
+    "current_active_scenarios": 12,
+    "started_after_cutoff": [],
+    "warnings": [],
+    "context_files": [
+      {
+        "path": "sharc/cochannel_handover.py",
+        "sha256": "51b086de5b13569a77ef739136e25ef272d258d41aa47c32fc0dad715916a3d6",
+        "modified": "2026-11-10T13:07:35.909719-03:00"
+      },
+      {
+        "path": "sharc/simulation_downlink.py",
+        "sha256": "83de15025bf9f392f334b4f2e47c39b85864ee75d0aa4c64bc6167e9277e3bd0",
+        "modified": "2026-11-10T13:09:34.367253-03:00"
+      },
+      {
+        "path": "sharc/parameters/imt/parameters_imt_mss_dc.py",
+        "sha256": "4c5c58cd0924e51d78e1f87372acee2c3317f3128ccd13db9e7e2d1350b3eef6",
+        "modified": "2026-11-10T12:59:30.574068-03:00"
+      },
+      {
+        "path": "sharc/campaigns/07_TCC2_DC_MSS_to_FS/Scripts/base_input.yaml",
+        "sha256": "a1dad69f8ee64778b8adb2c2157e8283c54d5d8edb5d903f1c3ab4737dabddf4",
+        "modified": "2026-10-31T01:33:38.554493-03:00"
+      },
+      {
+        "path": "sharc/campaigns/07_TCC2_DC_MSS_to_FS/Scripts/generate.py",
+        "sha256": "a466c964ca6d8da16298757eb5d4a8e4f7b33e20dc9a7c4ebc12441d06db9e7b",
+        "modified": "2026-10-31T07:10:58.852376-03:00"
+      },
+      {
+        "path": "sharc/campaigns/07_TCC2_DC_MSS_to_FS/Scripts/run_multiple_campaigns_mut_thread.py",
+        "sha256": "4105f450f9d69670c540633b35bba4c05844f35c9abab62ad2c7af713d2dd8d5",
+        "modified": "2026-10-25T12:07:30.084151-03:00"
+      },
+      {
+        "path": "sharc/campaigns/07_TCC2_DC_MSS_to_FS/input/generation_report.json",
+        "sha256": "c91db4a9e18a389b6b54dbc6231fb786d0d3efee53c48519653299e3219f12f8",
+        "modified": "2026-10-31T07:13:41.598128-03:00"
+      }
+    ],
+    "limitations": [
+      "Reconstructed after the fact, not an OS queue capture at the exact cutoff.",
+      "No-output/no-process status assumes no unrecorded failed attempt or deleted output.",
+      "Snapshot counts are from audit time, not reconstructed cutoff progress.",
+      "Context code is the disk version AFTER campaign-08 edits, not process memory or a pre-edit backup.",
+      "No outputs are copied, deleted, renamed, or regenerated; no simulations are started or stopped."
+    ]
+  },
+  "scenarios": [
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO10",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:43.152828-03:00",
+      "ended_before_change": "2026-11-09T09:26:14.518372-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10.yaml",
+      "input_sha256": "3cfdc19e2a084cc048e3db49fc9b964ccd10538937f3e16016d7530d97438941",
+      "input_modified": "2026-10-31T07:11:34.256515-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:45.201132-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10_2026-11-08_01\\simulation_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10_2026-11-08-19-52-38\\simulation_log_2026-11-08-19-52-38.yaml",
+              "started_at": "2026-11-08T19:52:43.152828",
+              "ended_at": "2026-11-09T09:26:14.518372"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO15",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:43.096857-03:00",
+      "ended_before_change": "2026-11-09T11:23:16.237966-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15.yaml",
+      "input_sha256": "0d249a314bcbda3cb27fed420f3f13d402fd5cb40df9158feef0153c097572dc",
+      "input_modified": "2026-10-31T07:11:34.591310-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:45.139195-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15_2026-11-08_01\\simulation_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15_2026-11-08-19-52-38\\simulation_log_2026-11-08-19-52-38.yaml",
+              "started_at": "2026-11-08T19:52:43.096857",
+              "ended_at": "2026-11-09T11:23:16.237966"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO20",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:43.057868-03:00",
+      "ended_before_change": "2026-11-09T13:17:37.113183-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20.yaml",
+      "input_sha256": "ae13fd9eeafc8663418ad10e6bf4267583fb2ae576f52dfd8e3935accd08d6d6",
+      "input_modified": "2026-10-31T07:11:34.931674-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:44.944706-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20_2026-11-08_01\\simulation_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20_2026-11-08-19-52-38\\simulation_log_2026-11-08-19-52-38.yaml",
+              "started_at": "2026-11-08T19:52:43.057868",
+              "ended_at": "2026-11-09T13:17:37.113183"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO25",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:43.213465-03:00",
+      "ended_before_change": "2026-11-09T15:26:27.581215-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25.yaml",
+      "input_sha256": "631a866618ea4b8646203feba9788fb197f8af6f5c160162270abf6a0f724b7a",
+      "input_modified": "2026-10-31T07:11:35.268796-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:44.911092-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25_2026-11-08_01\\simulation_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25_2026-11-08-19-52-38\\simulation_log_2026-11-08-19-52-38.yaml",
+              "started_at": "2026-11-08T19:52:43.213465",
+              "ended_at": "2026-11-09T15:26:27.581215"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO30",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:43.213465-03:00",
+      "ended_before_change": "2026-11-09T17:37:21.020315-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30.yaml",
+      "input_sha256": "9722f7f207b913b1f628c652e8ecbaf013779452d5d4347a33a5316fcfbaae5c",
+      "input_modified": "2026-10-31T07:11:35.586975-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:45.237814-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30_2026-11-08_01\\simulation_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30_2026-11-08-19-52-38\\simulation_log_2026-11-08-19-52-38.yaml",
+              "started_at": "2026-11-08T19:52:43.213465",
+              "ended_at": "2026-11-09T17:37:21.020315"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO5",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:43.108382-03:00",
+      "ended_before_change": "2026-11-09T07:24:46.584055-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5.yaml",
+      "input_sha256": "051a1ee8102f42fff10964aac0d71c9835804ddd38d09c58f23e574f96bb7d34",
+      "input_modified": "2026-10-31T07:11:33.798814-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:45.263889-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5_2026-11-08_01\\simulation_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5_2026-11-08-19-52-38\\simulation_log_2026-11-08-19-52-38.yaml",
+              "started_at": "2026-11-08T19:52:43.108382",
+              "ended_at": "2026-11-09T07:24:46.584055"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO10",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:27.760702-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        44620,
+        51320
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10.yaml",
+      "input_sha256": "d77bbe277cbd511adfca0e1aa7ae1e300e7b683562e85cf6bcd740af45b25f34",
+      "input_modified": "2026-10-31T07:12:11.132637-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:45.216666-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 7530,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO15",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:27.760688-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        31388,
+        48436
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15.yaml",
+      "input_sha256": "e74ee1dd9ec48b1c5b2e26ea70d6849d216301cd6cddf0460ec21431d0d8dd22",
+      "input_modified": "2026-10-31T07:12:11.454023-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:44.971127-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 5632,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO20",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:27.760829-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        38616,
+        44608
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20.yaml",
+      "input_sha256": "d90870b9e7a8ffb2f37a39e6ee547ed28d83c109f529f90146eeba88f58b93b4",
+      "input_modified": "2026-10-31T07:12:11.770011-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:45.006378-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 4625,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO25",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:27.760993-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        6320,
+        1208
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25.yaml",
+      "input_sha256": "20ae77adbff67b8daf530d83a34dc138c54b346dff09549185e31fd072197d0d",
+      "input_modified": "2026-10-31T07:12:12.085899-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:45.227303-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 3990,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO30",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:27.761113-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        35800,
+        40120
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30.yaml",
+      "input_sha256": "04d77c26006fbcf4b26253cbb6fcb92ecceedcb14aaf96bdf66d40517b4c16fc",
+      "input_modified": "2026-10-31T07:12:12.401902-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:44.944706-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 3559,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5",
+      "altitude_km": 340,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO5",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-08T19:52:43.225015-03:00",
+      "ended_before_change": "2026-11-10T05:57:00.863295-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5.yaml",
+      "input_sha256": "bb5d2a503392e7e2837468e781579ea24725272dfb08a951e3e7fb8d0f3593be",
+      "input_modified": "2026-10-31T07:12:10.819265-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5_2026-11-08_01",
+          "folder_created_local": "2026-11-08T19:52:44.984654-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5_2026-11-08_01\\simulation_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5_2026-11-08-19-52-38\\simulation_log_2026-11-08-19-52-38.yaml",
+              "started_at": "2026-11-08T19:52:43.225015",
+              "ended_at": "2026-11-10T05:57:00.863295"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO10",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-09T07:25:00.135934-03:00",
+      "ended_before_change": "2026-11-09T21:02:19.854946-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10.yaml",
+      "input_sha256": "62f5f9e447d1a185241d57bb8416c0d02cc21e78d5bcf220c0fc1cf732170885",
+      "input_modified": "2026-10-31T07:12:45.981665-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10_2026-11-09_01",
+          "folder_created_local": "2026-11-09T07:25:02.407707-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10_2026-11-09_01\\simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10_2026-11-09-07-24-55\\simulation_log_2026-11-09-07-24-55.yaml",
+              "started_at": "2026-11-09T07:25:00.135934",
+              "ended_at": "2026-11-09T21:02:19.854946"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO15",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO15",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-09T09:26:25.884518-03:00",
+      "ended_before_change": "2026-11-10T01:01:49.517706-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO15.yaml",
+      "input_sha256": "8ed168e6054827c8fb45d65ab50a1c3494177e7ed5c4cf5153414eb680e1b896",
+      "input_modified": "2026-10-31T07:12:46.302319-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO15_2026-11-09_01",
+          "folder_created_local": "2026-11-09T09:26:27.757362-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO15_2026-11-09_01\\simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO15_2026-11-09-09-26-22\\simulation_log_2026-11-09-09-26-22.yaml",
+              "started_at": "2026-11-09T09:26:25.884518",
+              "ended_at": "2026-11-10T01:01:49.517706"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO20",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO20",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-09T11:23:26.579088-03:00",
+      "ended_before_change": "2026-11-10T05:06:54.500648-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO20.yaml",
+      "input_sha256": "fbdc247cc80b090472c06b2c848f900efcf404bf6a1ba3e332afec5f210f9de5",
+      "input_modified": "2026-10-31T07:12:46.661435-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO20_2026-11-09_01",
+          "folder_created_local": "2026-11-09T11:23:29.308491-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO20_2026-11-09_01\\simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO20_2026-11-09-11-23-22\\simulation_log_2026-11-09-11-23-22.yaml",
+              "started_at": "2026-11-09T11:23:26.579088",
+              "ended_at": "2026-11-10T05:06:54.500648"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO25",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO25",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-09T13:17:49.953320-03:00",
+      "ended_before_change": "2026-11-10T09:04:01.611449-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO25.yaml",
+      "input_sha256": "4efe493807540a99db3a53273663d7452d1d86b62757c19793a23c71f1b89767",
+      "input_modified": "2026-10-31T07:12:46.984422-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO25_2026-11-09_01",
+          "folder_created_local": "2026-11-09T13:17:52.696154-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO25_2026-11-09_01\\simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO25_2026-11-09-13-17-45\\simulation_log_2026-11-09-13-17-45.yaml",
+              "started_at": "2026-11-09T13:17:49.953320",
+              "ended_at": "2026-11-10T09:04:01.611449"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO30",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO30",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-09T15:26:28.698027-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        50208,
+        39112
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO30.yaml",
+      "input_sha256": "2ea0aab88233a266c4b38320da788303f8a0ab2eb89bceb95460bee90c428f22",
+      "input_modified": "2026-10-31T07:12:47.302988-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO30_2026-11-09_01",
+          "folder_created_local": "2026-11-09T15:26:42.932896-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 9975,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO5",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO5",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-09T17:37:33.092792-03:00",
+      "ended_before_change": "2026-11-10T05:25:29.253572-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO5.yaml",
+      "input_sha256": "16fea43469512d5bcd3aa6b165c55284d2ad604c5ecba678b33d3a4ec0d35ac9",
+      "input_modified": "2026-10-31T07:12:45.647525-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO5_2026-11-09_01",
+          "folder_created_local": "2026-11-09T17:37:35.079268-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO5_2026-11-09_01\\simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO5_2026-11-09-17-37-29\\simulation_log_2026-11-09-17-37-29.yaml",
+              "started_at": "2026-11-09T17:37:33.092792",
+              "ended_at": "2026-11-10T05:25:29.253572"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO30km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO30km",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-09T21:02:31.658134-03:00",
+      "ended_before_change": "2026-11-10T05:15:41.129174-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO30km.yaml",
+      "input_sha256": "eeeaeb13803c4348dc228139f6b64f9649a2558cbc18b95da7a1a91abc06bf3f",
+      "input_modified": "2026-10-31T07:12:55.033174-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO30km_2026-11-09_01",
+          "folder_created_local": "2026-11-09T21:02:33.748547-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO30km_2026-11-09_01\\simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO30km_2026-11-09-21-02-28\\simulation_log_2026-11-09-21-02-28.yaml",
+              "started_at": "2026-11-09T21:02:31.658134",
+              "ended_at": "2026-11-10T05:15:41.129174"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO40km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO40km",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-10T01:02:01.791906-03:00",
+      "ended_before_change": "2026-11-10T09:05:36.233242-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO40km.yaml",
+      "input_sha256": "55c4287c240be730cfaf542be5826c597059a111ab20282c9344896eea04445a",
+      "input_modified": "2026-10-31T07:12:55.441903-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO40km_2026-11-10_01",
+          "folder_created_local": "2026-11-10T01:02:03.842451-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO40km_2026-11-10_01\\simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO40km_2026-11-10-01-01-58\\simulation_log_2026-11-10-01-01-58.yaml",
+              "started_at": "2026-11-10T01:02:01.791906",
+              "ended_at": "2026-11-10T09:05:36.233242"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO90km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO90km",
+      "status_at_change": "COMPLETED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-10T05:07:05.485278-03:00",
+      "ended_before_change": "2026-11-10T12:55:23.799626-03:00",
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO90km.yaml",
+      "input_sha256": "8aee9d2918870046b9c0209e8a8619307d932e529b9f0fe7446d4483d76defeb",
+      "input_modified": "2026-10-31T07:13:10.608297-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO90km_2026-11-10_01",
+          "folder_created_local": "2026-11-10T05:07:08.719799-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 10000,
+          "complete_observed": true,
+          "logs": [
+            {
+              "path": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO90km_2026-11-10_01\\simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO90km_2026-11-10-05-07-01\\simulation_log_2026-11-10-05-07-01.yaml",
+              "started_at": "2026-11-10T05:07:05.485278",
+              "ended_at": "2026-11-10T12:55:23.799626"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO10",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO10",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-10T05:15:42.413193-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        38184,
+        25056
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO10.yaml",
+      "input_sha256": "365d13878178b075c41f1dae8dfa56e121b600e8f828e95c1f9a6db09c863cc1",
+      "input_modified": "2026-10-31T07:13:12.135296-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO10_2026-11-10_01",
+          "folder_created_local": "2026-11-10T05:15:51.741775-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 1482,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO15",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO15",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-10T05:25:30.043488-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        16876,
+        14988
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO15.yaml",
+      "input_sha256": "5f744f9636439e6685de58c711cb2b2a5998feee35d79b45ef0ef806804fd510",
+      "input_modified": "2026-10-31T07:13:12.461284-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO15_2026-11-10_01",
+          "folder_created_local": "2026-11-10T05:25:37.155373-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 1086,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO20",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO20",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-10T05:57:02.092419-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        46040,
+        16596
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO20.yaml",
+      "input_sha256": "3ec9d16d99c09f6b559556e85ca59ea25969569b1cd6f22c356eae641955c342",
+      "input_modified": "2026-10-31T07:13:12.787187-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO20_2026-11-10_01",
+          "folder_created_local": "2026-11-10T05:57:10.687555-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 827,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO25",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO25",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-10T09:04:02.975803-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        41676,
+        24648
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO25.yaml",
+      "input_sha256": "9be45109eefa3d58015505fc74a5aa0551af51945831a5a9d77d7e1b33eb2f3e",
+      "input_modified": "2026-10-31T07:13:13.104849-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO25_2026-11-10_01",
+          "folder_created_local": "2026-11-10T09:04:16.174292-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 415,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO30",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-10T09:05:37.063217-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        50028,
+        43168
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30.yaml",
+      "input_sha256": "17beed059cb6b960e4a727491f7da9a8db52ce940a14ff1cbaccde87610f23d0",
+      "input_modified": "2026-10-31T07:13:13.420848-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30_2026-11-10_01",
+          "folder_created_local": "2026-11-10T09:05:45.833903-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 364,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO5",
+      "status_at_change": "STARTED_BEFORE_CHANGE",
+      "earliest_start": "2026-11-10T12:55:24.809766-03:00",
+      "ended_before_change": null,
+      "current_process_ids": [
+        52112,
+        19156
+      ],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5.yaml",
+      "input_sha256": "090c3e4efdb5729122d6bc0d878bb39d0954f85dfde01ef274d1f79a42b7dfff",
+      "input_modified": "2026-10-31T07:13:11.810549-03:00",
+      "outputs": [
+        {
+          "folder": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5_2026-11-10_01",
+          "folder_created_local": "2026-11-10T12:55:38.556396-03:00",
+          "manifest_exists": true,
+          "snapshots_observed": 83,
+          "complete_observed": false,
+          "logs": []
+        }
+      ]
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO10km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO10km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO10km.yaml",
+      "input_sha256": "42ce8f82566471aee4ad3c682287c059a9e4f98fff2b45a0c1583439935d64cd",
+      "input_modified": "2026-10-31T07:13:13.739079-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO20km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO20km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO20km.yaml",
+      "input_sha256": "ac209e52ea2200a33286f5e35d065d5aa7778188801491f53ceb8745a934a209",
+      "input_modified": "2026-10-31T07:13:14.160724-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO30km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO30km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO30km.yaml",
+      "input_sha256": "75b26387906a72804311dcd3b2f692add8e8e80fc6f8aeece2953300a1562393",
+      "input_modified": "2026-10-31T07:13:14.536341-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO40km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO40km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO40km.yaml",
+      "input_sha256": "bfbe2dedc1fbc1e0c47033410e95321d863d789780b1b51e67b7bfb3cad5a073",
+      "input_modified": "2026-10-31T07:13:14.909310-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO50km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO50km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO50km.yaml",
+      "input_sha256": "902fddbf5dd10df1dc653b00800d605139d504b2f182a467db3de23dae5c1d63",
+      "input_modified": "2026-10-31T07:13:15.294378-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO60km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO60km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO60km.yaml",
+      "input_sha256": "08afcdc988945112d70398093e3af1f973ac1765f22d2a486b1c4d3c2189c67e",
+      "input_modified": "2026-10-31T07:13:15.676446-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO70km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO70km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO70km.yaml",
+      "input_sha256": "172051035222a0216a2a01dac6d1f72728e67566928aef503943e30abebddbef",
+      "input_modified": "2026-10-31T07:13:16.058685-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO80km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO80km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO80km.yaml",
+      "input_sha256": "c6c93d9a435cd3087e714ea2c80bf8131164f6e1bd25a882454cc1f3087f7d0b",
+      "input_modified": "2026-10-31T07:13:16.421840-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO90km",
+      "altitude_km": 340,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO90km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO90km.yaml",
+      "input_sha256": "afdb51cdc7ac2951a005efd19b077fcbb443e29731ee915b15cf9c303bd36ad1",
+      "input_modified": "2026-10-31T07:13:16.832787-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO10",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO10",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO10.yaml",
+      "input_sha256": "4b38791486986fcee15b60c708819563ffabf5515f784845e02e765701531884",
+      "input_modified": "2026-10-31T07:13:18.308589-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO15",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO15",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO15.yaml",
+      "input_sha256": "ceb26450fee47e3bfbe3fd2b22f02645a3d9ee2e3f2f2c616e6361f2a48d00b9",
+      "input_modified": "2026-10-31T07:13:18.625469-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO20",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO20",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO20.yaml",
+      "input_sha256": "14b673e1261c7ecf116c1382cb49fc083314ed3e3d2bb67d490291545e2d6251",
+      "input_modified": "2026-10-31T07:13:18.943094-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO25",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO25",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO25.yaml",
+      "input_sha256": "de13981602c3d72265a4ba79fd7eca1303627a697e826542dcc19d11a32173c5",
+      "input_modified": "2026-10-31T07:13:19.284349-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO30",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO30",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO30.yaml",
+      "input_sha256": "dfa5c24f8ea0b10bcf8bcd284ed455222a23ee6337a271d2ba443b07422addab",
+      "input_modified": "2026-10-31T07:13:19.623368-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO5",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "HO5",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO5.yaml",
+      "input_sha256": "36ad5d88be725d32db33b2d705656189a82183838f3f0be05864f17e2353fe6e",
+      "input_modified": "2026-10-31T07:13:17.988578-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO10km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "PBO10km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO10km.yaml",
+      "input_sha256": "8093d04c75e6d26985af27e1e396c569e7a3c6aa9d62e68e8c688b608c802033",
+      "input_modified": "2026-10-31T07:13:19.945408-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO20km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "PBO20km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO20km.yaml",
+      "input_sha256": "b7828ea9909a474f29d6aa446857c7d987b9e38fcf846e6a0fe1a8ef648024ef",
+      "input_modified": "2026-10-31T07:13:20.318528-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO30km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "PBO30km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO30km.yaml",
+      "input_sha256": "1cf05ec544d4c8243b46c0fec7a1ebbcfe9523649ea65533f99af6e4beec0271",
+      "input_modified": "2026-10-31T07:13:20.686589-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO40km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "PBO40km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO40km.yaml",
+      "input_sha256": "41544e6713e3f230aba51cd82d225ba4ce856cca3a98adf11c2f9ec4121af725",
+      "input_modified": "2026-10-31T07:13:21.062594-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO50km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "PBO50km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO50km.yaml",
+      "input_sha256": "47427c7de16823fdd9028bce164a73af93c017f89d6415acf8df931271938f4e",
+      "input_modified": "2026-10-31T07:13:21.438948-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO60km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "PBO60km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO60km.yaml",
+      "input_sha256": "3fab86ef6e19b82599dd29d0690037cc03ff1757834228e3494cd38be8d29be4",
+      "input_modified": "2026-10-31T07:13:21.808646-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO70km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "PBO70km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO70km.yaml",
+      "input_sha256": "af5eca927f244c210fea99ab17f1d3836ff5816b79d43d58d5b08264970ea50b",
+      "input_modified": "2026-10-31T07:13:22.179103-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO80km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "PBO80km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO80km.yaml",
+      "input_sha256": "09782f9e11c854af8707955e0ea9c75dcd40d75ebd26ae2c713c8d5e2f954923",
+      "input_modified": "2026-10-31T07:13:22.554530-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO90km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 20,
+      "treatment": "PBO90km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO90km.yaml",
+      "input_sha256": "75412faf6f76e850eb9bd39ce94e528367f3d22e8eec42e29a65225a7e3bfbaf",
+      "input_modified": "2026-10-31T07:13:22.942551-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO10",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO10",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO10.yaml",
+      "input_sha256": "9e11e66321e7d0b6665080b6b2a8c6f34f96f16511724cf6b9118bd80d09de4c",
+      "input_modified": "2026-10-31T07:13:24.303426-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO15",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO15",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO15.yaml",
+      "input_sha256": "039ba51e46a5c150b6e666ab583fd59fe7b48f43ebf80ca5fbfcceb5b6c7fcb6",
+      "input_modified": "2026-10-31T07:13:24.653549-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO20",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO20",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO20.yaml",
+      "input_sha256": "ded3882be92d8a74efc7aaa6d51fc89772a0abe9c7ac43b1eec1f81322f9520b",
+      "input_modified": "2026-10-31T07:13:24.966550-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO25",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO25",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO25.yaml",
+      "input_sha256": "404bb4d63a3da36e3735cea49dfaf8cf436b9ad2fcacd21ffb4d28263ee7659c",
+      "input_modified": "2026-10-31T07:13:25.280459-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO30",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO30",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO30.yaml",
+      "input_sha256": "1cfefa649cb9eee831b80da374ac98a363c39f799f67b48c9698f76363f96fe9",
+      "input_modified": "2026-10-31T07:13:25.592797-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO5",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "HO5",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO5.yaml",
+      "input_sha256": "0a0e53eaf65ccd40f18b995877ecc63037b0f40aae5eb16b39c5e6130d935218",
+      "input_modified": "2026-10-31T07:13:23.988245-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO10km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "PBO10km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO10km.yaml",
+      "input_sha256": "a7df12f6aac6b1185b8e603e1fdad4278a7c98af54862f41efd657c3d23d627f",
+      "input_modified": "2026-10-31T07:13:25.908664-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO20km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "PBO20km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO20km.yaml",
+      "input_sha256": "f1495155d2d68895c3fca37bd283a1d7f50cf97e3f63d9a34640a0d72a6b9e7f",
+      "input_modified": "2026-10-31T07:13:26.288416-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO30km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "PBO30km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO30km.yaml",
+      "input_sha256": "a7b1874e3458ca371f41c50e3f69e686947e4d7dd9b52e3faa5b314c734b4d62",
+      "input_modified": "2026-10-31T07:13:26.677308-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO40km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "PBO40km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO40km.yaml",
+      "input_sha256": "e5381a586c1ae51a3c38054ca0ed7efd540e741c9b0ea3a09f9ffb58162b1bd0",
+      "input_modified": "2026-10-31T07:13:27.042563-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO50km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "PBO50km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO50km.yaml",
+      "input_sha256": "8f94a87a756d0af231e83a4b64006faf00f3977aa388d9fb5b7c1e6e95bbb41e",
+      "input_modified": "2026-10-31T07:13:27.418518-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO60km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "PBO60km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO60km.yaml",
+      "input_sha256": "1504e84ab86dd5a1c0bad0201976e4fac5a6ea358077bf0fb278fd2524c8f61c",
+      "input_modified": "2026-10-31T07:13:27.813567-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO70km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "PBO70km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO70km.yaml",
+      "input_sha256": "ddbe902c0576cd80c803ce1199b9dfb19d80c15f8ffa228873f4cbad9d3cbadd",
+      "input_modified": "2026-10-31T07:13:28.215274-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO80km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "PBO80km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO80km.yaml",
+      "input_sha256": "fb83be16441449ce7e100f8a345bf93055b8a3625113e496b8bffaf1cc013b7f",
+      "input_modified": "2026-10-31T07:13:28.595722-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO90km",
+      "altitude_km": 525,
+      "fs_height_m": 20,
+      "lf_pct": 50,
+      "treatment": "PBO90km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO90km.yaml",
+      "input_sha256": "94c1a8bbe37db65fb4087f069b31a4d21e7a6fc00310eae53858070a29fc9ea1",
+      "input_modified": "2026-10-31T07:13:28.964818-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO10",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO10",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO10.yaml",
+      "input_sha256": "5b237bfa1363fe4090c18f2d197fecd0288c78974c0dad0bbee9cd10373ceff3",
+      "input_modified": "2026-10-31T07:13:30.344198-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO15",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO15",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO15.yaml",
+      "input_sha256": "f51facbd574dffaa314863c8398ac0bdfc1b4da0600032f821da26044625eb42",
+      "input_modified": "2026-10-31T07:13:30.657204-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO20",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO20",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO20.yaml",
+      "input_sha256": "76b1245ddbe49e066e7a162fddb6e5b2f148787fd013564a2e34e45f2518e1cb",
+      "input_modified": "2026-10-31T07:13:30.972795-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO25",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO25",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO25.yaml",
+      "input_sha256": "2fbd68cb4805625aaca504d78742652a1cb499574e7580dcca8cb194335bd9c8",
+      "input_modified": "2026-10-31T07:13:31.301646-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO30",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO30",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO30.yaml",
+      "input_sha256": "b8b3ca5c9f9ea40e1e5527d19bd53e9c8401c1bc8196eedab57609e028066257",
+      "input_modified": "2026-10-31T07:13:31.624581-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO5",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "HO5",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO5.yaml",
+      "input_sha256": "108d789dbc220eba0fbaf7a97c0a7bc40572c64fa006703399ad6338904c71ef",
+      "input_modified": "2026-10-31T07:13:30.033237-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO10km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO10km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO10km.yaml",
+      "input_sha256": "2a3ed56949fb50f22bf29f16d6475264b156814c797f3e97d09b803bfadd7149",
+      "input_modified": "2026-10-31T07:13:31.939895-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO20km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO20km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO20km.yaml",
+      "input_sha256": "963de96db08f28161109ad3fa5f4878a9c509b055848bcaa050f7ec644c12c4a",
+      "input_modified": "2026-10-31T07:13:32.314306-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO30km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO30km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO30km.yaml",
+      "input_sha256": "865cbf9bc026da7b9560192b7b1c657320b6a033e3414f9d1c34e92696a59671",
+      "input_modified": "2026-10-31T07:13:32.679457-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO40km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO40km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO40km.yaml",
+      "input_sha256": "497dba6106bb7b6d15403b1c65da394b15bf8ae7b1baddd857421fc387da6d19",
+      "input_modified": "2026-10-31T07:13:33.086461-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO50km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO50km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO50km.yaml",
+      "input_sha256": "1067a659feff532cd24e9d64a30e49a756f8b8469da7ccdec3486ffdf3960d2f",
+      "input_modified": "2026-10-31T07:13:33.459507-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO60km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO60km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO60km.yaml",
+      "input_sha256": "bb6c8a3092b7cb540100b3b383f457105ba22681eda7fd683ab012c785e6ed41",
+      "input_modified": "2026-10-31T07:13:33.842415-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO70km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO70km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO70km.yaml",
+      "input_sha256": "ca8a7741a74eaa8fcb27adfc4b82148e950066a21a8e4537a3dde2cc231b275e",
+      "input_modified": "2026-10-31T07:13:34.225717-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO80km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO80km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO80km.yaml",
+      "input_sha256": "14fd51da814728d380b2ffb2d4d5515e05144e6ef505e4ad4e5a0bc468542344",
+      "input_modified": "2026-10-31T07:13:34.597071-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO90km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 20,
+      "treatment": "PBO90km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO90km.yaml",
+      "input_sha256": "933e610d3fc0010600d385724f5c0d6e6febf320c1fbf76f2adc6b3a98630514",
+      "input_modified": "2026-10-31T07:13:34.968173-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO10",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO10",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO10.yaml",
+      "input_sha256": "cf2bf03eaf8b0c0093e36a9a56294c8083f3bb3ad434a4e309128e9dff618df9",
+      "input_modified": "2026-10-31T07:13:36.328700-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO15",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO15",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO15.yaml",
+      "input_sha256": "8e87eab6cd6fcf3fbed5f28065ca8d2d34b3d1b9cb8c1a478c43722e0e5267bc",
+      "input_modified": "2026-10-31T07:13:36.645634-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO20",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO20",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO20.yaml",
+      "input_sha256": "4037bf42c963e1139672d8f199f61c15d3fed38b977d73ba93d28d7bcf05915a",
+      "input_modified": "2026-10-31T07:13:36.959873-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO25",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO25",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO25.yaml",
+      "input_sha256": "8db9674f51cc17097107a9a383a16ffdc45d893197e5057030e66da1c05b9400",
+      "input_modified": "2026-10-31T07:13:37.272686-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO30",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO30",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO30.yaml",
+      "input_sha256": "f287bc9ea81a6ed66fa31810bda542fd1b9e13c6a5343831c502b804226801e6",
+      "input_modified": "2026-10-31T07:13:37.585269-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO5",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "HO5",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO5.yaml",
+      "input_sha256": "94c97e617089901199570681ed612c2bb69295c4606c30014c4c9350bc61bd1c",
+      "input_modified": "2026-10-31T07:13:36.012922-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO10km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO10km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO10km.yaml",
+      "input_sha256": "7fcbd24fd4b86f7e34ae24f44b5703c5eee9bdb39d81150ebbe9a94e4e743d42",
+      "input_modified": "2026-10-31T07:13:37.895845-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO20km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO20km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO20km.yaml",
+      "input_sha256": "1f87272eb734ac01be26dbac8722d55e6a1fb672ab85de54ceaf091aacbfec5c",
+      "input_modified": "2026-10-31T07:13:38.268607-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO30km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO30km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO30km.yaml",
+      "input_sha256": "df7348881a66109dbf7e02d9888c3c9b028f9ac2c716b34cb63d2b5cba292166",
+      "input_modified": "2026-10-31T07:13:38.636363-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO40km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO40km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO40km.yaml",
+      "input_sha256": "9faabd6ae3e400708af9dbd338b93ef43eee6aa617049b976b8d4045ce0aa874",
+      "input_modified": "2026-10-31T07:13:39.006589-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO50km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO50km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO50km.yaml",
+      "input_sha256": "16df79e21775ecd6b28bed3afc709b2451c756ed416dbfc21f2740bfc4030456",
+      "input_modified": "2026-10-31T07:13:39.376022-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO60km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO60km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO60km.yaml",
+      "input_sha256": "653d589153c8a4cba4d800929b260c983e4154e88fd45ffbbb24ad824c09c3fe",
+      "input_modified": "2026-10-31T07:13:39.743344-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO70km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO70km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO70km.yaml",
+      "input_sha256": "604d53939394d0e532b45b2719a5ab9756b9e5d52b004770f5fb8486e8893e4e",
+      "input_modified": "2026-10-31T07:13:40.137511-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO80km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO80km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO80km.yaml",
+      "input_sha256": "7a6b478d85d628242c7448e2b3942ba40b0ca21c511438eea6eff1e3b91158a0",
+      "input_modified": "2026-10-31T07:13:40.504308-03:00",
+      "outputs": []
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO90km",
+      "altitude_km": 525,
+      "fs_height_m": 40,
+      "lf_pct": 50,
+      "treatment": "PBO90km",
+      "status_at_change": "NOT_STARTED_AT_CHANGE_NO_OUTPUT_OR_PROCESS",
+      "earliest_start": null,
+      "ended_before_change": null,
+      "current_process_ids": [],
+      "input": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO90km.yaml",
+      "input_sha256": "daa9e1c43dc1575edc0b76991a33b0b560e1a57411f37252bbbbbd307cb9b255",
+      "input_modified": "2026-10-31T07:13:40.880766-03:00",
+      "outputs": []
+    }
+  ]
+}

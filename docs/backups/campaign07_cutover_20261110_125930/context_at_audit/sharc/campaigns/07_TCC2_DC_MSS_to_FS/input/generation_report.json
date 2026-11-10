@@ -1,0 +1,408 @@
+{
+  "generated": [
+    "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30.yaml",
+    "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO10.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO15.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO20.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO25.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO30.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO5.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO30km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO40km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO90km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO10.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO15.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO20.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO25.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO10km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO20km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO30km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO40km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO50km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO60km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO70km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO80km.yaml",
+    "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO90km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO10.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO15.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO20.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO25.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO30.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_HO5.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO10km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO20km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO30km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO40km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO50km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO60km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO70km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO80km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO90km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO10.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO15.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO20.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO25.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO30.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO5.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO10km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO20km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO30km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO40km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO50km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO60km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO70km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO80km.yaml",
+    "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO90km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO10.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO15.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO20.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO25.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO30.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_HO5.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO10km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO20km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO30km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO40km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO50km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO60km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO70km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO80km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO90km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO10.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO15.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO20.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO25.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO30.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_HO5.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO10km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO20km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO30km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO40km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO50km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO60km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO70km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO80km.yaml",
+    "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO90km.yaml"
+  ],
+  "skipped": [
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE_2026-10-26_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO10km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO10km_2026-10-28_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO20km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO20km_2026-10-28_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO30km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO30km_2026-10-28_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO40km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO40km_2026-10-28_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO50km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO50km_2026-10-28_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO60km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO60km_2026-10-28_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO70km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO70km_2026-10-28_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO80km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO80km_2026-10-29_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO90km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO90km_2026-10-29_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO100km",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO100km_2026-10-26_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_BASELINE",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_BASELINE_2026-10-26_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO10km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO10km_2026-10-29_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO20km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO20km_2026-10-29_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO30km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO30km_2026-10-29_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO40km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO40km_2026-10-29_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO50km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO50km_2026-10-29_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO60km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO60km_2026-10-29_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO70km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO70km_2026-10-29_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO80km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO80km_2026-10-30_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO90km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO90km_2026-10-30_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km_2026-10-26_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_BASELINE",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_BASELINE_2026-10-26_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO10km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO10km_2026-10-30_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO20km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO20km_2026-10-30_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO50km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO50km_2026-10-30_01",
+      "snapshots": 9765,
+      "target": 10000,
+      "status": "preserved_partial_by_request"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO60km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO60km_2026-10-30_01",
+      "snapshots": 9754,
+      "target": 10000,
+      "status": "preserved_partial_by_request"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO70km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO70km_2026-10-30_01",
+      "snapshots": 9749,
+      "target": 10000,
+      "status": "preserved_partial_by_request"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO80km",
+      "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO80km_2026-10-30_01",
+      "snapshots": 9745,
+      "target": 10000,
+      "status": "preserved_partial_by_request"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO100km",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO100km_2026-10-26_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE_2026-10-26_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO100km",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO100km_2026-10-26_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_BASELINE",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_BASELINE_2026-10-27_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO100km",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO100km_2026-10-27_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_BASELINE",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_BASELINE_2026-10-27_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO100km",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO100km_2026-10-27_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE_2026-10-27_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO100km",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO100km_2026-10-27_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_BASELINE",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_BASELINE_2026-10-27_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    },
+    {
+      "scenario": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km",
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km_2026-10-27_01",
+      "snapshots": 10000,
+      "target": 10000,
+      "status": "completed"
+    }
+  ],
+  "output_dir": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS",
+  "results_dirs": [
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output",
+    "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS"
+  ],
+  "handover_limits": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30
+  ],
+  "pbo_distances_km": [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100
+  ],
+  "preserve_pbo_above_snapshots": 9000
+}

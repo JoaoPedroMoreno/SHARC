@@ -1,0 +1,239 @@
+[
+  {
+    "figure": "latincom_cover",
+    "translated_labels": [
+      {
+        "en": "DC-MSS / FS coexistence",
+        "pt": "Coexistência DC-MSS / FS"
+      },
+      {
+        "en": "Exclusion zone",
+        "pt": "Zona de exclusão"
+      },
+      {
+        "en": "Brazil",
+        "pt": "Brasil"
+      },
+      {
+        "en": "Regional service area",
+        "pt": "Área de serviço regional"
+      },
+      {
+        "en": "Conditional power back-off",
+        "pt": "Power back-off condicional"
+      },
+      {
+        "en": "Brazil",
+        "pt": "Brasil"
+      },
+      {
+        "en": "Brazil / Argentina service area",
+        "pt": "Área de serviço Brasil / Argentina"
+      },
+      {
+        "en": "Nominal-power cell",
+        "pt": "Célula com potência nominal"
+      },
+      {
+        "en": "Power-reduced cell (10 dB)",
+        "pt": "Célula com redução de 10 dB"
+      },
+      {
+        "en": "Excluded cell",
+        "pt": "Célula excluída"
+      },
+      {
+        "en": "Exclusion zone",
+        "pt": "Zona de exclusão"
+      },
+      {
+        "en": "Victim FS (Paraguay)",
+        "pt": "FS vítima (Paraguai)"
+      }
+    ],
+    "text_outside_canvas": []
+  },
+  {
+    "figure": "latincom_page_2",
+    "translated_labels": [
+      {
+        "en": "Conventional MSS",
+        "pt": "MSS convencional"
+      },
+      {
+        "en": "Ground gateway",
+        "pt": "Gateway terrestre"
+      },
+      {
+        "en": "Dedicated MSS terminal",
+        "pt": "Terminal MSS dedicado"
+      },
+      {
+        "en": "Gateway $\\rightarrow$ satellite $\\rightarrow$ MSS handset",
+        "pt": "Gateway $\\rightarrow$ satélite $\\rightarrow$ terminal MSS"
+      },
+      {
+        "en": "IMT user equipment",
+        "pt": "IMT User Equipment (UE)"
+      }
+    ],
+    "text_outside_canvas": []
+  },
+  {
+    "figure": "latincom_page_2A_conventional_mss",
+    "translated_labels": [
+      {
+        "en": "Conventional MSS",
+        "pt": "MSS convencional"
+      },
+      {
+        "en": "Ground gateway",
+        "pt": "Gateway terrestre"
+      },
+      {
+        "en": "Dedicated MSS terminal",
+        "pt": "Terminal MSS dedicado"
+      },
+      {
+        "en": "Gateway $\\rightarrow$ satellite $\\rightarrow$ MSS handset",
+        "pt": "Gateway $\\rightarrow$ satélite $\\rightarrow$ terminal MSS"
+      }
+    ],
+    "text_outside_canvas": []
+  },
+  {
+    "figure": "latincom_page_2B_dc_mss_imt",
+    "translated_labels": [
+      {
+        "en": "IMT user equipment",
+        "pt": "IMT User Equipment (UE)"
+      }
+    ],
+    "text_outside_canvas": []
+  },
+  {
+    "figure": "latincom_page_3",
+    "translated_labels": [
+      {
+        "en": "(a) No power back-off",
+        "pt": "(a) Sem power back-off"
+      },
+      {
+        "en": "Paraguay",
+        "pt": "Paraguai"
+      },
+      {
+        "en": "Brazil",
+        "pt": "Brasil"
+      },
+      {
+        "en": "Border",
+        "pt": "Fronteira"
+      },
+      {
+        "en": "Victim FS receiver",
+        "pt": "Receptor FS vítima"
+      },
+      {
+        "en": "FS transmitter",
+        "pt": "Transmissor FS"
+      }
+    ],
+    "text_outside_canvas": []
+  },
+  {
+    "figure": "latincom_sharc_monte_carlo",
+    "translated_labels": [
+      {
+        "en": "Scenario",
+        "pt": "Cenário"
+      },
+      {
+        "en": "Snapshots and mitigation",
+        "pt": "Snapshots e mitigação"
+      },
+      {
+        "en": "FS assessment",
+        "pt": "Avaliação do FS"
+      },
+      {
+        "en": "System 3",
+        "pt": "Sistema 3"
+      },
+      {
+        "en": "Victim FS",
+        "pt": "FS vítima"
+      },
+      {
+        "en": "Mitigation sweep",
+        "pt": "Variação da mitigação"
+      },
+      {
+        "en": "0 to 100 km",
+        "pt": "0 a 100 km"
+      },
+      {
+        "en": "Exclusion zone",
+        "pt": "Zona de exclusão"
+      },
+      {
+        "en": "Regional coverage",
+        "pt": "Cobertura regional"
+      },
+      {
+        "en": "Conditional power back-off",
+        "pt": "Power back-off condicional"
+      },
+      {
+        "en": "Brazil / Argentina",
+        "pt": "Brasil / Argentina"
+      },
+      {
+        "en": "CCDF of INR",
+        "pt": "CCDF da INR"
+      },
+      {
+        "en": "Illustrative",
+        "pt": "Ilustrativa"
+      },
+      {
+        "en": "Compare\nconfigurations",
+        "pt": "Comparação de\nconfigurações"
+      },
+      {
+        "en": "Active",
+        "pt": "Ativa"
+      },
+      {
+        "en": "Inactive",
+        "pt": "Inativa"
+      },
+      {
+        "en": "10 dB back-off",
+        "pt": "Back-off de 10 dB"
+      },
+      {
+        "en": "Excluded",
+        "pt": "Excluída"
+      },
+      {
+        "en": "Interference to FS",
+        "pt": "Interferência no FS"
+      },
+      {
+        "en": "Schematic",
+        "pt": "Esquemático"
+      },
+      {
+        "en": "1 configuration  $\\rightarrow$  10 000 snapshots  $\\rightarrow$  FS statistics",
+        "pt": "1 configuração  $\\rightarrow$  10 000 snapshots  $\\rightarrow$  estatísticas do FS"
+      }
+    ],
+    "text_outside_canvas": []
+  },
+  {
+    "figure": "latincom_fs_antenna",
+    "translated_labels": [],
+    "text_outside_canvas": []
+  }
+]

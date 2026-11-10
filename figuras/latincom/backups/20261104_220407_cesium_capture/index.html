@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satellite Map</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <div id="cellTooltip" class="cell-tooltip" aria-hidden="true"></div>
+  <aside id="interferenceLegend" class="legend-panel" aria-hidden="true"></aside>
+
+  <aside class="hud" id="hud">
+    <button id="hudDrawerToggle" class="hud-drawer-toggle" type="button" aria-label="Recolher painel">‹</button>
+    <div class="panel brand">
+      <div class="eyebrow">NGSO Interface</div>
+      <h1>Satellite Map</h1>
+      <p>Simulação orbital conectada ao backend do SHARC.</p>
+    </div>
+
+    <div class="panel controls">
+      <label class="control">
+        <span>Perfil</span>
+        <select id="profileSelect">
+          <option value="fast">fast</option>
+          <option value="high_quality">high_quality</option>
+          <option value="presentation">presentation</option>
+        </select>
+      </label>
+
+      <label class="control">
+        <span>Modelo de footprint</span>
+        <select id="footprintModeSelect">
+          <option value="sharc_service_grid" title="Grade de servico MSS: celulas na area de servico atendidas quando a elevacao do satelite passa do minimum_service_angle.">SHARC service grid</option>
+          <option value="antenna_7db_first" title="Preview experimental do primeiro satelite: setores do feixe por perda de ganho em passos de 2 dB.">7 dB primeiro satélite</option>
+          <option value="sharc_interference_mask" title="Mascara de caminho ativo: usa sat_is_active_if.minimum_elevation_from_es para indicar caminhos elegiveis.">SHARC interferência: máscara</option>
+          <option value="sharc_interference_link_budget" title="Mapa de intensidade: calcula interferencia aproximada por celula com ganho S.1528, perdas e potencia do cenario.">SHARC interferência: link budget</option>
+        </select>
+        <p id="footprintModeHelp" class="mode-help"></p>
+      </label>
+
+      <label class="control">
+        <span>Cenario</span>
+        <select id="scenarioSelect">
+          <option value="sa">SA</option>
+          <option value="brarg">BR/ARG</option>
+        </select>
+        <p id="scenarioHelp" class="mode-help"></p>
+      </label>
+
+      <label class="control">
+        <span>Mitigacao</span>
+        <button id="mitigationToggleBtn" class="mitigation-toggle is-active" type="button">Ativada</button>
+        <p id="mitigationHelp" class="mode-help"></p>
+      </label>
+
+      <label class="control">
+        <span>Azimute BS</span>
+        <button id="azimuthToggleBtn" class="mitigation-toggle is-active" type="button">Vetor ativo</button>
+        <p class="mode-help">Mostra o apontamento da antena FS/BS configurado na campanha.</p>
+      </label>
+
+      <label class="control slider-control">
+        <span>UEs max/grid: <strong id="ueDensityInfo">2</strong></span>
+        <input id="ueDensitySlider" type="range" min="1" max="5" value="2" step="1">
+        <p class="mode-help">Controla a densidade visual de usuarios por celula ativa.</p>
+      </label>
+
+      <div class="actions">
+        <button id="reloadBtn" type="button">Carregar Perfil</button>
+        <button id="playBtn" type="button">Pause</button>
+        <button id="captureBtn" type="button">Print</button>
+      </div>
+
+      <label class="control slider-control">
+        <span>Tempo</span>
+        <input id="frameSlider" type="range" min="0" max="0" value="0" step="1">
+      </label>
+    </div>
+
+    <div class="panel stats">
+      <div class="stat">
+        <span class="label">Frame</span>
+        <strong id="frameInfo">0 / 0</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Satélites ativos</span>
+        <strong id="activeCount">0</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Cobertura area</span>
+        <strong id="coverageInfo">0%</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Footprint sat.</span>
+        <strong id="footprintInfo">0 km</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Tempo simulado</span>
+        <strong id="timeInfo">0 s</strong>
+      </div>
+    </div>
+
+    <div class="panel status">
+      <div class="eyebrow">Status</div>
+      <div id="statusText">Inicializando...</div>
+    </div>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>

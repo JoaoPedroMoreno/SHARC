@@ -4,16 +4,21 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
-from matplotlib.patches import Circle, RegularPolygon
+from matplotlib.collections import PatchCollection
+from matplotlib.patches import Circle, PathPatch, RegularPolygon
 from pyproj import CRS, Transformer
+from shapely.affinity import translate
 from shapely.geometry import Point, Polygon, MultiPoint, box
-from shapely.ops import transform, unary_union, polylabel
+from shapely.ops import transform, unary_union, nearest_points
 import latincom_visual_style as s
 from generate_presentation_images import load_countries, country_name
 
 REGIONAL=('Brazil','Argentina','Uruguay','Paraguay','Bolivia','Chile','Peru')
 DISPLAY_CELL_SCALE=2.4
 COVER_PANEL_OFFSETS=(-.2,6.6)
+FS_DISPLAY_SCALE=.026
+EXCLUDED_EDGE='#87949D'
+EXCLUDED_DASH=(0,(2.5,1.6))
 
 @lru_cache(maxsize=1)
 def geography():
@@ -46,21 +51,60 @@ def grid(country,exclusion=None,border_zone=None):
                               active=not excluded,pbo=bool(pbo),excluded=excluded))
     return cells
 
+
+def draw_cover_grid(ax,cells,affine):
+    """Draw cell states directly, with no country fill beneath excluded cells."""
+    patches,faces,edges,widths,styles=[],[],[],[],[]
+    for cell in cells:
+        for polygon in s.original.polygons(cell['shape']):
+            patches.append(PathPatch(s.original.mpl_path(polygon)))
+            excluded=cell['excluded']
+            faces.append('none' if excluded else
+                         s.original.ORANGE_PALE if cell['pbo'] else s.original.BLUE_PALE)
+            edges.append(EXCLUDED_EDGE if excluded else
+                         s.ORANGE if cell['pbo'] else s.original.BLUE_EDGE)
+            widths.append(.8 if excluded else .58)
+            styles.append(EXCLUDED_DASH if excluded else 'solid')
+    collection=PatchCollection(patches,facecolors=faces,edgecolors=edges,
+                               linewidths=widths,linestyles=styles,zorder=3,
+                               gid='cover-cell-grid')
+    collection.set_transform(affine+ax.transData)
+    ax.add_collection(collection)
+    return collection
+
+
+@lru_cache(maxsize=1)
+def triple_border():
+    """Locate the junction using the existing country boundaries."""
+    countries,_,_=geography()
+    br_ar=countries['Brazil'].boundary.intersection(countries['Argentina'].boundary)
+    return nearest_points(countries['Paraguay'].boundary,br_ar)[0]
+
+
 def fs_symbol_placement(country,affine):
-    """Fit the entire schematic dish inside Paraguay, not at a map boundary."""
+    """Place the dish nearest the triple border, wholly within Paraguay."""
     projected=unary_union([Polygon(affine.transform(np.asarray(p.exterior.coords)))
                            for p in s.original.polygons(country)])
-    interior=polylabel(max(s.original.polygons(projected),key=lambda p:p.area),
-                       tolerance=.002)
-    scale=.055
+    target=Point(affine.transform(triple_border().coords[0]))
+    scale=FS_DISPLAY_SCALE
     xmin,ymin,xmax,ymax=s.FS_SYMBOL_BOUNDS
-    center=np.array([(xmin+xmax)/2,(ymin+ymax)/2])
     while scale>.01:
-        foot=np.array([interior.x,interior.y])-center*scale
-        bounds=box(foot[0]+(xmin-.1)*scale,foot[1]+(ymin-.1)*scale,
-                   foot[0]+(xmax+.1)*scale,foot[1]+(ymax+.1)*scale)
-        if projected.covers(bounds):
-            return foot,scale,bounds
+        corners=np.array([(xmin-.1,ymin-.1),(xmin-.1,ymax+.1),
+                          (xmax+.1,ymin-.1),(xmax+.1,ymax+.1)])*scale
+        # Every corner must stay inside; validate the entire box as well.
+        feasible=projected
+        for x,y in corners:
+            feasible=feasible.intersection(translate(projected,xoff=-x,yoff=-y))
+        # Ciudad del Este is on the Paraguayan side, north of the junction.
+        feasible=feasible.intersection(box(projected.bounds[0],target.y+.01,
+                                            projected.bounds[2],projected.bounds[3]))
+        feasible=feasible.buffer(-1e-6)
+        if not feasible.is_empty:
+            candidate=nearest_points(feasible,target)[0]
+            foot=np.array(candidate.coords[0])
+            bounds=box(*(foot+corners[0]),*(foot+corners[3]))
+            if projected.covers(bounds) and candidate.distance(target)<.25:
+                return foot,scale,bounds
         scale*=.9
     raise ValueError('Cannot fit the FS symbol within Paraguay')
 
@@ -76,7 +120,6 @@ def cover():
             obj.set_path_effects([pe.withStroke(linewidth=2,foreground='white')])
         return obj
     text(.45,8.62,'DC-MSS / FS coexistence',28,'#387391')
-    text(13.95,8.62,'Schematic',10,'#8B9BA4',ha='right')
     counts=[]
     for panel,kind in enumerate(['ez','pbo']):
         dx=COVER_PANEL_OFFSETS[panel]
@@ -94,12 +137,9 @@ def cover():
         for name,shape in countries.items():
             if kind=='pbo' and name not in ('Brazil','Argentina'):
                 s.original.draw_geometry(ax,shape,affine,'#F4F7F5','#B8C5BE',.7,1)
-        s.original.draw_grid(ax,service,cells,affine,line_width=.58)
+        draw_cover_grid(ax,cells,affine)
         for name,shape in countries.items():
             s.original.draw_geometry(ax,shape,affine,'none',s.original.BORDER,.95,9)
-        for cell in cells:
-            if cell['excluded']:
-                s.original.draw_geometry(ax,cell['shape'],affine,'#DFE5E8','#A5B0B6',.35,7)
         if exclusion is not None:
             s.original.draw_geometry(ax,exclusion,affine,'none',s.RED,1.6,11)
         used=set()
@@ -128,9 +168,11 @@ def cover():
                     assert not hull.intersects(fs_bounds), 'Central beam overlaps the FS symbol'
                 s.original.beam(ax,source,vertices,cell['pbo'],
                     beam_id=f'cover-{kind}-{satellite_index}:{beam_index}')
-                s.original.draw_geometry(ax,cell['shape'],affine,
-                    s.original.ORANGE_PALE if cell['pbo'] else s.original.BLUE_SELECTED,
-                    s.ORANGE if cell['pbo'] else s.BLUE,.9,8)
+                footprints=s.original.draw_geometry(ax,cell['shape'],affine,
+                    s.original.ORANGE_PALE if cell['pbo'] else s.original.BLUE_PALE,
+                    s.ORANGE if cell['pbo'] else s.original.BLUE_EDGE,.58,8)
+                for footprint in footprints:
+                    footprint.set_gid('cover-service-footprint')
         s.receiver(ax,*fs_screen,fs_scale,north=s.ground_north(affine))
         for name,coord in [('Brazil',(-49,-12)),('Argentina',(-65,-37))]:
             pos=affine.transform(project.transform(*coord))
@@ -141,24 +183,29 @@ def cover():
         assert service.difference(union).area/service.area<1e-8
         counts.append(dict(method=kind,cells=len(cells),outside_area_m2=union.difference(service).area,
                            fs_symbol_inside_paraguay=True,fs_symbol_scale=fs_scale,
+                           fs_placement='nearest BR-AR-PY junction, inside Paraguay',
+                           fs_base_display=fs_screen.tolist(),
+                           triple_border_display=affine.transform(triple_border().coords[0]).tolist(),
                            service_beams=len(used)))
     ax.plot([.45,13.95],[1.02,1.02],color='#DCE4E8',lw=1,gid='cover-legend-divider')
-    entries=[(.6,.78,s.original.BLUE_PALE,s.original.BLUE_EDGE,'Nominal-power cell'),
-             (5.0,.78,s.original.ORANGE_PALE,s.ORANGE,'10 dB back-off'),
-             (9.45,.78,'#DFE5E8','#A5B0B6','Excluded cell'),
-             (.6,.29,s.original.BLUE_SELECTED,s.BLUE,'Shown beam footprint')]
-    for x,y,fill,edge,caption in entries:
+    entries=[(.6,.78,s.original.BLUE_PALE,s.original.BLUE_EDGE,'Nominal-power cell','solid'),
+             (5.0,.78,s.original.ORANGE_PALE,s.ORANGE,'Power-reduced cell (10 dB)','solid'),
+             (10.0,.78,'none',EXCLUDED_EDGE,'Excluded cell',EXCLUDED_DASH)]
+    for x,y,fill,edge,caption,style in entries:
         ax.add_patch(RegularPolygon((x,y),6,radius=.12,orientation=math.pi/6,
-                     fc=fill,ec=edge,lw=1.4,zorder=35,gid='cover-legend-cell'))
+                     fc=fill,ec=edge,lw=1.4,ls=style,zorder=35,gid='cover-legend-cell'))
         text(x+.24,y,caption,13)
-    ax.add_patch(Circle((5.0,.29),.12,fill=False,ec=s.RED,lw=1.5,zorder=35))
-    text(5.24,.29,'Exclusion zone',13)
-    s.receiver(ax,9.45,.11,.033,north=(0,.45))
-    text(9.72,.29,'Victim FS (Paraguay)',13)
+    ax.add_patch(Circle((3.6,.29),.12,fill=False,ec=s.RED,lw=1.5,zorder=35))
+    text(3.84,.29,'Exclusion zone',13)
+    s.receiver(ax,7.9,.11,.033,north=(0,.45))
+    text(8.17,.29,'Victim FS (Paraguay)',13)
     fig._latincom_validation={'cover':counts,'illustrative_grid_radius_m':s.original.DRAWING_RADIUS_M*DISPLAY_CELL_SCALE,
                              'display_cell_scale':DISPLAY_CELL_SCALE,
                              'map_vertical_scale':.80,'grid_line_width_pt':.58,
                              'panel_center_separation':6.8,'map_height':5.5,
                              'legend_explains_cells':True,'point_callout_leaders':0,
-                             'encom_functions':['fit_map','draw_grid','beam','draw_geometry']}
+                             'cell_states':['nominal-power','power-reduced','excluded'],
+                             'excluded_cells_transparent':True,
+                             'separate_footprint_highlight':False,
+                             'encom_functions':['fit_map','mpl_path','beam','draw_geometry']}
     return fig

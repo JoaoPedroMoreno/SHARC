@@ -1,0 +1,188 @@
+{
+  "observed_at_local": "2026-11-10T13:14:00-03:00",
+  "observed_at_note": "Approximate query time; individual CreationDate timestamps are from Win32_Process.",
+  "processes": [
+    {
+      "ProcessId": 22256,
+      "ParentProcessId": 31148,
+      "CreationDate": "2026-11-08T19:52:27.527552-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "\"C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe\" c:/GitHub/SHARC/sharc/campaigns/07_TCC2_DC_MSS_to_FS/Scripts/run_multiple_campaigns_mut_thread.py"
+    },
+    {
+      "ProcessId": 3280,
+      "ParentProcessId": 22256,
+      "CreationDate": "2026-11-08T19:52:27.581645-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" c:/GitHub/SHARC/sharc/campaigns/07_TCC2_DC_MSS_to_FS/Scripts/run_multiple_campaigns_mut_thread.py"
+    },
+    {
+      "ProcessId": 31388,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-08T19:52:27.760688-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15.yaml"
+    },
+    {
+      "ProcessId": 44620,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-08T19:52:27.760702-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10.yaml"
+    },
+    {
+      "ProcessId": 38616,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-08T19:52:27.760829-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20.yaml"
+    },
+    {
+      "ProcessId": 6320,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-08T19:52:27.760993-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25.yaml"
+    },
+    {
+      "ProcessId": 35800,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-08T19:52:27.761113-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30.yaml"
+    },
+    {
+      "ProcessId": 51320,
+      "ParentProcessId": 44620,
+      "CreationDate": "2026-11-08T19:52:28.356405-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10.yaml"
+    },
+    {
+      "ProcessId": 44608,
+      "ParentProcessId": 38616,
+      "CreationDate": "2026-11-08T19:52:28.356747-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20.yaml"
+    },
+    {
+      "ProcessId": 1208,
+      "ParentProcessId": 6320,
+      "CreationDate": "2026-11-08T19:52:28.357627-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25.yaml"
+    },
+    {
+      "ProcessId": 40120,
+      "ParentProcessId": 35800,
+      "CreationDate": "2026-11-08T19:52:28.358189-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30.yaml"
+    },
+    {
+      "ProcessId": 48436,
+      "ParentProcessId": 31388,
+      "CreationDate": "2026-11-08T19:52:28.358839-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15.yaml"
+    },
+    {
+      "ProcessId": 50208,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-09T15:26:28.698027-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO30.yaml"
+    },
+    {
+      "ProcessId": 39112,
+      "ParentProcessId": 50208,
+      "CreationDate": "2026-11-09T15:26:28.749348-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF20_Azi90_HO30.yaml"
+    },
+    {
+      "ProcessId": 38184,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-10T05:15:42.413193-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO10.yaml"
+    },
+    {
+      "ProcessId": 25056,
+      "ParentProcessId": 38184,
+      "CreationDate": "2026-11-10T05:15:42.447564-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO10.yaml"
+    },
+    {
+      "ProcessId": 16876,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-10T05:25:30.043488-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO15.yaml"
+    },
+    {
+      "ProcessId": 14988,
+      "ParentProcessId": 16876,
+      "CreationDate": "2026-11-10T05:25:30.077939-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO15.yaml"
+    },
+    {
+      "ProcessId": 46040,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-10T05:57:02.092419-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO20.yaml"
+    },
+    {
+      "ProcessId": 16596,
+      "ParentProcessId": 46040,
+      "CreationDate": "2026-11-10T05:57:02.1503-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO20.yaml"
+    },
+    {
+      "ProcessId": 41676,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-10T09:04:02.975803-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO25.yaml"
+    },
+    {
+      "ProcessId": 24648,
+      "ParentProcessId": 41676,
+      "CreationDate": "2026-11-10T09:04:03.029503-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO25.yaml"
+    },
+    {
+      "ProcessId": 50028,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-10T09:05:37.063217-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30.yaml"
+    },
+    {
+      "ProcessId": 43168,
+      "ParentProcessId": 50028,
+      "CreationDate": "2026-11-10T09:05:37.093186-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO30.yaml"
+    },
+    {
+      "ProcessId": 52112,
+      "ParentProcessId": 3280,
+      "CreationDate": "2026-11-10T12:55:24.809766-03:00",
+      "ExecutablePath": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe",
+      "CommandLine": "C:\\GitHub\\SHARC\\.venv\\Scripts\\python.exe C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5.yaml"
+    },
+    {
+      "ProcessId": 19156,
+      "ParentProcessId": 52112,
+      "CreationDate": "2026-11-10T12:55:24.859278-03:00",
+      "ExecutablePath": "C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "CommandLine": "\"C:\\Users\\joaop\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" C:\\GitHub\\SHARC\\sharc\\main_cli.py -p C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\input\\tcc2_SA_noPY_340km_FS40m_LF50_Azi90_HO5.yaml"
+    }
+  ]
+}

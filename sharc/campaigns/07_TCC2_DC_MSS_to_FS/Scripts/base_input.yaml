@@ -103,6 +103,7 @@ imt:
         enabled: false
       interference_aware_handover_v2:
         record_detailed_links_and_users: false
+        detailed_record_format: DELTA
         enabled: false
         evaluation_mode: COCHANNEL_INR
         top_k: 30

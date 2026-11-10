@@ -29,8 +29,8 @@ FS_HEIGHTS = {
 LOAD_FACTORS = [0.2, 0.5]
 HANDOVER_LIMITS = [5, 10, 15, 20, 25, 30]
 PBO_DISTANCES_KM = list(range(10, 101, 10))
-# The existing HO30 samples are retained by request, even when incomplete.
-PRESERVE_PARTIAL_MODES = {"HO30"}
+# Near-complete PBO samples are retained by request, without marking complete.
+PRESERVE_PBO_ABOVE_SNAPSHOTS = 9000
 HANDOVER_LIMIT = 30
 HANDOVER_MODE = f"HO{HANDOVER_LIMIT}"
 MODES = ["BASELINE", *[f"HO{n}" for n in HANDOVER_LIMITS],
@@ -91,6 +91,8 @@ def comparable_config(cfg):
     # Export verbosity does not change the simulated realization or INR.
     cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"].pop(
         "record_detailed_links_and_users", None)
+    cfg["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"].pop(
+        "detailed_record_format", None)
     return cfg
 
 
@@ -132,7 +134,8 @@ def reusable_result(cfg, mode, inventory):
         record = dict(scenario=scenario, source=str(folder), snapshots=count, target=target)
         if manifest.get("complete") is True and manifest.get("snapshots") == target and count == target:
             return dict(record, status="completed")
-        if mode in PRESERVE_PARTIAL_MODES and (partial is None or count > partial["snapshots"]):
+        if (mode.startswith("PBO") and count > PRESERVE_PBO_ABOVE_SNAPSHOTS
+                and (partial is None or count > partial["snapshots"])):
             partial = dict(record, status="preserved_partial_by_request")
     return partial
 
@@ -181,7 +184,8 @@ def main(argv=None):
             path.unlink()
     report = dict(generated=sorted(generated), skipped=skipped,
                   output_dir=str(destination), results_dirs=[str(p) for p in results_dirs],
-                  handover_limits=HANDOVER_LIMITS, pbo_distances_km=PBO_DISTANCES_KM)
+                  handover_limits=HANDOVER_LIMITS, pbo_distances_km=PBO_DISTANCES_KM,
+                  preserve_pbo_above_snapshots=PRESERVE_PBO_ABOVE_SNAPSHOTS)
     (output / "generation_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(f"{len(generated)} validated pending inputs in {output}. Output data untouched.")
     for status in ("completed", "preserved_partial_by_request"):

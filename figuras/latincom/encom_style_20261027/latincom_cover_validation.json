@@ -5,7 +5,16 @@
       "cells": 1656,
       "outside_area_m2": 0.0,
       "fs_symbol_inside_paraguay": true,
-      "fs_symbol_scale": 0.026306329500000006,
+      "fs_symbol_scale": 0.021060000000000002,
+      "fs_placement": "nearest BR-AR-PY junction, inside Paraguay",
+      "fs_base_display": [
+        3.9975349733456995,
+        4.192131529126738
+      ],
+      "triple_border_display": [
+        4.204428846600242,
+        4.182130529126738
+      ],
       "service_beams": 8
     },
     {
@@ -13,7 +22,16 @@
       "cells": 1294,
       "outside_area_m2": 0.0,
       "fs_symbol_inside_paraguay": true,
-      "fs_symbol_scale": 0.026306329500000006,
+      "fs_symbol_scale": 0.021060000000000002,
+      "fs_placement": "nearest BR-AR-PY junction, inside Paraguay",
+      "fs_base_display": [
+        10.7975349733457,
+        4.192131529126738
+      ],
+      "triple_border_display": [
+        11.004428846600241,
+        4.182130529126738
+      ],
       "service_beams": 9
     }
   ],
@@ -25,9 +43,16 @@
   "map_height": 5.5,
   "legend_explains_cells": true,
   "point_callout_leaders": 0,
+  "cell_states": [
+    "nominal-power",
+    "power-reduced",
+    "excluded"
+  ],
+  "excluded_cells_transparent": true,
+  "separate_footprint_highlight": false,
   "encom_functions": [
     "fit_map",
-    "draw_grid",
+    "mpl_path",
     "beam",
     "draw_geometry"
   ]

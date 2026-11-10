@@ -1,0 +1,222 @@
+{
+  "time": "2026-11-08T22:59:45.998397+00:00",
+  "records": [
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO10",
+      "n": 73,
+      "complete": false,
+      "created": 1794178365.2011323,
+      "updated": 1794178783.5166805,
+      "bytes": 36027353,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 1.6986301369863013,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 59,
+        "ACCEPTED_LIMIT": 4,
+        "SEARCH_EXHAUSTED": 10
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO15",
+      "n": 59,
+      "complete": false,
+      "created": 1794178365.1391954,
+      "updated": 1794178765.1144104,
+      "bytes": 30824732,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 2.7457627118644066,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 47,
+        "SEARCH_EXHAUSTED": 11,
+        "ACCEPTED_LIMIT": 1
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO20",
+      "n": 49,
+      "complete": false,
+      "created": 1794178364.944706,
+      "updated": 1794178782.509247,
+      "bytes": 26762125,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 4.510204081632653,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 37,
+        "SEARCH_EXHAUSTED": 11,
+        "ACCEPTED_LIMIT": 1
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO25",
+      "n": 46,
+      "complete": false,
+      "created": 1794178364.9110918,
+      "updated": 1794178781.8820212,
+      "bytes": 25697964,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 5.065217391304348,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 36,
+        "SEARCH_EXHAUSTED": 9,
+        "ACCEPTED_LIMIT": 1
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO30",
+      "n": 36,
+      "complete": false,
+      "created": 1794178365.2378142,
+      "updated": 1794178761.7177913,
+      "bytes": 22219255,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 7.083333333333333,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 27,
+        "SEARCH_EXHAUSTED": 8,
+        "ACCEPTED_LIMIT": 1
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_HO5",
+      "n": 86,
+      "complete": false,
+      "created": 1794178365.2638886,
+      "updated": 1794178779.365522,
+      "bytes": 41070774,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 0.7674418604651163,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "PROTECTION_REACHED": 70,
+        "ACCEPTED_LIMIT": 6,
+        "SEARCH_EXHAUSTED": 10
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO10",
+      "n": 19,
+      "complete": false,
+      "created": 1794178365.2166665,
+      "updated": 1794178774.6851141,
+      "bytes": 16961219,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 7.578947368421052,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 11,
+        "PROTECTION_REACHED": 4,
+        "ACCEPTED_LIMIT": 4
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO15",
+      "n": 14,
+      "complete": false,
+      "created": 1794178364.9711266,
+      "updated": 1794178780.2697425,
+      "bytes": 15024102,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 11.785714285714286,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 10,
+        "PROTECTION_REACHED": 2,
+        "ACCEPTED_LIMIT": 2
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO20",
+      "n": 11,
+      "complete": false,
+      "created": 1794178365.0063782,
+      "updated": 1794178771.4191318,
+      "bytes": 14337750,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 15.181818181818182,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 8,
+        "PROTECTION_REACHED": 2,
+        "ACCEPTED_LIMIT": 1
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO25",
+      "n": 9,
+      "complete": false,
+      "created": 1794178365.2273026,
+      "updated": 1794178734.6022599,
+      "bytes": 12918399,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 17.77777777777778,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 5,
+        "PROTECTION_REACHED": 3,
+        "ACCEPTED_LIMIT": 1
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO30",
+      "n": 8,
+      "complete": false,
+      "created": 1794178364.944706,
+      "updated": 1794178734.366743,
+      "bytes": 12703378,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 21.0,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 5,
+        "PROTECTION_REACHED": 2,
+        "ACCEPTED_LIMIT": 1
+      }
+    },
+    {
+      "scenario": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_HO5",
+      "n": 32,
+      "complete": false,
+      "created": 1794178364.9846544,
+      "updated": 1794178785.725869,
+      "bytes": 23189426,
+      "lookup": "ACTIVE/OK - city=FOZ, file=FOZ_2155_200m.csv",
+      "format": "DELTA",
+      "performance": false,
+      "mean_accepted": 3.65625,
+      "max_prediction_error": 0.0,
+      "stop_reasons": {
+        "SEARCH_EXHAUSTED": 17,
+        "ACCEPTED_LIMIT": 11,
+        "PROTECTION_REACHED": 4
+      }
+    }
+  ],
+  "checks": "finite non-increasing INR, limits, pairing, runtime config/code, DELTA files"
+}

@@ -1,0 +1,15 @@
+LEGENDA SUGERIDA
+Figura X - Visualização geométrica da constelação DC-MSS e das células de serviço com zona de exclusão em torno do receptor FS.
+
+FONTE SUGERIDA
+Fonte: Elaboração própria no visualizador CesiumJS, com imagens do Bing Maps via Cesium ion e créditos dos provedores indicados na figura.
+
+COMO A FIGURA FOI PRODUZIDA
+Captura renderizada pelo CesiumJS/WebGL. A exportação original em JavaScript/Canvas 2D acrescenta título e legenda. Na versão em português, Python/Pillow substitui apenas essas anotações, preservando os pixels da cena e os créditos do rodapé. Não utiliza Matplotlib ou Blender. O cenário ilustrativo usa raio de exclusão de 180 km, conforme o perfil de apresentação existente, e não representa uma distância de conformidade obtida no artigo.
+
+USO NO TCC
+Substitua X pelo número da figura. A descrição de produção pode ficar na metodologia ou na lista de recursos utilizados; não precisa ocupar toda a legenda. A composição autoral não dispensa a atribuição de bases cartográficas e recursos de terceiros quando presentes.
+
+
+LIMITE DA VISUALIZAÇÃO
+Os pontos verdes identificam satélites com células associadas no visualizador. Os cianos identificam os demais satélites exibidos. As associações geométricas não reproduzem o sorteio de atividade LF dos drops Monte Carlo. Os envelopes amarelos não representam intensidade de interferência.

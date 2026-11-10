@@ -1,0 +1,38 @@
+.publication-mode {
+    background: #e7ebee;
+    color: #25343e;
+}
+.publication-mode #cesiumContainer {
+    width: min(100vw, 155vh);
+    height: min(51.5vw, 79.825vh);
+    margin: 0 auto;
+}
+.publication-mode .hud,
+.publication-mode .cell-tooltip,
+.publication-mode .cesium-viewer-toolbar,
+.publication-mode .cesium-viewer-fullscreenContainer {
+    display: none !important;
+}
+.publication-mode .cesium-widget-credits {
+    display: block !important;
+}
+.publication-caption {
+    box-sizing: border-box;
+    width: min(100vw, 155vh);
+    margin: 0 auto;
+    padding: 12px 18px;
+    background: white;
+    font-size: 13px;
+}
+.publication-caption h2 { margin: 0 0 5px; font-size: 20px; }
+.publication-caption p { margin: 5px 0; }
+.publication-actions { display: flex; align-items: center; gap: 12px; margin-top: 9px; }
+.publication-actions button, .publication-actions a {
+    font: inherit;
+    padding: 8px 12px;
+    border: 1px solid #8c9eaa;
+    border-radius: 4px;
+    color: #25343e;
+    background: white;
+}
+.publication-status { font-size: 12px; }

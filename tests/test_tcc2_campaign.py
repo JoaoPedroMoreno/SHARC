@@ -128,15 +128,31 @@ class TestTcc2Campaign(unittest.TestCase):
             (inputs / "unrelated.yaml").write_text("untouched")
             before = {str(p): p.read_bytes() for p in results.rglob("*") if p.is_file()}
             generate.main(["--input-dir", str(inputs), "--results-dir", str(results)])
-            expected = {generate.name(340, 20, .2, "HO5") + ".yaml", "unrelated.yaml"}
+            expected = {generate.name(340, 20, .2, mode) + ".yaml" for mode in ("HO5", "HO30")}
+            expected.add("unrelated.yaml")
             self.assertEqual({p.name for p in inputs.glob("*.yaml")}, expected)
             self.assertEqual(before, {str(p): p.read_bytes() for p in results.rglob("*") if p.is_file()})
             report = json.loads((inputs / "generation_report.json").read_text())
             self.assertEqual(sorted(r["status"] for r in report["skipped"]),
-                             ["completed", "completed", "preserved_partial_by_request"])
-            # Repeating generate is idempotent and still does not restart HO30.
+                             ["completed", "completed"])
+            # Repeating generate is idempotent; both unfinished HO stay pending.
             generate.main(["--input-dir", str(inputs), "--results-dir", str(results)])
             self.assertEqual({p.name for p in inputs.glob("*.yaml")}, expected)
+
+    def test_preserve_only_pbo_strictly_above_9000(self):
+        for mode, count, preserve in (("PBO50km", 9000, False),
+                                      ("PBO50km", 9001, True),
+                                      ("HO30", 9001, False)):
+            with self.subTest(mode=mode, count=count), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                cfg = generate.build(340, 40, .2, mode)
+                self.result_fixture(root, cfg, count, False)
+                result = generate.reusable_result(cfg, mode, generate.result_inventory(root))
+                if preserve:
+                    self.assertEqual(result["status"], "preserved_partial_by_request")
+                    self.assertEqual(result["snapshots"], count)
+                else:
+                    self.assertIsNone(result)
 
     def test_physics_audit_counts_changes_before_protected_final_snapshot(self):
         with patch.object(sys, "path", [str(SCRIPTS), *sys.path]):

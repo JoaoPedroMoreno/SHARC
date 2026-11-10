@@ -17,6 +17,7 @@ from sharc.antenna.antenna_factory import AntennaFactory
 from sharc.interference_aware_handover_v2 import CandidateEvaluation, run_inr_handover
 from sharc.parameters.constants import BOLTZMANN_CONSTANT
 from sharc.propagation.propagation_path import PropagationPath
+from sharc.support.tcc2_detailed_records import DeltaWriter
 
 
 def place_users_in_service_cells(simulation):
@@ -61,6 +62,8 @@ def place_users_in_service_cells(simulation):
 def validate_configuration(params):
     imt, general = params.imt, params.general
     cfg = imt.topology.mss_dc.interference_aware_handover_v2
+    if getattr(cfg, "performance_only_output", False) and imt.imt_dl_intra_sinr_calculation_disabled:
+        raise ValueError("performance_only_output requires UE performance calculation")
     if (not general.enable_cochannel or general.enable_adjacent_channel
             or imt.interfered_with or general.system != "SINGLE_EARTH_STATION"
             or imt.topology.mss_dc.beam_positioning.type != "SERVICE_GRID"):
@@ -132,8 +135,17 @@ def update_service_links(simulation, row):
 
 class CochannelHandover:
     @property
+    def performance_only_output(self):
+        return getattr(self.cfg, "performance_only_output", False)
+
+    @property
     def detailed_records_enabled(self):
-        return getattr(self.cfg, "record_detailed_links_and_users", True)
+        return (not self.performance_only_output
+                and getattr(self.cfg, "record_detailed_links_and_users", True))
+
+    @property
+    def detailed_record_format(self):
+        return getattr(self.cfg, "detailed_record_format", "FULL")
 
     @property
     def performance_enabled(self):
@@ -157,11 +169,19 @@ class CochannelHandover:
         self.initial_served = None
         self.metric_cache = None
         self.distances = self.border_distances() if self.detailed_records_enabled else None
+        self._detailed_writers = {}
 
     def write(self, name, rows):
+        if self.performance_only_output and name in {"links", "users", "events", "candidates"}:
+            return
         if name in {"links", "users"} and not self.detailed_records_enabled:
             return
         if not rows:
+            return
+        if name in {"links", "users"} and self.detailed_record_format == "DELTA":
+            if name not in self._detailed_writers:
+                self._detailed_writers[name] = DeltaWriter(self.output / f"tcc2_{name}.delta.jsonl.gz")
+            self._detailed_writers[name].write(rows)
             return
         path = self.output / f"tcc2_{name}.csv.gz"
         exists = path.exists()
@@ -194,6 +214,8 @@ class CochannelHandover:
             executed["imt"]["imt_dl_intra_sinr_calculation_disabled"] = not self.performance_enabled
             executed["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"][
                 "record_detailed_links_and_users"] = self.detailed_records_enabled
+            executed["imt"]["topology"]["mss_dc"]["interference_aware_handover_v2"][
+                "detailed_record_format"] = self.detailed_record_format
             config_path = self.output / "tcc2_executed_config.yaml"
             config_path.write_text(yaml.safe_dump(executed, sort_keys=False), encoding="utf-8")
             def sha(file):
@@ -211,11 +233,14 @@ class CochannelHandover:
                 scenario=source.stem,
                 ue_performance_calculated=self.performance_enabled,
                 detailed_links_and_users_recorded=self.detailed_records_enabled,
+                detailed_record_format=self.detailed_record_format,
                 code_sha256={str(p.relative_to(root)): sha(p) for p in sorted((root / "sharc").rglob("*.py"))},
                 git_commit=git("rev-parse", "HEAD"), git_status=git("status", "--porcelain"),
                 python=sys.version, secondary_seeds=[], completed_snapshots=0, complete=False,
                 pairing="within_snapshot_before_after; no cross-run pairing check",
                 resource_capacity=self.cfg.max_active_beams_per_satellite)
+            if self.performance_only_output:
+                cache[key]["performance_only_output"] = True
             lookup = root / "sharc/propagation/Dataset/FOZ_2155_200m.csv"
             cache[key]["lookup_sha256"] = sha(lookup) if lookup.is_file() else None
             s._tcc2_standalone_manifests = cache
@@ -431,10 +456,47 @@ class CochannelHandover:
                              noise_dbm=float(s.ue.thermal_noise[user]) if measured else np.nan))
         if self.initial_served is None:
             self.initial_served = served.copy()
+        if self.performance_only_output:
+            self._final_performance_rows = rows
         self.write("users", rows)
         if self.detailed_records_enabled:
             self.record_links(step, powers)
         self.record_step_summary(step, powers, rows, served)
+
+    def record_final_performance(self):
+        """One final row per sampled UE; inactive/unserved users are not dropped."""
+        fields = (
+            "snapshot_id", "secondary_seed", "step", "user_id", "beam_id", "cell_id",
+            "satellite_id", "active", "served", "sinr_outage", "service_lost",
+            "sinr_db", "snr_db", "rx_power_dbm", "interference_dbm", "noise_dbm",
+            "allocated_bandwidth_mhz", "service_elevation_deg",
+            "desired_tx_gain_dbi", "desired_rx_gain_dbi", "desired_path_loss_db",
+            "desired_coupling_loss_db", "distance_to_cell_center_m",
+        )
+        s, t = self.s, self.t
+        dl = s.parameters.imt.downlink
+        efficiencies = s.calculate_imt_tput(
+            np.array([r["sinr_db"] for r in self._final_performance_rows]),
+            dl.sinr_min, dl.sinr_max, dl.attenuation_factor)
+        rows = []
+        for index, original in enumerate(self._final_performance_rows):
+            row = {key: original[key] for key in fields}
+            beam = row["beam_id"]
+            active, served = row["active"], row["served"]
+            se = (float(efficiencies[index])
+                  if active and np.isfinite(row["sinr_db"]) else np.nan)
+            # Inactive UEs have no scheduled measurement, not zero-throughput demand.
+            row.update(
+                primary_satellite_id=int(t.primary_satellite_idx[beam]),
+                reassigned=bool(t.primary_satellite_idx[beam] != t.serving_satellite_idx[beam]),
+                power_backoff_db=float(t.power_backoff[beam]),
+                tx_power_dbm=float(s.bs.tx_power[beam][0]) if active else np.nan,
+                intra_inr_db=row["interference_dbm"] - row["noise_dbm"] if active else np.nan,
+                spectral_efficiency_proxy_bps_hz=se if active else np.nan,
+                served_rate_proxy_mbps=(se * row["allocated_bandwidth_mhz"] if served else 0.0)
+                if active else np.nan)
+            rows.append(row)
+        self.write("performance_users", rows)
 
     def record_links(self, step, powers):
         s, t = self.s, self.t
@@ -519,6 +581,9 @@ class CochannelHandover:
                       stop_reason=result["stop_reason"],
                       active_pbo_beams=int(np.count_nonzero(t.power_backoff[self.active])),
                       max_prediction_error_db=max(map(abs, self.errors_db), default=0.0))
+        if self.performance_only_output:
+            record["service_population_sha256"] = preserved
+            self.record_final_performance()
         if preserved != digest_arrays([xyz(s.ue), s.ue.active, s.bs.active, t.beam_grid_idx,
                                         t.beam_grid_center_enu, *[s.link[r] for r in self.active]]):
             raise AssertionError("Handover changed users, activity or service-cell identities")
