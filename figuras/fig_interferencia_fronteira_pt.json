@@ -1,0 +1,26 @@
+{
+  "reference": "itu_pbo_zoom_border.png / panel (a)",
+  "ground_cells": 52,
+  "service_beams": 5,
+  "satellites": 1,
+  "fs_directional_dishes": 2,
+  "victim_boresight": "north / into the ground plane",
+  "transmitter_position": "north of receiver, facing south",
+  "original_ground_and_beam_geometry_preserved": true,
+  "title": false,
+  "translations": {
+    "Paraguay": "Paraguai",
+    "Brazil": "Brasil",
+    "Border": "Fronteira",
+    "FS transmitter": "Transmissor FS",
+    "Victim FS receiver": "Receptor FS vítima",
+    "Off-axis radiation": "Radiação fora do eixo",
+    "Main lobes": "Lobos principais"
+  },
+  "original_geometry_preserved": true,
+  "text_within_canvas": true,
+  "png_pixels": [
+    5120,
+    2688
+  ]
+}

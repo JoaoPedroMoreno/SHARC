@@ -1,0 +1,81 @@
+{
+  "fspl": {
+    "earth_radius_m": 6378145,
+    "frequency_mhz": 2155.0,
+    "receiver_ground_altitude_m": 200,
+    "receiver_antenna_height_m": 20,
+    "samples": [
+      {
+        "altitude_km": 340,
+        "elevation_deg": 5.0,
+        "slant_range_km": 1625.5950750570453,
+        "fspl_db": 163.33919298706576
+      },
+      {
+        "altitude_km": 340,
+        "elevation_deg": 32.0,
+        "slant_range_km": 604.2577508231097,
+        "fspl_db": 154.7433900862782
+      },
+      {
+        "altitude_km": 340,
+        "elevation_deg": 90.0,
+        "slant_range_km": 339.78,
+        "fspl_db": 149.74290173013844
+      },
+      {
+        "altitude_km": 525,
+        "elevation_deg": 5.0,
+        "slant_range_km": 2142.0340071947585,
+        "fspl_db": 165.73547271919617
+      },
+      {
+        "altitude_km": 525,
+        "elevation_deg": 32.0,
+        "slant_range_km": 908.8503369194178,
+        "fspl_db": 158.28879294092127
+      },
+      {
+        "altitude_km": 525,
+        "elevation_deg": 90.0,
+        "slant_range_km": 524.78,
+        "fspl_db": 153.5184909938438
+      }
+    ],
+    "tests": [
+      {
+        "altitude_km": 340,
+        "max_elevation_roundtrip_error_deg": 6.635190175074968e-10,
+        "max_fs_height_20_to_40_difference_db": 0.0005112805509952523,
+        "fspl_5_minus_90_db": 13.596291256927316
+      },
+      {
+        "altitude_km": 525,
+        "max_elevation_roundtrip_error_deg": 4.772573447553441e-10,
+        "max_fs_height_20_to_40_difference_db": 0.00033103605917972345,
+        "fspl_5_minus_90_db": 12.216981725352355
+      }
+    ]
+  },
+  "aggregation": {
+    "sum_in_linear_units": true,
+    "inactive_contribution_mw": 0,
+    "logarithmic_and_linear_inr_agree": true,
+    "numeric_example_plotted": false,
+    "zero_total_convention": "Iagg and INR are -infinity dB for positive receiver noise"
+  },
+  "source_sha256": {
+    "sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\Scripts\\base_input.yaml": "a1dad69f8ee64778b8adb2c2157e8283c54d5d8edb5d903f1c3ab4737dabddf4",
+    "sharc\\satellite\\ngso\\constants.py": "cd5644f2c1e30b9a2eb315852fa1e8b90b5aea0a9e5cc744e43adb72a9e2534d",
+    "sharc\\satellite\\utils\\sat_utils.py": "aca2a3c7ee50a6ca859828093586dc989e830cc20416d477230ae2f9eff30d35",
+    "sharc\\propagation\\propagation_free_space.py": "d1bd278302275c6e9eb7d6ebaf124a4dee874a422879c5decbdce92e13f8e066",
+    "sharc\\cochannel_handover.py": "51b086de5b13569a77ef739136e25ef272d258d41aa47c32fc0dad715916a3d6"
+  },
+  "script_sha256": "922c6de9334df83c8a1f064a5388c3dfe90643c0da8ba5a643e8860950696069",
+  "git_commit": "42de3d72330329f248cf6d7556158724c70668ee",
+  "numpy": "1.26.4",
+  "matplotlib": "3.8.3",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "simulations_executed": false,
+  "source_files_unchanged": true
+}

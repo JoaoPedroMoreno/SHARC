@@ -1,0 +1,163 @@
+{
+  "png_pixels": [
+    5000,
+    2584
+  ],
+  "dpi": 600,
+  "vector_pdf": false,
+  "vector_text_and_lines": true,
+  "embedded_latincom_assets": true,
+  "elements": [
+    {
+      "text": "Atmosfera",
+      "x": 55,
+      "y": 126,
+      "width": 47.849853515625,
+      "size": 10.5
+    },
+    {
+      "text": "Superfície terrestre",
+      "x": 28,
+      "y": 14,
+      "width": 89.285888671875,
+      "size": 10.5
+    },
+    {
+      "kind": "satellite_orientation",
+      "center": [
+        52,
+        240
+      ],
+      "target": [
+        290,
+        54
+      ],
+      "antenna_direction": [
+        0.787923981049136,
+        -0.6157725230047869
+      ],
+      "angle_deg": 51.9919253466678
+    },
+    {
+      "kind": "satellite_orientation",
+      "center": [
+        155,
+        210
+      ],
+      "target": [
+        290,
+        54
+      ],
+      "antenna_direction": [
+        0.6543767444389417,
+        -0.756168682462777
+      ],
+      "angle_deg": 40.87240829748828
+    },
+    {
+      "text": "GEO",
+      "x": 38.6640625,
+      "y": 290,
+      "width": 26.671875,
+      "size": 12
+    },
+    {
+      "text": "LEO",
+      "x": 142.666015625,
+      "y": 245,
+      "width": 24.66796875,
+      "size": 12
+    },
+    {
+      "text": "UE",
+      "x": 281.6650390625,
+      "y": 11,
+      "width": 16.669921875,
+      "size": 12
+    },
+    {
+      "text": "L<sub>bfs</sub>",
+      "x": 354,
+      "y": 253,
+      "width": 40,
+      "height": 15.600000000000001
+    },
+    {
+      "text": "Espaço livre",
+      "x": 401,
+      "y": 256,
+      "width": 67.759033203125,
+      "size": 11.5
+    },
+    {
+      "text": "Distância e frequência",
+      "x": 354,
+      "y": 238,
+      "width": 103.892578125,
+      "size": 10.5
+    },
+    {
+      "text": "L<sub>atm</sub>",
+      "x": 354,
+      "y": 187,
+      "width": 40,
+      "height": 15.600000000000001
+    },
+    {
+      "text": "Atmosfera",
+      "x": 401,
+      "y": 190,
+      "width": 56.876708984375,
+      "size": 11.5
+    },
+    {
+      "text": "Gases e outras contribuições",
+      "x": 354,
+      "y": 172,
+      "width": 135.9873046875,
+      "size": 10.5
+    },
+    {
+      "text": "L<sub>add</sub>",
+      "x": 354,
+      "y": 121,
+      "width": 40,
+      "height": 15.600000000000001
+    },
+    {
+      "text": "Ambiente local",
+      "x": 401,
+      "y": 124,
+      "width": 81.797119140625,
+      "size": 11.5
+    },
+    {
+      "text": "Sombreamento e clutter",
+      "x": 354,
+      "y": 106,
+      "width": 112.0546875,
+      "size": 10.5
+    },
+    {
+      "text": "L<sub>pol</sub>",
+      "x": 354,
+      "y": 55,
+      "width": 40,
+      "height": 15.600000000000001
+    },
+    {
+      "text": "Polarização",
+      "x": 401,
+      "y": 58,
+      "width": 63.918212890625,
+      "size": 11.5
+    },
+    {
+      "text": "Descasamento entre antenas",
+      "x": 354,
+      "y": 40,
+      "width": 137.16650390625,
+      "size": 10.5
+    }
+  ]
+}

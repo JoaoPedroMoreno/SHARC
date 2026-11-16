@@ -1,0 +1,50 @@
+{
+  "reference": "campaign 04 fig01/render_blender.py at 985a630",
+  "conceptual_not_simulation_output": true,
+  "general_title": false,
+  "fs_elevation_deg": 0,
+  "rx_points_to_satellite": false,
+  "tx_angle_definition": "beam boresight versus satellite-to-FS ray",
+  "rx_angle_definition": "fixed FS boresight versus FS-to-satellite ray",
+  "angles_are_schematic_not_measured_3d_values": true,
+  "cell_and_users_preserved": true,
+  "label_overlaps": [],
+  "png_size": [
+    6400,
+    3000
+  ],
+  "vector_text_and_lines": true,
+  "embedded_rendered_models": true,
+  "geometry": {
+    "psi_tx": {
+      "vertex": [
+        9.768636615158238,
+        13.081152492958877
+      ],
+      "ray_a": [
+        -5.568636615158238,
+        -10.081152492958877
+      ],
+      "ray_b": [
+        5.48139892133049,
+        -9.281847911996069
+      ],
+      "illustrative_screen_angle_deg": 59.47941583382858
+    },
+    "psi_rx": {
+      "vertex": [
+        15.250035536488728,
+        3.7993045809628074
+      ],
+      "ray_a": [
+        -0.9544800053898772,
+        0.29827490560042014
+      ],
+      "ray_b": [
+        -5.48139892133049,
+        9.281847911996069
+      ],
+      "illustrative_screen_angle_deg": 42.081989126142766
+    }
+  }
+}

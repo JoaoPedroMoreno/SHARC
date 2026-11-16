@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<title>Contexto geográfico da campanha TCC2</title>
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Cesium.js"></script>
+<link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.120/Build/Cesium/Widgets/widgets.css">
+<style>
+* { box-sizing: border-box; }
+html, body { margin:0; width:3200px; height:2200px; background:white; font-family:Arial,sans-serif; color:#263d47; }
+#main { position:absolute; left:0; top:0; width:2080px; height:2120px; }
+#detail { position:absolute; left:2120px; top:0; width:1080px; height:1230px; }
+#detail-label { position:absolute; top:30px; right:32px; z-index:2; color:white; font-size:38px; padding:14px 20px; background:#071c28d9; }
+#legend { position:absolute; left:2160px; top:1290px; width:1000px; font-size:36px; line-height:1.25; }
+.entry { display:flex; align-items:center; gap:28px; margin-bottom:30px; }
+.swatch { flex:0 0 58px; width:58px; height:46px; border:3px solid #e7ab36; background:#e7ab3644; }
+.excluded { border:3px solid #577f96; background:#577f9622; }
+.point { border:5px solid #10222d; background:white; border-radius:50%; width:36px; height:36px; flex-basis:36px; margin:0 11px; }
+.serving { background:#00ff00; }
+.other { background:#29b8bd; width:22px; height:22px; flex-basis:22px; margin:0 18px; }
+.hex { clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);background:#e7ab36; }
+.cone { clip-path:polygon(50% 0,100% 100%,0 100%);background:#ffe197; }
+.small { font-size:33px; color:#526570; margin:34px 0 0; line-height:1.4; }
+#credits { position:absolute; left:26px; top:2140px; width:3148px; font-size:20px; line-height:1.3; color:#526570; }
+.cesium-viewer-bottom { display:none; }
+.cesium-viewer-toolbar, .cesium-viewer-fullscreenContainer {display:none;}
+</style>
+<div id="main"></div><div id="detail"></div>
+<div id="detail-label">Detalhe do Paraguai e entorno</div>
+<div id="legend">
+ <div class="entry"><span class="swatch point serving"></span><span>Satélite em serviço</span></div>
+ <div class="entry"><span class="swatch point other"></span><span>Outro satélite</span></div>
+ <div class="entry"><span class="swatch hex"></span><span>Célula de serviço DC-MSS-IMT</span></div>
+ <div class="entry"><span class="swatch cone"></span><span>Envelope de atendimento</span></div>
+ <div class="entry"><span class="swatch excluded"></span><span>Paraguai: sem atendimento<br>DC-MSS-IMT</span></div>
+ <div class="entry"><span class="swatch point"></span><span>Receptor FS</span></div>
+ <div class="small">Frequência compartilhada: 2 155 MHz</div>
+</div>
+<div id="credits"></div>
+<script src="tcc_geography.js"></script>
+</html>

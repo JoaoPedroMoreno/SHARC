@@ -1,0 +1,245 @@
+{
+  "page_points": [
+    480,
+    176
+  ],
+  "png_pixels": [
+    4001,
+    1467
+  ],
+  "dpi": 600,
+  "vector_pdf": true,
+  "palette": [
+    "#1f4e79",
+    "#111827",
+    "#ffffff"
+  ],
+  "body_font_pt_at_16cm": 8.220472440944881,
+  "note": "Unnumbered conceptual blocks with parameter symbols, without equations.",
+  "elements": [
+    {
+      "kind": "label",
+      "text": "Orçamento de enlace descendente",
+      "x": 145.0885009765625,
+      "baseline": 163,
+      "width": 189.822998046875,
+      "size": 11.5
+    },
+    {
+      "kind": "label",
+      "text": "SATÉLITE / FEIXE b",
+      "x": 64.912890625,
+      "baseline": 146,
+      "width": 82.17421875,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "ENLACE",
+      "x": 222.11572265625,
+      "baseline": 146,
+      "width": 35.7685546875,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "RECEPTOR TERRESTRE (UE)",
+      "x": 312.1293212890625,
+      "baseline": 146,
+      "width": 123.741357421875,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "Potência",
+      "x": 20.8693359375,
+      "baseline": 115.0,
+      "width": 36.261328125,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "transmitida",
+      "x": 15.552905273437503,
+      "baseline": 103.0,
+      "width": 46.894189453124994,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "por feixe",
+      "x": 20.8693359375,
+      "baseline": 91.0,
+      "width": 36.261328125,
+      "size": 8.7
+    },
+    {
+      "kind": "symbol",
+      "text": "<i>P</i><sub>tx,b</sub>",
+      "x": 12,
+      "y": 75,
+      "width": 54,
+      "height": 13
+    },
+    {
+      "kind": "label",
+      "text": "Ganho de",
+      "x": 85.94072265625,
+      "baseline": 109.0,
+      "width": 40.118554687499994,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "transmissão",
+      "x": 80.371533203125,
+      "baseline": 97.0,
+      "width": 51.25693359375,
+      "size": 8.7
+    },
+    {
+      "kind": "symbol",
+      "text": "<i>G</i><sub>tx,b</sub>(&#952;,&#966;)",
+      "x": 79,
+      "y": 75,
+      "width": 54,
+      "height": 13
+    },
+    {
+      "kind": "label",
+      "text": "EIRP",
+      "x": 162.84716796875,
+      "baseline": 109.0,
+      "width": 20.3056640625,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "direcional",
+      "x": 152.452197265625,
+      "baseline": 97.0,
+      "width": 41.095605468749994,
+      "size": 8.7
+    },
+    {
+      "kind": "symbol",
+      "text": "EIRP<sub>b</sub>(&#952;,&#966;)",
+      "x": 146,
+      "y": 75,
+      "width": 54,
+      "height": 13
+    },
+    {
+      "kind": "label",
+      "text": "Perdas",
+      "x": 225.4907958984375,
+      "baseline": 109.0,
+      "width": 29.018408203125,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "no enlace",
+      "x": 219.9343505859375,
+      "baseline": 97.0,
+      "width": 40.131298828125,
+      "size": 8.7
+    },
+    {
+      "kind": "symbol",
+      "text": "<i>L</i><sub>tot</sub>",
+      "x": 213,
+      "y": 75,
+      "width": 54,
+      "height": 13
+    },
+    {
+      "kind": "label",
+      "text": "Ganho de",
+      "x": 286.94072265625,
+      "baseline": 109.0,
+      "width": 40.118554687499994,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "recepção",
+      "x": 287.896533203125,
+      "baseline": 97.0,
+      "width": 38.206933593749994,
+      "size": 8.7
+    },
+    {
+      "kind": "symbol",
+      "text": "<i>G</i><sub>rx</sub>(&#968;)",
+      "x": 280,
+      "y": 75,
+      "width": 54,
+      "height": 13
+    },
+    {
+      "kind": "label",
+      "text": "Potência",
+      "x": 355.8693359375,
+      "baseline": 109.0,
+      "width": 36.261328125,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "recebida",
+      "x": 356.1072265625,
+      "baseline": 97.0,
+      "width": 35.785546874999994,
+      "size": 8.7
+    },
+    {
+      "kind": "symbol",
+      "text": "<i>P</i><sub>rx</sub>",
+      "x": 347,
+      "y": 75,
+      "width": 54,
+      "height": 13
+    },
+    {
+      "kind": "label",
+      "text": "Comparação",
+      "x": 414.649365234375,
+      "baseline": 109.0,
+      "width": 52.70126953125,
+      "size": 8.7
+    },
+    {
+      "kind": "label",
+      "text": "com ruído",
+      "x": 419.9742919921875,
+      "baseline": 97.0,
+      "width": 42.051416015624994,
+      "size": 8.7
+    },
+    {
+      "kind": "symbol",
+      "text": "SNR",
+      "x": 414,
+      "y": 75,
+      "width": 54,
+      "height": 13
+    },
+    {
+      "kind": "label",
+      "text": "Ruído no receptor",
+      "x": 377.54072265625,
+      "baseline": 30,
+      "width": 74.91855468749999,
+      "size": 8.7
+    },
+    {
+      "kind": "symbol",
+      "text": "<i>N</i>",
+      "x": 363,
+      "y": 14,
+      "width": 104,
+      "height": 13
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "synthetic": true,
+  "values_db": [
+    -12,
+    -9,
+    -7,
+    -5,
+    -3
+  ],
+  "example_snapshot_ids": [
+    [
+      3,
+      1,
+      3,
+      5,
+      2
+    ],
+    [
+      4,
+      2,
+      4,
+      1,
+      5
+    ]
+  ],
+  "example_estimates_db": [
+    -7,
+    -5
+  ],
+  "n_bootstrap": 10000,
+  "ci95_percentiles": [
+    2.5,
+    97.5
+  ],
+  "numerical_ci_not_shown": true,
+  "estimator": "Descending order: index N-ceil(0.8*N); N=5: second value",
+  "curve": "Illustrative bell shape only; no normality assumption or normal CI"
+}

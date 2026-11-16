@@ -1,0 +1,25 @@
+{
+  "configuration": {
+    "limits": [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "trigger_inr_db": -6.0,
+    "minimum_service_angle_deg": 32,
+    "max_active_beams_per_satellite": null,
+    "max_service_elevation_loss_deg": 90.0
+  },
+  "text_inside_shapes": true,
+  "text_overlaps": 0,
+  "size_inches": [
+    8.2,
+    9.95
+  ],
+  "png_dpi": 600,
+  "algorithm": "sharc/interference_aware_handover_v2.py:137",
+  "reference": "PIBIC 2026 report, Figure 3, page 6"
+}

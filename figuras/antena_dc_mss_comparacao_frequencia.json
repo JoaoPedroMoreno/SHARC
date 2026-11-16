@@ -1,0 +1,9 @@
+{
+  "changed_parameter_only": "itu_r_s_1528.frequency: 2000 -> 2155 MHz",
+  "yaml_modified": false,
+  "simulations_run": false,
+  "peak_gain_held_fixed_dbi": 34.1,
+  "theta_minus7_2000_deg": 4.322754645124303,
+  "theta_minus7_2155_deg": 4.010946778002604,
+  "half_angle_reduction_percent": 7.213175225510227
+}

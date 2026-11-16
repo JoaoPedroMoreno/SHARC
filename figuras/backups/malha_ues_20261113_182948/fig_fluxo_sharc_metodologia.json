@@ -1,0 +1,23 @@
+{
+  "source_configs": [
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\Scripts\\base_input.yaml",
+    "C:\\GitHub\\SHARC\\sharc\\campaigns\\08_TCC2_DC_MSS_performance\\Scripts\\base_input.yaml"
+  ],
+  "snapshots_per_config": [
+    10000,
+    1000
+  ],
+  "schematic_not_simulation_output": true,
+  "curves_are_illustrative": true,
+  "no_simulations_executed": true,
+  "original_assets": "LATINCOM / Encom Blender assets",
+  "treatments_are_alternatives": true,
+  "no_temporal_snapshot_sequence": true,
+  "shared_ground_plane": true,
+  "satellite_tilt_deg": -5,
+  "ue_symbols": "original Encom handset",
+  "red_interference_arrows": false,
+  "snapshot_colors": "nominal blue, PBO orange when applied; gray dashed inactive",
+  "performance_metrics_scope": "campaign 08 only",
+  "text_inside_canvas": true
+}

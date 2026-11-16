@@ -1,0 +1,55 @@
+{
+  "reference": "campaign 04 fig01/render_blender.py at 985a630",
+  "conceptual_not_simulation_output": true,
+  "general_title": false,
+  "fs_elevation_deg": 0,
+  "rx_points_to_satellite": false,
+  "fs_horizontal_north": true,
+  "same_ground_plane": true,
+  "satellite_tilt_deg": -5,
+  "same_geometry_both_panels": true,
+  "candidate_opacity_panel_b": 0.1,
+  "tx_angle_definition": "beam boresight versus satellite-to-FS ray",
+  "rx_angle_definition": "fixed FS boresight versus FS-to-satellite ray",
+  "angles_are_schematic_not_measured_3d_values": true,
+  "cell_and_users_preserved": true,
+  "label_overlaps": [],
+  "png_size": [
+    6400,
+    3000
+  ],
+  "vector_text_and_lines": true,
+  "embedded_rendered_models": true,
+  "geometry": {
+    "psi_tx": {
+      "vertex": [
+        5.358295977095246,
+        13.023320836963098
+      ],
+      "ray_a": [
+        3.8417040229047537,
+        -10.123320836963098
+      ],
+      "ray_b": [
+        7.5838425151411,
+        -8.8990021466931
+      ],
+      "illustrative_screen_angle_deg": 19.65677949339508
+    },
+    "psi_rx": {
+      "vertex": [
+        12.942138492236346,
+        4.124318690269998
+      ],
+      "ray_a": [
+        -1.0,
+        0.0
+      ],
+      "ray_b": [
+        -7.5838425151411,
+        8.8990021466931
+      ],
+      "illustrative_screen_angle_deg": 49.56194285896799
+    }
+  }
+}

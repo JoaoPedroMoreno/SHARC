@@ -1,0 +1,43 @@
+{
+  "source_model": "C:\\GitHub\\SHARC\\figuras\\latincom\\antenna_proposal_v2\\fs_antenna_proposal.blend",
+  "visual_style": {
+    "source": "sharc\\campaigns\\03_DC_MSS_ISOLADO\\presentation_assets\\v3\\satellite_from_paper.blend",
+    "materials": [
+      "Satellite body",
+      "Satellite dark"
+    ],
+    "engine": "BLENDER_EEVEE",
+    "view_transform": "AgX",
+    "look": "AgX - Medium High Contrast",
+    "geometry_unchanged": true
+  },
+  "views": {
+    "angular": {
+      "image": "angular.png",
+      "anchors_px": {
+        "base": [
+          846.6665744781494,
+          1116.6668891906738
+        ],
+        "vertex": [
+          666.6665852069855,
+          630.0002098083496
+        ],
+        "focus": [
+          346.6666251420975,
+          630.0002098083496
+        ],
+        "axis_end": [
+          -319.9999809265137,
+          630.0002098083496
+        ]
+      },
+      "boresight_3d": [
+        0,
+        1,
+        0
+      ],
+      "elevation_deg": 0
+    }
+  }
+}

@@ -1,0 +1,1496 @@
+{
+  "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output",
+  "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS",
+  "started": "2026-11-16T11:35:04.7816131-03:00",
+  "folders": [
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE_2026-10-26_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE_2026-10-26_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 35026077,
+          "sha256": "096F274E8C78FAF72C83158BD7DC2DF0124D2C20BDE3E9543E33AF7F12373AEB"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 119623205,
+          "sha256": "D3D89C4D62064E1AD0A32E71A1ADC8F670651BDB37620595C2A67700926BC6C0"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 114912457,
+          "sha256": "5405AE699D244D16CD483E8B4F7109E29803B13F0838F6D854B8B978724FB0F0"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50009,
+          "sha256": "DF10C082C09CFD8F56E45B7AA195A63AC870E6B95300716DA145A2D518CC1B9D"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 2067515,
+          "sha256": "A206699F3CD515C2A6EB792B2004797C383D706E4D2A6CCD3EEC01573591883C"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "479BE01BFA6EB4504E6B23A70D2791644A46F20EECB67E29699401B795A902EA"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "7D20CE6BA032A90B5D74D8D704B3163295288BAC271A4E3719964F8D329A28A2"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208388,
+          "sha256": "7A72D3964F9D2709008FC6C9588F5A282A4EFA27101D4922D1AC49CA2BECA70E"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 206861,
+          "sha256": "A7BFD3405ABB30B76D42766DEC27FD8281DFE96E5C47F6D1730F2076509A12FE"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 116720757,
+          "sha256": "0AF290BBE3704D099D2CB1DDF9585B94364336C6D8A3689A16CAB9AE6B2F1229"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 199731,
+          "sha256": "B8A5E37234FB975F49675D381F9B667B5D6885B83306E9525CCF675EF4EAC52A"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 4846,
+          "sha256": "CE51741C1A5B565DBD75B0A6A99CD316648E4882D64ADAE2906D3C3A81D49C5E"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203115,
+          "sha256": "6467BB308B7EFE9BBFA15E054927F68E0E27313BBA0A7ADE7965E1A7544764E2"
+        },
+        {
+          "path": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE.yaml",
+          "bytes": 4846,
+          "sha256": "CE51741C1A5B565DBD75B0A6A99CD316648E4882D64ADAE2906D3C3A81D49C5E"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2120368,
+          "sha256": "5FDA7815D8CF3597AA9F70149D23A1AF4F3806A7C3109022E31A14206D769E7E"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1144350,
+          "sha256": "63C7BA2E41DD813F3FB564EE74DA1DCBF7482986D4E0922DBB20D0DEB8EA8132"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_BASELINE_2026-10-26-17-24-48\\simulation_log_2026-10-26-17-24-48.yaml",
+          "bytes": 3101,
+          "sha256": "EF137E2FD9E780470F594E04DCCF4C991D6552522F1B2CB4EDEE83F88F4A2F6E"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO100km_2026-10-26_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO100km_2026-10-26_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 35026077,
+          "sha256": "3028154FD7006F185F2447FE4173EF02A0AB201BE7F013DA2EF9BC6879E28A0A"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 119623205,
+          "sha256": "D3D89C4D62064E1AD0A32E71A1ADC8F670651BDB37620595C2A67700926BC6C0"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 114912457,
+          "sha256": "5405AE699D244D16CD483E8B4F7109E29803B13F0838F6D854B8B978724FB0F0"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50009,
+          "sha256": "DF10C082C09CFD8F56E45B7AA195A63AC870E6B95300716DA145A2D518CC1B9D"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 2067515,
+          "sha256": "A206699F3CD515C2A6EB792B2004797C383D706E4D2A6CCD3EEC01573591883C"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "479BE01BFA6EB4504E6B23A70D2791644A46F20EECB67E29699401B795A902EA"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "7D20CE6BA032A90B5D74D8D704B3163295288BAC271A4E3719964F8D329A28A2"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208445,
+          "sha256": "0F2ABD80FBB3DF5012E1644E83D5794DB7EFA44CC833F10266EEF5826E26ABAB"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 207671,
+          "sha256": "68BB6CB30B0DAF8D839196299DB8150172945C77955409847109111FE82D0A60"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 116720757,
+          "sha256": "0AF290BBE3704D099D2CB1DDF9585B94364336C6D8A3689A16CAB9AE6B2F1229"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 202631,
+          "sha256": "52BB95CA196308D84193281B2D079F79E0579CD0761D854A35575DC54DEF1240"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 5267,
+          "sha256": "E3AEBA23F2F1863D8A8ED983EC1BAEA9005A48B4A2532A0643BD99ACEDEE17D9"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203115,
+          "sha256": "B59F037042595BCD4546025386FFFC4AB234C78FDD2D97C7AACF2859C6057970"
+        },
+        {
+          "path": "tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO100km.yaml",
+          "bytes": 5267,
+          "sha256": "E3AEBA23F2F1863D8A8ED983EC1BAEA9005A48B4A2532A0643BD99ACEDEE17D9"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2130082,
+          "sha256": "B78E74105A23B09CBEDDA84A5B57F9CD33938588C5C20F1364B8A65CE22C5C21"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1147340,
+          "sha256": "0265AE282E26AEB36C29D35321C921E800E894BE9418042052DEEFA35F9F7FD5"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_340km_FS20m_LF20_Azi90_PBO100km_2026-10-26-17-24-48\\simulation_log_2026-10-26-17-24-48.yaml",
+          "bytes": 3101,
+          "sha256": "49BD026EBE222B94D34EBB197227E8FEAC5ADA07819560E2E173B24A5D577BE5"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_BASELINE_2026-10-26_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_BASELINE_2026-10-26_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 87592215,
+          "sha256": "AEAAD3FCBB436AA45C57958EEEF9F68D8DB29CACF6629FDF4EBFC55057006385"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 299153141,
+          "sha256": "47DF71840BFD03E38311B6B5342E018706EBBBF2B04769833F6B50F6D0A2DCD5"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 287368614,
+          "sha256": "14813A3919426DF6A326AD8A99AE28F2823D4597A2064B5BE08885572AA8A6C4"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 60009,
+          "sha256": "D6E583257DB46D53DC8E2E97D7D8DC060D57AAC5FFF9C5AACCA7AD9B0422D5AE"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 2067515,
+          "sha256": "A206699F3CD515C2A6EB792B2004797C383D706E4D2A6CCD3EEC01573591883C"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "479BE01BFA6EB4504E6B23A70D2791644A46F20EECB67E29699401B795A902EA"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "7D20CE6BA032A90B5D74D8D704B3163295288BAC271A4E3719964F8D329A28A2"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208390,
+          "sha256": "D0E444237CC47B55A9B4AB2BAD47E1E34073A2C7FEF54CB6188F0E5530472B9F"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 201698,
+          "sha256": "E52F74CC087038C2A4D4C927B6C5447F14E4E24E5D8F6BC5600659071DAF3ABB"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 291891981,
+          "sha256": "FEF72C903D5F5CEEC36BF3ED4D5B30DDB1772A26A635F44C02DBA9A8A3B5DB71"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 199394,
+          "sha256": "26AC807A6DAE7ECD65E4D21AF23F16C2B5850FC562F44CACE1F97EA8FE68B744"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 4846,
+          "sha256": "7DFAD6C7B858F13C39584C26CB07109876F19C163EE83C10E2D4195DF55A4F27"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203115,
+          "sha256": "CBAE82EAB29103040C0B04CFFEA071949A53B8768486AE7AD1FFF6A885F56623"
+        },
+        {
+          "path": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_BASELINE.yaml",
+          "bytes": 4846,
+          "sha256": "7DFAD6C7B858F13C39584C26CB07109876F19C163EE83C10E2D4195DF55A4F27"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2115282,
+          "sha256": "ABAD799C935EF87FECDC92898EF0C62CC75B0F4AB5C39D19ECC4333390B8AEF4"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1150198,
+          "sha256": "19B82F48C353DD71D92CAC8C3613E5DFA23B62053F7F789CF57828D05208AD70"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_BASELINE_2026-10-26-17-24-48\\simulation_log_2026-10-26-17-24-48.yaml",
+          "bytes": 3101,
+          "sha256": "D34D151083C3ABE9F575A1197363FD39D3A1F25EC4635D08E1B91DC71AA377EA"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km_2026-10-26_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km_2026-10-26_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 87592215,
+          "sha256": "9D942BDA9F2366CC54D9A9E25F3B10A37A89DA8D066C9259A6C0527839246B8D"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 299153141,
+          "sha256": "47DF71840BFD03E38311B6B5342E018706EBBBF2B04769833F6B50F6D0A2DCD5"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 287368614,
+          "sha256": "14813A3919426DF6A326AD8A99AE28F2823D4597A2064B5BE08885572AA8A6C4"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 60009,
+          "sha256": "D6E583257DB46D53DC8E2E97D7D8DC060D57AAC5FFF9C5AACCA7AD9B0422D5AE"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 2067515,
+          "sha256": "A206699F3CD515C2A6EB792B2004797C383D706E4D2A6CCD3EEC01573591883C"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "479BE01BFA6EB4504E6B23A70D2791644A46F20EECB67E29699401B795A902EA"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "7D20CE6BA032A90B5D74D8D704B3163295288BAC271A4E3719964F8D329A28A2"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208446,
+          "sha256": "C913F8E86BC7104F20233028E5AFC193A6ED78B7D8141D6393B1D95CFADAD97C"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 205250,
+          "sha256": "BF01136F97014599C9C724DD1B0F17B370485594631ED0DF45C61D15804006E7"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 291891981,
+          "sha256": "FEF72C903D5F5CEEC36BF3ED4D5B30DDB1772A26A635F44C02DBA9A8A3B5DB71"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 201719,
+          "sha256": "5589EAEC1B672877D34D8C6FEA19441A47E9D1CD4485B7F1B62972D5D61484D9"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 5267,
+          "sha256": "A1B552B08583D6401EEABE00616385D92940463FEDD0B9395B0B35100C8C3865"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203115,
+          "sha256": "26FBD9A6A22D6FF8C936A5CAE11A1E57A919A43441419C9F3F742B8263D388D6"
+        },
+        {
+          "path": "tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km.yaml",
+          "bytes": 5267,
+          "sha256": "A1B552B08583D6401EEABE00616385D92940463FEDD0B9395B0B35100C8C3865"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2127398,
+          "sha256": "0F40541D4D8DE1B5F2B1625349AD8BB90B6AF3D7A8020A54C9C06B82BEBD0DC7"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1150644,
+          "sha256": "35B017286CBAF81522ABD9BA4D03781F16866450B78D3D17ADBE192979A1E572"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_340km_FS20m_LF50_Azi90_PBO100km_2026-10-26-17-24-48\\simulation_log_2026-10-26-17-24-48.yaml",
+          "bytes": 3101,
+          "sha256": "E0EA9E5DDC3F7642DBDB1E768F3B0F3503AE940611256523E711DB2E5B0802F6"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_BASELINE_2026-10-26_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_BASELINE_2026-10-26_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 35026077,
+          "sha256": "096F274E8C78FAF72C83158BD7DC2DF0124D2C20BDE3E9543E33AF7F12373AEB"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 119623712,
+          "sha256": "5D2E3FFB678ED265EC911CD052A41F4BF5CF3E13897409E5735F570567D10ADC"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 114910936,
+          "sha256": "648A71779F00C8426071C0EDC8C11D879BEB3ECAD30CB5FC9B9EE70E713F48F5"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50009,
+          "sha256": "DF10C082C09CFD8F56E45B7AA195A63AC870E6B95300716DA145A2D518CC1B9D"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 2067515,
+          "sha256": "A206699F3CD515C2A6EB792B2004797C383D706E4D2A6CCD3EEC01573591883C"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "479BE01BFA6EB4504E6B23A70D2791644A46F20EECB67E29699401B795A902EA"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "7D20CE6BA032A90B5D74D8D704B3163295288BAC271A4E3719964F8D329A28A2"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208379,
+          "sha256": "31C718AD3D2F470476469E16661403152FFF5BBDEBEB35FF25631E43A164F00B"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 206861,
+          "sha256": "2331F8274F9979112A7F7577DB43EC2DC4B033DAC13CE7F38F02FE647AC57436"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 116721395,
+          "sha256": "8126AA7178572B2F9FA0DAF32E59840F216A068A03C204B9B62D5D0EF41CF8A7"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 199948,
+          "sha256": "89329C8A9C37C4F9D45FC1AF35779EE43C776393421D82D262386F94C67620E0"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 4846,
+          "sha256": "68581333181AFD12630115AE09C7986F57434CC98CB4356200D5A6FA4051C201"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203115,
+          "sha256": "B265F8BF8C0E5E0A1F0028C5A12F3652E8580437258C4825F4F52CD6AD7C3BE4"
+        },
+        {
+          "path": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_BASELINE.yaml",
+          "bytes": 4846,
+          "sha256": "68581333181AFD12630115AE09C7986F57434CC98CB4356200D5A6FA4051C201"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2120511,
+          "sha256": "85E2945CF94F135EB9C2C28582AC67AE5846A2B870A9C3968356D5ED60703951"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1144588,
+          "sha256": "C0CF1625AC8269110AD69B3C0A70813DCE3BBFAE0A5556E3382AAD27CE4FA6DD"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_BASELINE_2026-10-26-17-24-48\\simulation_log_2026-10-26-17-24-48.yaml",
+          "bytes": 3101,
+          "sha256": "3ACC2153DB7E2DEC68181A932DD43E0BC8D28A8ADE8E945C8B0FA24E831FE617"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO100km_2026-10-26_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO100km_2026-10-26_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 35026077,
+          "sha256": "3028154FD7006F185F2447FE4173EF02A0AB201BE7F013DA2EF9BC6879E28A0A"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 119623712,
+          "sha256": "5D2E3FFB678ED265EC911CD052A41F4BF5CF3E13897409E5735F570567D10ADC"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 114910936,
+          "sha256": "648A71779F00C8426071C0EDC8C11D879BEB3ECAD30CB5FC9B9EE70E713F48F5"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50009,
+          "sha256": "DF10C082C09CFD8F56E45B7AA195A63AC870E6B95300716DA145A2D518CC1B9D"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 2067515,
+          "sha256": "A206699F3CD515C2A6EB792B2004797C383D706E4D2A6CCD3EEC01573591883C"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "479BE01BFA6EB4504E6B23A70D2791644A46F20EECB67E29699401B795A902EA"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "7D20CE6BA032A90B5D74D8D704B3163295288BAC271A4E3719964F8D329A28A2"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208388,
+          "sha256": "86A6D39C1925A38B7BA371654EC43817BA30E872439D113AE7DD93F07B426FE3"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 207703,
+          "sha256": "37C1F58E87BA9CBC8BD0107139718B6526928C68166198D31F51E9416254B385"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 116721395,
+          "sha256": "8126AA7178572B2F9FA0DAF32E59840F216A068A03C204B9B62D5D0EF41CF8A7"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 202940,
+          "sha256": "DDF86C4B5EA17E78EDDB9FB593773EBE43CCAC446342628DBE67D10458C0C63D"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 5267,
+          "sha256": "9D634C4394CE8F5466DA3D7DC3922C2BB0B8FEFD117023ABB29B5C97BC4E583E"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203115,
+          "sha256": "4EF8057D76889D1816B94D581A664049A282DEC8ACE2222AED3480FB9F47E19A"
+        },
+        {
+          "path": "tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO100km.yaml",
+          "bytes": 5267,
+          "sha256": "9D634C4394CE8F5466DA3D7DC3922C2BB0B8FEFD117023ABB29B5C97BC4E583E"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2130525,
+          "sha256": "7B4662168CED2FBB4A0D82F90E5341D671F4B2295D592CB6CBA3E5CA66389AE3"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1147456,
+          "sha256": "7A274EF205FBDACA9D0A8CEA4E56E99714C58A9E24239894D82BD51EF4CB10DF"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO100km_2026-10-26-17-24-48\\simulation_log_2026-10-26-17-24-48.yaml",
+          "bytes": 3101,
+          "sha256": "1A679032719A38569708F6B95A58846C02C73475199B9D9B4307E6DE9775A5E0"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE_2026-10-26_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE_2026-10-26_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 87592215,
+          "sha256": "AEAAD3FCBB436AA45C57958EEEF9F68D8DB29CACF6629FDF4EBFC55057006385"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 299155072,
+          "sha256": "67FA6DC28676F5AA63843799DE4416FB2420424C0B0FBFE13F09D9796ECA083C"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 287367825,
+          "sha256": "0DA24CB4B45299C0505B42A8C867F683A0D229DAF78E544FCB362F08FCFD37C1"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 60009,
+          "sha256": "D6E583257DB46D53DC8E2E97D7D8DC060D57AAC5FFF9C5AACCA7AD9B0422D5AE"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 2067515,
+          "sha256": "A206699F3CD515C2A6EB792B2004797C383D706E4D2A6CCD3EEC01573591883C"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "479BE01BFA6EB4504E6B23A70D2791644A46F20EECB67E29699401B795A902EA"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "7D20CE6BA032A90B5D74D8D704B3163295288BAC271A4E3719964F8D329A28A2"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208375,
+          "sha256": "1A92BDB80421F0F73F3EB948FD17E77535363912E53F8345E5D2713F667708E3"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 201781,
+          "sha256": "1D6A814A7EE41CC92853A933F514216C0A640C7848676A18C7B5D899C6ED00E4"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 291892688,
+          "sha256": "73077D28910CDB9A47BF0DCC6E5F018CE214DFC50533E89397B14E9651435DCB"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 199437,
+          "sha256": "85965A38EF33BD7116AB0DB60754A2EBA3682869DFE0F7E0C932BEE82C46F166"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 4846,
+          "sha256": "8E4E25B2AD0FDE9E15B70E6917D71797E6CCB6FA3814D1B2EAD4485F74722B27"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203115,
+          "sha256": "1F5C27DA515F2652B06B3E00C95FC50706067C476C32206C6C44C8870BAECBE3"
+        },
+        {
+          "path": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE.yaml",
+          "bytes": 4846,
+          "sha256": "8E4E25B2AD0FDE9E15B70E6917D71797E6CCB6FA3814D1B2EAD4485F74722B27"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2114783,
+          "sha256": "F5F1640D9F9E68F3A78DD03958EE96B7E968C0650E88DE9C5C920DF9F1F784C7"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1150122,
+          "sha256": "6801731A0CED7CFF8D264EAC2074435D28A437D157AE6DE8EA80A77CE4DE12B6"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_BASELINE_2026-10-26-17-24-48\\simulation_log_2026-10-26-17-24-48.yaml",
+          "bytes": 3101,
+          "sha256": "701613762C20E4E87D46F98A5F9B38DF5E32763416C997E448948B0A0DA4F101"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO100km_2026-10-26_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO100km_2026-10-26_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 87592215,
+          "sha256": "9D942BDA9F2366CC54D9A9E25F3B10A37A89DA8D066C9259A6C0527839246B8D"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 299155072,
+          "sha256": "67FA6DC28676F5AA63843799DE4416FB2420424C0B0FBFE13F09D9796ECA083C"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 287367825,
+          "sha256": "0DA24CB4B45299C0505B42A8C867F683A0D229DAF78E544FCB362F08FCFD37C1"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 60009,
+          "sha256": "D6E583257DB46D53DC8E2E97D7D8DC060D57AAC5FFF9C5AACCA7AD9B0422D5AE"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 2067515,
+          "sha256": "A206699F3CD515C2A6EB792B2004797C383D706E4D2A6CCD3EEC01573591883C"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "479BE01BFA6EB4504E6B23A70D2791644A46F20EECB67E29699401B795A902EA"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "7D20CE6BA032A90B5D74D8D704B3163295288BAC271A4E3719964F8D329A28A2"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208412,
+          "sha256": "8DF08CABDE76C83616CF4CFA57C6D4E015888E64268DBB3DDBA84AA4F23E9890"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 205334,
+          "sha256": "E1430B50FCA867C812B829643DA8C6F06BF8C6DF0329D17741D19E91C87927B5"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 291892688,
+          "sha256": "73077D28910CDB9A47BF0DCC6E5F018CE214DFC50533E89397B14E9651435DCB"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 201687,
+          "sha256": "BAC73C986B68C5ECBB1A443D883DB0A22C9515A8BEA3B3EAB27E21BEE0356123"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 5267,
+          "sha256": "13E3B860B8F16A1CB380F9E0F13A73B7E2F33B9D3D20078C96C1DD7FFA5D0A74"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203115,
+          "sha256": "863970B309DB96A671735E5157FE280194D21560EF58162303B87966122832E9"
+        },
+        {
+          "path": "tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO100km.yaml",
+          "bytes": 5267,
+          "sha256": "13E3B860B8F16A1CB380F9E0F13A73B7E2F33B9D3D20078C96C1DD7FFA5D0A74"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2127419,
+          "sha256": "B51362F1CD7682827907B825A4D26F5F84077D81B82BDD736F52DAC40766EE88"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1150489,
+          "sha256": "68102DE3155C07B450FFDCFEFD765B97DB9D69B0C665DB27D79E054A6493D874"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_340km_FS40m_LF50_Azi90_PBO100km_2026-10-26-17-24-48\\simulation_log_2026-10-26-17-24-48.yaml",
+          "bytes": 3101,
+          "sha256": "62BBE24BA94EC26C6FBC6B293DA29CA83694AA882AF85A9B459A620B662957F1"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_BASELINE_2026-10-27_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_BASELINE_2026-10-27_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 21216321,
+          "sha256": "4B66514E8C77CD31648473416391EEDBC67AFC11BE1E1619159C828550DDFC01"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 72257905,
+          "sha256": "5826738D20C5F17641E2C0AFFF89BDFA48C97C9F7831BD98936D5A20763F4964"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 69603848,
+          "sha256": "8B94506634F551A7DA111B1F43F7A4E7618D52EB6D1A855BEE61FB4ADC3C7A9E"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50009,
+          "sha256": "67AF6D1ABE8B35E439AB9B559EA2C20B774AB34823788D94098A0848D5556A47"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 1914384,
+          "sha256": "4CD71E4D4BC76550EF29C27D447354B9567E08E03C74C457FE1620AAA1FE1637"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "6E3524A536CEA671137A9EF69E419CF0B95EEE99D7179F3D3507791082470858"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "D6F335AD69A1429EE110B5516208E7086AFB7EA150855DA10D16A77812EE4A3B"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208434,
+          "sha256": "574FB9EBE40272194419DC62F96CA92D8016D332246636C36C41952931ACE5DF"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 207042,
+          "sha256": "9E930C4685AF0DAD5DBB0E910F5D2CE69C0689503A75EB3CF6B7EDF8E9B4F0AA"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 70725185,
+          "sha256": "16DC82C3AF9EB854E343F9A18318C6FBB5BEC8FF5630EAF688103613B5A34121"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 206123,
+          "sha256": "27BF649ADAE3D6A3DFB96586DF6DA6A97578615920D6957309070D0C1B43D9E9"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 4846,
+          "sha256": "D63D9259EF54C6055D67CB363FE45389BFDAFB414BFAE20E7A27194E976DE795"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203406,
+          "sha256": "03BCC3AD6BEFE8D3667B75E4231A5D4FD5A2B16C6B2FECB7F0FBC286EFD5FE02"
+        },
+        {
+          "path": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_BASELINE.yaml",
+          "bytes": 4846,
+          "sha256": "D63D9259EF54C6055D67CB363FE45389BFDAFB414BFAE20E7A27194E976DE795"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2119803,
+          "sha256": "35599E272D6805729DA93D4CE99D316F8D75A4C9D055CA8DDBE14AB66F9DE4F2"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1148889,
+          "sha256": "225208BCAF74CB45AC5966E0E4BB4E92AC6F099035396171E2C810ED276828F1"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_BASELINE_2026-10-27-04-23-27\\simulation_log_2026-10-27-04-23-27.yaml",
+          "bytes": 3100,
+          "sha256": "29619F6435004CA320D77096AE70FC92FCAEF9C003B79697654D4370A4199239"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO100km_2026-10-27_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO100km_2026-10-27_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 21216321,
+          "sha256": "40C5B0123A14A9BBD4EC3DCF9490A062A4919B2E8DE443CA57523863C8CCE166"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 72257905,
+          "sha256": "5826738D20C5F17641E2C0AFFF89BDFA48C97C9F7831BD98936D5A20763F4964"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 69603848,
+          "sha256": "8B94506634F551A7DA111B1F43F7A4E7618D52EB6D1A855BEE61FB4ADC3C7A9E"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50009,
+          "sha256": "67AF6D1ABE8B35E439AB9B559EA2C20B774AB34823788D94098A0848D5556A47"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 1914384,
+          "sha256": "4CD71E4D4BC76550EF29C27D447354B9567E08E03C74C457FE1620AAA1FE1637"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "6E3524A536CEA671137A9EF69E419CF0B95EEE99D7179F3D3507791082470858"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "D6F335AD69A1429EE110B5516208E7086AFB7EA150855DA10D16A77812EE4A3B"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208461,
+          "sha256": "50E4DA1EB2FA2031F285812B903B663A609424738226173A5ED6AA3E30D61093"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 208239,
+          "sha256": "7C6F7F5314C398C93CD85AC16F4876B6CD4A58469BECD8DC7B5595185ADC83DD"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 70725185,
+          "sha256": "16DC82C3AF9EB854E343F9A18318C6FBB5BEC8FF5630EAF688103613B5A34121"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 207162,
+          "sha256": "F2098D058891742032ACCD02CD3BF4087105905D658FCE9E7C6A14D3DBDFA150"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 5267,
+          "sha256": "3F494916CA68DB6289EAEF82C36D10418E2E5A20CD2259D660562E28495FE2E3"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203406,
+          "sha256": "CFB118E7948A7F624C8DE7CFC4D8227057EDBD2E0447F9E5DD1895DBDAE64B07"
+        },
+        {
+          "path": "tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO100km.yaml",
+          "bytes": 5267,
+          "sha256": "3F494916CA68DB6289EAEF82C36D10418E2E5A20CD2259D660562E28495FE2E3"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2126097,
+          "sha256": "0946CA2C23D14829FA5E3177F92AE5AAFADFF07AB8B6B6FF738FB48EBB57915C"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1149047,
+          "sha256": "8CEB2117AAD58FE50C72FAA42F7BB0FB3BAF3C9448C878F953F286A5DAF00332"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_525km_FS20m_LF20_Azi90_PBO100km_2026-10-27-04-23-58\\simulation_log_2026-10-27-04-23-58.yaml",
+          "bytes": 3100,
+          "sha256": "107D9CBD4CC533B5FA71458A6B6A8B124608EAEC7AEDD6D9A397C192E2BD3ECD"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_BASELINE_2026-10-27_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_BASELINE_2026-10-27_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 53055351,
+          "sha256": "F30DC131640E3F5B9A2EE90783838752367DF533CEF68345FD1B7EA5751664F8"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 180690241,
+          "sha256": "4E4E2C8B570222DCA71FBB700E2ADDD89979A8AFB0A2434694092B2A2200EB96"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 174064221,
+          "sha256": "76E96FF3738F70AD0E2758A339BDF7EEFD274A7E5A7B91978F3190A6D2979DD2"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50020,
+          "sha256": "79A70052B6433B3FE833C36F30BA85D9F34C3107BF5EFEDD4BCC80BAED7E4AC4"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 1914384,
+          "sha256": "4CD71E4D4BC76550EF29C27D447354B9567E08E03C74C457FE1620AAA1FE1637"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "6E3524A536CEA671137A9EF69E419CF0B95EEE99D7179F3D3507791082470858"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "D6F335AD69A1429EE110B5516208E7086AFB7EA150855DA10D16A77812EE4A3B"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208511,
+          "sha256": "618E3AB4AAA52987590BBFD30A650645BCD2B9FF9E5EEB92CCA896C18F6BC94A"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 204954,
+          "sha256": "AB9DB1BD2B413D13E3FDB31A766447C8304D67056423F583788CFCFC34F1A1F2"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 176859425,
+          "sha256": "1C99EB3E3D40A878C77E53BCF18C927DB33BD45CB7EF60F55F9DB6C3C7927B81"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 199693,
+          "sha256": "19EDDD1AB519C4B9FA02B2631DC74B230F2CFE8B207F6627B49F14D7E3327758"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 4846,
+          "sha256": "2ED0EDC5396D5FE40BBE511C96039F294A8FA062089B2F500E1917FE284C81E1"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203406,
+          "sha256": "A353B11D651922F3CD49C6D41B4AAD31C1EC2DDACA4762003387FFED870957E5"
+        },
+        {
+          "path": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_BASELINE.yaml",
+          "bytes": 4846,
+          "sha256": "2ED0EDC5396D5FE40BBE511C96039F294A8FA062089B2F500E1917FE284C81E1"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2112575,
+          "sha256": "4340EEE5070C30085D70940DD844C3B8EB670F03AD79E661BF29B45E13AACD3E"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1144240,
+          "sha256": "12CB1D37A9030DEDA0D3DF1BCB8C89906C6D85F5BECA81E2704BB962D4AEB834"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_BASELINE_2026-10-27-04-25-21\\simulation_log_2026-10-27-04-25-21.yaml",
+          "bytes": 3100,
+          "sha256": "753C1F381648DCA210B7E831BBD776B49D7A8F70555FACB6535EF84E1A0F6A10"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO100km_2026-10-27_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO100km_2026-10-27_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 53055351,
+          "sha256": "8B033C7E036FCBDAB5DE7AF3A29161A21AE3B0295D233843CAD40317D9974C59"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 180690241,
+          "sha256": "4E4E2C8B570222DCA71FBB700E2ADDD89979A8AFB0A2434694092B2A2200EB96"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 174064221,
+          "sha256": "76E96FF3738F70AD0E2758A339BDF7EEFD274A7E5A7B91978F3190A6D2979DD2"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50020,
+          "sha256": "79A70052B6433B3FE833C36F30BA85D9F34C3107BF5EFEDD4BCC80BAED7E4AC4"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 1914384,
+          "sha256": "4CD71E4D4BC76550EF29C27D447354B9567E08E03C74C457FE1620AAA1FE1637"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "6E3524A536CEA671137A9EF69E419CF0B95EEE99D7179F3D3507791082470858"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "D6F335AD69A1429EE110B5516208E7086AFB7EA150855DA10D16A77812EE4A3B"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208491,
+          "sha256": "83AE0362E16569FE366C9DB5040C389DE32077B5E85D7ECA69DC906013B37333"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 207519,
+          "sha256": "5C1E136AA898F720F75A645C1A1B9DFE038C256523329624E7919D439CBC6A80"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 176859425,
+          "sha256": "1C99EB3E3D40A878C77E53BCF18C927DB33BD45CB7EF60F55F9DB6C3C7927B81"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 202071,
+          "sha256": "0CBBE87650D69F80A4C3707C9E49130AFC0AFF85EE39EA9B0C89E7A07F6D988E"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 5267,
+          "sha256": "D6D8597D1AE453F056E476DAEA77F235F263156D8F57D34D30CAB1A6A9BCA235"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203406,
+          "sha256": "03E345437D9B48A73B90100E30BD8A2F8A7C9DE81A76B22D2296BBD29546E153"
+        },
+        {
+          "path": "tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO100km.yaml",
+          "bytes": 5267,
+          "sha256": "D6D8597D1AE453F056E476DAEA77F235F263156D8F57D34D30CAB1A6A9BCA235"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2123755,
+          "sha256": "FA7473BF77A9ABD7B7A63DE39A4679163A99277970B8498AB57306820D8C0D8E"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1146812,
+          "sha256": "5BC0801FD4956BC9E52936F685230A50325A0D88D1CB34B2284B88E936D41C58"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_PBO100km_2026-10-27-05-36-55\\simulation_log_2026-10-27-05-36-55.yaml",
+          "bytes": 3100,
+          "sha256": "0507EDFF162871F5780C105813A212EAC0428E3C82D5CC9A95816EAF27D8A70C"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE_2026-10-27_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE_2026-10-27_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 21216321,
+          "sha256": "4B66514E8C77CD31648473416391EEDBC67AFC11BE1E1619159C828550DDFC01"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 72258042,
+          "sha256": "DEF224ED0E161915D531E27F4C2202989A3E49E704670468842B3ED044529821"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 69602329,
+          "sha256": "43993445724998CF02306E4BBD832D2E495269201E692540F01C1AD6D3CDD1B1"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50009,
+          "sha256": "67AF6D1ABE8B35E439AB9B559EA2C20B774AB34823788D94098A0848D5556A47"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 1914384,
+          "sha256": "4CD71E4D4BC76550EF29C27D447354B9567E08E03C74C457FE1620AAA1FE1637"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "6E3524A536CEA671137A9EF69E419CF0B95EEE99D7179F3D3507791082470858"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "D6F335AD69A1429EE110B5516208E7086AFB7EA150855DA10D16A77812EE4A3B"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208468,
+          "sha256": "98BB8583649FF72523B28B7D36FE283D33F2306BCB3DAD733035DAFE65D2432C"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 207043,
+          "sha256": "326A82C1325F65700F989CF5CC754628874A73657E76D4DB0D74A27932786454"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 70721144,
+          "sha256": "5E717E6ECD5E761E0FE8D79449F77536B3AE31870D149204BCFAEDDBD027F1CE"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 206211,
+          "sha256": "41A828CD279B69664BF56E929AF69C80B1A9D5861F17BE7AD128AF8558283E41"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 4846,
+          "sha256": "BBB4C17E16038641C9034BD4551D7C5F9A7516ED0902A4CBFBD0C94F1EDCBED9"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203406,
+          "sha256": "D2B94F6F1A7449521C8B4F4CC9F97E1704080EA1A0C6F2534B99EEB6AFA13378"
+        },
+        {
+          "path": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE.yaml",
+          "bytes": 4846,
+          "sha256": "BBB4C17E16038641C9034BD4551D7C5F9A7516ED0902A4CBFBD0C94F1EDCBED9"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2119791,
+          "sha256": "CEBF2ED4CB3792F227EA31AE9E37C3E61E1159BB4582857B2F021CB6435337EE"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1148867,
+          "sha256": "047EADC50729DAF6F2993FA6D64DE35D1EE6F49CDEABECE99126DB86D37DB350"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_BASELINE_2026-10-27-05-38-15\\simulation_log_2026-10-27-05-38-15.yaml",
+          "bytes": 3100,
+          "sha256": "065669F6B8DE5A02246237DF158D4FC896E4323DCF2B4723D91A6592FE480516"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO100km_2026-10-27_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO100km_2026-10-27_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 21216321,
+          "sha256": "40C5B0123A14A9BBD4EC3DCF9490A062A4919B2E8DE443CA57523863C8CCE166"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 72258042,
+          "sha256": "DEF224ED0E161915D531E27F4C2202989A3E49E704670468842B3ED044529821"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 69602329,
+          "sha256": "43993445724998CF02306E4BBD832D2E495269201E692540F01C1AD6D3CDD1B1"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50009,
+          "sha256": "67AF6D1ABE8B35E439AB9B559EA2C20B774AB34823788D94098A0848D5556A47"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 1914384,
+          "sha256": "4CD71E4D4BC76550EF29C27D447354B9567E08E03C74C457FE1620AAA1FE1637"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "6E3524A536CEA671137A9EF69E419CF0B95EEE99D7179F3D3507791082470858"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "D6F335AD69A1429EE110B5516208E7086AFB7EA150855DA10D16A77812EE4A3B"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208387,
+          "sha256": "FADB52B36ACD826C1D492AD13C8D506770C924C5043143BC7E6A6913D67EF304"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 208218,
+          "sha256": "0940956708B81ECD93F3CBDACD67A2CAC91D8D42FDD5E0908437E96B3D56E8B0"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 70721144,
+          "sha256": "5E717E6ECD5E761E0FE8D79449F77536B3AE31870D149204BCFAEDDBD027F1CE"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 207198,
+          "sha256": "90EBA49765397BDD3996F5CAF761EE72DB81170FA2A61B8D1EA792837ACAC645"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 5267,
+          "sha256": "F19B1FA61982F21F45B6972F241E60376400541DAF4E2167DCBC3A97CFFF5573"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203406,
+          "sha256": "01B5C32100E075AE364FF93CC030FC3E2914939D9E81C7731FED464F63DC0FCF"
+        },
+        {
+          "path": "tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO100km.yaml",
+          "bytes": 5267,
+          "sha256": "F19B1FA61982F21F45B6972F241E60376400541DAF4E2167DCBC3A97CFFF5573"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2126140,
+          "sha256": "78672CAB3412C974FA151A81990E057064669786F4973E0966893004283D7DB8"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1148846,
+          "sha256": "E33703EC49E13F588FF1434CBCD19FE2192443506E49FE7CF8857A9B880BA909"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_525km_FS40m_LF20_Azi90_PBO100km_2026-10-27-09-15-28\\simulation_log_2026-10-27-09-15-28.yaml",
+          "bytes": 3100,
+          "sha256": "A7788C55B7950B668AA56EFABEA84410FFF7F4F4A68220344A2B078ADC68E261"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_BASELINE_2026-10-27_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_BASELINE_2026-10-27_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 53055351,
+          "sha256": "F30DC131640E3F5B9A2EE90783838752367DF533CEF68345FD1B7EA5751664F8"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 180689742,
+          "sha256": "242A21D4C55F87CFBC93598CD943294FA103C6115F71C2836A424960D7D5574A"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 174052027,
+          "sha256": "710C145BE22C1132564685CD6E3982A9EB612BBD6AD53DCFD7830C7E10096774"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50020,
+          "sha256": "79A70052B6433B3FE833C36F30BA85D9F34C3107BF5EFEDD4BCC80BAED7E4AC4"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 1914384,
+          "sha256": "4CD71E4D4BC76550EF29C27D447354B9567E08E03C74C457FE1620AAA1FE1637"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "6E3524A536CEA671137A9EF69E419CF0B95EEE99D7179F3D3507791082470858"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "D6F335AD69A1429EE110B5516208E7086AFB7EA150855DA10D16A77812EE4A3B"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208440,
+          "sha256": "519A9BD47E4A81C7BECF29303EE092AF8605605A76C384D4B2C755DC3FE1986B"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 205017,
+          "sha256": "C3413A13DFA39E60F379B33D96DA4A0984C7F294B7EE82AFFA663DD98A545FBB"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 176850636,
+          "sha256": "5D02C9F2DA8D24F69DD49E956FAAC21376D213A42A953F3D6FF0B1EDC743DB69"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 199825,
+          "sha256": "8432D5D28484C034927DD390989EC6C730ACE8391E900BA4A1E06C4020C01D82"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 4846,
+          "sha256": "0C21ABD511161C25A948D0286C78E8F3B1F855BEC45837079A9C8620B3C1A87B"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 203406,
+          "sha256": "FBE57B250A8A1DD76043DD6167CFE8083FE41184F978FA2CF25E8CDD7A303057"
+        },
+        {
+          "path": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_BASELINE.yaml",
+          "bytes": 4846,
+          "sha256": "0C21ABD511161C25A948D0286C78E8F3B1F855BEC45837079A9C8620B3C1A87B"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2112400,
+          "sha256": "B4D1567EEDC21EEE552F8B0C00E820007E52EF54E8EF3750FA4F478D91D6BDAE"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1144317,
+          "sha256": "31BC0FD7CF8788E3D73ED190AF05F78C6A5A8CAE29D1CB77C13DA3FB981CE8B8"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_BASELINE_2026-10-27-09-16-31\\simulation_log_2026-10-27-09-16-31.yaml",
+          "bytes": 3100,
+          "sha256": "261230133C0162BEF4DC91EFD99E58494F6C4B4DDBD0ACF34A9DD2645359E4D2"
+        }
+      ]
+    },
+    {
+      "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\output\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km_2026-10-27_01",
+      "destination": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km_2026-10-27_01",
+      "verified": true,
+      "source_removed": true,
+      "files": [
+        {
+          "path": "imt_dl_tx_power.csv",
+          "bytes": 53055351,
+          "sha256": "8B033C7E036FCBDAB5DE7AF3A29161A21AE3B0295D233843CAD40317D9974C59"
+        },
+        {
+          "path": "imt_system_antenna_gain.csv",
+          "bytes": 180689742,
+          "sha256": "242A21D4C55F87CFBC93598CD943294FA103C6115F71C2836A424960D7D5574A"
+        },
+        {
+          "path": "imt_system_path_loss.csv",
+          "bytes": 174052027,
+          "sha256": "710C145BE22C1132564685CD6E3982A9EB612BBD6AD53DCFD7830C7E10096774"
+        },
+        {
+          "path": "num_of_active_beams.csv",
+          "bytes": 50020,
+          "sha256": "79A70052B6433B3FE833C36F30BA85D9F34C3107BF5EFEDD4BCC80BAED7E4AC4"
+        },
+        {
+          "path": "num_of_beams_per_sat.csv",
+          "bytes": 1914384,
+          "sha256": "4CD71E4D4BC76550EF29C27D447354B9567E08E03C74C457FE1620AAA1FE1637"
+        },
+        {
+          "path": "num_of_candidate_sats.csv",
+          "bytes": 50009,
+          "sha256": "6E3524A536CEA671137A9EF69E419CF0B95EEE99D7179F3D3507791082470858"
+        },
+        {
+          "path": "num_of_sat.csv",
+          "bytes": 40009,
+          "sha256": "D6F335AD69A1429EE110B5516208E7086AFB7EA150855DA10D16A77812EE4A3B"
+        },
+        {
+          "path": "system_dl_interf_power_per_mhz.csv",
+          "bytes": 208448,
+          "sha256": "8C4D3AABE6E7E4263E3C05DE339819862F5FA731B47872A8EE3E1D06F01D757E"
+        },
+        {
+          "path": "system_dl_interf_power.csv",
+          "bytes": 207575,
+          "sha256": "ABDBC4D98460B336609FF5D90DA06339A0854ED22135B8396372CEF656BED5BA"
+        },
+        {
+          "path": "system_imt_antenna_gain.csv",
+          "bytes": 176850636,
+          "sha256": "5D02C9F2DA8D24F69DD49E956FAAC21376D213A42A953F3D6FF0B1EDC743DB69"
+        },
+        {
+          "path": "system_inr.csv",
+          "bytes": 202360,
+          "sha256": "5EDE06E67FED95343E2BD61032F6A5B2F5B2CDA20EA222AEC12A0858018B0213"
+        },
+        {
+          "path": "tcc2_executed_config.yaml",
+          "bytes": 5267,
+          "sha256": "18AFD783ED265615899B781AB9CA9C5659E9F428F9F71312AE19E97EB26DE47B"
+        },
+        {
+          "path": "tcc2_manifest.json",
+          "bytes": 210921,
+          "sha256": "B3469E2E07CAAC44C92BEDA239AB7176F9DBF612D2F5FC0615743E647C7AF54A"
+        },
+        {
+          "path": "tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km.yaml",
+          "bytes": 5267,
+          "sha256": "18AFD783ED265615899B781AB9CA9C5659E9F428F9F71312AE19E97EB26DE47B"
+        },
+        {
+          "path": "tcc2_snapshots.csv.gz",
+          "bytes": 2123769,
+          "sha256": "C2ACB0A6AB910AECCD00C141B50E4AD27C4405B42844C8FC62F8E769D0891A02"
+        },
+        {
+          "path": "tcc2_steps.csv.gz",
+          "bytes": 1147068,
+          "sha256": "790170374C5D8B9229AC4E3BEAD609BDB5498F19E1A2208378CA3CB628C3185D"
+        },
+        {
+          "path": "simulation_tcc2_SA_noPY_525km_FS40m_LF50_Azi90_PBO100km_2026-10-27-10-29-28\\simulation_log_2026-10-27-10-29-28.yaml",
+          "bytes": 3100,
+          "sha256": "C0975F401DC496858CB3C33B56A756041564D4B6858F59E43BD89C2EF55BAD58"
+        }
+      ]
+    }
+  ],
+  "completed": "2026-11-16T11:41:26.1981447-03:00"
+}

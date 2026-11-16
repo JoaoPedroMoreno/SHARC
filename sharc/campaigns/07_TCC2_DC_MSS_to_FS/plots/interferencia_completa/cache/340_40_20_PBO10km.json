@@ -1,0 +1,37 @@
+{
+  "signature": {
+    "sha256": "df3962af89792dc3c7825b8926cfa0df525740f95a5d452f85865b10f0bd3970",
+    "method": "snapshot-percentile-bootstrap-v1",
+    "resamples": 10000,
+    "seed": 20260727
+  },
+  "metrics": {
+    "altitude_km": 340,
+    "fs_height_m": 40,
+    "lf_pct": 20,
+    "mode": "PBO10km",
+    "snapshots": 10000,
+    "partial": false,
+    "inr20_db": -6.5797226164280005,
+    "inr_ci_low_db": -6.696942255525258,
+    "inr_ci_high_db": -6.427444758317733,
+    "margin_db": 0.5797226164280005,
+    "margin_ci_low_db": 0.42744475831773343,
+    "margin_ci_high_db": 0.6969422555252578,
+    "classification": "compliant",
+    "exceedance_pct": 17.51,
+    "inr20_before_db": -6.5797226164280005,
+    "mean_snapshot_reduction_db": 0.0,
+    "mean_accepted_changes": 0.0,
+    "snapshots_with_handover_pct": 0.0,
+    "mean_examined_beams": 0.0,
+    "mean_attempts": 0.0,
+    "mean_candidates": 0.0,
+    "mean_evaluated_candidates": 0.0,
+    "mean_active_pbo_beams": 2.0656,
+    "max_prediction_error_db": 0.0,
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260727,
+    "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_340km_FS40m_LF20_Azi90_PBO10km_2026-10-30_01"
+  }
+}

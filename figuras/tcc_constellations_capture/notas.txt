@@ -1,0 +1,6 @@
+Constelações de 340 km (5280 satélites) e 525 km (3360 satélites), ambas com inclinação de 53 graus.
+OrbitModel original do SHARC, t=0; não são snapshots de resultados da campanha.
+Satélites laranjas: símbolos sem escala física e sem codificação de atividade ou PBO.
+A Terra oculta os satélites no lado oposto. Mesma câmera e escala nos dois painéis.
+Fonte cartográfica: Cesium ion / Bing Maps. Créditos completos: © 2026 Microsoft Corporation | Earthstar Geographics  SIO | © Mapbox | 
+© 2026 Microsoft Corporation | Earthstar Geographics  SIO | © Mapbox | 

@@ -1,0 +1,18 @@
+{
+  "source_style": "C:\\GitHub\\SHARC\\sharc\\campaigns\\03_DC_MSS_ISOLADO\\presentation_assets\\v3\\satellite_from_paper.blend",
+  "base_uv": [
+    0.7215266823768616,
+    0.17873330414295197
+  ],
+  "top_uv": [
+    0.7215266823768616,
+    0.7981653213500977
+  ],
+  "illustrative": true,
+  "dimensions_not_to_scale": true,
+  "materials": [
+    "Satellite body",
+    "Satellite dark",
+    "Muted Latincom blue glazing"
+  ]
+}

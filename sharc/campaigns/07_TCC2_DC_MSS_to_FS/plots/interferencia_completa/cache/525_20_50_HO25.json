@@ -1,0 +1,37 @@
+{
+  "signature": {
+    "sha256": "7276581d74bd175e665823d2775a66509209baec268e8626989a8bcf3a56ed43",
+    "method": "snapshot-percentile-bootstrap-v1",
+    "resamples": 10000,
+    "seed": 20260727
+  },
+  "metrics": {
+    "altitude_km": 525,
+    "fs_height_m": 20,
+    "lf_pct": 50,
+    "mode": "HO25",
+    "snapshots": 10000,
+    "partial": false,
+    "inr20_db": 0.3738178727302852,
+    "inr_ci_low_db": 0.10919944516888336,
+    "inr_ci_high_db": 0.6039936732347826,
+    "margin_db": -6.373817872730285,
+    "margin_ci_low_db": -6.603993673234783,
+    "margin_ci_high_db": -6.109199445168883,
+    "classification": "non-compliant",
+    "exceedance_pct": 35.31,
+    "inr20_before_db": 0.9626471602734057,
+    "mean_snapshot_reduction_db": 0.4877943955762887,
+    "mean_accepted_changes": 8.4645,
+    "snapshots_with_handover_pct": 38.629999999999995,
+    "mean_examined_beams": 9.0149,
+    "mean_attempts": 9.0149,
+    "mean_candidates": 425.94,
+    "mean_evaluated_candidates": 61.5787,
+    "mean_active_pbo_beams": 0.0,
+    "max_prediction_error_db": 0.0,
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260727,
+    "source": "D:\\SHARC_outputs\\07_TCC2_DC_MSS_to_FS\\output_tcc2_SA_noPY_525km_FS20m_LF50_Azi90_HO25_2026-11-13_01"
+  }
+}

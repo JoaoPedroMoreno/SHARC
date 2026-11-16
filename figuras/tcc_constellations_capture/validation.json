@@ -1,0 +1,45 @@
+{
+  "sourceAdapter": "tmp/pbo_presentation_review/system3_capture.js",
+  "noServiceLayers": true,
+  "transparentBackground": true,
+  "satelliteSymbolPixels": 6,
+  "sameCamera": true,
+  "orbitalFrameSeconds": 0,
+  "views": [
+    {
+      "count": 5280,
+      "altitude": 340,
+      "planes": 48,
+      "perPlane": 110,
+      "inclination": 53,
+      "width": 1200,
+      "height": 1200,
+      "imageryLayers": 1,
+      "tilesLoaded": true,
+      "credits": [
+        "© 2026 Microsoft Corporation",
+        "Earthstar Geographics  SIO",
+        "© Mapbox",
+        ""
+      ]
+    },
+    {
+      "count": 3360,
+      "altitude": 525,
+      "planes": 28,
+      "perPlane": 120,
+      "inclination": 53,
+      "width": 1200,
+      "height": 1200,
+      "imageryLayers": 1,
+      "tilesLoaded": true,
+      "credits": [
+        "© 2026 Microsoft Corporation",
+        "Earthstar Geographics  SIO",
+        "© Mapbox",
+        ""
+      ]
+    }
+  ],
+  "errors": []
+}

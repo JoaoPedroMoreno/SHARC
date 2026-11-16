@@ -1,0 +1,55 @@
+{
+  "source": "C:\\GitHub\\SHARC\\sharc\\campaigns\\07_TCC2_DC_MSS_to_FS\\Scripts\\base_input.yaml",
+  "source_sha256": "a1dad69f8ee64778b8adb2c2157e8283c54d5d8edb5d903f1c3ab4737dabddf4",
+  "git_commit": "42de3d72330329f248cf6d7556158724c70668ee",
+  "additional_configs_checked": 97,
+  "no_simulations_run": true,
+  "curves": "Direct AntennaFactory instances after SHARC parameter loading; gain minus peak_gain",
+  "tx": {
+    "model": "ITU-R-S.1528-Taylor",
+    "channel_frequency_mhz": 2155.0,
+    "pattern_frequency_mhz": 2000,
+    "bandwidth_mhz": 5.0,
+    "peak_gain_dbi": 34.1,
+    "l_r_m": 1.6,
+    "l_t_m": 1.6,
+    "slr_db": 20.0,
+    "n_side_lobes": 2,
+    "theta_minus7_deg": 4.322754645124303,
+    "plot_range_deg": [
+      0,
+      20
+    ],
+    "vertical_display_limits_db": [
+      -60,
+      2
+    ]
+  },
+  "fs": {
+    "model": "ITU-R F.1245_fs",
+    "frequency_mhz": 2155.0,
+    "diameter_m": 2,
+    "peak_gain_dbi": 33.1,
+    "diameter_over_wavelength": 14.366666666666667,
+    "phi_m_deg": 5.160145760704435,
+    "theta_minus3_deg": 2.4112076207455373,
+    "plot_range_deg": [
+      0,
+      90
+    ],
+    "inset_range_deg": [
+      0,
+      10
+    ],
+    "vertical_display_limits_db": [
+      -50,
+      2
+    ]
+  },
+  "format": "PNG",
+  "dimensions_px": [
+    4720,
+    3120
+  ],
+  "dpi": 400
+}
